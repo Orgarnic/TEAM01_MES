@@ -1,5 +1,5 @@
 ﻿
-namespace Cohesion_Project.Base
+namespace Cohesion_Project
 {
     partial class Frm_Base_6
     {
@@ -43,9 +43,9 @@ namespace Cohesion_Project.Base
             this.Txt_Search = new System.Windows.Forms.TextBox();
             this.Cbo_Search2 = new System.Windows.Forms.ComboBox();
             this.pnlSearch = new System.Windows.Forms.Panel();
+            this.Btn_Search = new System.Windows.Forms.Button();
             this.Cbo_Search1 = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.Btn_Search = new System.Windows.Forms.Button();
             this.Btn_Refresh = new System.Windows.Forms.Button();
             this.Btn_Insert = new System.Windows.Forms.Button();
             this.Btn_Update = new System.Windows.Forms.Button();
@@ -124,7 +124,8 @@ namespace Cohesion_Project.Base
             // 
             // panel2
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.SystemColors.Control;
             this.panel2.Controls.Add(this.dataGridView1);
@@ -215,6 +216,23 @@ namespace Cohesion_Project.Base
             this.pnlSearch.Size = new System.Drawing.Size(1521, 71);
             this.pnlSearch.TabIndex = 33;
             // 
+            // Btn_Search
+            // 
+            this.Btn_Search.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(76)))), ((int)(((byte)(115)))));
+            this.Btn_Search.FlatAppearance.BorderSize = 0;
+            this.Btn_Search.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Btn_Search.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Btn_Search.ForeColor = System.Drawing.SystemColors.Control;
+            this.Btn_Search.Image = global::Cohesion_Project.Properties.Resources.search;
+            this.Btn_Search.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Btn_Search.Location = new System.Drawing.Point(1000, 20);
+            this.Btn_Search.Name = "Btn_Search";
+            this.Btn_Search.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
+            this.Btn_Search.Size = new System.Drawing.Size(95, 35);
+            this.Btn_Search.TabIndex = 17;
+            this.Btn_Search.Text = "      조  회";
+            this.Btn_Search.UseVisualStyleBackColor = false;
+            // 
             // Cbo_Search1
             // 
             this.Cbo_Search1.FormattingEnabled = true;
@@ -235,23 +253,6 @@ namespace Cohesion_Project.Base
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1521, 47);
             this.panel1.TabIndex = 32;
-            // 
-            // Btn_Search
-            // 
-            this.Btn_Search.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(76)))), ((int)(((byte)(115)))));
-            this.Btn_Search.FlatAppearance.BorderSize = 0;
-            this.Btn_Search.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Btn_Search.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.Btn_Search.ForeColor = System.Drawing.SystemColors.Control;
-            this.Btn_Search.Image = global::Cohesion_Project.Properties.Resources.search;
-            this.Btn_Search.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Btn_Search.Location = new System.Drawing.Point(1000, 20);
-            this.Btn_Search.Name = "Btn_Search";
-            this.Btn_Search.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.Btn_Search.Size = new System.Drawing.Size(95, 35);
-            this.Btn_Search.TabIndex = 17;
-            this.Btn_Search.Text = "      조  회";
-            this.Btn_Search.UseVisualStyleBackColor = false;
             // 
             // Btn_Refresh
             // 

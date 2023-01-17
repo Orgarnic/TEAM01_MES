@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Cohesion_Project.Base
+namespace Cohesion_Project
 {
     public partial class Frm_Base_6 : Form
     {

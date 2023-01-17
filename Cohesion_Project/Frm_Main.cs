@@ -76,5 +76,13 @@ namespace Cohesion_Project
             frm.WindowState = FormWindowState.Maximized;
             frm.Show();
         }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            Frm_Base_6 frm = new Frm_Base_6();
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.Show();
+        }
     }
 }

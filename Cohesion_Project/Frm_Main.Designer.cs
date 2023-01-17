@@ -39,7 +39,6 @@ namespace Cohesion_Project
             this.button9 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.Lbl_Position = new System.Windows.Forms.Label();
@@ -50,17 +49,19 @@ namespace Cohesion_Project
             this.Pnl_Top = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.menuStrip2 = new System.Windows.Forms.MenuStrip();
+            this.cc_TabControl1 = new Cohesion_Project.Cc_TabControl();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.Btn_Close = new System.Windows.Forms.Button();
-            this.menuStrip2 = new System.Windows.Forms.MenuStrip();
-            this.cc_TabControl1 = new Cohesion_Project.Cc_TabControl();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.button10 = new System.Windows.Forms.Button();
             this.Flp_Side.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.Pnl_Top.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // Flp_Side
@@ -75,6 +76,7 @@ namespace Cohesion_Project
             this.Flp_Side.Controls.Add(this.button7);
             this.Flp_Side.Controls.Add(this.button8);
             this.Flp_Side.Controls.Add(this.button9);
+            this.Flp_Side.Controls.Add(this.button10);
             this.Flp_Side.Location = new System.Drawing.Point(0, 56);
             this.Flp_Side.Margin = new System.Windows.Forms.Padding(0);
             this.Flp_Side.Name = "Flp_Side";
@@ -180,17 +182,6 @@ namespace Cohesion_Project
             this.label3.Size = new System.Drawing.Size(94, 21);
             this.label3.TabIndex = 26;
             this.label3.Text = "Cohesion";
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(100, 55);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox2.TabIndex = 25;
-            this.pictureBox2.TabStop = false;
             // 
             // panel1
             // 
@@ -312,6 +303,25 @@ namespace Cohesion_Project
             this.label1.Text = "|";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // menuStrip2
+            // 
+            this.menuStrip2.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip2.Name = "menuStrip2";
+            this.menuStrip2.Size = new System.Drawing.Size(1217, 24);
+            this.menuStrip2.TabIndex = 18;
+            this.menuStrip2.Text = "menuStrip2";
+            this.menuStrip2.Visible = false;
+            // 
+            // cc_TabControl1
+            // 
+            this.cc_TabControl1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.cc_TabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.cc_TabControl1.Location = new System.Drawing.Point(180, 30);
+            this.cc_TabControl1.Name = "cc_TabControl1";
+            this.cc_TabControl1.SelectedIndex = 0;
+            this.cc_TabControl1.Size = new System.Drawing.Size(1217, 23);
+            this.cc_TabControl1.TabIndex = 24;
+            // 
             // button1
             // 
             this.button1.Dock = System.Windows.Forms.DockStyle.Right;
@@ -358,24 +368,31 @@ namespace Cohesion_Project
             this.Btn_Close.UseVisualStyleBackColor = true;
             this.Btn_Close.Click += new System.EventHandler(this.Btn_Close_Click);
             // 
-            // menuStrip2
+            // pictureBox2
             // 
-            this.menuStrip2.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Size = new System.Drawing.Size(1217, 24);
-            this.menuStrip2.TabIndex = 18;
-            this.menuStrip2.Text = "menuStrip2";
-            this.menuStrip2.Visible = false;
+            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(100, 55);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox2.TabIndex = 25;
+            this.pictureBox2.TabStop = false;
             // 
-            // cc_TabControl1
+            // button10
             // 
-            this.cc_TabControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cc_TabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
-            this.cc_TabControl1.Location = new System.Drawing.Point(180, 30);
-            this.cc_TabControl1.Name = "cc_TabControl1";
-            this.cc_TabControl1.SelectedIndex = 0;
-            this.cc_TabControl1.Size = new System.Drawing.Size(1217, 23);
-            this.cc_TabControl1.TabIndex = 24;
+            this.button10.BackColor = System.Drawing.Color.Transparent;
+            this.button10.FlatAppearance.BorderSize = 0;
+            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button10.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button10.Location = new System.Drawing.Point(0, 200);
+            this.button10.Margin = new System.Windows.Forms.Padding(0);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(177, 40);
+            this.button10.TabIndex = 6;
+            this.button10.Text = "Base6";
+            this.button10.UseVisualStyleBackColor = false;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // Frm_Main
             // 
@@ -401,11 +418,11 @@ namespace Cohesion_Project
             this.Flp_Side.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.Pnl_Top.ResumeLayout(false);
             this.Pnl_Top.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -436,6 +453,7 @@ namespace Cohesion_Project
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.MenuStrip menuStrip2;
+        private System.Windows.Forms.Button button10;
     }
 }
 
