@@ -29,19 +29,19 @@ namespace Cohesion_Project.Base
       /// </summary>
       private void InitializeComponent()
       {
-         this.SuspendLayout();
-         // 
-         // Frm_BaseNone
-         // 
-         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-         this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(199)))), ((int)(((byte)(213)))));
-         this.ClientSize = new System.Drawing.Size(1471, 834);
-         this.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-         this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-         this.Name = "Frm_BaseNone";
-         this.Text = "Frm_BaseNone";
-         this.ResumeLayout(false);
+            this.SuspendLayout();
+            // 
+            // Frm_BaseNone
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.LightGray;
+            this.ClientSize = new System.Drawing.Size(1521, 831);
+            this.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Name = "Frm_BaseNone";
+            this.Text = "Frm_BaseNone";
+            this.ResumeLayout(false);
 
       }
 

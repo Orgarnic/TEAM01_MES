@@ -57,6 +57,42 @@
     <Compile Include="Base\Frm_BaseNone.Designer.cs">
       <DependentUpon>Frm_BaseNone.cs</DependentUpon>
     </Compile>
+    <Compile Include="Base\Frm_Base_1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Base\Frm_Base_1.Designer.cs">
+      <DependentUpon>Frm_Base_1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Base\Frm_Base_2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Base\Frm_Base_2.Designer.cs">
+      <DependentUpon>Frm_Base_2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Base\Frm_Base_3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Base\Frm_Base_3.Designer.cs">
+      <DependentUpon>Frm_Base_3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Base\Frm_Base_4.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Base\Frm_Base_4.Designer.cs">
+      <DependentUpon>Frm_Base_4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Base\Frm_Base_5.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Base\Frm_Base_5.Designer.cs">
+      <DependentUpon>Frm_Base_5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Base\Frm_Base_6.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Base\Frm_Base_6.Designer.cs">
+      <DependentUpon>Frm_Base_6.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm_Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,6 +101,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Uc\Cc_TabControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -78,19 +119,32 @@
     <EmbeddedResource Include="Base\Frm_BaseNone.resx">
       <DependentUpon>Frm_BaseNone.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Base\Frm_Base_1.resx">
+      <DependentUpon>Frm_Base_1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Base\Frm_Base_2.resx">
+      <DependentUpon>Frm_Base_2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Base\Frm_Base_3.resx">
+      <DependentUpon>Frm_Base_3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Base\Frm_Base_4.resx">
+      <DependentUpon>Frm_Base_4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Base\Frm_Base_5.resx">
+      <DependentUpon>Frm_Base_5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Base\Frm_Base_6.resx">
+      <DependentUpon>Frm_Base_6.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frm_Main.resx">
       <DependentUpon>Frm_Main.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="Uc\Cc_TabControl.resx">
       <DependentUpon>Cc_TabControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -109,35 +163,81 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\maximize.png" />
+    <None Include="Resources\maximize.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Maximized.png" />
+    <None Include="Resources\Maximized.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\max.png" />
+    <None Include="Resources\max.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\minimize.png" />
+    <None Include="Resources\minimize.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\mini.png" />
+    <None Include="Resources\mini.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\minus.png" />
+    <None Include="Resources\minus.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\cancel.png" />
+    <None Include="Resources\cancel.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\Cohesion_DAO\Cohesion_DAO.csproj">
-      <Project>{08e87858-fef9-42cc-98f2-9ee8abc280e2}</Project>
-      <Name>Cohesion_DAO</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Cohesion_DTO\Cohesion_DTO.csproj">
-      <Project>{b20fd49f-87cb-445f-b7ff-f3f6ba267cbd}</Project>
-      <Name>Cohesion_DTO</Name>
-    </ProjectReference>
+    <Content Include="Image\check.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Image\close.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Image\rotate.png" />
+    <Content Include="Image\update.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Image\sync.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Image\tabs.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\search.png" />
+    <None Include="Resources\search1.png" />
+    <None Include="Resources\tabs.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\close1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\close.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\rotate.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\sync.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\check.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\update.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
