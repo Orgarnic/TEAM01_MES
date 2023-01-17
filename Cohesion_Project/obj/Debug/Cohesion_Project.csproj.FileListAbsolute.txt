@@ -1,0 +1,12 @@
+C:\Users\GDC10\Desktop\dddddddddddddddddddddddd\Cohesion_Project\obj\Debug\Cohesion_Project.csproj.AssemblyReference.cache
+C:\Users\GDC10\Desktop\dddddddddddddddddddddddd\Cohesion_Project\obj\Debug\Cohesion_Project.Base.Frm_BaseNone.resources
+C:\Users\GDC10\Desktop\dddddddddddddddddddddddd\Cohesion_Project\obj\Debug\Cohesion_Project.Frm_Base_1.resources
+C:\Users\GDC10\Desktop\dddddddddddddddddddddddd\Cohesion_Project\obj\Debug\Cohesion_Project.Frm_Base_2.resources
+C:\Users\GDC10\Desktop\dddddddddddddddddddddddd\Cohesion_Project\obj\Debug\Cohesion_Project.Frm_Base_3.resources
+C:\Users\GDC10\Desktop\dddddddddddddddddddddddd\Cohesion_Project\obj\Debug\Cohesion_Project.Frm_Base_4.resources
+C:\Users\GDC10\Desktop\dddddddddddddddddddddddd\Cohesion_Project\obj\Debug\Cohesion_Project.Frm_Base_5.resources
+C:\Users\GDC10\Desktop\dddddddddddddddddddddddd\Cohesion_Project\obj\Debug\Cohesion_Project.Frm_Main.resources
+C:\Users\GDC10\Desktop\dddddddddddddddddddddddd\Cohesion_Project\obj\Debug\Cohesion_Project.Properties.Resources.resources
+C:\Users\GDC10\Desktop\dddddddddddddddddddddddd\Cohesion_Project\obj\Debug\Cohesion_Project.Cc_TabControl.resources
+C:\Users\GDC10\Desktop\dddddddddddddddddddddddd\Cohesion_Project\obj\Debug\Cohesion_Project.csproj.GenerateResource.cache
+C:\Users\GDC10\Desktop\dddddddddddddddddddddddd\Cohesion_Project\obj\Debug\Cohesion_Project.csproj.CoreCompileInputs.cache

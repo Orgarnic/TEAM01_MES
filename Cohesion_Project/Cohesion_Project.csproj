@@ -103,7 +103,6 @@
     </Compile>
     <Compile Include="Util\CommonUtil.cs" />
     <Compile Include="Util\DgvUtil.cs" />
-    <Compile Include="Util\ExcelUtil.cs" />
     <Compile Include="Util\LoggingUtility.cs" />
     <Compile Include="Util\MboxUtil.cs" />
     <EmbeddedResource Include="Base\Frm_BaseNone.resx">
