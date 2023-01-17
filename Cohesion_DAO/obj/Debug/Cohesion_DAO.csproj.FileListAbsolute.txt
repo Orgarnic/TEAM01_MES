@@ -1,9 +1,0 @@
-C:\Users\Organic\Desktop\Cohesion\TEAM01_MES\Cohesion_DAO\bin\Debug\Cohesion_DAO.dll
-C:\Users\Organic\Desktop\Cohesion\TEAM01_MES\Cohesion_DAO\bin\Debug\Cohesion_DAO.pdb
-C:\Users\Organic\Desktop\Cohesion\TEAM01_MES\Cohesion_DAO\bin\Debug\Cohesion_DTO.dll
-C:\Users\Organic\Desktop\Cohesion\TEAM01_MES\Cohesion_DAO\bin\Debug\Cohesion_DTO.pdb
-C:\Users\Organic\Desktop\Cohesion\TEAM01_MES\Cohesion_DAO\obj\Debug\Cohesion_DAO.csproj.AssemblyReference.cache
-C:\Users\Organic\Desktop\Cohesion\TEAM01_MES\Cohesion_DAO\obj\Debug\Cohesion_DAO.csproj.CoreCompileInputs.cache
-C:\Users\Organic\Desktop\Cohesion\TEAM01_MES\Cohesion_DAO\obj\Debug\Cohesion_DAO.csproj.CopyComplete
-C:\Users\Organic\Desktop\Cohesion\TEAM01_MES\Cohesion_DAO\obj\Debug\Cohesion_DAO.dll
-C:\Users\Organic\Desktop\Cohesion\TEAM01_MES\Cohesion_DAO\obj\Debug\Cohesion_DAO.pdb
