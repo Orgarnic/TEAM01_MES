@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GS_DAO
+namespace Cohesion_Project
 {
     public class LoggingUtility
     {
