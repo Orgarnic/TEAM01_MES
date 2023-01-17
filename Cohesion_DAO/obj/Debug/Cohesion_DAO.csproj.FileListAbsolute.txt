@@ -7,3 +7,5 @@ C:\Users\GDC10\Desktop\dddddddddddddddddddddddd\Cohesion_DAO\obj\Debug\Cohesion_
 C:\Users\GDC10\Desktop\dddddddddddddddddddddddd\Cohesion_DAO\obj\Debug\Cohesion_DAO.csproj.CopyComplete
 C:\Users\GDC10\Desktop\dddddddddddddddddddddddd\Cohesion_DAO\obj\Debug\Cohesion_DAO.dll
 C:\Users\GDC10\Desktop\dddddddddddddddddddddddd\Cohesion_DAO\obj\Debug\Cohesion_DAO.pdb
+C:\Users\GDC10\Desktop\dddddddddddddddddddddddd\Cohesion_DAO\bin\Debug\log4net.dll
+C:\Users\GDC10\Desktop\dddddddddddddddddddddddd\Cohesion_DAO\bin\Debug\log4net.xml
