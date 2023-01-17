@@ -101,6 +101,11 @@
     <Compile Include="Uc\Cc_TabControl.Designer.cs">
       <DependentUpon>Cc_TabControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Util\CommonUtil.cs" />
+    <Compile Include="Util\DgvUtil.cs" />
+    <Compile Include="Util\ExcelUtil.cs" />
+    <Compile Include="Util\LoggingUtility.cs" />
+    <Compile Include="Util\MboxUtil.cs" />
     <EmbeddedResource Include="Base\Frm_BaseNone.resx">
       <DependentUpon>Frm_BaseNone.cs</DependentUpon>
     </EmbeddedResource>
@@ -178,7 +183,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Cohesion_DTO\Cohesion_DTO.csproj">
+      <Project>{6df13463-ec1c-4624-9150-94d42929bc3a}</Project>
+      <Name>Cohesion_DTO</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Image\check.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
