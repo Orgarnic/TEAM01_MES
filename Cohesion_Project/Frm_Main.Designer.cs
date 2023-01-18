@@ -37,9 +37,10 @@ namespace Cohesion_Project
          this.button7 = new System.Windows.Forms.Button();
          this.button8 = new System.Windows.Forms.Button();
          this.button9 = new System.Windows.Forms.Button();
-         this.button10 = new System.Windows.Forms.Button();
          this.panel2 = new System.Windows.Forms.Panel();
+         this.panel3 = new System.Windows.Forms.Panel();
          this.label3 = new System.Windows.Forms.Label();
+         this.pictureBox2 = new System.Windows.Forms.PictureBox();
          this.panel1 = new System.Windows.Forms.Panel();
          this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
          this.Lbl_Position = new System.Windows.Forms.Label();
@@ -50,18 +51,18 @@ namespace Cohesion_Project
          this.Pnl_Top = new System.Windows.Forms.Panel();
          this.label2 = new System.Windows.Forms.Label();
          this.label1 = new System.Windows.Forms.Label();
-         this.menuStrip2 = new System.Windows.Forms.MenuStrip();
          this.button1 = new System.Windows.Forms.Button();
          this.button2 = new System.Windows.Forms.Button();
          this.Btn_Close = new System.Windows.Forms.Button();
-         this.pictureBox2 = new System.Windows.Forms.PictureBox();
+         this.menuStrip2 = new System.Windows.Forms.MenuStrip();
          this.cc_TabControl1 = new Cohesion_Project.Cc_TabControl();
          this.Flp_Side.SuspendLayout();
          this.panel2.SuspendLayout();
+         this.panel3.SuspendLayout();
+         ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
          this.panel1.SuspendLayout();
          this.tableLayoutPanel1.SuspendLayout();
          this.Pnl_Top.SuspendLayout();
-         ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
          this.SuspendLayout();
          // 
          // Flp_Side
@@ -69,7 +70,7 @@ namespace Cohesion_Project
          this.Flp_Side.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
          this.Flp_Side.AutoScroll = true;
-         this.Flp_Side.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(76)))), ((int)(((byte)(115)))));
+         this.Flp_Side.BackColor = System.Drawing.Color.Transparent;
          this.Flp_Side.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
          this.Flp_Side.CausesValidation = false;
          this.Flp_Side.Controls.Add(this.button5);
@@ -77,7 +78,6 @@ namespace Cohesion_Project
          this.Flp_Side.Controls.Add(this.button7);
          this.Flp_Side.Controls.Add(this.button8);
          this.Flp_Side.Controls.Add(this.button9);
-         this.Flp_Side.Controls.Add(this.button10);
          this.Flp_Side.Location = new System.Drawing.Point(0, 56);
          this.Flp_Side.Margin = new System.Windows.Forms.Padding(0);
          this.Flp_Side.Name = "Flp_Side";
@@ -87,6 +87,7 @@ namespace Cohesion_Project
          // button5
          // 
          this.button5.BackColor = System.Drawing.Color.Transparent;
+         this.button5.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
          this.button5.FlatAppearance.BorderSize = 0;
          this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
          this.button5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -102,6 +103,7 @@ namespace Cohesion_Project
          // button6
          // 
          this.button6.BackColor = System.Drawing.Color.Transparent;
+         this.button6.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
          this.button6.FlatAppearance.BorderSize = 0;
          this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
          this.button6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -117,6 +119,7 @@ namespace Cohesion_Project
          // button7
          // 
          this.button7.BackColor = System.Drawing.Color.Transparent;
+         this.button7.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
          this.button7.FlatAppearance.BorderSize = 0;
          this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
          this.button7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -132,6 +135,7 @@ namespace Cohesion_Project
          // button8
          // 
          this.button8.BackColor = System.Drawing.Color.Transparent;
+         this.button8.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
          this.button8.FlatAppearance.BorderSize = 0;
          this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
          this.button8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -147,6 +151,7 @@ namespace Cohesion_Project
          // button9
          // 
          this.button9.BackColor = System.Drawing.Color.Transparent;
+         this.button9.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
          this.button9.FlatAppearance.BorderSize = 0;
          this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
          this.button9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -159,27 +164,11 @@ namespace Cohesion_Project
          this.button9.UseVisualStyleBackColor = false;
          this.button9.Click += new System.EventHandler(this.button9_Click);
          // 
-         // button10
-         // 
-         this.button10.BackColor = System.Drawing.Color.Transparent;
-         this.button10.FlatAppearance.BorderSize = 0;
-         this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-         this.button10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-         this.button10.Location = new System.Drawing.Point(0, 250);
-         this.button10.Margin = new System.Windows.Forms.Padding(0);
-         this.button10.Name = "button10";
-         this.button10.Size = new System.Drawing.Size(180, 50);
-         this.button10.TabIndex = 6;
-         this.button10.Text = "Base6";
-         this.button10.UseVisualStyleBackColor = false;
-         this.button10.Click += new System.EventHandler(this.button10_Click);
-         // 
          // panel2
          // 
-         this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(76)))), ((int)(((byte)(115)))));
+         this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
          this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-         this.panel2.Controls.Add(this.label3);
-         this.panel2.Controls.Add(this.pictureBox2);
+         this.panel2.Controls.Add(this.panel3);
          this.panel2.Controls.Add(this.Flp_Side);
          this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
          this.panel2.Location = new System.Drawing.Point(0, 0);
@@ -188,17 +177,39 @@ namespace Cohesion_Project
          this.panel2.Size = new System.Drawing.Size(180, 894);
          this.panel2.TabIndex = 16;
          // 
+         // panel3
+         // 
+         this.panel3.Controls.Add(this.label3);
+         this.panel3.Controls.Add(this.pictureBox2);
+         this.panel3.Location = new System.Drawing.Point(0, 0);
+         this.panel3.Margin = new System.Windows.Forms.Padding(0);
+         this.panel3.Name = "panel3";
+         this.panel3.Size = new System.Drawing.Size(180, 55);
+         this.panel3.TabIndex = 26;
+         // 
          // label3
          // 
          this.label3.AutoSize = true;
          this.label3.BackColor = System.Drawing.Color.Transparent;
          this.label3.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
          this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-         this.label3.Location = new System.Drawing.Point(70, 17);
+         this.label3.Location = new System.Drawing.Point(74, 17);
          this.label3.Name = "label3";
          this.label3.Size = new System.Drawing.Size(94, 21);
          this.label3.TabIndex = 26;
          this.label3.Text = "Cohesion";
+         // 
+         // pictureBox2
+         // 
+         this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
+         this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Left;
+         this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+         this.pictureBox2.Location = new System.Drawing.Point(0, 0);
+         this.pictureBox2.Name = "pictureBox2";
+         this.pictureBox2.Size = new System.Drawing.Size(100, 55);
+         this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+         this.pictureBox2.TabIndex = 25;
+         this.pictureBox2.TabStop = false;
          // 
          // panel1
          // 
@@ -209,6 +220,7 @@ namespace Cohesion_Project
          this.panel1.Name = "panel1";
          this.panel1.Size = new System.Drawing.Size(1346, 20);
          this.panel1.TabIndex = 18;
+         this.panel1.Visible = false;
          // 
          // tableLayoutPanel1
          // 
@@ -282,7 +294,7 @@ namespace Cohesion_Project
          // 
          // Pnl_Top
          // 
-         this.Pnl_Top.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(76)))), ((int)(((byte)(115)))));
+         this.Pnl_Top.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
          this.Pnl_Top.Controls.Add(this.label2);
          this.Pnl_Top.Controls.Add(this.label1);
          this.Pnl_Top.Controls.Add(this.button1);
@@ -319,15 +331,6 @@ namespace Cohesion_Project
          this.label1.TabIndex = 16;
          this.label1.Text = "▼";
          this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-         // 
-         // menuStrip2
-         // 
-         this.menuStrip2.Location = new System.Drawing.Point(0, 0);
-         this.menuStrip2.Name = "menuStrip2";
-         this.menuStrip2.Size = new System.Drawing.Size(1217, 24);
-         this.menuStrip2.TabIndex = 18;
-         this.menuStrip2.Text = "menuStrip2";
-         this.menuStrip2.Visible = false;
          // 
          // button1
          // 
@@ -378,16 +381,14 @@ namespace Cohesion_Project
          this.Btn_Close.UseVisualStyleBackColor = true;
          this.Btn_Close.Click += new System.EventHandler(this.Btn_Close_Click);
          // 
-         // pictureBox2
+         // menuStrip2
          // 
-         this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
-         this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-         this.pictureBox2.Location = new System.Drawing.Point(0, 0);
-         this.pictureBox2.Name = "pictureBox2";
-         this.pictureBox2.Size = new System.Drawing.Size(100, 55);
-         this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-         this.pictureBox2.TabIndex = 25;
-         this.pictureBox2.TabStop = false;
+         this.menuStrip2.Location = new System.Drawing.Point(0, 0);
+         this.menuStrip2.Name = "menuStrip2";
+         this.menuStrip2.Size = new System.Drawing.Size(1217, 24);
+         this.menuStrip2.TabIndex = 18;
+         this.menuStrip2.Text = "menuStrip2";
+         this.menuStrip2.Visible = false;
          // 
          // cc_TabControl1
          // 
@@ -422,12 +423,13 @@ namespace Cohesion_Project
          this.Load += new System.EventHandler(this.Frm_Main_Load);
          this.Flp_Side.ResumeLayout(false);
          this.panel2.ResumeLayout(false);
-         this.panel2.PerformLayout();
+         this.panel3.ResumeLayout(false);
+         this.panel3.PerformLayout();
+         ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
          this.panel1.ResumeLayout(false);
          this.tableLayoutPanel1.ResumeLayout(false);
          this.Pnl_Top.ResumeLayout(false);
          this.Pnl_Top.PerformLayout();
-         ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
          this.ResumeLayout(false);
          this.PerformLayout();
 
@@ -458,7 +460,7 @@ namespace Cohesion_Project
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.MenuStrip menuStrip2;
-        private System.Windows.Forms.Button button10;
-    }
+      private System.Windows.Forms.Panel panel3;
+   }
 }
 

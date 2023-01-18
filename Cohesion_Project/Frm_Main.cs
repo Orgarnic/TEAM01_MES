@@ -39,7 +39,7 @@ namespace Cohesion_Project
 
         private void button5_Click(object sender, EventArgs e)
         {
-            Frm_Base_5 frm = new Frm_Base_5();
+            Frm_Base_1 frm = new Frm_Base_1();
             frm.MdiParent = this;
             frm.WindowState = FormWindowState.Maximized;
             frm.Show();
@@ -47,42 +47,39 @@ namespace Cohesion_Project
 
         private void button6_Click(object sender, EventArgs e)
         {
-            Frm_Base_4 frm = new Frm_Base_4();
-            frm.MdiParent = this;
-            frm.WindowState = FormWindowState.Maximized;
-            frm.Show();
-        }
+         Frm_Base_2 frm = new Frm_Base_2();
+         frm.MdiParent = this;
+         frm.WindowState = FormWindowState.Maximized;
+         frm.Show();
+      }
 
         private void button7_Click(object sender, EventArgs e)
         {
-            Frm_Base_1 frm = new Frm_Base_1();
-            frm.MdiParent = this;
-            frm.WindowState = FormWindowState.Maximized;
-            frm.Show();
-        }
+         Frm_Base_3 frm = new Frm_Base_3();
+         frm.MdiParent = this;
+         frm.WindowState = FormWindowState.Maximized;
+         frm.Show();
+      }
 
         private void button8_Click(object sender, EventArgs e)
         {
-            Frm_Base_2 frm = new Frm_Base_2();
-            frm.MdiParent = this;
-            frm.WindowState = FormWindowState.Maximized;
-            frm.Show();
-        }
+         Frm_Base_4 frm = new Frm_Base_4();
+         frm.MdiParent = this;
+         frm.WindowState = FormWindowState.Maximized;
+         frm.Show();
+      }
 
         private void button9_Click(object sender, EventArgs e)
         {
-            Frm_Base_3 frm = new Frm_Base_3();
-            frm.MdiParent = this;
-            frm.WindowState = FormWindowState.Maximized;
-            frm.Show();
-        }
+         Frm_Base_5 frm = new Frm_Base_5();
+         frm.MdiParent = this;
+         frm.WindowState = FormWindowState.Maximized;
+         frm.Show();
+      }
 
         private void button10_Click(object sender, EventArgs e)
         {
-            Frm_Base_6 frm = new Frm_Base_6();
-            frm.MdiParent = this;
-            frm.WindowState = FormWindowState.Maximized;
-            frm.Show();
+
         }
     }
 }
