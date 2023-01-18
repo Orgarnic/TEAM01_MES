@@ -217,6 +217,7 @@
     <Content Include="Image\tabs.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\close2.png" />
     <Content Include="Resources\search.png" />
     <None Include="Resources\search1.png" />
     <None Include="Resources\tabs.png">
