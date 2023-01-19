@@ -39,5 +39,43 @@ namespace Cohesion_DAO
 
             return list;
         }
+
+        public bool InsertStore(Store_DTO dto)
+        {
+            string sql = @"INSERT INTO STORE_MST(STORE_CODE, STORE_NAME, STORE_TYPE, CREATE_TIME, CREATE_USER_ID)
+                           VALUES(@STORE_CODE, @STORE_NAME, @STORE_TYPE, GETDATE(), @CREATE_USER_ID) ";
+
+            SqlCommand cmd = new SqlCommand(sql, conn);
+
+            cmd.Parameters.AddWithValue("@STORE_CODE", string.IsNullOrEmpty(dto.STORE_CODE) ? (object)DBNull.Value : dto.STORE_CODE);
+            cmd.Parameters.AddWithValue("@STORE_NAME", string.IsNullOrEmpty(dto.STORE_NAME) ? (object)DBNull.Value : dto.STORE_NAME);
+            cmd.Parameters.AddWithValue("@STORE_TYPE", string.IsNullOrEmpty(dto.STORE_TYPE) ? (object)DBNull.Value : dto.STORE_TYPE);
+            cmd.Parameters.AddWithValue("@CREATE_USER_ID", string.IsNullOrEmpty(dto.CREATE_USER_ID) ? (object)DBNull.Value : dto.CREATE_USER_ID);
+
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            return true;
+        }
+
+        public bool UpdateStore(Store_DTO dto)
+        {
+            string sql = @"UPDATE STORE_MST 
+                           SET  STORE_NAME = @STORE_NAME
+                           	   ,STORE_TYPE = @STORE_TYPE
+                           	   ,UPDATE_TIME = GETDATE()
+                           	   ,UPDATE_USER_ID = @UPDATE_USER_ID
+                           WHERE STORE_CODE = @STORE_CODE ";
+            
+            SqlCommand cmd = new SqlCommand(sql, conn);
+
+            cmd.Parameters.AddWithValue("@STORE_CODE", string.IsNullOrEmpty(dto.STORE_CODE) ? (object)DBNull.Value : dto.STORE_CODE);
+            cmd.Parameters.AddWithValue("@STORE_NAME", string.IsNullOrEmpty(dto.STORE_NAME) ? (object)DBNull.Value : dto.STORE_NAME);
+            cmd.Parameters.AddWithValue("@STORE_TYPE", string.IsNullOrEmpty(dto.STORE_TYPE) ? (object)DBNull.Value : dto.STORE_TYPE);
+            cmd.Parameters.AddWithValue("@UPDATE_USER_ID", string.IsNullOrEmpty(dto.UPDATE_USER_ID) ? (object)DBNull.Value : dto.UPDATE_USER_ID);
+
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            return true;
+        }
     }
 }
