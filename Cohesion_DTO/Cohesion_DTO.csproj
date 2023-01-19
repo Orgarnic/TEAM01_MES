@@ -45,6 +45,7 @@
     <Compile Include="BOM_MST_DTO.cs" />
     <Compile Include="CommonData_DTO.cs" />
     <Compile Include="CommonTable_DTO.cs" />
+    <Compile Include="Equipment_DTO.cs" />
     <Compile Include="PRODUCT_MST_DTO.cs" />
     <Compile Include="PRODUCT_OPERATION_REL_DTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
