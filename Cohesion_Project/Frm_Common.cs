@@ -48,7 +48,7 @@ namespace Cohesion_Project
 
 
             //프로퍼티 그리드 초기 설정
-            Ppg_CommonTable.PropertySort = PropertySort.NoSort;
+            Ppg_CommonTable.PropertySort = PropertySort.Categorized;
             Ppg_CommonTable.SelectedObject = cd;
 
 
@@ -270,16 +270,16 @@ namespace Cohesion_Project
         [Category("속성"), Description("DATA_5_NAME"), DisplayName("데이터 5 이름")]
         public string DATA_5_NAME { get; set; }
 
-        [Category("속성"), Description("CREATE_TIME"), DisplayName("생성 시간")]
+        [Category("추적"), Description("CREATE_TIME"), DisplayName("생성 시간")]
         public DateTime CREATE_TIME { get; set; }
 
-        [Category("속성"), Description("CREATE_USER_ID"), DisplayName("생성자")]
+        [Category("추적"), Description("CREATE_USER_ID"), DisplayName("생성자")]
         public string CREATE_USER_ID { get; set; }
 
-        [Category("속성"), Description("UPDATE_TIME"), DisplayName("변경 시간")]
+        [Category("추적"), Description("UPDATE_TIME"), DisplayName("변경 시간")]
         public DateTime UPDATE_TIME { get; set; }
 
-        [Category("속성"), Description("UPDATE_USER_ID"), DisplayName("변경자")]
+        [Category("추적"), Description("UPDATE_USER_ID"), DisplayName("변경자")]
         public string UPDATE_USER_ID { get; set; }
     }
 

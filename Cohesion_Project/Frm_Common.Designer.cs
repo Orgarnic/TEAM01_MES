@@ -49,6 +49,10 @@ namespace Cohesion_Project
             this.panel2.Controls.SetChildIndex(this.lbl4, 0);
             this.panel2.Controls.SetChildIndex(this.Dgv_CommonTable, 0);
             // 
+            // lbl4
+            // 
+            this.lbl4.Text = "▶ 공통코드 테이블 정보";
+            // 
             // btnSearch
             // 
             this.btnSearch.FlatAppearance.BorderSize = 0;
@@ -67,6 +71,10 @@ namespace Cohesion_Project
             this.panel7.Controls.SetChildIndex(this.lbl3, 0);
             this.panel7.Controls.SetChildIndex(this.Ppg_CommonTable, 0);
             // 
+            // lbl3
+            // 
+            this.lbl3.Text = "";
+            // 
             // btnClose
             // 
             this.btnClose.FlatAppearance.BorderSize = 0;
@@ -75,6 +83,7 @@ namespace Cohesion_Project
             // btnDelete
             // 
             this.btnDelete.FlatAppearance.BorderSize = 0;
+            this.btnDelete.Location = new System.Drawing.Point(1219, 1003);
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnInsert
@@ -84,11 +93,13 @@ namespace Cohesion_Project
             // btnAdd
             // 
             this.btnAdd.FlatAppearance.BorderSize = 0;
+            this.btnAdd.Location = new System.Drawing.Point(1017, 1003);
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnUpdate
             // 
             this.btnUpdate.FlatAppearance.BorderSize = 0;
+            this.btnUpdate.Location = new System.Drawing.Point(1118, 1003);
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnRefresh

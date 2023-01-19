@@ -133,6 +133,7 @@ namespace Cohesion_Project
             this.dgvBOMParent.RowTemplate.Height = 23;
             this.dgvBOMParent.Size = new System.Drawing.Size(1151, 332);
             this.dgvBOMParent.TabIndex = 6;
+            this.dgvBOMParent.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBOMParent_CellClick);
             // 
             // dgvBOMChild
             // 
