@@ -59,7 +59,7 @@ namespace Cohesion_Project
       private void btnRefresh_Click(object sender, EventArgs e)
       {
          ppgProduct.Enabled = true;
-          btnAdd.Enabled = true;
+         btnAdd.Enabled = true;
          ppgProduct.SelectedObject = new PRODUCT_MST_DTO();
       }
       private void btnAdd_Click(object sender, EventArgs e)
