@@ -29,54 +29,91 @@ namespace Cohesion_Project
         /// </summary>
         private void InitializeComponent()
         {
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
             this.pnlSearch.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            this.panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // Btn_Search
+            // panel2
             // 
-            this.Btn_Search.FlatAppearance.BorderSize = 0;
-            this.Btn_Search.Location = new System.Drawing.Point(700, 19);
+            this.panel2.Controls.Add(this.dataGridView1);
+            this.panel2.Size = new System.Drawing.Size(1153, 938);
+            this.panel2.Controls.SetChildIndex(this.label3, 0);
+            this.panel2.Controls.SetChildIndex(this.dataGridView1, 0);
             // 
-            // Cbo_Search2
+            // btnSearch
             // 
-            this.Cbo_Search2.Size = new System.Drawing.Size(189, 23);
+            this.btnSearch.FlatAppearance.BorderSize = 0;
             // 
-            // Cbo_Search1
+            // btnSearchCondition
             // 
-            this.Cbo_Search1.Size = new System.Drawing.Size(189, 23);
+            this.btnSearchCondition.FlatAppearance.BorderSize = 0;
             // 
-            // Btn_Refresh
+            // splitContainer1
             // 
-            this.Btn_Refresh.FlatAppearance.BorderSize = 0;
             // 
-            // Btn_Insert
+            // panel7
             // 
-            this.Btn_Insert.FlatAppearance.BorderSize = 0;
-            // 
-            // Btn_Update
-            // 
-            this.Btn_Update.FlatAppearance.BorderSize = 0;
+            this.panel7.Controls.Add(this.propertyGrid1);
+            this.panel7.Size = new System.Drawing.Size(358, 1016);
+            this.panel7.Controls.SetChildIndex(this.label8, 0);
+            this.panel7.Controls.SetChildIndex(this.propertyGrid1, 0);
             // 
             // Btn_Close
             // 
             this.Btn_Close.FlatAppearance.BorderSize = 0;
             // 
-            // Btn_Create
+            // dataGridView1
             // 
-            this.Btn_Create.FlatAppearance.BorderSize = 0;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 30);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 23;
+            this.dataGridView1.Size = new System.Drawing.Size(1151, 906);
+            this.dataGridView1.TabIndex = 5;
+            // 
+            // propertyGrid1
+            // 
+            this.propertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.propertyGrid1.Location = new System.Drawing.Point(0, 30);
+            this.propertyGrid1.Name = "propertyGrid1";
+            this.propertyGrid1.Size = new System.Drawing.Size(356, 984);
+            this.propertyGrid1.TabIndex = 7;
             // 
             // Frm_Store
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.ClientSize = new System.Drawing.Size(1521, 831);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+            this.ClientSize = new System.Drawing.Size(1521, 776);
             this.Name = "Frm_Store";
             this.Load += new System.EventHandler(this.Frm_Store_Load);
             this.pnlSearch.ResumeLayout(false);
-            this.pnlSearch.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
+            this.panel7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.PropertyGrid propertyGrid1;
     }
 }
