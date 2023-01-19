@@ -87,17 +87,41 @@
     <Compile Include="Base\Frm_Base_1.Designer.cs">
       <DependentUpon>Frm_Base_1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm_BOM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_BOM.Designer.cs">
+      <DependentUpon>Frm_BOM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_Common.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Common.Designer.cs">
+      <DependentUpon>Frm_Common.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm_Main.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Frm_Main.Designer.cs">
       <DependentUpon>Frm_Main.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm_Product.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Product.Designer.cs">
+      <DependentUpon>Frm_Product.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm_Store.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Frm_Store.Designer.cs">
       <DependentUpon>Frm_Store.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pop_CommonTableData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pop_CommonTableData.Designer.cs">
+      <DependentUpon>Pop_CommonTableData.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -106,7 +130,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Service\Srv_BOM.cs" />
+    <Compile Include="Service\Srv_CommonData.cs" />
     <Compile Include="Service\Srv_Store.cs" />
+    <Compile Include="Service\Srv_Product.cs" />
     <Compile Include="Uc\Cc_TabControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -135,11 +162,23 @@
     <EmbeddedResource Include="Base\Frm_Base_1.resx">
       <DependentUpon>Frm_Base_1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Frm_BOM.resx">
+      <DependentUpon>Frm_BOM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Common.resx">
+      <DependentUpon>Frm_Common.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frm_Main.resx">
       <DependentUpon>Frm_Main.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Product.resx">
+      <DependentUpon>Frm_Product.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frm_Store.resx">
       <DependentUpon>Frm_Store.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pop_CommonTableData.resx">
+      <DependentUpon>Pop_CommonTableData.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -149,6 +188,7 @@
     <EmbeddedResource Include="Uc\Cc_TabControl.resx">
       <DependentUpon>Cc_TabControl.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -159,9 +199,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\maximize.png">
@@ -228,6 +265,9 @@
     <Content Include="Resources\Search2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\trash.png" />
+    <None Include="Resources\trash1.png" />
+    <None Include="Resources\Search21.png" />
     <None Include="Resources\close2.png" />
     <Content Include="Resources\search.png" />
     <None Include="Resources\search1.png" />
