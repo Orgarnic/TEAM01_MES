@@ -17,12 +17,42 @@ namespace Cohesion_Project
 
         private void Frm_BOM_Load(object sender, EventArgs e)
         {
-
+            DataGirdViewParent();
+            DataGirdViewChild();
         }
 
-        public void DataGirdViewShow()
+        public void DataGirdViewParent()
         {
-            
+            DgvUtil.AddTextCol(dgvBOMParent, "제품 코드", "PRODUCT_CODE", 150, true, 1);
+            DgvUtil.AddTextCol(dgvBOMParent, "제품명", "PRODUCT_NAME", 150, true, 1);
+            DgvUtil.AddTextCol(dgvBOMParent, "제품 유형", "PRODUCT_TYPE", 150, true, 1);
+            DgvUtil.AddTextCol(dgvBOMParent, "대체 품번", "ALTER_PRODUCT_CODE", 150, true, 1);
+            DgvUtil.AddTextCol(dgvBOMParent, "생성 시간", "CREATE_TIME", 150, true, 1);
+            DgvUtil.AddTextCol(dgvBOMParent, "생성 사용자", "CREATE_USER_ID", 150, true, 1);
+            DgvUtil.AddTextCol(dgvBOMParent, "변경 시간", "UPDATE_TIME", 150, true, 1);
+            DgvUtil.AddTextCol(dgvBOMParent, "변경 사용자", "UPDATE_USER_ID", 150, true, 1);
+
+            /*  public string PRODUCT_CODE { get; set; }	 //제품 코드, 품번
+		        public string PRODUCT_NAME { get; set; }	 //제품명, 품명
+		        public string PRODUCT_TYPE { get; set; }	 //품번 유형, 완제품 : FERT, 반제품 : HALB, 원자재 : ROH
+		        public string CUSTOMER_CODE { get; set; }	 //완제품인 경우 고객코드
+		        public string VENDOR_CODE { get; set; }		 //원자재인 경우 납품업체 코드
+		        public DateTime CREATE_TIME { get; set; }	 //생성 시간
+		        public string CREATE_USER_ID { get; set; }	 //생성 사용자
+		        public DateTime UPDATE_TIME { get; set; }	 //변경 시간
+		        public string UPDATE_USER_ID { get; set; }	 //변경 사용자*/
+        }
+
+        public void DataGirdViewChild()
+        {
+            DgvUtil.AddTextCol(dgvBOMChild, "구성 제품 코드", "PRODUCT_CODE", 150, true, 1);
+            DgvUtil.AddTextCol(dgvBOMChild, "구성 제품명", "CHILD_PRODUCT_CODE", 150, true, 1);
+            DgvUtil.AddTextCol(dgvBOMChild, "단위 수량", "REQUIRE_QTY", 150, true, 1);
+            DgvUtil.AddTextCol(dgvBOMChild, "대체 품번", "ALTER_PRODUCT_CODE", 150, true, 1);
+            DgvUtil.AddTextCol(dgvBOMChild, "생성 시간", "CREATE_TIME", 150, true, 1);
+            DgvUtil.AddTextCol(dgvBOMChild, "생성 사용자", "CREATE_USER_ID", 150, true, 1);
+            DgvUtil.AddTextCol(dgvBOMChild, "변경 시간", "UPDATE_TIME", 150, true, 1);
+            DgvUtil.AddTextCol(dgvBOMChild, "변경 사용자", "UPDATE_USER_ID", 150, true, 1);
         }
     }
 }

@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BOM_MST_DTO.cs" />
     <Compile Include="PRODUCT_MST_DTO.cs" />
     <Compile Include="PRODUCT_OPERATION_REL_DTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

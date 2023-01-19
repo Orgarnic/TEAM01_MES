@@ -31,6 +31,7 @@ namespace Cohesion_Project
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dgvBOMParent = new System.Windows.Forms.DataGridView();
+            this.dgvBOMChild = new System.Windows.Forms.DataGridView();
             this.panel9.SuspendLayout();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
@@ -49,33 +50,25 @@ namespace Cohesion_Project
             this.pnlSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBOMParent)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBOMChild)).BeginInit();
             this.SuspendLayout();
             // 
             // btnClose
             // 
             this.btnClose.FlatAppearance.BorderSize = 0;
-            this.btnClose.Location = new System.Drawing.Point(1422, 982);
-            // 
-            // panel9
-            // 
-            this.panel9.Size = new System.Drawing.Size(358, 442);
             // 
             // lbl6
             // 
-            this.lbl6.Size = new System.Drawing.Size(1151, 32);
             this.lbl6.Text = "▶ 제품 BOM 구성";
             // 
             // panel6
             // 
-            this.panel6.Size = new System.Drawing.Size(1153, 442);
+            this.panel6.Controls.Add(this.dgvBOMChild);
+            this.panel6.Controls.SetChildIndex(this.lbl6, 0);
+            this.panel6.Controls.SetChildIndex(this.dgvBOMChild, 0);
             // 
             // splitContainer2
             // 
-            this.splitContainer2.Size = new System.Drawing.Size(1521, 448);
-            // 
-            // panel1
-            // 
-            this.panel1.Size = new System.Drawing.Size(1521, 448);
             // 
             // splitContainer1
             // 
@@ -99,6 +92,26 @@ namespace Cohesion_Project
             // 
             this.btnSearch.FlatAppearance.BorderSize = 0;
             // 
+            // btnDelete
+            // 
+            this.btnDelete.FlatAppearance.BorderSize = 0;
+            // 
+            // btnInsert
+            // 
+            this.btnInsert.FlatAppearance.BorderSize = 0;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.FlatAppearance.BorderSize = 0;
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.FlatAppearance.BorderSize = 0;
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.FlatAppearance.BorderSize = 0;
+            // 
             // dataGridView1
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -120,6 +133,17 @@ namespace Cohesion_Project
             this.dgvBOMParent.RowTemplate.Height = 23;
             this.dgvBOMParent.Size = new System.Drawing.Size(1151, 332);
             this.dgvBOMParent.TabIndex = 6;
+            // 
+            // dgvBOMChild
+            // 
+            this.dgvBOMChild.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgvBOMChild.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvBOMChild.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvBOMChild.Location = new System.Drawing.Point(0, 30);
+            this.dgvBOMChild.Name = "dgvBOMChild";
+            this.dgvBOMChild.RowTemplate.Height = 23;
+            this.dgvBOMChild.Size = new System.Drawing.Size(1151, 430);
+            this.dgvBOMChild.TabIndex = 7;
             // 
             // Frm_BOM
             // 
@@ -146,6 +170,7 @@ namespace Cohesion_Project
             this.pnlSearch.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBOMParent)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBOMChild)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -153,5 +178,6 @@ namespace Cohesion_Project
         #endregion
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridView dgvBOMParent;
+        private System.Windows.Forms.DataGridView dgvBOMChild;
     }
 }
