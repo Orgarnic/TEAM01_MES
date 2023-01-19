@@ -113,6 +113,7 @@ namespace Cohesion_Project
          this.dgvProduct.RowTemplate.Height = 23;
          this.dgvProduct.Size = new System.Drawing.Size(240, 150);
          this.dgvProduct.TabIndex = 5;
+         this.dgvProduct.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProduct_CellClick);
          // 
          // ppgProduct
          // 
