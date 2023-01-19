@@ -154,6 +154,11 @@ namespace Cohesion_Project
             }
             return dto;
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
     public class ProductData
