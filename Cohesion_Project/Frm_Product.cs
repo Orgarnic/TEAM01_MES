@@ -13,6 +13,8 @@ namespace Cohesion_Project
    {
       Srv_Product srvProduct = new Srv_Product();
       List<PRODUCT_MST_DTO> products = new List<PRODUCT_MST_DTO>();
+      PRODUCT_MST_DTO temp;
+      bool isCondition = false;
 
       public Frm_Product()
       {
@@ -42,15 +44,29 @@ namespace Cohesion_Project
          products = srvProduct.SelectProduts();
          dgvProduct.DataSource = products;
       }
+      private void dgvProduct_CellClick(object sender, DataGridViewCellEventArgs e)
+      {
+         int row = e.RowIndex;
+         int col = e.ColumnIndex;
+         if (row < 0) return;
+         PRODUCT_MST_DTO product = DgvUtil.DgvToDto<PRODUCT_MST_DTO>(dgvProduct);
+         ppgProduct.SelectedObject = product;
+      }
+      class TT
+      {
+         public string Code { get; set; }
+         public string Name { get; set; }
+      }
       private void PpgInit()
       {
-
+         ppgProduct.PropertySort = PropertySort.Categorized;
       }
       private void btnRefresh_Click(object sender, EventArgs e)
       {
+         ppgProduct.Enabled = true;
+          btnAdd.Enabled = true;
          ppgProduct.SelectedObject = new PRODUCT_MST_DTO();
       }
-
       private void btnAdd_Click(object sender, EventArgs e)
       {
          PRODUCT_MST_DTO dto = ppgProduct.SelectedObject as PRODUCT_MST_DTO;
@@ -64,12 +80,25 @@ namespace Cohesion_Project
          else
             MboxUtil.MboxError("오류가 발생했습니다.");
       }
-      private void dgvProduct_CellClick(object sender, DataGridViewCellEventArgs e)
+      private void btnInsert_Click(object sender, EventArgs e)
       {
-         int row = e.RowIndex;
-         int col = e.ColumnIndex;
-         PRODUCT_MST_DTO product = DgvUtil.DgvToDto<PRODUCT_MST_DTO>(dgvProduct);
-         ppgProduct.SelectedObject = product;
+         btnAdd.Enabled = true;
+      }
+      private void btnUpdate_Click(object sender, EventArgs e)
+      {
+         ppgProduct.Enabled = true;
+         btnAdd.Enabled = false;
+      }
+      private void btnSearchCondition_Click(object sender, EventArgs e)
+      {
+         if (isCondition)
+         {
+
+         }
+         else
+         {
+
+         }
       }
    }
 }

@@ -26,5 +26,13 @@ namespace Cohesion_Project
 
          return result;
       }
+      public bool UpdateProduct(PRODUCT_MST_DTO dto)
+      {
+         Product_DAO dao = new Product_DAO();
+         bool result = dao.UpdateProduct(dto);
+         dao.Dispose();
+
+         return result;
+      }
    }
 }

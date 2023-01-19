@@ -65,6 +65,31 @@ namespace Cohesion_DAO
             conn.Close();
          }
       }
+      public bool UpdateProduct(PRODUCT_MST_DTO dto)
+      {
+         try
+         {
+            string sql = @"UPDATE PRODUCT_MST SET PRODUCT_NAME = @PRODUCT_NAME, PRODUCT_TYPE = @PRODUCT_TYPE,
+                           CUSTOMER_CODE = @CUSTOMER_CODE, VENDOR_CODE = @VENDOR_CODE, UPDATE_TIME = @UPDATE_TIME, UPDATE_USER_ID = @UPDATE_USER_ID
+                           WHERE PRODUCT_CODE = @PRODUCT_CODE";
+            SqlCommand cmd = Helper.UpsertCmdValue<PRODUCT_MST_DTO>(dto, sql, conn);
+            conn.Open();
+            int result = cmd.ExecuteNonQuery();
+            conn.Close();
+
+            return result > 0;
+         }
+         catch (Exception err)
+         {
+            Debug.WriteLine(err.StackTrace);
+            Debug.WriteLine(err.Message);
+            return false;
+         }
+         finally
+         {
+            conn.Close();
+         }
+      }
       public void Dispose()
       {
          if (conn != null || conn.State == ConnectionState.Open)
