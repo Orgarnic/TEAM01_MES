@@ -56,35 +56,34 @@ namespace Cohesion_DAO
             return list;
         }
 
-        //public PRODUCT_MST_DTO SelectProductChildList(string code)
-        //{
-        //    List<PRODUCT_MST_DTO> list = null;
+        public List<BOM_MST_DTO> SelectBOMList(string code)
+        {
+            List<BOM_MST_DTO> list = null;
 
-        //    try
-        //    {
-        //        string sql = $@"select CHILD_PRODUCT_CODE, p2.PRODUCT_NAME, REQUIRE_QTY, ALTER_PRODUCT_CODE, b.CREATE_TIME, b.CREATE_USER_ID, b.UPDATE_TIME, b.UPDATE_USER_ID
-        //                       from BOM_MST b inner join PRODUCT_MST p on b.PRODUCT_CODE = p.PRODUCT_CODE
-			     //                             inner join PRODUCT_MST p2 on b.CHILD_PRODUCT_CODE = p2.PRODUCT_CODE
-        //                       where p.PRODUCT_CODE = " + "'@CODE'";
+            try
+            {
+                string sql = $@"select CHILD_PRODUCT_CODE, p2.PRODUCT_NAME, REQUIRE_QTY, ALTER_PRODUCT_CODE, b.CREATE_TIME, b.CREATE_USER_ID, b.UPDATE_TIME, b.UPDATE_USER_ID
+                                from BOM_MST b inner join PRODUCT_MST p on b.PRODUCT_CODE = p.PRODUCT_CODE
+			                                   inner join PRODUCT_MST p2 on b.CHILD_PRODUCT_CODE = p2.PRODUCT_CODE
+                                where p.PRODUCT_CODE = '" + $"{code}" + "'";
 
-        //        SqlCommand cmd = new SqlCommand(sql, conn);
-        //        cmd.Parameters.AddWithValue("@CODE", code);
-        //        conn.Open();
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                conn.Open();
 
-                
-        //    }
-        //    catch (Exception err)
-        //    {
-        //        Debug.WriteLine(err.Message);
-        //        Debug.WriteLine(err.StackTrace);
-        //        return null;
-        //    }
-        //    finally
-        //    {
-        //        conn.Close();
-        //    }
+                list = Helper.DataReaderMapToList<BOM_MST_DTO>(cmd.ExecuteReader());
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                Debug.WriteLine(err.StackTrace);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
 
-        //    return list;
-        //}
+            return list;
+        }
     }
 }

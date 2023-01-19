@@ -45,9 +45,9 @@ namespace Cohesion_Project
 		        public string UPDATE_USER_ID { get; set; }	 //변경 사용자*/
         }
 
-        public void DataGirdViewChild()
+        public void DataGirdViewChild(string code)
         {
-            DgvUtil.AddTextCol(dgvBOMChild, "구성 제품 코드", "PRODUCT_CODE", 150, true, 1);
+            DgvUtil.DgvInit(dgvBOMChild);
             DgvUtil.AddTextCol(dgvBOMChild, "구성 제품명", "CHILD_PRODUCT_CODE", 150, true, 1);
             DgvUtil.AddTextCol(dgvBOMChild, "단위 수량", "REQUIRE_QTY", 150, true, 1);
             DgvUtil.AddTextCol(dgvBOMChild, "대체 품번", "ALTER_PRODUCT_CODE", 150, true, 1);
@@ -55,6 +55,8 @@ namespace Cohesion_Project
             DgvUtil.AddTextCol(dgvBOMChild, "생성 사용자", "CREATE_USER_ID", 150, true, 1);
             DgvUtil.AddTextCol(dgvBOMChild, "변경 시간", "UPDATE_TIME", 150, true, 1);
             DgvUtil.AddTextCol(dgvBOMChild, "변경 사용자", "UPDATE_USER_ID", 150, true, 1);
+
+            dgvBOMChild.DataSource = srv.SelectBOMList(code);
         }
 
         private void dgvBOMParent_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -62,7 +64,7 @@ namespace Cohesion_Project
             // 셀클릭시, 클릭된 완제품의 BOM을 Child에 뿌려줌.
             if (e.ColumnIndex < 0) return;
             string code = dgvBOMParent[0, e.ColumnIndex].Value.ToString();
-            //dgvBOMChild.DataSource = srv.SelectProductChildList(code);
+            DataGirdViewChild(code);
 
         }
     }
