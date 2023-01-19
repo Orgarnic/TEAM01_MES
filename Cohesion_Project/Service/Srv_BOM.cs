@@ -13,7 +13,7 @@ namespace Cohesion_Project
         public List<PRODUCT_MST_DTO> SelectProductList()
         {
             BOM_DAO dao = new BOM_DAO();
-            List<PRODUCT_MST_DTO> list = dao.SelectProductList();
+            List<PRODUCT_MST_DTO> list = dao.SelectGetAllProductList();
             dao.Dispose();
 
             return list;

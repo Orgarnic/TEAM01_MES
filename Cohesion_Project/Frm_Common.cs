@@ -51,7 +51,6 @@ namespace Cohesion_Project
             Ppg_CommonTable.PropertySort = PropertySort.Categorized;
             Ppg_CommonTable.SelectedObject = cd;
 
-
             LoadData();
             Dgv_CommonTable.CellClick += Dgv_CommonTable_CellClick;
             Dgv_CommonTable.CellDoubleClick += Dgv_CommonTable_CellDoubleClick;
@@ -100,7 +99,7 @@ namespace Cohesion_Project
         private void btnAdd_Click(object sender, EventArgs e)
         {
             CommonData data = Ppg_CommonTable.SelectedObject as CommonData;
-            var dto = PropertyToDto<CommonData, CommonTable_DTO>(data);
+            var dto = CommonUtil.PropertyToDto<CommonData, CommonTable_DTO>(data);
             bool result = srvC.InsertCommonTable(dto);
             if (result)
             {
@@ -217,13 +216,13 @@ namespace Cohesion_Project
         {
             T1 dto = new T1();
 
-            for (int i = 0; i < data.GetType().GetProperties().Length - 1; i++)
+            for (int i = 0; i < data.GetType().GetProperties().Length; i++)
             {
-                for (int j = 0; j < dto.GetType().GetProperties().Length - 1; j++)
+                for (int j = 0; j < dto.GetType().GetProperties().Length; j++)
                 {
-                    if (data.GetType().GetProperties()[i].Name.Equals(dto.GetType().GetProperties()[i].Name, StringComparison.OrdinalIgnoreCase))
+                    if (data.GetType().GetProperties()[i].Name.Equals(dto.GetType().GetProperties()[j].Name, StringComparison.OrdinalIgnoreCase))
                     {
-                        dto.GetType().GetProperties()[i].SetValue(dto, data.GetType().GetProperties()[i].GetValue(data));
+                        dto.GetType().GetProperties()[j].SetValue(dto, data.GetType().GetProperties()[i].GetValue(data));
                         break;
                     }
                 }
@@ -290,5 +289,23 @@ namespace Cohesion_Project
     {
         [Category("속성"), Description("CODE_TABLE_NAME"), DisplayName("테이블명")]
         public string CODE_TABLE_NAME { get; set; }
+
+        public SearchData()
+        {
+            //List<int> list = new List<int> { 1, 2, 3, 4, 5, 6 };
+        }
+    }
+    public class JobStringConverter : StringConverter
+    {
+        //public override bool GetStandardValuesSupported(ITypeDescriptorContext context)
+        //{
+        //    return true;
+        //}
+
+        //public override TypeConverter.StandardValuesCollection GetStandardValues(ITypeDescriptorContext context)
+        //{
+        //    SearchData refMyObject = context.Instance as SearchData;
+        //    return new StandardValuesCollection(refMyObject);
+        //}
     }
 }
