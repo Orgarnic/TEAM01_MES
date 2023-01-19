@@ -324,7 +324,7 @@ namespace Cohesion_Project
             // 
             this.Txt_Search.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Txt_Search.Location = new System.Drawing.Point(10, 38);
+            this.Txt_Search.Location = new System.Drawing.Point(10, 39);
             this.Txt_Search.Name = "Txt_Search";
             this.Txt_Search.Size = new System.Drawing.Size(988, 21);
             this.Txt_Search.TabIndex = 16;

@@ -36,7 +36,6 @@ namespace Cohesion_Project
             this.panel1 = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
             this.Btn_Search = new System.Windows.Forms.Button();
-            this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
             this.panel7 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -106,7 +105,7 @@ namespace Cohesion_Project
             // 
             this.Txt_Search.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Txt_Search.Location = new System.Drawing.Point(10, 38);
+            this.Txt_Search.Location = new System.Drawing.Point(10, 39);
             this.Txt_Search.Name = "Txt_Search";
             this.Txt_Search.Size = new System.Drawing.Size(988, 21);
             this.Txt_Search.TabIndex = 16;
@@ -154,21 +153,12 @@ namespace Cohesion_Project
             this.Btn_Search.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.Btn_Search.UseVisualStyleBackColor = false;
             // 
-            // propertyGrid1
-            // 
-            this.propertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.propertyGrid1.Location = new System.Drawing.Point(0, 30);
-            this.propertyGrid1.Name = "propertyGrid1";
-            this.propertyGrid1.Size = new System.Drawing.Size(356, 412);
-            this.propertyGrid1.TabIndex = 7;
-            // 
             // panel7
             // 
             this.panel7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel7.BackColor = System.Drawing.Color.White;
             this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel7.Controls.Add(this.propertyGrid1);
             this.panel7.Controls.Add(this.label8);
             this.panel7.Location = new System.Drawing.Point(0, 3);
             this.panel7.Name = "panel7";
@@ -358,7 +348,6 @@ namespace Cohesion_Project
         protected System.Windows.Forms.Panel panel1;
         protected System.Windows.Forms.Label label8;
         protected System.Windows.Forms.Button Btn_Search;
-        protected System.Windows.Forms.PropertyGrid propertyGrid1;
         protected System.Windows.Forms.Panel panel7;
         protected System.Windows.Forms.Button button1;
         protected System.Windows.Forms.SplitContainer splitContainer1;

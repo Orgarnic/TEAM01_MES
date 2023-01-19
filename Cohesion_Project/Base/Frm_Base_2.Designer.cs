@@ -41,7 +41,6 @@ namespace Cohesion_Project
             this.panel5 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
             this.label8 = new System.Windows.Forms.Label();
             this.Btn_Close = new System.Windows.Forms.Button();
             this.pnlSearch.SuspendLayout();
@@ -213,20 +212,11 @@ namespace Cohesion_Project
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel7.BackColor = System.Drawing.Color.White;
             this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel7.Controls.Add(this.propertyGrid1);
             this.panel7.Controls.Add(this.label8);
             this.panel7.Location = new System.Drawing.Point(0, 3);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(358, 952);
             this.panel7.TabIndex = 27;
-            // 
-            // propertyGrid1
-            // 
-            this.propertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.propertyGrid1.Location = new System.Drawing.Point(0, 30);
-            this.propertyGrid1.Name = "propertyGrid1";
-            this.propertyGrid1.Size = new System.Drawing.Size(356, 920);
-            this.propertyGrid1.TabIndex = 7;
             // 
             // label8
             // 
@@ -252,7 +242,7 @@ namespace Cohesion_Project
             this.Btn_Close.ForeColor = System.Drawing.Color.White;
             this.Btn_Close.Image = global::Cohesion_Project.Properties.Resources.cancel;
             this.Btn_Close.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Btn_Close.Location = new System.Drawing.Point(1422, 1002);
+            this.Btn_Close.Location = new System.Drawing.Point(1422, 1003);
             this.Btn_Close.Name = "Btn_Close";
             this.Btn_Close.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.Btn_Close.Size = new System.Drawing.Size(95, 35);
@@ -302,7 +292,6 @@ namespace Cohesion_Project
         protected System.Windows.Forms.Panel panel5;
         protected System.Windows.Forms.SplitContainer splitContainer1;
         protected System.Windows.Forms.Panel panel7;
-        protected System.Windows.Forms.PropertyGrid propertyGrid1;
         protected System.Windows.Forms.Label label8;
         protected System.Windows.Forms.Button Btn_Close;
     }

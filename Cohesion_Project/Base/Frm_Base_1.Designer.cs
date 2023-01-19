@@ -30,14 +30,12 @@ namespace Cohesion_Project
         private void InitializeComponent()
         {
             this.Btn_Close = new System.Windows.Forms.Button();
-            this.propertyGrid2 = new System.Windows.Forms.PropertyGrid();
             this.panel9 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
             this.label8 = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -87,14 +85,6 @@ namespace Cohesion_Project
             this.Btn_Close.Text = "      닫  기";
             this.Btn_Close.UseVisualStyleBackColor = false;
             // 
-            // propertyGrid2
-            // 
-            this.propertyGrid2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.propertyGrid2.Location = new System.Drawing.Point(0, 30);
-            this.propertyGrid2.Name = "propertyGrid2";
-            this.propertyGrid2.Size = new System.Drawing.Size(356, 446);
-            this.propertyGrid2.TabIndex = 7;
-            // 
             // panel9
             // 
             this.panel9.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -102,7 +92,6 @@ namespace Cohesion_Project
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel9.BackColor = System.Drawing.Color.White;
             this.panel9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel9.Controls.Add(this.propertyGrid2);
             this.panel9.Controls.Add(this.label4);
             this.panel9.Location = new System.Drawing.Point(0, 3);
             this.panel9.Name = "panel9";
@@ -179,14 +168,6 @@ namespace Cohesion_Project
             this.panel1.Size = new System.Drawing.Size(1521, 485);
             this.panel1.TabIndex = 32;
             // 
-            // propertyGrid1
-            // 
-            this.propertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.propertyGrid1.Location = new System.Drawing.Point(0, 30);
-            this.propertyGrid1.Name = "propertyGrid1";
-            this.propertyGrid1.Size = new System.Drawing.Size(356, 435);
-            this.propertyGrid1.TabIndex = 7;
-            // 
             // label8
             // 
             this.label8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(42)))), ((int)(((byte)(66)))));
@@ -207,7 +188,6 @@ namespace Cohesion_Project
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel7.BackColor = System.Drawing.Color.White;
             this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel7.Controls.Add(this.propertyGrid1);
             this.panel7.Controls.Add(this.label8);
             this.panel7.Location = new System.Drawing.Point(0, 3);
             this.panel7.Name = "panel7";
@@ -297,7 +277,7 @@ namespace Cohesion_Project
             // 
             this.Txt_Search.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Txt_Search.Location = new System.Drawing.Point(10, 38);
+            this.Txt_Search.Location = new System.Drawing.Point(10, 39);
             this.Txt_Search.Name = "Txt_Search";
             this.Txt_Search.Size = new System.Drawing.Size(988, 21);
             this.Txt_Search.TabIndex = 16;
@@ -403,14 +383,12 @@ namespace Cohesion_Project
         #endregion
 
         protected System.Windows.Forms.Button Btn_Close;
-        protected System.Windows.Forms.PropertyGrid propertyGrid2;
         protected System.Windows.Forms.Panel panel9;
         protected System.Windows.Forms.Label label4;
         protected System.Windows.Forms.Label label1;
         protected System.Windows.Forms.Panel panel6;
         protected System.Windows.Forms.SplitContainer splitContainer2;
         protected System.Windows.Forms.Panel panel1;
-        protected System.Windows.Forms.PropertyGrid propertyGrid1;
         protected System.Windows.Forms.Label label8;
         protected System.Windows.Forms.Panel panel7;
         protected System.Windows.Forms.SplitContainer splitContainer1;

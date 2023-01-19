@@ -37,7 +37,6 @@ namespace Cohesion_Project
             this.button2 = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
             this.label8 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -52,6 +51,7 @@ namespace Cohesion_Project
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.pnlSearch = new System.Windows.Forms.Panel();
+            this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
             this.panel3.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -186,14 +186,6 @@ namespace Cohesion_Project
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1521, 468);
             this.panel1.TabIndex = 33;
-            // 
-            // propertyGrid1
-            // 
-            this.propertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.propertyGrid1.Location = new System.Drawing.Point(0, 30);
-            this.propertyGrid1.Name = "propertyGrid1";
-            this.propertyGrid1.Size = new System.Drawing.Size(356, 412);
-            this.propertyGrid1.TabIndex = 7;
             // 
             // label8
             // 
@@ -331,7 +323,7 @@ namespace Cohesion_Project
             // 
             this.Txt_Search.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Txt_Search.Location = new System.Drawing.Point(10, 38);
+            this.Txt_Search.Location = new System.Drawing.Point(10, 39);
             this.Txt_Search.Name = "Txt_Search";
             this.Txt_Search.Size = new System.Drawing.Size(988, 21);
             this.Txt_Search.TabIndex = 16;
@@ -389,6 +381,14 @@ namespace Cohesion_Project
             this.pnlSearch.Size = new System.Drawing.Size(1521, 35);
             this.pnlSearch.TabIndex = 30;
             // 
+            // propertyGrid1
+            // 
+            this.propertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.propertyGrid1.Location = new System.Drawing.Point(0, 30);
+            this.propertyGrid1.Name = "propertyGrid1";
+            this.propertyGrid1.Size = new System.Drawing.Size(356, 412);
+            this.propertyGrid1.TabIndex = 7;
+            // 
             // Frm_Base_4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -432,7 +432,6 @@ namespace Cohesion_Project
         protected System.Windows.Forms.Button button2;
         protected System.Windows.Forms.Panel panel6;
         protected System.Windows.Forms.Panel panel1;
-        protected System.Windows.Forms.PropertyGrid propertyGrid1;
         protected System.Windows.Forms.Label label8;
         protected System.Windows.Forms.Label label2;
         protected System.Windows.Forms.Panel panel7;
@@ -447,5 +446,6 @@ namespace Cohesion_Project
         protected System.Windows.Forms.Label label7;
         protected System.Windows.Forms.Label label6;
         protected System.Windows.Forms.Panel pnlSearch;
+        protected System.Windows.Forms.PropertyGrid propertyGrid1;
     }
 }
