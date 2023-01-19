@@ -111,6 +111,22 @@ namespace Cohesion_Project
             BOM_MST_DTO product = DgvUtil.DgvToDto<BOM_MST_DTO>(dgvBOMChild);
             ppgBOMAttribute.SelectedObject = product;
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if(dgvBOMChild.CurrentCell.Value == null)
+            {
+                MboxUtil.MboxWarn("삭제할 제품을 선택해주세요.");
+                return;
+            }
+            else
+            {
+                if(MboxUtil.MboxInfo_("해당 제품을 삭제하시겠습니까?"))
+                {
+                    
+                }
+            }
+        }
     }
 
     public class ProdectSearch
