@@ -31,7 +31,7 @@ namespace Cohesion_Project
       private void DgvInit()
       {
          DgvUtil.DgvInit(dgvProduct);
-         DgvUtil.AddTextCol(dgvProduct, "제품 코드", "PRODUCT_CODE", width: 140, readOnly: true, frozen:true);
+         DgvUtil.AddTextCol(dgvProduct, "제품 코드", "PRODUCT_CODE", width: 140, readOnly: true, frozen: true);
          DgvUtil.AddTextCol(dgvProduct, "제품 명칭", "PRODUCT_NAME", width: 140, readOnly: true, frozen: true);
          DgvUtil.AddTextCol(dgvProduct, "품버 유형", "PRODUCT_TYPE", width: 140, readOnly: true, frozen: true);
          DgvUtil.AddTextCol(dgvProduct, "고객 코드", "CUSTOMER_CODE", width: 140, readOnly: true);
@@ -52,9 +52,11 @@ namespace Cohesion_Project
          if (row < 0) return;
          product = DgvUtil.DgvToDto<PRODUCT_MST_DTO>(dgvProduct);
          ppgProduct.SelectedObject = product;
+         btnAdd.Enabled = false;
          ppgProduct.Enabled = false;
          btnUpdate.Enabled = true;
          btnInsert.Enabled = true;
+         isCondition = true;
       }
       private void PpgInit()
       {
@@ -118,7 +120,7 @@ namespace Cohesion_Project
             isCondition = false;
          }
          else
-         { 
+         {
             ppgProduct.SelectedObject = product;
             isCondition = true;
             ppgProduct.Enabled = false;
@@ -128,6 +130,23 @@ namespace Cohesion_Project
       {
          products = srvProduct.SelectProduts(condtion.GetCondition());
          dgvProduct.DataSource = products;
+      }
+      private void btnClose_Click(object sender, EventArgs e)
+      {
+         this.Close();
+      }
+      private void btnDelete_Click(object sender, EventArgs e)
+      {
+         if (!MboxUtil.MboxInfo_("선택된 품번을 삭제하시겠습니까 ? ")) return;
+         PRODUCT_MST_DTO dto = DgvUtil.DgvToDto<PRODUCT_MST_DTO>(dgvProduct);
+         bool result = srvProduct.DeleteProduct(dto);
+         if (result)
+         {
+            MboxUtil.MboxInfo("품번이 삭제되었습니다.");
+            this.DgvFill();
+         }
+         else
+            MboxUtil.MboxError("오류가 발생했습니다.");
       }
       private class SearchCondition
       {
