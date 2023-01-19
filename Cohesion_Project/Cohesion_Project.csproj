@@ -57,23 +57,11 @@
     <Compile Include="Base\Frm_BaseNone.Designer.cs">
       <DependentUpon>Frm_BaseNone.cs</DependentUpon>
     </Compile>
-    <Compile Include="Base\Frm_Base_1.cs">
+    <Compile Include="Base\Frm_Base_5.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Base\Frm_Base_1.Designer.cs">
-      <DependentUpon>Frm_Base_1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Base\Frm_Base_2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Base\Frm_Base_2.Designer.cs">
-      <DependentUpon>Frm_Base_2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Base\Frm_Base_3.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Base\Frm_Base_3.Designer.cs">
-      <DependentUpon>Frm_Base_3.cs</DependentUpon>
+    <Compile Include="Base\Frm_Base_5.Designer.cs">
+      <DependentUpon>Frm_Base_5.cs</DependentUpon>
     </Compile>
     <Compile Include="Base\Frm_Base_4.cs">
       <SubType>Form</SubType>
@@ -81,17 +69,23 @@
     <Compile Include="Base\Frm_Base_4.Designer.cs">
       <DependentUpon>Frm_Base_4.cs</DependentUpon>
     </Compile>
-    <Compile Include="Base\Frm_Base_5.cs">
+    <Compile Include="Base\Frm_Base_3.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Base\Frm_Base_5.Designer.cs">
-      <DependentUpon>Frm_Base_5.cs</DependentUpon>
+    <Compile Include="Base\Frm_Base_3.Designer.cs">
+      <DependentUpon>Frm_Base_3.cs</DependentUpon>
     </Compile>
-    <Compile Include="Base\Frm_Base_6.cs">
+    <Compile Include="Base\Frm_Base_2.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Base\Frm_Base_6.Designer.cs">
-      <DependentUpon>Frm_Base_6.cs</DependentUpon>
+    <Compile Include="Base\Frm_Base_2.Designer.cs">
+      <DependentUpon>Frm_Base_2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Base\Frm_Base_1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Base\Frm_Base_1.Designer.cs">
+      <DependentUpon>Frm_Base_1.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm_Main.cs">
       <SubType>Form</SubType>
@@ -126,23 +120,20 @@
     <EmbeddedResource Include="Base\Frm_BaseNone.resx">
       <DependentUpon>Frm_BaseNone.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Base\Frm_Base_1.resx">
-      <DependentUpon>Frm_Base_1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Base\Frm_Base_2.resx">
-      <DependentUpon>Frm_Base_2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Base\Frm_Base_3.resx">
-      <DependentUpon>Frm_Base_3.cs</DependentUpon>
+    <EmbeddedResource Include="Base\Frm_Base_5.resx">
+      <DependentUpon>Frm_Base_5.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Base\Frm_Base_4.resx">
       <DependentUpon>Frm_Base_4.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Base\Frm_Base_5.resx">
-      <DependentUpon>Frm_Base_5.cs</DependentUpon>
+    <EmbeddedResource Include="Base\Frm_Base_3.resx">
+      <DependentUpon>Frm_Base_3.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Base\Frm_Base_6.resx">
-      <DependentUpon>Frm_Base_6.cs</DependentUpon>
+    <EmbeddedResource Include="Base\Frm_Base_2.resx">
+      <DependentUpon>Frm_Base_2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Base\Frm_Base_1.resx">
+      <DependentUpon>Frm_Base_1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_Main.resx">
       <DependentUpon>Frm_Main.cs</DependentUpon>
@@ -234,6 +225,10 @@
     <Content Include="Image\tabs.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Search2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\close2.png" />
     <Content Include="Resources\search.png" />
     <None Include="Resources\search1.png" />
     <None Include="Resources\tabs.png">

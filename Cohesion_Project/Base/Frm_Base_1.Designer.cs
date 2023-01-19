@@ -29,395 +29,378 @@ namespace Cohesion_Project
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Base_1));
-            this.pnlSearch = new System.Windows.Forms.Panel();
-            this.lblSearch = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.Txt_Search = new System.Windows.Forms.TextBox();
-            this.Cbo_Search2 = new System.Windows.Forms.ComboBox();
-            this.Cbo_Search1 = new System.Windows.Forms.ComboBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label3 = new System.Windows.Forms.Label();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
-            this.label5 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.label4 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.Btn_Refresh = new System.Windows.Forms.Button();
-            this.Btn_Insert = new System.Windows.Forms.Button();
-            this.Btn_Update = new System.Windows.Forms.Button();
             this.Btn_Close = new System.Windows.Forms.Button();
-            this.Btn_Create = new System.Windows.Forms.Button();
-            this.Btn_Search = new System.Windows.Forms.Button();
-            this.pnlSearch.SuspendLayout();
-            this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.btnSearchCondition = new System.Windows.Forms.Button();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.pnlSearch = new System.Windows.Forms.Panel();
+            this.panel9.SuspendLayout();
             this.panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            this.panel3.SuspendLayout();
+            this.panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.pnlSearch.SuspendLayout();
             this.SuspendLayout();
             // 
-            // pnlSearch
+            // Btn_Close
             // 
-            this.pnlSearch.BackColor = System.Drawing.SystemColors.Control;
-            this.pnlSearch.Controls.Add(this.Btn_Search);
-            this.pnlSearch.Controls.Add(this.lblSearch);
-            this.pnlSearch.Controls.Add(this.label2);
-            this.pnlSearch.Controls.Add(this.label1);
-            this.pnlSearch.Controls.Add(this.Txt_Search);
-            this.pnlSearch.Controls.Add(this.Cbo_Search2);
-            this.pnlSearch.Controls.Add(this.Cbo_Search1);
-            this.pnlSearch.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlSearch.Location = new System.Drawing.Point(0, 0);
-            this.pnlSearch.Name = "pnlSearch";
-            this.pnlSearch.Size = new System.Drawing.Size(1521, 71);
-            this.pnlSearch.TabIndex = 17;
+            this.Btn_Close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Btn_Close.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
+            this.Btn_Close.FlatAppearance.BorderSize = 0;
+            this.Btn_Close.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Btn_Close.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Btn_Close.ForeColor = System.Drawing.Color.White;
+            this.Btn_Close.Image = global::Cohesion_Project.Properties.Resources.cancel;
+            this.Btn_Close.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Btn_Close.Location = new System.Drawing.Point(1422, 1002);
+            this.Btn_Close.Name = "Btn_Close";
+            this.Btn_Close.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
+            this.Btn_Close.Size = new System.Drawing.Size(95, 35);
+            this.Btn_Close.TabIndex = 30;
+            this.Btn_Close.Text = "      닫  기";
+            this.Btn_Close.UseVisualStyleBackColor = false;
             // 
-            // lblSearch
+            // panel9
             // 
-            this.lblSearch.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblSearch.ForeColor = System.Drawing.Color.Black;
-            this.lblSearch.Location = new System.Drawing.Point(28, 24);
-            this.lblSearch.Name = "lblSearch";
-            this.lblSearch.Size = new System.Drawing.Size(46, 25);
-            this.lblSearch.TabIndex = 15;
-            this.lblSearch.Text = "검 색";
-            this.lblSearch.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.panel9.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel9.BackColor = System.Drawing.Color.White;
+            this.panel9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel9.Controls.Add(this.label4);
+            this.panel9.Location = new System.Drawing.Point(0, 3);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(358, 478);
+            this.panel9.TabIndex = 27;
             // 
-            // label2
+            // label4
             // 
-            this.label2.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(680, 24);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 25);
-            this.label2.TabIndex = 14;
-            this.label2.Text = "검 색 조 건";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(42)))), ((int)(((byte)(66)))));
+            this.label4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label4.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.label4.Location = new System.Drawing.Point(0, 0);
+            this.label4.Name = "label4";
+            this.label4.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label4.Size = new System.Drawing.Size(356, 30);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "▶ 검색";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label1
             // 
-            this.label1.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(381, 24);
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(42)))), ((int)(((byte)(66)))));
+            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label1.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(83, 25);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "검 색 조 건";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // Txt_Search
-            // 
-            this.Txt_Search.Location = new System.Drawing.Point(78, 25);
-            this.Txt_Search.Name = "Txt_Search";
-            this.Txt_Search.Size = new System.Drawing.Size(281, 23);
-            this.Txt_Search.TabIndex = 16;
-            // 
-            // Cbo_Search2
-            // 
-            this.Cbo_Search2.FormattingEnabled = true;
-            this.Cbo_Search2.Location = new System.Drawing.Point(769, 25);
-            this.Cbo_Search2.Name = "Cbo_Search2";
-            this.Cbo_Search2.Size = new System.Drawing.Size(189, 23);
-            this.Cbo_Search2.TabIndex = 13;
-            // 
-            // Cbo_Search1
-            // 
-            this.Cbo_Search1.FormattingEnabled = true;
-            this.Cbo_Search1.Location = new System.Drawing.Point(470, 25);
-            this.Cbo_Search1.Name = "Cbo_Search1";
-            this.Cbo_Search1.Size = new System.Drawing.Size(189, 23);
-            this.Cbo_Search1.TabIndex = 12;
-            // 
-            // panel2
-            // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.BackColor = System.Drawing.SystemColors.Control;
-            this.panel2.Controls.Add(this.dataGridView1);
-            this.panel2.Controls.Add(this.label3);
-            this.panel2.Location = new System.Drawing.Point(8, 79);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1506, 541);
-            this.panel2.TabIndex = 23;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 35);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(1506, 506);
-            this.dataGridView1.TabIndex = 5;
-            // 
-            // label3
-            // 
-            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(0, 0);
-            this.label3.Name = "label3";
-            this.label3.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label3.Size = new System.Drawing.Size(1506, 35);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "▶ 생산 내역 조회";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label1.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label1.Size = new System.Drawing.Size(1151, 30);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "▶ 생산 내역 조회";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel6
             // 
-            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.panel6.BackColor = System.Drawing.SystemColors.Control;
-            this.panel6.Controls.Add(this.dataGridView3);
-            this.panel6.Controls.Add(this.label5);
-            this.panel6.Location = new System.Drawing.Point(8, 628);
+            this.panel6.BackColor = System.Drawing.Color.White;
+            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel6.Controls.Add(this.label1);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel6.Location = new System.Drawing.Point(3, 3);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(885, 150);
-            this.panel6.TabIndex = 24;
+            this.panel6.Size = new System.Drawing.Size(1153, 479);
+            this.panel6.TabIndex = 23;
             // 
-            // dataGridView3
+            // splitContainer2
             // 
-            this.dataGridView3.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView3.Location = new System.Drawing.Point(0, 35);
-            this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.RowTemplate.Height = 23;
-            this.dataGridView3.Size = new System.Drawing.Size(885, 115);
-            this.dataGridView3.TabIndex = 7;
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Name = "splitContainer2";
             // 
-            // label5
+            // splitContainer2.Panel1
             // 
-            this.label5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(0, 0);
-            this.label5.Name = "label5";
-            this.label5.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label5.Size = new System.Drawing.Size(885, 35);
-            this.label5.TabIndex = 6;
-            this.label5.Text = "▶ 생산 내역 조회";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.splitContainer2.Panel1.Controls.Add(this.panel6);
+            this.splitContainer2.Panel1.Padding = new System.Windows.Forms.Padding(3, 3, 0, 3);
+            this.splitContainer2.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.panel9);
+            this.splitContainer2.Panel2.Padding = new System.Windows.Forms.Padding(0, 3, 3, 3);
+            this.splitContainer2.Size = new System.Drawing.Size(1521, 485);
+            this.splitContainer2.SplitterDistance = 1156;
+            this.splitContainer2.TabIndex = 0;
             // 
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.BackColor = System.Drawing.SystemColors.Control;
-            this.panel1.Controls.Add(this.dataGridView2);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Location = new System.Drawing.Point(901, 628);
+            this.panel1.Controls.Add(this.splitContainer2);
+            this.panel1.Location = new System.Drawing.Point(0, 513);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(613, 150);
-            this.panel1.TabIndex = 25;
+            this.panel1.Size = new System.Drawing.Size(1521, 485);
+            this.panel1.TabIndex = 32;
             // 
-            // dataGridView2
+            // label8
             // 
-            this.dataGridView2.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView2.Location = new System.Drawing.Point(0, 35);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowTemplate.Height = 23;
-            this.dataGridView2.Size = new System.Drawing.Size(613, 115);
-            this.dataGridView2.TabIndex = 7;
+            this.label8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(42)))), ((int)(((byte)(66)))));
+            this.label8.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label8.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.label8.Location = new System.Drawing.Point(0, 0);
+            this.label8.Name = "label8";
+            this.label8.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label8.Size = new System.Drawing.Size(356, 30);
+            this.label8.TabIndex = 6;
+            this.label8.Text = "▶ 검색";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label4
+            // panel7
             // 
-            this.label4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(0, 0);
-            this.label4.Name = "label4";
-            this.label4.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label4.Size = new System.Drawing.Size(613, 35);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "▶ 생산 내역 조회";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.panel7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel7.BackColor = System.Drawing.Color.White;
+            this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel7.Controls.Add(this.label8);
+            this.panel7.Location = new System.Drawing.Point(0, 3);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(358, 467);
+            this.panel7.TabIndex = 27;
             // 
-            // panel3
+            // splitContainer1
             // 
-            this.panel3.BackColor = System.Drawing.Color.LightGray;
-            this.panel3.Controls.Add(this.Btn_Refresh);
-            this.panel3.Controls.Add(this.Btn_Insert);
-            this.panel3.Controls.Add(this.Btn_Update);
-            this.panel3.Controls.Add(this.Btn_Close);
-            this.panel3.Controls.Add(this.Btn_Create);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 784);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1521, 47);
-            this.panel3.TabIndex = 26;
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
             // 
-            // Btn_Refresh
+            // splitContainer1.Panel1
             // 
-            this.Btn_Refresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Btn_Refresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(76)))), ((int)(((byte)(115)))));
-            this.Btn_Refresh.FlatAppearance.BorderSize = 0;
-            this.Btn_Refresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Btn_Refresh.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.Btn_Refresh.ForeColor = System.Drawing.Color.White;
-            this.Btn_Refresh.Image = global::Cohesion_Project.Properties.Resources.rotate;
-            this.Btn_Refresh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Btn_Refresh.Location = new System.Drawing.Point(1267, 2);
-            this.Btn_Refresh.Name = "Btn_Refresh";
-            this.Btn_Refresh.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.Btn_Refresh.Size = new System.Drawing.Size(95, 35);
-            this.Btn_Refresh.TabIndex = 30;
-            this.Btn_Refresh.Text = "      초 기 화";
-            this.Btn_Refresh.UseVisualStyleBackColor = false;
+            this.splitContainer1.Panel1.Controls.Add(this.panel2);
+            this.splitContainer1.Panel1.Controls.Add(this.panel4);
+            this.splitContainer1.Panel1.Padding = new System.Windows.Forms.Padding(3, 3, 0, 3);
+            this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
             // 
-            // Btn_Insert
+            // splitContainer1.Panel2
             // 
-            this.Btn_Insert.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Btn_Insert.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(76)))), ((int)(((byte)(115)))));
-            this.Btn_Insert.FlatAppearance.BorderSize = 0;
-            this.Btn_Insert.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Btn_Insert.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.Btn_Insert.ForeColor = System.Drawing.Color.White;
-            this.Btn_Insert.Image = global::Cohesion_Project.Properties.Resources.check;
-            this.Btn_Insert.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Btn_Insert.Location = new System.Drawing.Point(1140, 2);
-            this.Btn_Insert.Name = "Btn_Insert";
-            this.Btn_Insert.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.Btn_Insert.Size = new System.Drawing.Size(95, 35);
-            this.Btn_Insert.TabIndex = 29;
-            this.Btn_Insert.Text = "      확  정";
-            this.Btn_Insert.UseVisualStyleBackColor = false;
+            this.splitContainer1.Panel2.Controls.Add(this.panel7);
+            this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(0, 3, 3, 3);
+            this.splitContainer1.Size = new System.Drawing.Size(1521, 474);
+            this.splitContainer1.SplitterDistance = 1156;
+            this.splitContainer1.TabIndex = 0;
             // 
-            // Btn_Update
+            // panel2
             // 
-            this.Btn_Update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Btn_Update.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(76)))), ((int)(((byte)(115)))));
-            this.Btn_Update.FlatAppearance.BorderSize = 0;
-            this.Btn_Update.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Btn_Update.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.Btn_Update.ForeColor = System.Drawing.Color.White;
-            this.Btn_Update.Image = global::Cohesion_Project.Properties.Resources.update;
-            this.Btn_Update.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Btn_Update.Location = new System.Drawing.Point(1013, 2);
-            this.Btn_Update.Name = "Btn_Update";
-            this.Btn_Update.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.Btn_Update.Size = new System.Drawing.Size(95, 35);
-            this.Btn_Update.TabIndex = 28;
-            this.Btn_Update.Text = "      변  경";
-            this.Btn_Update.UseVisualStyleBackColor = false;
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.label3);
+            this.panel2.Location = new System.Drawing.Point(3, 81);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1153, 389);
+            this.panel2.TabIndex = 23;
             // 
-            // Btn_Close
+            // label3
             // 
-            this.Btn_Close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Btn_Close.BackColor = System.Drawing.Color.Tomato;
-            this.Btn_Close.FlatAppearance.BorderSize = 0;
-            this.Btn_Close.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Btn_Close.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.Btn_Close.ForeColor = System.Drawing.Color.White;
-            this.Btn_Close.Image = global::Cohesion_Project.Properties.Resources.cancel;
-            this.Btn_Close.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Btn_Close.Location = new System.Drawing.Point(1394, 2);
-            this.Btn_Close.Name = "Btn_Close";
-            this.Btn_Close.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.Btn_Close.Size = new System.Drawing.Size(95, 35);
-            this.Btn_Close.TabIndex = 27;
-            this.Btn_Close.Text = "      닫  기";
-            this.Btn_Close.UseVisualStyleBackColor = false;
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(42)))), ((int)(((byte)(66)))));
+            this.label3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label3.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.label3.Location = new System.Drawing.Point(0, 0);
+            this.label3.Name = "label3";
+            this.label3.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label3.Size = new System.Drawing.Size(1151, 30);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "▶ 생산 내역 조회";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // Btn_Create
+            // panel4
             // 
-            this.Btn_Create.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Btn_Create.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(76)))), ((int)(((byte)(115)))));
-            this.Btn_Create.FlatAppearance.BorderSize = 0;
-            this.Btn_Create.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Btn_Create.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.Btn_Create.ForeColor = System.Drawing.Color.White;
-            this.Btn_Create.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Create.Image")));
-            this.Btn_Create.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Btn_Create.Location = new System.Drawing.Point(886, 2);
-            this.Btn_Create.Name = "Btn_Create";
-            this.Btn_Create.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.Btn_Create.Size = new System.Drawing.Size(95, 35);
-            this.Btn_Create.TabIndex = 26;
-            this.Btn_Create.Text = "      생  성";
-            this.Btn_Create.UseVisualStyleBackColor = false;
+            this.panel4.BackColor = System.Drawing.Color.White;
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.btnSearchCondition);
+            this.panel4.Controls.Add(this.txtSearch);
+            this.panel4.Controls.Add(this.btnSearch);
+            this.panel4.Controls.Add(this.label7);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(3, 3);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(1153, 72);
+            this.panel4.TabIndex = 26;
             // 
-            // Btn_Search
+            // btnSearchCondition
             // 
-            this.Btn_Search.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(76)))), ((int)(((byte)(115)))));
-            this.Btn_Search.FlatAppearance.BorderSize = 0;
-            this.Btn_Search.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Btn_Search.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.Btn_Search.ForeColor = System.Drawing.SystemColors.Control;
-            this.Btn_Search.Image = global::Cohesion_Project.Properties.Resources.search;
-            this.Btn_Search.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Btn_Search.Location = new System.Drawing.Point(1000, 20);
-            this.Btn_Search.Name = "Btn_Search";
-            this.Btn_Search.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.Btn_Search.Size = new System.Drawing.Size(95, 35);
-            this.Btn_Search.TabIndex = 18;
-            this.Btn_Search.Text = "      조  회";
-            this.Btn_Search.UseVisualStyleBackColor = false;
+            this.btnSearchCondition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSearchCondition.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(42)))), ((int)(((byte)(66)))));
+            this.btnSearchCondition.FlatAppearance.BorderSize = 0;
+            this.btnSearchCondition.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearchCondition.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSearchCondition.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnSearchCondition.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSearchCondition.Location = new System.Drawing.Point(1064, 38);
+            this.btnSearchCondition.Name = "btnSearchCondition";
+            this.btnSearchCondition.Size = new System.Drawing.Size(78, 23);
+            this.btnSearchCondition.TabIndex = 19;
+            this.btnSearchCondition.Text = "검색조건";
+            this.btnSearchCondition.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.btnSearchCondition.UseVisualStyleBackColor = false;
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSearch.Location = new System.Drawing.Point(10, 39);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(988, 21);
+            this.txtSearch.TabIndex = 16;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(42)))), ((int)(((byte)(66)))));
+            this.btnSearch.FlatAppearance.BorderSize = 0;
+            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearch.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSearch.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSearch.Location = new System.Drawing.Point(1004, 38);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(54, 23);
+            this.btnSearch.TabIndex = 18;
+            this.btnSearch.Text = "조회";
+            this.btnSearch.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.btnSearch.UseVisualStyleBackColor = false;
+            // 
+            // label7
+            // 
+            this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(42)))), ((int)(((byte)(66)))));
+            this.label7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label7.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.label7.Location = new System.Drawing.Point(0, 0);
+            this.label7.Name = "label7";
+            this.label7.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label7.Size = new System.Drawing.Size(1151, 30);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "▶ 검색";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // panel5
+            // 
+            this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel5.Controls.Add(this.splitContainer1);
+            this.panel5.Location = new System.Drawing.Point(0, 41);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(1521, 474);
+            this.panel5.TabIndex = 31;
+            // 
+            // label6
+            // 
+            this.label6.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.label6.Location = new System.Drawing.Point(11, 5);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(399, 25);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "/ Parent / Child";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // pnlSearch
+            // 
+            this.pnlSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(42)))), ((int)(((byte)(66)))));
+            this.pnlSearch.Controls.Add(this.label6);
+            this.pnlSearch.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlSearch.Location = new System.Drawing.Point(0, 0);
+            this.pnlSearch.Name = "pnlSearch";
+            this.pnlSearch.Size = new System.Drawing.Size(1521, 35);
+            this.pnlSearch.TabIndex = 29;
             // 
             // Frm_Base_1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightGray;
-            this.ClientSize = new System.Drawing.Size(1521, 831);
-            this.Controls.Add(this.panel3);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(217)))), ((int)(((byte)(226)))));
+            this.ClientSize = new System.Drawing.Size(1521, 1041);
+            this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panel6);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.Btn_Close);
             this.Controls.Add(this.pnlSearch);
-            this.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.ForeColor = System.Drawing.SystemColors.Control;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Frm_Base_1";
             this.Text = "Frm_Base_1";
-            this.pnlSearch.ResumeLayout(false);
-            this.pnlSearch.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.panel9.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            this.panel3.ResumeLayout(false);
+            this.panel7.ResumeLayout(false);
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.pnlSearch.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        protected System.Windows.Forms.Panel pnlSearch;
-        protected System.Windows.Forms.TextBox Txt_Search;
-        protected System.Windows.Forms.Label lblSearch;
-        protected System.Windows.Forms.Label label2;
-        protected System.Windows.Forms.ComboBox Cbo_Search2;
-        protected System.Windows.Forms.ComboBox Cbo_Search1;
-        protected System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.DataGridView dataGridView3;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Panel panel3;
-        protected System.Windows.Forms.Button Btn_Refresh;
-        protected System.Windows.Forms.Button Btn_Insert;
-        protected System.Windows.Forms.Button Btn_Update;
         protected System.Windows.Forms.Button Btn_Close;
-        protected System.Windows.Forms.Button Btn_Create;
-        protected System.Windows.Forms.Button Btn_Search;
+        protected System.Windows.Forms.Panel panel9;
+        protected System.Windows.Forms.Label label4;
+        protected System.Windows.Forms.Label label1;
+        protected System.Windows.Forms.Panel panel6;
+        protected System.Windows.Forms.SplitContainer splitContainer2;
+        protected System.Windows.Forms.Panel panel1;
+        protected System.Windows.Forms.Label label8;
+        protected System.Windows.Forms.Panel panel7;
+        protected System.Windows.Forms.SplitContainer splitContainer1;
+        protected System.Windows.Forms.Panel panel2;
+        protected System.Windows.Forms.Label label3;
+        protected System.Windows.Forms.Panel panel4;
+        protected System.Windows.Forms.Button btnSearchCondition;
+        protected System.Windows.Forms.TextBox txtSearch;
+        protected System.Windows.Forms.Button btnSearch;
+        protected System.Windows.Forms.Label label7;
+        protected System.Windows.Forms.Panel panel5;
+        protected System.Windows.Forms.Label label6;
+        protected System.Windows.Forms.Panel pnlSearch;
     }
 }
