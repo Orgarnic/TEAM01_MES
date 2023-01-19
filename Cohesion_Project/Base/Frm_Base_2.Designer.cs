@@ -263,7 +263,7 @@ namespace Cohesion_Project
             this.ForeColor = System.Drawing.SystemColors.Control;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Frm_Base_2";
-            this.Text = "Frm_Base_1";
+            this.Text = "Frm_Base_2";
             this.pnlSearch.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
