@@ -44,7 +44,7 @@ namespace Cohesion_Project
       }
       private void PpgInit()
       {
-         ppgProduct.PropertySort = PropertySort.NoSort;
+
       }
       private void btnRefresh_Click(object sender, EventArgs e)
       {
@@ -53,7 +53,23 @@ namespace Cohesion_Project
 
       private void btnAdd_Click(object sender, EventArgs e)
       {
-
+         PRODUCT_MST_DTO dto = ppgProduct.SelectedObject as PRODUCT_MST_DTO;
+         dto.CREATE_USER_ID = "TEST";
+         bool result = srvProduct.InsertProduct(dto);
+         if (result)
+         {
+            MboxUtil.MboxInfo("품번이 등록되었습니다.");
+            this.DgvFill();
+         }
+         else
+            MboxUtil.MboxError("오류가 발생했습니다.");
+      }
+      private void dgvProduct_CellClick(object sender, DataGridViewCellEventArgs e)
+      {
+         int row = e.RowIndex;
+         int col = e.ColumnIndex;
+         PRODUCT_MST_DTO product = DgvUtil.DgvToDto<PRODUCT_MST_DTO>(dgvProduct);
+         ppgProduct.SelectedObject = product;
       }
    }
 }

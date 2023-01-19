@@ -19,6 +19,7 @@ namespace Cohesion_DAO
       {
          conn = new SqlConnection(DB);
       }
+
       public List<PRODUCT_MST_DTO> SelectProduts()
       {
          List<PRODUCT_MST_DTO> list = null;
@@ -40,7 +41,30 @@ namespace Cohesion_DAO
          }
          return list;
       }
+      public bool InsertProduct(PRODUCT_MST_DTO dto)
+      {
+         try
+         {
+            string sql = @"INSERT INTO PRODUCT_MST(PRODUCT_CODE, PRODUCT_NAME, PRODUCT_TYPE, CUSTOMER_CODE, VENDOR_CODE, CREATE_USER_ID)
+                           VALUES(@PRODUCT_CODE, @PRODUCT_NAME, @PRODUCT_TYPE, @CUSTOMER_CODE, @VENDOR_CODE, @CREATE_USER_ID)";
+            SqlCommand cmd = Helper.UpsertCmdValue<PRODUCT_MST_DTO>(dto, sql, conn);
+            conn.Open();
+            int result = cmd.ExecuteNonQuery();
+            conn.Close();
 
+            return result > 0;
+         }
+         catch (Exception err)
+         {
+            Debug.WriteLine(err.StackTrace);
+            Debug.WriteLine(err.Message);
+            return false;
+         }
+         finally
+         {
+            conn.Close();
+         }
+      }
       public void Dispose()
       {
          if (conn != null || conn.State == ConnectionState.Open)
