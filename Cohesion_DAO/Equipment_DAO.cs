@@ -12,30 +12,30 @@ using System.Data;
 
 namespace Cohesion_DAO
 {
-    public class Store_DAO : IDisposable
+    public class Equipment_DAO : IDisposable
     {
         SqlConnection conn;
-        public Store_DAO()
+        public Equipment_DAO()
         {
             string connstr = ConfigurationManager.ConnectionStrings["DB"].ConnectionString;
             conn = new SqlConnection(connstr);
         }
-           
         public void Dispose()
         {
             if (conn.State == ConnectionState.Open)
                 conn.Close();
         }
 
-        public List<Store_DTO> SelectStoreList()
+        public List<Equipment_DTO> SelectEquipmentList()
         {
-            string sql = @"SELECT STORE_CODE, STORE_NAME, STORE_TYPE, FIFO_FLAG, CREATE_TIME, CREATE_USER_ID, UPDATE_TIME, UPDATE_USER_ID
-                           FROM STORE_MST
-                           ORDER BY STORE_CODE";
+            string sql = @"SELECT EQUIPMENT_CODE, EQUIPMENT_NAME, EQUIPMENT_TYPE, EQUIPMENT_STATUS, 
+                                  LAST_DOWN_TIME, CREATE_TIME, CREATE_USER_ID, UPDATE_TIME, UPDATE_USER_ID
+                           FROM EQUIPMENT_MST";
+
             SqlCommand cmd = new SqlCommand(sql, conn);
             conn.Open();
 
-            List<Store_DTO> list = Helper.DataReaderMapToList<Store_DTO>(cmd.ExecuteReader());
+            List<Equipment_DTO> list = Helper.DataReaderMapToList<Equipment_DTO>(cmd.ExecuteReader());
 
             return list;
         }
