@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using Cohesion_DTO;
 
 namespace Cohesion_Project
 {
@@ -17,6 +18,7 @@ namespace Cohesion_Project
       private void Frm_Product_Load(object sender, EventArgs e)
       {
          this.DgvInit();
+         this.PpgInit();
       }
       private void DgvInit()
       {
@@ -34,7 +36,11 @@ namespace Cohesion_Project
 
       private void btnCreate_Click(object sender, EventArgs e)
       {
-
+         ppgProduct.SelectedObject = new PRODUCT_MST_DTO();
+      }
+      private void PpgInit()
+      {
+         ppgProduct.PropertySort = PropertySort.NoSort;
       }
    }
 }
