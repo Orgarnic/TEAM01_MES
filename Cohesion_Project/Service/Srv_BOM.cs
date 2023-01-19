@@ -27,5 +27,14 @@ namespace Cohesion_Project
 
             return list;
         }
+
+        public bool DeleteProduct(string parentCode, string childCode)
+        {
+            BOM_DAO dao = new BOM_DAO();
+            bool result = dao.DeleteProduct(parentCode, childCode);
+            dao.Dispose();
+
+            return result;
+        }
     }
 }

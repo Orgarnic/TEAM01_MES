@@ -16,6 +16,7 @@ namespace Cohesion_Project
         List<PRODUCT_MST_DTO> product = null;
 
         private SearchData sdata = new SearchData();
+        string pcode, ccode;
 
         public Frm_BOM()
         {
@@ -49,15 +50,6 @@ namespace Cohesion_Project
             }
 
             dgvBOMParent.DataSource = product;
-            /*  public string PRODUCT_CODE { get; set; }	 //제품 코드, 품번
-		        public string PRODUCT_NAME { get; set; }	 //제품명, 품명
-		        public string PRODUCT_TYPE { get; set; }	 //품번 유형, 완제품 : FERT, 반제품 : HALB, 원자재 : ROH
-		        public string CUSTOMER_CODE { get; set; }	 //완제품인 경우 고객코드
-		        public string VENDOR_CODE { get; set; }		 //원자재인 경우 납품업체 코드
-		        public DateTime CREATE_TIME { get; set; }	 //생성 시간
-		        public string CREATE_USER_ID { get; set; }	 //생성 사용자
-		        public DateTime UPDATE_TIME { get; set; }	 //변경 시간
-		        public string UPDATE_USER_ID { get; set; }	 //변경 사용자*/
         }
 
         public void DataGirdViewChild()
@@ -75,6 +67,13 @@ namespace Cohesion_Project
 
         }
 
+        // 자녀제품 목록 리셋
+        public void DataGridViewReSet()
+        {
+            dgvBOMChild.DataSource = null;
+            dgvBOMChild.DataSource = srv.SelectBOMList(pcode);
+        }
+
         // 부모제품 리스트에서 선택
         private void dgvBOMParent_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -88,13 +87,16 @@ namespace Cohesion_Project
             ppgSearch.SelectedObject = product;
 
             ppgBOMAttribute.SelectedObject = new BOM_MST_DTO();
+
+            pcode = dgvBOMParent[0, e.RowIndex].Value.ToString();
         }
 
         // 전체 초기화
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             dgvBOMParent.DataSource = dgvBOMChild.DataSource = null;
-            ppgSearch = ppgBOMAttribute = null;
+            ppgSearch.SelectedObject = new PRODUCT_MST_DTO();
+            ppgBOMAttribute.SelectedObject = new BOM_MST_DTO();
         }
 
         // 조건 검색
@@ -104,14 +106,22 @@ namespace Cohesion_Project
             dgvBOMParent.DataSource = product.FindAll((s) => s.PRODUCT_NAME.Contains(txtSearch.Text));
         }
 
-        // 자녀 제품 리스트에서 선택
+        // 자녀제품 리스트에서 선택
         private void dgvBOMChild_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
             BOM_MST_DTO product = DgvUtil.DgvToDto<BOM_MST_DTO>(dgvBOMChild);
             ppgBOMAttribute.SelectedObject = product;
+
+            ccode = dgvBOMChild[0, e.RowIndex].Value.ToString();
         }
 
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        // 부모제품의 BOM 목록에서 자녀제품 삭제(제품 목록에서 삭제는 X)
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if(dgvBOMChild.CurrentCell.Value == null)
@@ -121,9 +131,18 @@ namespace Cohesion_Project
             }
             else
             {
-                if(MboxUtil.MboxInfo_("해당 제품을 삭제하시겠습니까?"))
+                if(MboxUtil.MboxInfo_("해당 제품의 BOM 제품을 삭제하시겠습니까?"))
                 {
-                    
+                    bool result = srv.DeleteProduct(pcode, ccode);
+                    if(result)
+                    {
+                        MboxUtil.MboxInfo("삭제가 완료되었습니다.");
+                        DataGridViewReSet();
+                    }
+                    else
+                    {
+                        MboxUtil.MboxError("오류가 발생하였습니다.\n다시시도해주세요.");
+                    }
                 }
             }
         }
