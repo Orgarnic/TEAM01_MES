@@ -30,14 +30,12 @@ namespace Cohesion_Project
         private void InitializeComponent()
         {
             this.Btn_Close = new System.Windows.Forms.Button();
-            this.propertyGrid2 = new System.Windows.Forms.PropertyGrid();
             this.label4 = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
             this.label8 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -49,8 +47,8 @@ namespace Cohesion_Project
             this.btnSearch = new System.Windows.Forms.Button();
             this.Txt_Search = new System.Windows.Forms.TextBox();
             this.Btn_Search = new System.Windows.Forms.Button();
-            this.Lbl_2 = new System.Windows.Forms.Label();
-            this.Lbl_1 = new System.Windows.Forms.Label();
+            this.lbl2 = new System.Windows.Forms.Label();
+            this.lbl1 = new System.Windows.Forms.Label();
             this.pnlSearch = new System.Windows.Forms.Panel();
             this.panel9.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -88,14 +86,6 @@ namespace Cohesion_Project
             this.Btn_Close.Text = "      닫  기";
             this.Btn_Close.UseVisualStyleBackColor = false;
             // 
-            // propertyGrid2
-            // 
-            this.propertyGrid2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.propertyGrid2.Location = new System.Drawing.Point(0, 30);
-            this.propertyGrid2.Name = "propertyGrid2";
-            this.propertyGrid2.Size = new System.Drawing.Size(356, 429);
-            this.propertyGrid2.TabIndex = 7;
-            // 
             // label4
             // 
             this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(42)))), ((int)(((byte)(66)))));
@@ -107,7 +97,7 @@ namespace Cohesion_Project
             this.label4.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.label4.Size = new System.Drawing.Size(356, 30);
             this.label4.TabIndex = 6;
-            this.label4.Text = "▶ 검색";
+            this.label4.Text = "▶ TEXT";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel9
@@ -117,7 +107,6 @@ namespace Cohesion_Project
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel9.BackColor = System.Drawing.Color.White;
             this.panel9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel9.Controls.Add(this.propertyGrid2);
             this.panel9.Controls.Add(this.label4);
             this.panel9.Location = new System.Drawing.Point(0, 3);
             this.panel9.Name = "panel9";
@@ -135,7 +124,7 @@ namespace Cohesion_Project
             this.label1.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.label1.Size = new System.Drawing.Size(1151, 30);
             this.label1.TabIndex = 4;
-            this.label1.Text = "▶ 생산 내역 조회";
+            this.label1.Text = "▶ TEXT";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel6
@@ -180,14 +169,6 @@ namespace Cohesion_Project
             this.panel1.Size = new System.Drawing.Size(1521, 468);
             this.panel1.TabIndex = 33;
             // 
-            // propertyGrid1
-            // 
-            this.propertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.propertyGrid1.Location = new System.Drawing.Point(0, 30);
-            this.propertyGrid1.Name = "propertyGrid1";
-            this.propertyGrid1.Size = new System.Drawing.Size(356, 412);
-            this.propertyGrid1.TabIndex = 7;
-            // 
             // label8
             // 
             this.label8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(42)))), ((int)(((byte)(66)))));
@@ -199,7 +180,7 @@ namespace Cohesion_Project
             this.label8.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.label8.Size = new System.Drawing.Size(356, 30);
             this.label8.TabIndex = 6;
-            this.label8.Text = "▶ 검색";
+            this.label8.Text = "▶ TEXT";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label2
@@ -224,7 +205,6 @@ namespace Cohesion_Project
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel7.BackColor = System.Drawing.Color.White;
             this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel7.Controls.Add(this.propertyGrid1);
             this.panel7.Controls.Add(this.label8);
             this.panel7.Location = new System.Drawing.Point(0, 3);
             this.panel7.Name = "panel7";
@@ -286,7 +266,7 @@ namespace Cohesion_Project
             this.label3.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.label3.Size = new System.Drawing.Size(1151, 30);
             this.label3.TabIndex = 4;
-            this.label3.Text = "▶ 생산 내역 조회";
+            this.label3.Text = "▶ TEXT";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel4
@@ -296,7 +276,7 @@ namespace Cohesion_Project
             this.panel4.Controls.Add(this.btnSearch);
             this.panel4.Controls.Add(this.Txt_Search);
             this.panel4.Controls.Add(this.Btn_Search);
-            this.panel4.Controls.Add(this.Lbl_2);
+            this.panel4.Controls.Add(this.lbl2);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel4.Location = new System.Drawing.Point(3, 3);
             this.panel4.Name = "panel4";
@@ -346,35 +326,35 @@ namespace Cohesion_Project
             this.Btn_Search.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.Btn_Search.UseVisualStyleBackColor = false;
             // 
-            // Lbl_2
+            // lbl2
             // 
-            this.Lbl_2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(42)))), ((int)(((byte)(66)))));
-            this.Lbl_2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Lbl_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.Lbl_2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.Lbl_2.Location = new System.Drawing.Point(0, 0);
-            this.Lbl_2.Name = "Lbl_2";
-            this.Lbl_2.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.Lbl_2.Size = new System.Drawing.Size(1151, 30);
-            this.Lbl_2.TabIndex = 6;
-            this.Lbl_2.Text = "▶ TEXT";
-            this.Lbl_2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbl2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(42)))), ((int)(((byte)(66)))));
+            this.lbl2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lbl2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lbl2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.lbl2.Location = new System.Drawing.Point(0, 0);
+            this.lbl2.Name = "lbl2";
+            this.lbl2.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.lbl2.Size = new System.Drawing.Size(1151, 30);
+            this.lbl2.TabIndex = 6;
+            this.lbl2.Text = "▶ TEXT";
+            this.lbl2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // Lbl_1
+            // lbl1
             // 
-            this.Lbl_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.Lbl_1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.Lbl_1.Location = new System.Drawing.Point(11, 5);
-            this.Lbl_1.Name = "Lbl_1";
-            this.Lbl_1.Size = new System.Drawing.Size(399, 25);
-            this.Lbl_1.TabIndex = 12;
-            this.Lbl_1.Text = "/ Parent / Child";
-            this.Lbl_1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lbl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.lbl1.Location = new System.Drawing.Point(11, 5);
+            this.lbl1.Name = "lbl1";
+            this.lbl1.Size = new System.Drawing.Size(399, 25);
+            this.lbl1.TabIndex = 12;
+            this.lbl1.Text = "/ Parent / Child";
+            this.lbl1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pnlSearch
             // 
             this.pnlSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(42)))), ((int)(((byte)(66)))));
-            this.pnlSearch.Controls.Add(this.Lbl_1);
+            this.pnlSearch.Controls.Add(this.lbl1);
             this.pnlSearch.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.pnlSearch.Location = new System.Drawing.Point(0, 0);
@@ -397,7 +377,7 @@ namespace Cohesion_Project
             this.ForeColor = System.Drawing.SystemColors.Control;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Frm_Base_3";
-            this.Text = "Frm_Base_1";
+            this.Text = "Frm_Base_3";
             this.panel9.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
@@ -422,14 +402,12 @@ namespace Cohesion_Project
         #endregion
 
         protected System.Windows.Forms.Button Btn_Close;
-        protected System.Windows.Forms.PropertyGrid propertyGrid2;
         protected System.Windows.Forms.Label label4;
         protected System.Windows.Forms.Panel panel9;
         protected System.Windows.Forms.Label label1;
         protected System.Windows.Forms.Panel panel6;
         protected System.Windows.Forms.SplitContainer splitContainer2;
         protected System.Windows.Forms.Panel panel1;
-        protected System.Windows.Forms.PropertyGrid propertyGrid1;
         protected System.Windows.Forms.Label label8;
         protected System.Windows.Forms.Label label2;
         protected System.Windows.Forms.Panel panel7;
@@ -441,8 +419,8 @@ namespace Cohesion_Project
         protected System.Windows.Forms.Button btnSearch;
         protected System.Windows.Forms.TextBox Txt_Search;
         protected System.Windows.Forms.Button Btn_Search;
-        protected System.Windows.Forms.Label Lbl_2;
-        protected System.Windows.Forms.Label Lbl_1;
+        protected System.Windows.Forms.Label lbl2;
+        protected System.Windows.Forms.Label lbl1;
         protected System.Windows.Forms.Panel pnlSearch;
     }
 }
