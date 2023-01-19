@@ -34,43 +34,15 @@ namespace Cohesion_DAO
             try
             {
                 string sql = @"select PRODUCT_CODE, PRODUCT_NAME, PRODUCT_TYPE, CUSTOMER_CODE, CREATE_TIME, CREATE_USER_ID, UPDATE_TIME, UPDATE_USER_ID
-                           from PRODUCT_MST
-                           where PRODUCT_TYPE = 'FERT'";
+                               from PRODUCT_MST
+                               where PRODUCT_TYPE = 'FERT'";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 conn.Open();
 
                 list = Helper.DataReaderMapToList<PRODUCT_MST_DTO>(cmd.ExecuteReader());
-            }
-            catch(Exception err)
-            {
-                Debug.WriteLine(err.Message);
-                Debug.WriteLine(err.StackTrace);
-                return null;
-            }
-            finally
-            {
-                conn.Close();
-            }
 
-            return list;
-        }
-
-        public List<BOM_MST_DTO> SelectBOMList(string code)
-        {
-            List<BOM_MST_DTO> list = null;
-
-            try
-            {
-                string sql = $@"select CHILD_PRODUCT_CODE, p2.PRODUCT_NAME, REQUIRE_QTY, ALTER_PRODUCT_CODE, b.CREATE_TIME, b.CREATE_USER_ID, b.UPDATE_TIME, b.UPDATE_USER_ID
-                                from BOM_MST b inner join PRODUCT_MST p on b.PRODUCT_CODE = p.PRODUCT_CODE
-			                                   inner join PRODUCT_MST p2 on b.CHILD_PRODUCT_CODE = p2.PRODUCT_CODE
-                                where p.PRODUCT_CODE = '" + $"{code}" + "'";
-
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                conn.Open();
-
-                list = Helper.DataReaderMapToList<BOM_MST_DTO>(cmd.ExecuteReader());
+                return list;
             }
             catch (Exception err)
             {
@@ -82,8 +54,65 @@ namespace Cohesion_DAO
             {
                 conn.Close();
             }
+        }
 
-            return list;
+        public List<BOM_MST_DTO> SelectBOMList(string code)
+        {
+            List<BOM_MST_DTO> list = null;
+
+            try
+            {
+                string sql = $@"select CHILD_PRODUCT_CODE, p2.PRODUCT_NAME, REQUIRE_QTY, ALTER_PRODUCT_CODE, b.CREATE_TIME, b.CREATE_USER_ID, b.UPDATE_TIME, b.UPDATE_USER_ID
+                                from BOM_MST b inner join PRODUCT_MST p on b.PRODUCT_CODE = p.PRODUCT_CODE
+			                                   inner join PRODUCT_MST p2 on b.CHILD_PRODUCT_CODE = p2.PRODUCT_CODE
+                                where p.PRODUCT_CODE = '" + $"{code}" + "' ";
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                conn.Open();
+
+                list = Helper.DataReaderMapToList<BOM_MST_DTO>(cmd.ExecuteReader());
+
+                return list;
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                Debug.WriteLine(err.StackTrace);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public bool DeleteProduct(string parentCode, string childCode)
+        {
+            try
+            {
+                string sql = @"delete BOM_MST
+                               where PRODUCT_CODE = @PRODUCT_CODE 
+                               and CHILD_PRODUCT_CODE = @CHILD_PRODUCT_CODE";
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@PRODUCT_CODE", parentCode);
+                cmd.Parameters.AddWithValue("@CHILD_PRODUCT_CODE", childCode);
+                conn.Open();
+
+                int iRowAffect = cmd.ExecuteNonQuery();
+
+                return (iRowAffect > 0);
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                Debug.WriteLine(err.StackTrace);
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
     }
 }
