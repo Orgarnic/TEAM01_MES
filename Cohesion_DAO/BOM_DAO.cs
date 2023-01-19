@@ -16,12 +16,12 @@ namespace Cohesion_DAO
 
         public void Dispose()
         {
-            conn = ConfigurationManager["MyDB"]
+            //conn = ConfigurationManager["MyDB"]
         }
 
-        public BOM_MST_DTO SelectProductList()
-        {
-            string sql = ""
-        }
+        //public BOM_MST_DTO SelectProductList()
+        //{
+        //   // string sql = ""
+        //}
     }
 }
