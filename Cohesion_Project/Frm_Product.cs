@@ -52,11 +52,6 @@ namespace Cohesion_Project
          PRODUCT_MST_DTO product = DgvUtil.DgvToDto<PRODUCT_MST_DTO>(dgvProduct);
          ppgProduct.SelectedObject = product;
       }
-      class TT
-      {
-         public string Code { get; set; }
-         public string Name { get; set; }
-      }
       private void PpgInit()
       {
          ppgProduct.PropertySort = PropertySort.Categorized;
@@ -64,7 +59,7 @@ namespace Cohesion_Project
       private void btnRefresh_Click(object sender, EventArgs e)
       {
          ppgProduct.Enabled = true;
-          btnAdd.Enabled = true;
+         btnAdd.Enabled = true;
          ppgProduct.SelectedObject = new PRODUCT_MST_DTO();
       }
       private void btnAdd_Click(object sender, EventArgs e)

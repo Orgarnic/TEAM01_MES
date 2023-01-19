@@ -31,7 +31,6 @@ namespace Cohesion_Project
       {
          this.dgvProduct = new System.Windows.Forms.DataGridView();
          this.ppgProduct = new System.Windows.Forms.PropertyGrid();
-         this.btnLookup = new System.Windows.Forms.Button();
          this.pnlSearch.SuspendLayout();
          this.panel2.SuspendLayout();
          this.panel4.SuspendLayout();
@@ -88,12 +87,11 @@ namespace Cohesion_Project
          // btnDelete
          // 
          this.btnDelete.FlatAppearance.BorderSize = 0;
-         this.btnDelete.Location = new System.Drawing.Point(1220, 1003);
+         this.btnDelete.Location = new System.Drawing.Point(0, 1003);
          // 
          // btnInsert
          // 
          this.btnInsert.FlatAppearance.BorderSize = 0;
-         this.btnInsert.Location = new System.Drawing.Point(1119, 1003);
          this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
          // 
          // btnAdd
@@ -130,40 +128,12 @@ namespace Cohesion_Project
          this.ppgProduct.Size = new System.Drawing.Size(356, 920);
          this.ppgProduct.TabIndex = 7;
          // 
-         // btnLookup
-         // 
-         this.btnLookup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-         this.btnLookup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(42)))), ((int)(((byte)(66)))));
-         this.btnLookup.FlatAppearance.BorderSize = 0;
-         this.btnLookup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-         this.btnLookup.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-         this.btnLookup.ForeColor = System.Drawing.Color.White;
-         this.btnLookup.Image = global::Cohesion_Project.Properties.Resources.search;
-         this.btnLookup.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-         this.btnLookup.Location = new System.Drawing.Point(816, 1003);
-         this.btnLookup.Name = "btnLookup";
-         this.btnLookup.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-         this.btnLookup.Size = new System.Drawing.Size(95, 35);
-         this.btnLookup.TabIndex = 36;
-         this.btnLookup.Text = "      조  회";
-         this.btnLookup.UseVisualStyleBackColor = false;
-         // 
          // Frm_Product
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
          this.ClientSize = new System.Drawing.Size(1521, 1041);
-         this.Controls.Add(this.btnLookup);
          this.Name = "Frm_Product";
          this.Load += new System.EventHandler(this.Frm_Product_Load);
-         this.Controls.SetChildIndex(this.btnClose, 0);
-         this.Controls.SetChildIndex(this.pnlSearch, 0);
-         this.Controls.SetChildIndex(this.panel5, 0);
-         this.Controls.SetChildIndex(this.btnRefresh, 0);
-         this.Controls.SetChildIndex(this.btnUpdate, 0);
-         this.Controls.SetChildIndex(this.btnAdd, 0);
-         this.Controls.SetChildIndex(this.btnInsert, 0);
-         this.Controls.SetChildIndex(this.btnDelete, 0);
-         this.Controls.SetChildIndex(this.btnLookup, 0);
          this.pnlSearch.ResumeLayout(false);
          this.panel2.ResumeLayout(false);
          this.panel4.ResumeLayout(false);
@@ -183,6 +153,5 @@ namespace Cohesion_Project
 
       private System.Windows.Forms.DataGridView dgvProduct;
       private System.Windows.Forms.PropertyGrid ppgProduct;
-      protected System.Windows.Forms.Button btnLookup;
    }
 }
