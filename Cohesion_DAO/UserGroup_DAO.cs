@@ -28,7 +28,7 @@ namespace Cohesion_DAO
         // 사용자 그룹 Insert
         public bool InsertUserGroup(UserGroup_DTO dto)
         {
-
+            conn.Open();
 
             string sql = @"insert into USER_GROUP_MST(USER_GROUP_CODE, USER_GROUP_NAME, USER_GROUP_TYPE, CREATE_TIME, CREATE_USER_ID, UPDATE_TIME, UPDATE_USER_ID)
                                 values(@USER_GROUP_CODE,@USER_GROUP_NAME,@USER_GROUP_TYPE,@CREATE_TIME,@CREATE_USER_ID,@UPDATE_TIME,@UPDATE_USER_ID)";

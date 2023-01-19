@@ -58,6 +58,8 @@ namespace Cohesion_DAO
             }
         }
 
+        
+
         public bool InsertCommonTable(CommonTable_DTO dto)
         {
             try
