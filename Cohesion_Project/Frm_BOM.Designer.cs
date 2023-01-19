@@ -88,7 +88,7 @@ namespace Cohesion_Project
             // 
             // lbl5
             // 
-            this.lbl5.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lbl5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lbl5.Text = "제품 BOM View";
             // 
             // panel7
@@ -126,11 +126,12 @@ namespace Cohesion_Project
             // 
             // lbl1
             // 
-            this.lbl1.Text = "제품 품목 관리";
+            this.lbl1.Text = "/ 제품 품목 관리 / BOM 관리";
             // 
             // btnDelete
             // 
             this.btnDelete.FlatAppearance.BorderSize = 0;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnInsert
             // 
@@ -182,6 +183,7 @@ namespace Cohesion_Project
             this.dgvBOMChild.RowTemplate.Height = 23;
             this.dgvBOMChild.Size = new System.Drawing.Size(1151, 430);
             this.dgvBOMChild.TabIndex = 7;
+            this.dgvBOMChild.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBOMChild_CellClick);
             // 
             // ppgSearch
             // 

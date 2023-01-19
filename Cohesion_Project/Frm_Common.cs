@@ -7,6 +7,8 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace Cohesion_Project
 {
@@ -15,8 +17,9 @@ namespace Cohesion_Project
         Srv_CommonData srvC = new Srv_CommonData();
 
         private CommonData cd = new CommonData();
-        private SearchData sd = new SearchData();
 
+
+        private SearchData sd = new SearchData();
         bool state = false;
 
         List<CommonTable_DTO> srcList;
@@ -99,7 +102,7 @@ namespace Cohesion_Project
         private void btnAdd_Click(object sender, EventArgs e)
         {
             CommonData data = Ppg_CommonTable.SelectedObject as CommonData;
-            var dto = PropertyToDto<CommonData, CommonTable_DTO>(data);
+            var dto = CommonUtil.PropertyToDto<CommonData, CommonTable_DTO>(data);
             bool result = srvC.InsertCommonTable(dto);
             if (result)
             {
@@ -176,6 +179,9 @@ namespace Cohesion_Project
         private void LoadData()
         {
             srcList = srvC.SelectCommonTable();
+            List<string> l1 = new List<string>();
+            srcList.ForEach((c) => l1.Add(c.CODE_TABLE_NAME));
+            sd.Property = l1;
             Dgv_CommonTable.DataSource = srcList;
         }
 
@@ -233,6 +239,8 @@ namespace Cohesion_Project
 
 
 
+
+
         //==================================================================================================================================
     }
 
@@ -285,25 +293,31 @@ namespace Cohesion_Project
     //검색조건 PropertyGrid 프로퍼티 셋팅 
     public class SearchData
     {
-        [Category("속성"), Description("CODE_TABLE_NAME"), DisplayName("테이블명")]
+        [Category("속성"), Description("CODE_TABLE_NAME"), DisplayName("테이블명"), TypeConverter(typeof(JobStringConverter))]
         public string CODE_TABLE_NAME { get; set; }
 
-        public SearchData()
+        [Browsable(false)]
+        public List<string> Property { get; set; }
+
+        public List<string> GetList()
         {
-            //List<int> list = new List<int> { 1, 2, 3, 4, 5, 6 };
+            return Property;
         }
     }
+
+
+
     public class JobStringConverter : StringConverter
     {
-        //public override bool GetStandardValuesSupported(ITypeDescriptorContext context)
-        //{
-        //    return true;
-        //}
+        public override bool GetStandardValuesSupported(ITypeDescriptorContext context)
+        {
+            return true;
+        }
 
-        //public override TypeConverter.StandardValuesCollection GetStandardValues(ITypeDescriptorContext context)
-        //{
-        //    SearchData refMyObject = context.Instance as SearchData;
-        //    return new StandardValuesCollection(refMyObject);
-        //}
+        public override TypeConverter.StandardValuesCollection GetStandardValues(ITypeDescriptorContext context)
+        {
+            SearchData refMyObject = context.Instance as SearchData;
+            return new StandardValuesCollection(refMyObject.Property);
+        }
     }
 }
