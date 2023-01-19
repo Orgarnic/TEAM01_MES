@@ -19,14 +19,14 @@ namespace Cohesion_Project
         private void Frm_BOM_Load(object sender, EventArgs e)
         {
             DataGirdViewParent();
-            DataGirdViewChild();
         }
 
         public void DataGirdViewParent()
         {
-            DgvUtil.AddTextCol(dgvBOMParent, "제품 코드", "PRODUCT_CODE", 150, true, 1);
-            DgvUtil.AddTextCol(dgvBOMParent, "제품명", "PRODUCT_NAME", 150, true, 1);
-            DgvUtil.AddTextCol(dgvBOMParent, "제품 유형", "PRODUCT_TYPE", 150, true, 1);
+            DgvUtil.DgvInit(dgvBOMParent);
+            DgvUtil.AddTextCol(dgvBOMParent, "제품 코드", "PRODUCT_CODE", 150, true, 1, frozen:true);
+            DgvUtil.AddTextCol(dgvBOMParent, "제품명", "PRODUCT_NAME", 150, true, 1, frozen: true);
+            DgvUtil.AddTextCol(dgvBOMParent, "제품 유형", "PRODUCT_TYPE", 150, true, 1, frozen: true);
             DgvUtil.AddTextCol(dgvBOMParent, "대체 품번", "ALTER_PRODUCT_CODE", 150, true, 1);
             DgvUtil.AddTextCol(dgvBOMParent, "생성 시간", "CREATE_TIME", 150, true, 1);
             DgvUtil.AddTextCol(dgvBOMParent, "생성 사용자", "CREATE_USER_ID", 150, true, 1);
@@ -55,6 +55,12 @@ namespace Cohesion_Project
             DgvUtil.AddTextCol(dgvBOMChild, "생성 사용자", "CREATE_USER_ID", 150, true, 1);
             DgvUtil.AddTextCol(dgvBOMChild, "변경 시간", "UPDATE_TIME", 150, true, 1);
             DgvUtil.AddTextCol(dgvBOMChild, "변경 사용자", "UPDATE_USER_ID", 150, true, 1);
+        }
+
+        private void dgvBOMParent_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // 셀클릭시, 클릭된 완제품의 BOM을 Child에 뿌려줌.
+            //if(e.ColumnIndex)
         }
     }
 }

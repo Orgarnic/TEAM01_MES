@@ -20,9 +20,10 @@ namespace Cohesion_Project
          dgv.AllowUserToResizeRows = false;
          dgv.AllowUserToResizeColumns = false;
          dgv.AutoGenerateColumns = false;
-         dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+         //dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+         dgv.DefaultCellStyle.ForeColor = Color.Black;
          dgv.MultiSelect = false;
-         dgv.Font = new Font("나눔 고딕", 10, FontStyle.Bold);
+         dgv.Font = new Font("맑은 고딕", 9, FontStyle.Bold);
       }
       /// <summary>
       /// DataGridView TextColumn 추가
