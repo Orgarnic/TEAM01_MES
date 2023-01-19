@@ -30,12 +30,7 @@ namespace Cohesion_Project
       private void InitializeComponent()
       {
          this.dgvProduct = new System.Windows.Forms.DataGridView();
-         this.Prg = new System.Windows.Forms.PropertyGrid();
-         this.button1 = new System.Windows.Forms.Button();
-         this.button2 = new System.Windows.Forms.Button();
-         this.button3 = new System.Windows.Forms.Button();
-         this.btnCreate = new System.Windows.Forms.Button();
-         this.button5 = new System.Windows.Forms.Button();
+         this.ppgProduct = new System.Windows.Forms.PropertyGrid();
          this.pnlSearch.SuspendLayout();
          this.panel2.SuspendLayout();
          this.panel4.SuspendLayout();
@@ -76,9 +71,9 @@ namespace Cohesion_Project
          // 
          // panel7
          // 
-         this.panel7.Controls.Add(this.Prg);
+         this.panel7.Controls.Add(this.ppgProduct);
          this.panel7.Controls.SetChildIndex(this.lbl3, 0);
-         this.panel7.Controls.SetChildIndex(this.Prg, 0);
+         this.panel7.Controls.SetChildIndex(this.ppgProduct, 0);
          // 
          // lbl3
          // 
@@ -88,123 +83,52 @@ namespace Cohesion_Project
          // 
          this.btnClose.FlatAppearance.BorderSize = 0;
          // 
+         // btnDelete
+         // 
+         this.btnDelete.FlatAppearance.BorderSize = 0;
+         // 
+         // btnInsert
+         // 
+         this.btnInsert.FlatAppearance.BorderSize = 0;
+         // 
+         // btnAdd
+         // 
+         this.btnAdd.FlatAppearance.BorderSize = 0;
+         this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+         // 
+         // btnUpdate
+         // 
+         this.btnUpdate.FlatAppearance.BorderSize = 0;
+         // 
+         // btnRefresh
+         // 
+         this.btnRefresh.FlatAppearance.BorderSize = 0;
+         this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+         // 
          // dgvProduct
          // 
          this.dgvProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-         this.dgvProduct.Location = new System.Drawing.Point(751, 280);
+         this.dgvProduct.Location = new System.Drawing.Point(460, 339);
          this.dgvProduct.Name = "dgvProduct";
          this.dgvProduct.RowTemplate.Height = 23;
          this.dgvProduct.Size = new System.Drawing.Size(240, 150);
          this.dgvProduct.TabIndex = 5;
          // 
-         // Prg
+         // ppgProduct
          // 
-         this.Prg.Dock = System.Windows.Forms.DockStyle.Fill;
-         this.Prg.Location = new System.Drawing.Point(0, 30);
-         this.Prg.Name = "Prg";
-         this.Prg.Size = new System.Drawing.Size(356, 920);
-         this.Prg.TabIndex = 7;
-         // 
-         // button1
-         // 
-         this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-         this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(42)))), ((int)(((byte)(66)))));
-         this.button1.FlatAppearance.BorderSize = 0;
-         this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-         this.button1.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-         this.button1.ForeColor = System.Drawing.Color.White;
-         this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-         this.button1.Location = new System.Drawing.Point(1321, 1003);
-         this.button1.Name = "button1";
-         this.button1.Size = new System.Drawing.Size(95, 35);
-         this.button1.TabIndex = 31;
-         this.button1.Text = "닫 기";
-         this.button1.UseVisualStyleBackColor = false;
-         // 
-         // button2
-         // 
-         this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-         this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(42)))), ((int)(((byte)(66)))));
-         this.button2.FlatAppearance.BorderSize = 0;
-         this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-         this.button2.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-         this.button2.ForeColor = System.Drawing.Color.White;
-         this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-         this.button2.Location = new System.Drawing.Point(1220, 1003);
-         this.button2.Name = "button2";
-         this.button2.Size = new System.Drawing.Size(95, 35);
-         this.button2.TabIndex = 32;
-         this.button2.Text = "닫 기";
-         this.button2.UseVisualStyleBackColor = false;
-         // 
-         // button3
-         // 
-         this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-         this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(42)))), ((int)(((byte)(66)))));
-         this.button3.FlatAppearance.BorderSize = 0;
-         this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-         this.button3.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-         this.button3.ForeColor = System.Drawing.Color.White;
-         this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-         this.button3.Location = new System.Drawing.Point(1119, 1003);
-         this.button3.Name = "button3";
-         this.button3.Size = new System.Drawing.Size(95, 35);
-         this.button3.TabIndex = 33;
-         this.button3.Text = "닫 기";
-         this.button3.UseVisualStyleBackColor = false;
-         // 
-         // btnCreate
-         // 
-         this.btnCreate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-         this.btnCreate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(42)))), ((int)(((byte)(66)))));
-         this.btnCreate.FlatAppearance.BorderSize = 0;
-         this.btnCreate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-         this.btnCreate.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-         this.btnCreate.ForeColor = System.Drawing.Color.White;
-         this.btnCreate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-         this.btnCreate.Location = new System.Drawing.Point(1018, 1003);
-         this.btnCreate.Name = "btnCreate";
-         this.btnCreate.Size = new System.Drawing.Size(95, 35);
-         this.btnCreate.TabIndex = 34;
-         this.btnCreate.Text = "생 성";
-         this.btnCreate.UseVisualStyleBackColor = false;
-         this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
-         // 
-         // button5
-         // 
-         this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-         this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(42)))), ((int)(((byte)(66)))));
-         this.button5.FlatAppearance.BorderSize = 0;
-         this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-         this.button5.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-         this.button5.ForeColor = System.Drawing.Color.White;
-         this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-         this.button5.Location = new System.Drawing.Point(917, 1003);
-         this.button5.Name = "button5";
-         this.button5.Size = new System.Drawing.Size(95, 35);
-         this.button5.TabIndex = 35;
-         this.button5.Text = "닫 기";
-         this.button5.UseVisualStyleBackColor = false;
+         this.ppgProduct.Dock = System.Windows.Forms.DockStyle.Fill;
+         this.ppgProduct.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+         this.ppgProduct.Location = new System.Drawing.Point(0, 30);
+         this.ppgProduct.Name = "ppgProduct";
+         this.ppgProduct.Size = new System.Drawing.Size(356, 920);
+         this.ppgProduct.TabIndex = 7;
          // 
          // Frm_Product
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
          this.ClientSize = new System.Drawing.Size(1521, 1041);
-         this.Controls.Add(this.button5);
-         this.Controls.Add(this.btnCreate);
-         this.Controls.Add(this.button3);
-         this.Controls.Add(this.button2);
-         this.Controls.Add(this.button1);
          this.Name = "Frm_Product";
          this.Load += new System.EventHandler(this.Frm_Product_Load);
-         this.Controls.SetChildIndex(this.btnClose, 0);
-         this.Controls.SetChildIndex(this.pnlSearch, 0);
-         this.Controls.SetChildIndex(this.panel5, 0);
-         this.Controls.SetChildIndex(this.button1, 0);
-         this.Controls.SetChildIndex(this.button2, 0);
-         this.Controls.SetChildIndex(this.button3, 0);
-         this.Controls.SetChildIndex(this.btnCreate, 0);
-         this.Controls.SetChildIndex(this.button5, 0);
          this.pnlSearch.ResumeLayout(false);
          this.panel2.ResumeLayout(false);
          this.panel4.ResumeLayout(false);
@@ -223,11 +147,6 @@ namespace Cohesion_Project
       #endregion
 
       private System.Windows.Forms.DataGridView dgvProduct;
-      private System.Windows.Forms.PropertyGrid Prg;
-      protected System.Windows.Forms.Button button1;
-      protected System.Windows.Forms.Button button2;
-      protected System.Windows.Forms.Button button3;
-      protected System.Windows.Forms.Button btnCreate;
-      protected System.Windows.Forms.Button button5;
+      private System.Windows.Forms.PropertyGrid ppgProduct;
    }
 }
