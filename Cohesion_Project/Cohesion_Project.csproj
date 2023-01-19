@@ -200,6 +200,12 @@
     <EmbeddedResource Include="Frm_Store.resx">
       <DependentUpon>Frm_Store.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Frm_UserGroupMgt.resx">
+      <DependentUpon>Frm_UserGroupMgt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_UserMgt.resx">
+      <DependentUpon>Frm_UserMgt.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pop_CommonTableData.resx">
       <DependentUpon>Pop_CommonTableData.cs</DependentUpon>
     </EmbeddedResource>
