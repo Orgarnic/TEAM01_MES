@@ -123,6 +123,18 @@
     <Compile Include="Frm_Store.Designer.cs">
       <DependentUpon>Frm_Store.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm_UserGroupMgt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_UserGroupMgt.Designer.cs">
+      <DependentUpon>Frm_UserGroupMgt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_UserMgt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_UserMgt.Designer.cs">
+      <DependentUpon>Frm_UserMgt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pop_CommonTableData.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,6 +153,7 @@
     <Compile Include="Service\Srv_Equipment.cs" />
     <Compile Include="Service\Srv_Store.cs" />
     <Compile Include="Service\Srv_Product.cs" />
+    <Compile Include="Service\Srv_UserGroup.cs" />
     <Compile Include="Uc\Cc_TabControl.cs">
       <SubType>Component</SubType>
     </Compile>

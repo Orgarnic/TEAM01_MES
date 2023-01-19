@@ -52,6 +52,7 @@
     <Compile Include="Product_DAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Store_DAO.cs" />
+    <Compile Include="UserGroup_DAO.cs" />
     <Compile Include="Util\Helper.cs" />
     <Compile Include="Util\LoggingUtility.cs" />
   </ItemGroup>
