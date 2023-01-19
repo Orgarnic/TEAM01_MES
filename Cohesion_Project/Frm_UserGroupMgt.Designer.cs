@@ -78,6 +78,7 @@ namespace Cohesion_Project
             // 
             this.btnSearchCondition.FlatAppearance.BorderSize = 0;
             this.btnSearchCondition.Location = new System.Drawing.Point(1060, 38);
+            this.btnSearchCondition.Click += new System.EventHandler(this.btnSearchCondition_Click);
             // 
             // lbl2
             // 
@@ -107,6 +108,7 @@ namespace Cohesion_Project
             // 
             this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.Location = new System.Drawing.Point(1417, 839);
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnDelete
             // 
@@ -118,6 +120,7 @@ namespace Cohesion_Project
             // 
             this.btnInsert.FlatAppearance.BorderSize = 0;
             this.btnInsert.Location = new System.Drawing.Point(1215, 839);
+            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
             // btnAdd
             // 
@@ -129,11 +132,13 @@ namespace Cohesion_Project
             // 
             this.btnUpdate.FlatAppearance.BorderSize = 0;
             this.btnUpdate.Location = new System.Drawing.Point(1114, 839);
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnRefresh
             // 
             this.btnRefresh.FlatAppearance.BorderSize = 0;
             this.btnRefresh.Location = new System.Drawing.Point(1316, 839);
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // DgvUserGroup
             // 

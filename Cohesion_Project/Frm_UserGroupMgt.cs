@@ -16,7 +16,9 @@ namespace Cohesion_Project
         Srv_UserGroup srv_UG = new Srv_UserGroup();
         Srv_UserGroup Srv_UserGroup;
         List<UserGroup_DTO> UGroupList;
+
         private UGdate ugd = new UGdate();
+        private SearchData sd = new SearchData();
         public Frm_UserGroup()
         {
             InitializeComponent();
@@ -68,19 +70,7 @@ namespace Cohesion_Project
             }
         }
 
-        private void btnSearchCondition_Click(object sender, EventArgs e)
-        {
-            if (state)
-            {
-                Ppg_UserGourp.SelectedObject = ugd;
-                state = false;
-            }
-            else
-            {
-                Ppg_UserGourp.SelectedObject = ugd;
-                state = true;
-            }
-        }
+
 
 
 
@@ -186,6 +176,85 @@ namespace Cohesion_Project
             {
                 MessageBox.Show("입력 실패");
             }
+        }
+
+        private void btnSearchCondition_Click(object sender, EventArgs e)
+        {
+            if (state)
+            {
+                Ppg_UserGourp.SelectedObject = ugd;
+                state = false;
+            }
+            else
+            {
+                Ppg_UserGourp.SelectedObject = sd;
+                state = true;
+            }
+        }
+
+        public class SearchData
+        {
+            [Category("속성"), Description("USER_GROUP_CODE"), DisplayName("사용자 그룹 코드")]
+            public string CODE_TABLE_NAME { get; set; }
+
+   
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            UGdate blankData = new UGdate();
+            Ppg_UserGourp.SelectedObject = blankData;
+        }
+
+        private void btnInsert_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            var data = Ppg_UserGourp.SelectedObject as UGdate;
+            if (data.USER_GROUP_CODE == null)
+            {
+                MessageBox.Show("변경할 테이블을 선택해주세요.");
+                return;
+            }
+            var dto = PropertyToDto< UGdate ,UserGroup_DTO>(data);
+            dto.UPDATE_TIME = DateTime.Now;
+            bool result = srv_UG.UpdateUserGroup(dto);
+            if (result)
+            {
+                MessageBox.Show("수정 성공");
+                DataGridViewFill();
+            }
+            else
+            {
+                MessageBox.Show("수정 실패");
+            }
+            //var data = Ppg_CommonTable.SelectedObject as CommonData;
+            //if (data.CODE_TABLE_NAME == null)
+            //{
+            //    MessageBox.Show("변경할 테이블을 선택해주세요.");
+            //    return;
+            //}
+            //var dto = PropertyToDto<CommonData, CommonTable_DTO>(data);
+            //bool result = srvC.UpdateCommonTable(dto);
+            //if (result)
+            //{
+            //    MessageBox.Show("수정 성공");
+            //    LoadData();
+            //}
+            //else
+            //{
+            //    MessageBox.Show("수정 실패");
+            //}
+        }
+
+
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
