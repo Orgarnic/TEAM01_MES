@@ -386,7 +386,7 @@ namespace Cohesion_Project
             // 
             // btnDelete
             // 
-            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(42)))), ((int)(((byte)(66)))));
             this.btnDelete.FlatAppearance.BorderSize = 0;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -394,7 +394,7 @@ namespace Cohesion_Project
             this.btnDelete.ForeColor = System.Drawing.Color.White;
             this.btnDelete.Image = global::Cohesion_Project.Properties.Resources.trash;
             this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDelete.Location = new System.Drawing.Point(1220, 1002);
+            this.btnDelete.Location = new System.Drawing.Point(3, 1002);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.btnDelete.Size = new System.Drawing.Size(95, 35);
@@ -412,7 +412,7 @@ namespace Cohesion_Project
             this.btnInsert.ForeColor = System.Drawing.Color.White;
             this.btnInsert.Image = global::Cohesion_Project.Properties.Resources.check;
             this.btnInsert.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnInsert.Location = new System.Drawing.Point(1119, 1002);
+            this.btnInsert.Location = new System.Drawing.Point(1220, 1002);
             this.btnInsert.Name = "btnInsert";
             this.btnInsert.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.btnInsert.Size = new System.Drawing.Size(95, 35);
@@ -430,7 +430,7 @@ namespace Cohesion_Project
             this.btnAdd.ForeColor = System.Drawing.Color.White;
             this.btnAdd.Image = global::Cohesion_Project.Properties.Resources.tabs;
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.Location = new System.Drawing.Point(917, 1002);
+            this.btnAdd.Location = new System.Drawing.Point(1018, 1002);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.btnAdd.Size = new System.Drawing.Size(95, 35);
@@ -448,7 +448,7 @@ namespace Cohesion_Project
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
             this.btnUpdate.Image = global::Cohesion_Project.Properties.Resources.update;
             this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUpdate.Location = new System.Drawing.Point(1018, 1002);
+            this.btnUpdate.Location = new System.Drawing.Point(1119, 1002);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.btnUpdate.Size = new System.Drawing.Size(95, 35);

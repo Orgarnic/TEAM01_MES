@@ -126,7 +126,7 @@ namespace Cohesion_Project
             // 
             // lbl1
             // 
-            this.lbl1.Text = "제품 품목 관리";
+            this.lbl1.Text = "/ 제품 품목 관리 / BOM 관리";
             // 
             // btnDelete
             // 
@@ -182,6 +182,7 @@ namespace Cohesion_Project
             this.dgvBOMChild.RowTemplate.Height = 23;
             this.dgvBOMChild.Size = new System.Drawing.Size(1151, 430);
             this.dgvBOMChild.TabIndex = 7;
+            this.dgvBOMChild.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBOMChild_CellClick);
             // 
             // ppgSearch
             // 
