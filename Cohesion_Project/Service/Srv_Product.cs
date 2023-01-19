@@ -10,10 +10,10 @@ namespace Cohesion_Project
 {
    class Srv_Product
    {
-      public List<PRODUCT_MST_DTO> SelectProduts()
+      public List<PRODUCT_MST_DTO> SelectProduts(PRODUCT_MST_DTO condtion)
       {
          Product_DAO dao = new Product_DAO();
-         List<PRODUCT_MST_DTO> list = dao.SelectProduts();
+         List<PRODUCT_MST_DTO> list = dao.SelectProduts(condtion);
          dao.Dispose();
 
          return list;
