@@ -126,7 +126,7 @@ namespace Cohesion_Project
             // 
             // lbl1
             // 
-            this.lbl1.Text = "제품 품목 관리";
+            this.lbl1.Text = "/ 제품 품목 관리 / BOM 관리";
             // 
             // btnDelete
             // 
