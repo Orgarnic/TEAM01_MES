@@ -13,7 +13,7 @@ namespace Cohesion_Project
 {
     public partial class Frm_UserGroup : Frm_Base_2
     {
-
+        Srv_UserGroup srv_UG = new Srv_UserGroup();
         Srv_UserGroup Srv_UserGroup;
         List<UserGroup_DTO> UGroupList;
         private UGdate ugd = new UGdate();
@@ -154,21 +154,39 @@ namespace Cohesion_Project
             }
         }
 
-        //private void btnAdd_Click(object sender, EventArgs e)
-        //{
-        //    UGdate data = Ppg_UserGourp.SelectedObject as UGdate;
-        //    var dto = PropertyToDto<UGdate, UserGroup_DTO>(data);
-        //    bool result = srvC.InsertCommonTable(dto);
-        //    if (result)
-        //    {
-        //        MessageBox.Show("입력 성공");
-        //        LoadData();
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("입력 실패");
-        //    }
-        //}
+        private T1 PropertyToDto<T, T1>(T data) where T1 : class, new()
+        {
+            T1 dto = new T1();
+
+            for (int i = 0; i < data.GetType().GetProperties().Length; i++)
+            {
+                for (int j = 0; j < dto.GetType().GetProperties().Length; j++)
+                {
+                    if (data.GetType().GetProperties()[i].Name.Equals(dto.GetType().GetProperties()[j].Name, StringComparison.OrdinalIgnoreCase))
+                    {
+                        dto.GetType().GetProperties()[j].SetValue(dto, data.GetType().GetProperties()[i].GetValue(data));
+                        break;
+                    }
+                }
+            }
+            return dto;
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            UGdate data = Ppg_UserGourp.SelectedObject as UGdate;
+            var dto = PropertyToDto<UGdate, UserGroup_DTO>(data);
+            bool result = srv_UG.InsertUserGroup(dto);
+            if (result)
+            {
+                MessageBox.Show("입력 성공");
+                DataGridViewFill();
+            }
+            else
+            {
+                MessageBox.Show("입력 실패");
+            }
+        }
     }
 }
 
