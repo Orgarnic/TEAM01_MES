@@ -27,7 +27,7 @@ namespace Cohesion_DAO
                 conn.Close();
         }
 
-        public List<PRODUCT_MST_DTO> SelectProductList()
+        public List<PRODUCT_MST_DTO> SelectGetAllProductList()
         {
             List<PRODUCT_MST_DTO> list = null;
 

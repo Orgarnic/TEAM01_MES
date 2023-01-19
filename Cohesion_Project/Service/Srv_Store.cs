@@ -18,5 +18,23 @@ namespace Cohesion_Project
 
             return list;
         }
+
+        public bool InsertStore(Store_DTO dto)
+        {
+            Store_DAO dao = new Store_DAO();
+            bool result = dao.InsertStore(dto);
+            dao.Dispose();
+
+            return result;
+        }
+
+        public bool UpdateStore(Store_DTO dto)
+        {
+            Store_DAO dao = new Store_DAO();
+            bool result = dao.UpdateStore(dto);
+            dao.Dispose();
+
+            return result;
+        }
     }
 }

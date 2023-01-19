@@ -57,6 +57,7 @@ namespace Cohesion_Project
             // btnSearchCondition
             // 
             this.btnSearchCondition.FlatAppearance.BorderSize = 0;
+            this.btnSearchCondition.Click += new System.EventHandler(this.btnSearchCondition_Click);
             // 
             // splitContainer1
             // 
@@ -70,6 +71,29 @@ namespace Cohesion_Project
             // btnClose
             // 
             this.btnClose.FlatAppearance.BorderSize = 0;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.FlatAppearance.BorderSize = 0;
+            // 
+            // btnInsert
+            // 
+            this.btnInsert.FlatAppearance.BorderSize = 0;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.FlatAppearance.BorderSize = 0;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.FlatAppearance.BorderSize = 0;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.FlatAppearance.BorderSize = 0;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // ppg_Store
             // 
