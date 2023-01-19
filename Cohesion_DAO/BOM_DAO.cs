@@ -7,21 +7,37 @@ using Cohesion_DTO;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Diagnostics;
+using System.Data;
 
 namespace Cohesion_DAO
 {
-    class BOM_DAO : IDisposable
+    public class BOM_DAO : IDisposable
     {
         SqlConnection conn = null;
+        string connstr = ConfigurationManager.ConnectionStrings["DB"].ConnectionString;
+
+        public BOM_DAO()
+        {
+            conn = new SqlConnection(connstr);
+        }
 
         public void Dispose()
         {
-            conn = ConfigurationManager["MyDB"]
+            if (conn.State == ConnectionState.Open)
+                conn.Close();
         }
 
-        public BOM_MST_DTO SelectProductList()
+        public List<PRODUCT_MST_DTO> SelectProductList()
         {
-            string sql = ""
+            string sql = @"select PRODUCT_CODE, PRODUCT_NAME, PRODUCT_TYPE, CUSTOMER_CODE, CREATE_TIME, CREATE_USER_ID, UPDATE_TIME, UPDATE_USER_ID
+                           from PRODUCT_MST
+                           where PRODUCT_TYPE = 'FERT'";
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(sql, conn);
+            List<PRODUCT_MST_DTO> list = Helper.DataReaderMapToList<PRODUCT_MST_DTO>(cmd.ExecuteReader());
+            conn.Close();
+
+            return list;
         }
     }
 }

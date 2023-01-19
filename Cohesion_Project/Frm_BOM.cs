@@ -10,6 +10,7 @@ namespace Cohesion_Project
 {
     public partial class Frm_BOM : Cohesion_Project.Frm_Base_3
     {
+        Srv_BOM srv = new Srv_BOM();
         public Frm_BOM()
         {
             InitializeComponent();
@@ -32,6 +33,7 @@ namespace Cohesion_Project
             DgvUtil.AddTextCol(dgvBOMParent, "변경 시간", "UPDATE_TIME", 150, true, 1);
             DgvUtil.AddTextCol(dgvBOMParent, "변경 사용자", "UPDATE_USER_ID", 150, true, 1);
 
+            dgvBOMParent.DataSource = srv.SelectProductList();
             /*  public string PRODUCT_CODE { get; set; }	 //제품 코드, 품번
 		        public string PRODUCT_NAME { get; set; }	 //제품명, 품명
 		        public string PRODUCT_TYPE { get; set; }	 //품번 유형, 완제품 : FERT, 반제품 : HALB, 원자재 : ROH
