@@ -11,6 +11,9 @@ namespace Cohesion_Project
 {
    public partial class Frm_Product : Cohesion_Project.Frm_Base_2
    {
+      Srv_Product srvProduct = new Srv_Product();
+      List<PRODUCT_MST_DTO> products = new List<PRODUCT_MST_DTO>();
+
       public Frm_Product()
       {
          InitializeComponent();
@@ -19,6 +22,7 @@ namespace Cohesion_Project
       {
          this.DgvInit();
          this.PpgInit();
+         this.DgvFill();
       }
       private void DgvInit()
       {
@@ -33,14 +37,23 @@ namespace Cohesion_Project
          DgvUtil.AddTextCol(dgvProduct, "변경 시간", "UPDATE_TIME", width: 195, readOnly: true);
          DgvUtil.AddTextCol(dgvProduct, "변경 사용자", "UPDATE_USER_ID", width: 150, readOnly: true);
       }
-
-      private void btnCreate_Click(object sender, EventArgs e)
+      public void DgvFill()
       {
-         ppgProduct.SelectedObject = new PRODUCT_MST_DTO();
+         products = srvProduct.SelectProduts();
+         dgvProduct.DataSource = products;
       }
       private void PpgInit()
       {
          ppgProduct.PropertySort = PropertySort.NoSort;
+      }
+      private void btnRefresh_Click(object sender, EventArgs e)
+      {
+         ppgProduct.SelectedObject = new PRODUCT_MST_DTO();
+      }
+
+      private void btnAdd_Click(object sender, EventArgs e)
+      {
+
       }
    }
 }

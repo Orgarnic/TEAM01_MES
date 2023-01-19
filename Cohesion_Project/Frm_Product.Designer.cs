@@ -83,6 +83,28 @@ namespace Cohesion_Project
          // 
          this.btnClose.FlatAppearance.BorderSize = 0;
          // 
+         // btnDelete
+         // 
+         this.btnDelete.FlatAppearance.BorderSize = 0;
+         // 
+         // btnInsert
+         // 
+         this.btnInsert.FlatAppearance.BorderSize = 0;
+         // 
+         // btnAdd
+         // 
+         this.btnAdd.FlatAppearance.BorderSize = 0;
+         this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+         // 
+         // btnUpdate
+         // 
+         this.btnUpdate.FlatAppearance.BorderSize = 0;
+         // 
+         // btnRefresh
+         // 
+         this.btnRefresh.FlatAppearance.BorderSize = 0;
+         this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+         // 
          // dgvProduct
          // 
          this.dgvProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
