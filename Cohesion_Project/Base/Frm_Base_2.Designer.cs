@@ -63,7 +63,7 @@ namespace Cohesion_Project
             this.pnlSearch.Location = new System.Drawing.Point(0, 0);
             this.pnlSearch.Name = "pnlSearch";
             this.pnlSearch.Size = new System.Drawing.Size(1521, 35);
-            this.pnlSearch.TabIndex = 17;
+            this.pnlSearch.TabIndex = 28;
             // 
             // label6
             // 
@@ -82,7 +82,7 @@ namespace Cohesion_Project
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Txt_Search.Location = new System.Drawing.Point(10, 38);
             this.Txt_Search.Name = "Txt_Search";
-            this.Txt_Search.Size = new System.Drawing.Size(988, 23);
+            this.Txt_Search.Size = new System.Drawing.Size(988, 21);
             this.Txt_Search.TabIndex = 16;
             // 
             // panel2
@@ -180,10 +180,10 @@ namespace Cohesion_Project
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel5.Controls.Add(this.splitContainer1);
-            this.panel5.Location = new System.Drawing.Point(0, 37);
+            this.panel5.Location = new System.Drawing.Point(0, 41);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(1521, 958);
-            this.panel5.TabIndex = 27;
+            this.panel5.TabIndex = 29;
             // 
             // splitContainer1
             // 
@@ -205,7 +205,6 @@ namespace Cohesion_Project
             this.splitContainer1.Size = new System.Drawing.Size(1521, 958);
             this.splitContainer1.SplitterDistance = 1156;
             this.splitContainer1.TabIndex = 0;
-            this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
             // 
             // panel7
             // 
@@ -249,28 +248,28 @@ namespace Cohesion_Project
             this.Btn_Close.BackColor = System.Drawing.Color.Tomato;
             this.Btn_Close.FlatAppearance.BorderSize = 0;
             this.Btn_Close.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Btn_Close.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Btn_Close.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Btn_Close.ForeColor = System.Drawing.Color.White;
             this.Btn_Close.Image = global::Cohesion_Project.Properties.Resources.cancel;
             this.Btn_Close.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Btn_Close.Location = new System.Drawing.Point(1422, 998);
+            this.Btn_Close.Location = new System.Drawing.Point(1422, 1002);
             this.Btn_Close.Name = "Btn_Close";
             this.Btn_Close.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.Btn_Close.Size = new System.Drawing.Size(95, 35);
-            this.Btn_Close.TabIndex = 27;
+            this.Btn_Close.TabIndex = 30;
             this.Btn_Close.Text = "      닫  기";
             this.Btn_Close.UseVisualStyleBackColor = false;
             // 
             // Frm_Base_2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(217)))), ((int)(((byte)(226)))));
             this.ClientSize = new System.Drawing.Size(1521, 1041);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.pnlSearch);
             this.Controls.Add(this.Btn_Close);
-            this.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.ForeColor = System.Drawing.SystemColors.Control;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Frm_Base_2";
@@ -292,19 +291,19 @@ namespace Cohesion_Project
         #endregion
 
         protected System.Windows.Forms.Panel pnlSearch;
+        protected System.Windows.Forms.Label label6;
         protected System.Windows.Forms.TextBox Txt_Search;
-        protected System.Windows.Forms.Button Btn_Close;
-        protected System.Windows.Forms.Button Btn_Search;
-      protected System.Windows.Forms.Label label6;
-      protected System.Windows.Forms.Button button1;
         protected System.Windows.Forms.Panel panel2;
         protected System.Windows.Forms.Label label3;
+        protected System.Windows.Forms.Button Btn_Search;
         protected System.Windows.Forms.Panel panel4;
+        protected System.Windows.Forms.Button button1;
         protected System.Windows.Forms.Label label7;
         protected System.Windows.Forms.Panel panel5;
         protected System.Windows.Forms.SplitContainer splitContainer1;
         protected System.Windows.Forms.Panel panel7;
         protected System.Windows.Forms.PropertyGrid propertyGrid1;
         protected System.Windows.Forms.Label label8;
+        protected System.Windows.Forms.Button Btn_Close;
     }
 }
