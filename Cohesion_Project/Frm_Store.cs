@@ -20,8 +20,8 @@ namespace Cohesion_Project
         {
             //lblSearch.Text = "창고명";
             //label1.Text = "창고 유형";
-            label3.Text = "▶ 창고 목록";
-            label8.Text = "▶ 창고 속성";
+            lbl4.Text = "▶ 창고 목록";
+            lbl3.Text = "▶ 창고 속성";
             //label2.Visible = false;
             //Cbo_Search2.Visible = false;
 

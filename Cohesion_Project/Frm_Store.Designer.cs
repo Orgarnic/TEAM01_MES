@@ -47,7 +47,7 @@ namespace Cohesion_Project
             // 
             this.panel2.Controls.Add(this.dataGridView1);
             this.panel2.Size = new System.Drawing.Size(1153, 938);
-            this.panel2.Controls.SetChildIndex(this.label3, 0);
+            this.panel2.Controls.SetChildIndex(this.lbl4, 0);
             this.panel2.Controls.SetChildIndex(this.dataGridView1, 0);
             // 
             // btnSearch
@@ -65,12 +65,12 @@ namespace Cohesion_Project
             // 
             this.panel7.Controls.Add(this.propertyGrid1);
             this.panel7.Size = new System.Drawing.Size(358, 1016);
-            this.panel7.Controls.SetChildIndex(this.label8, 0);
+            this.panel7.Controls.SetChildIndex(this.lbl3, 0);
             this.panel7.Controls.SetChildIndex(this.propertyGrid1, 0);
             // 
             // Btn_Close
             // 
-            this.Btn_Close.FlatAppearance.BorderSize = 0;
+            this.btnClose.FlatAppearance.BorderSize = 0;
             // 
             // dataGridView1
             // 
