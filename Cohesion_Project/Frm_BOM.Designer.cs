@@ -32,6 +32,8 @@ namespace Cohesion_Project
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dgvBOMParent = new System.Windows.Forms.DataGridView();
             this.dgvBOMChild = new System.Windows.Forms.DataGridView();
+            this.ppgSearch = new System.Windows.Forms.PropertyGrid();
+            this.ppgBOMAttribute = new System.Windows.Forms.PropertyGrid();
             this.panel9.SuspendLayout();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
@@ -57,6 +59,16 @@ namespace Cohesion_Project
             // 
             this.btnClose.FlatAppearance.BorderSize = 0;
             // 
+            // lbl7
+            // 
+            this.lbl7.Text = "▶ BOM 속성";
+            // 
+            // panel9
+            // 
+            this.panel9.Controls.Add(this.ppgBOMAttribute);
+            this.panel9.Controls.SetChildIndex(this.lbl7, 0);
+            this.panel9.Controls.SetChildIndex(this.ppgBOMAttribute, 0);
+            // 
             // lbl6
             // 
             this.lbl6.Text = "▶ 제품 BOM 구성";
@@ -69,6 +81,21 @@ namespace Cohesion_Project
             // 
             // splitContainer2
             // 
+            // 
+            // lbl3
+            // 
+            this.lbl3.Text = "▶ 검색 상세 조건";
+            // 
+            // lbl5
+            // 
+            this.lbl5.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lbl5.Text = "제품 BOM View";
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.ppgSearch);
+            this.panel7.Controls.SetChildIndex(this.lbl3, 0);
+            this.panel7.Controls.SetChildIndex(this.ppgSearch, 0);
             // 
             // splitContainer1
             // 
@@ -91,6 +118,15 @@ namespace Cohesion_Project
             // btnSearch
             // 
             this.btnSearch.FlatAppearance.BorderSize = 0;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // lbl2
+            // 
+            this.lbl2.Text = "▶ 제품 목록 검색";
+            // 
+            // lbl1
+            // 
+            this.lbl1.Text = "제품 품목 관리";
             // 
             // btnDelete
             // 
@@ -111,6 +147,7 @@ namespace Cohesion_Project
             // btnRefresh
             // 
             this.btnRefresh.FlatAppearance.BorderSize = 0;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // dataGridView1
             // 
@@ -146,6 +183,22 @@ namespace Cohesion_Project
             this.dgvBOMChild.Size = new System.Drawing.Size(1151, 430);
             this.dgvBOMChild.TabIndex = 7;
             // 
+            // ppgSearch
+            // 
+            this.ppgSearch.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ppgSearch.Location = new System.Drawing.Point(0, 30);
+            this.ppgSearch.Name = "ppgSearch";
+            this.ppgSearch.Size = new System.Drawing.Size(356, 412);
+            this.ppgSearch.TabIndex = 8;
+            // 
+            // ppgBOMAttribute
+            // 
+            this.ppgBOMAttribute.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ppgBOMAttribute.Location = new System.Drawing.Point(0, 30);
+            this.ppgBOMAttribute.Name = "ppgBOMAttribute";
+            this.ppgBOMAttribute.Size = new System.Drawing.Size(356, 429);
+            this.ppgBOMAttribute.TabIndex = 9;
+            // 
             // Frm_BOM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -180,5 +233,7 @@ namespace Cohesion_Project
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridView dgvBOMParent;
         private System.Windows.Forms.DataGridView dgvBOMChild;
+        private System.Windows.Forms.PropertyGrid ppgBOMAttribute;
+        private System.Windows.Forms.PropertyGrid ppgSearch;
     }
 }
