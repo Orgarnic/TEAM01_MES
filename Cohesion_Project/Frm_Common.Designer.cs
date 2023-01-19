@@ -56,6 +56,7 @@ namespace Cohesion_Project
             // btnSearch
             // 
             this.btnSearch.FlatAppearance.BorderSize = 0;
+            
             // 
             // btnSearchCondition
             // 

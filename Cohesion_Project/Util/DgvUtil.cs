@@ -13,14 +13,14 @@ namespace Cohesion_Project
       public static void DgvInit(DataGridView dgv)
       {
          dgv.BackgroundColor = Color.White;
-         dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(188,220,244);
+         dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(205, 217, 226);
          dgv.Dock = DockStyle.Fill;
          dgv.AllowUserToAddRows = false;
          dgv.AllowUserToDeleteRows = false;
          dgv.AllowUserToResizeRows = false;
          dgv.AllowUserToResizeColumns = false;
          dgv.AutoGenerateColumns = false;
-         //dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+         dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
          dgv.DefaultCellStyle.ForeColor = Color.Black;
          dgv.MultiSelect = false;
          dgv.Font = new Font("맑은 고딕", 9, FontStyle.Bold);

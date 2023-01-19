@@ -99,7 +99,7 @@ namespace Cohesion_Project
         private void btnAdd_Click(object sender, EventArgs e)
         {
             CommonData data = Ppg_CommonTable.SelectedObject as CommonData;
-            var dto = PropertyToDto<CommonData, CommonTable_DTO>(data);
+            var dto = CommonUtil.PropertyToDto<CommonData, CommonTable_DTO>(data);
             bool result = srvC.InsertCommonTable(dto);
             if (result)
             {
@@ -229,6 +229,8 @@ namespace Cohesion_Project
             }
             return dto;
         }
+
+
 
 
 
