@@ -34,9 +34,9 @@ namespace Cohesion_Project
             this.Txt_Search = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
-            this.Btn_Search = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnSearchCondition = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -79,7 +79,7 @@ namespace Cohesion_Project
             // 
             this.Txt_Search.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Txt_Search.Location = new System.Drawing.Point(10, 38);
+            this.Txt_Search.Location = new System.Drawing.Point(10, 39);
             this.Txt_Search.Name = "Txt_Search";
             this.Txt_Search.Size = new System.Drawing.Size(988, 21);
             this.Txt_Search.TabIndex = 16;
@@ -111,30 +111,30 @@ namespace Cohesion_Project
             this.label3.Text = "▶ 생산 내역 조회";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // Btn_Search
+            // btnSearch
             // 
-            this.Btn_Search.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Btn_Search.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(42)))), ((int)(((byte)(66)))));
-            this.Btn_Search.FlatAppearance.BorderSize = 0;
-            this.Btn_Search.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Btn_Search.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.Btn_Search.ForeColor = System.Drawing.SystemColors.Control;
-            this.Btn_Search.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Btn_Search.Location = new System.Drawing.Point(1004, 38);
-            this.Btn_Search.Name = "Btn_Search";
-            this.Btn_Search.Size = new System.Drawing.Size(54, 23);
-            this.Btn_Search.TabIndex = 18;
-            this.Btn_Search.Text = "조회";
-            this.Btn_Search.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.Btn_Search.UseVisualStyleBackColor = false;
+            this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(42)))), ((int)(((byte)(66)))));
+            this.btnSearch.FlatAppearance.BorderSize = 0;
+            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearch.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSearch.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSearch.Location = new System.Drawing.Point(1004, 38);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(54, 23);
+            this.btnSearch.TabIndex = 18;
+            this.btnSearch.Text = "조회";
+            this.btnSearch.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.btnSearch.UseVisualStyleBackColor = false;
             // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.White;
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel4.Controls.Add(this.button1);
+            this.panel4.Controls.Add(this.btnSearchCondition);
             this.panel4.Controls.Add(this.Txt_Search);
-            this.panel4.Controls.Add(this.Btn_Search);
+            this.panel4.Controls.Add(this.btnSearch);
             this.panel4.Controls.Add(this.label7);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel4.Location = new System.Drawing.Point(3, 3);
@@ -142,22 +142,22 @@ namespace Cohesion_Project
             this.panel4.Size = new System.Drawing.Size(1153, 72);
             this.panel4.TabIndex = 26;
             // 
-            // button1
+            // btnSearchCondition
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(42)))), ((int)(((byte)(66)))));
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button1.ForeColor = System.Drawing.SystemColors.Control;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(1064, 38);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(78, 23);
-            this.button1.TabIndex = 19;
-            this.button1.Text = "검색조건";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnSearchCondition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSearchCondition.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(42)))), ((int)(((byte)(66)))));
+            this.btnSearchCondition.FlatAppearance.BorderSize = 0;
+            this.btnSearchCondition.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearchCondition.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSearchCondition.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnSearchCondition.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSearchCondition.Location = new System.Drawing.Point(1064, 38);
+            this.btnSearchCondition.Name = "btnSearchCondition";
+            this.btnSearchCondition.Size = new System.Drawing.Size(78, 23);
+            this.btnSearchCondition.TabIndex = 19;
+            this.btnSearchCondition.Text = "검색조건";
+            this.btnSearchCondition.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.btnSearchCondition.UseVisualStyleBackColor = false;
             // 
             // label7
             // 
@@ -285,9 +285,9 @@ namespace Cohesion_Project
         protected System.Windows.Forms.TextBox Txt_Search;
         protected System.Windows.Forms.Panel panel2;
         protected System.Windows.Forms.Label label3;
-        protected System.Windows.Forms.Button Btn_Search;
+        protected System.Windows.Forms.Button btnSearch;
         protected System.Windows.Forms.Panel panel4;
-        protected System.Windows.Forms.Button button1;
+        protected System.Windows.Forms.Button btnSearchCondition;
         protected System.Windows.Forms.Label label7;
         protected System.Windows.Forms.Panel panel5;
         protected System.Windows.Forms.SplitContainer splitContainer1;
