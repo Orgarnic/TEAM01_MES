@@ -117,12 +117,42 @@ namespace Cohesion_Project
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            Ppg_CommonTable.Enabled = true;
+            btnAdd.Enabled = false;
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (!MboxUtil.MboxInfo_("선택된 테이블 정보를 삭제하시겠습니까 ? "))
+            {
+                return;
+            }
+            var dto = DgvUtil.DgvToDto<CommonTable_DTO>(Dgv_CommonTable);
+            bool result = srvC.DeleteTable(dto);
+            if (result)
+            {
+                MboxUtil.MboxInfo("테이블 삭제 성공.");
+                LoadData();
+            }
+            else
+            {
+                MboxUtil.MboxError("테이블 삭제 실패.");
+            }
+        }
+        private void btnInsert_Click(object sender, EventArgs e)
+        {
             var data = Ppg_CommonTable.SelectedObject as CommonData;
             if (data.CODE_TABLE_NAME == null)
             {
                 MessageBox.Show("변경할 테이블을 선택해주세요.");
                 return;
             }
+
+            if (!MboxUtil.MboxInfo_("선택된 테이블 정보를 변경하시겠습니까 ? "))
+            {
+                return;
+            }
+
             var dto = PropertyToDto<CommonData, CommonTable_DTO>(data);
             bool result = srvC.UpdateCommonTable(dto);
             if (result)
@@ -136,17 +166,20 @@ namespace Cohesion_Project
             }
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-
-        }
-
 
         //초기화 버튼
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            CommonData blankData = new CommonData();
-            Ppg_CommonTable.SelectedObject = blankData;
+            if (state)
+            {
+                SearchData blankData = new SearchData();
+                Ppg_CommonTable.SelectedObject = blankData;
+            }
+            else if(cd.CODE_TABLE_NAME != null)
+            {
+                CommonData blankData = new CommonData();
+                Ppg_CommonTable.SelectedObject = blankData;
+            }
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -179,9 +212,23 @@ namespace Cohesion_Project
         private void LoadData()
         {
             srcList = srvC.SelectCommonTable();
+
+            Dictionary<string, List<string>> searchDic = new Dictionary<string, List<string>>();
+            
             List<string> l1 = new List<string>();
             srcList.ForEach((c) => l1.Add(c.CODE_TABLE_NAME));
-            sd.Property = l1;
+            searchDic[cd.GetType().GetProperties()[0].Name] = l1;
+
+            List<string> l2 = new List<string>();
+            srcList.ForEach((c) => l2.Add(c.KEY_1_NAME));
+            searchDic[cd.GetType().GetProperties()[2].Name] = l2;
+
+            List<string> l3 = new List<string>();
+            srcList.ForEach((c) => l3.Add(c.DATA_1_NAME));
+            searchDic[cd.GetType().GetProperties()[5].Name] = l3;
+
+            sd.SearchList = searchDic;
+            
             Dgv_CommonTable.DataSource = srcList;
         }
 
@@ -241,6 +288,7 @@ namespace Cohesion_Project
 
 
 
+
         //==================================================================================================================================
     }
 
@@ -293,21 +341,28 @@ namespace Cohesion_Project
     //검색조건 PropertyGrid 프로퍼티 셋팅 
     public class SearchData
     {
-        [Category("속성"), Description("CODE_TABLE_NAME"), DisplayName("테이블명"), TypeConverter(typeof(JobStringConverter))]
+        [Category("속성"), Description("CODE_TABLE_NAME"), DisplayName("테이블명"), TypeConverter(typeof(ComboStringConverter))]
         public string CODE_TABLE_NAME { get; set; }
 
-        [Browsable(false)]
-        public List<string> Property { get; set; }
+        [Category("속성"), Description("KEY_1_NAME"), DisplayName("키1 명"), TypeConverter(typeof(ComboStringConverter))]
+        public string KEY_1_NAME { get; set; }
 
-        public List<string> GetList()
+        [Category("속성"), Description("DATA_1_NAME"), DisplayName("데이터1 명"), TypeConverter(typeof(ComboStringConverter))]
+        public string DATA_1_NAME { get; set; }
+
+
+        [Browsable(false)]
+        public Dictionary<string,List<string>> SearchList { get; set; }
+
+        public Dictionary<string, List<string>> GetList()
         {
-            return Property;
+            return SearchList;
         }
     }
 
 
 
-    public class JobStringConverter : StringConverter
+    public class ComboStringConverter : StringConverter
     {
         public override bool GetStandardValuesSupported(ITypeDescriptorContext context)
         {
@@ -317,7 +372,7 @@ namespace Cohesion_Project
         public override TypeConverter.StandardValuesCollection GetStandardValues(ITypeDescriptorContext context)
         {
             SearchData refMyObject = context.Instance as SearchData;
-            return new StandardValuesCollection(refMyObject.Property);
+            return new StandardValuesCollection(refMyObject.SearchList[context.PropertyDescriptor.Description]);
         }
     }
 }

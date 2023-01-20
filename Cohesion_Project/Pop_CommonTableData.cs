@@ -130,6 +130,25 @@ namespace Cohesion_Project
             //체크 되어 있는 것을 저장
         }
 
+        private void Btn_Delete_Click(object sender, EventArgs e)
+        {
+            if (!MboxUtil.MboxInfo_("선택된 테이블 정보를 삭제하시겠습니까 ? "))
+            {
+                return;
+            }
+            var dto = DgvUtil.DgvToDto<CommonData_DTO>(Dgv_DataTable);
+            bool result = srvC.DeleteTableData(target.CODE_TABLE_NAME,dto);
+            if (result)
+            {
+                MboxUtil.MboxInfo("데이터 삭제 성공.");
+                LoadData();
+            }
+            else
+            {
+                MboxUtil.MboxError("데이터 삭제 실패.");
+            }
+        }
+
         //=============================================================컬럼 동적 생성========================================================
 
         private void MakeColumn()

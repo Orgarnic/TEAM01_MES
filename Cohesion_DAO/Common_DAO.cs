@@ -260,5 +260,71 @@ namespace Cohesion_DAO
                 conn.Close();
             }
         }
+
+        public bool DeleteTable(CommonTable_DTO dto)
+        {
+            conn.Open();
+            SqlTransaction trans = conn.BeginTransaction();
+            SqlCommand cmd = new SqlCommand();
+            try
+            {
+                // data table 먼저 삭제하고, 그다음에 table 삭제
+                string sql = "DELETE FROM CODE_DATA_MST WHERE CODE_TABLE_NAME = @CODE_TABLE_NAME";
+                cmd.Connection = conn;
+                cmd.CommandText = sql;
+                cmd.Transaction = trans;
+                cmd.Parameters.AddWithValue("@CODE_TABLE_NAME", dto.CODE_TABLE_NAME);
+                cmd.ExecuteNonQuery();
+
+                cmd.CommandText = "DELETE FROM CODE_TABLE_MST WHERE CODE_TABLE_NAME = @CODE_TABLE_NAME";
+                cmd.ExecuteNonQuery();
+
+                trans.Commit();
+                return true;
+            }
+            catch (Exception err)
+            {
+                trans.Rollback();
+                Debug.WriteLine(err.Message);
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public bool DeleteTableData(string CODE_TABLE_NAME,CommonData_DTO dto)
+        {
+            conn.Open();
+            SqlTransaction trans = conn.BeginTransaction();
+            SqlCommand cmd = new SqlCommand();
+            try
+            {
+                // data table 먼저 삭제하고, 그다음에 table 삭제
+                string sql = "DELETE FROM CODE_DATA_MST WHERE CODE_TABLE_NAME = @CODE_TABLE_NAME";
+                cmd.Connection = conn;
+                cmd.CommandText = sql;
+                cmd.Transaction = trans;
+                cmd.Parameters.AddWithValue("@CODE_TABLE_NAME", CODE_TABLE_NAME);
+                cmd.Parameters.AddWithValue("@KEY_1_NAME", string.IsNullOrEmpty(dto.KEY_1) ? (object)DBNull.Value : dto.KEY_1);
+                cmd.Parameters.AddWithValue("@KEY_2_NAME", string.IsNullOrEmpty(dto.KEY_2) ? (object)DBNull.Value : dto.KEY_2);
+                cmd.Parameters.AddWithValue("@KEY_3_NAME", string.IsNullOrEmpty(dto.KEY_3) ? (object)DBNull.Value : dto.KEY_3);
+                cmd.ExecuteNonQuery();
+
+                trans.Commit();
+                return true;
+            }
+            catch (Exception err)
+            {
+                trans.Rollback();
+                Debug.WriteLine(err.Message);
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     }
 }

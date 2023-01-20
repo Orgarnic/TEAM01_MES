@@ -96,6 +96,7 @@ namespace Cohesion_Project
             this.Btn_Delete.TabIndex = 0;
             this.Btn_Delete.Text = "     삭  제";
             this.Btn_Delete.UseVisualStyleBackColor = false;
+            this.Btn_Delete.Click += new System.EventHandler(this.Btn_Delete_Click);
             this.Btn_Delete.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Btn_Delete_MouseDown);
             this.Btn_Delete.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Btn_Delete_MouseUp);
             // 
