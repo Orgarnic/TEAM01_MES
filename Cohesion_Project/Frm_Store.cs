@@ -257,19 +257,19 @@ namespace Cohesion_Project
 
 
 
-    //public class JobStringConverter : StringConverter
-    //{
-    //    public override bool GetStandardValuesSupported(ITypeDescriptorContext context)
-    //    {
-    //        return true;
-    //    }
+    public class JobStringConverter : StringConverter
+    {
+        public override bool GetStandardValuesSupported(ITypeDescriptorContext context)
+        {
+            return true;
+        }
 
-    //    public override TypeConverter.StandardValuesCollection GetStandardValues(ITypeDescriptorContext context)
-    //    {
-    //        Customer refMyObject = context.Instance as Customer;
-    //        return new StandardValuesCollection(new JobSource().GetSourceList());
-    //    }
-    //}
+        public override TypeConverter.StandardValuesCollection GetStandardValues(ITypeDescriptorContext context)
+        {
+            Customer refMyObject = context.Instance as Customer;
+            return new StandardValuesCollection(new JobSource().GetSourceList());
+        }
+    }
 }
 
 

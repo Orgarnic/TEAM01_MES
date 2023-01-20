@@ -12,6 +12,8 @@ namespace Cohesion_Project
 {
     public partial class Frm_Main : Form
     {
+        private Util.ComboUtil comboUtil;
+        //public Util.ComboUtil ComboUtil { get { return comboUtil; } }
         public Frm_Main()
         {
             InitializeComponent();
@@ -24,12 +26,12 @@ namespace Cohesion_Project
 
         private void Frm_Main_Load(object sender, EventArgs e)
         {
-
+            comboUtil = new Util.ComboUtil();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -39,7 +41,7 @@ namespace Cohesion_Project
 
         private void button5_Click(object sender, EventArgs e)
         {
-            Frm_Base_1 frm = new Frm_Base_1();
+            Frm_Product frm = new Frm_Product();
             frm.MdiParent = this;
             frm.WindowState = FormWindowState.Maximized;
             frm.Show();

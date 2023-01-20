@@ -216,7 +216,9 @@ namespace Cohesion_Project
             Dictionary<string, List<string>> searchDic = new Dictionary<string, List<string>>();
             
             List<string> l1 = new List<string>();
-            srcList.ForEach((c) => l1.Add(c.CODE_TABLE_NAME));
+            srcList.ForEach((c) => l1.Add(c.CREATE_USER_ID));
+            searchDic.Add("CREATE_USER_ID", l1);
+            /*srcList.ForEach((c) => l1.Add(c.CODE_TABLE_NAME));
             searchDic[cd.GetType().GetProperties()[0].Name] = l1;
 
             List<string> l2 = new List<string>();
@@ -225,7 +227,8 @@ namespace Cohesion_Project
 
             List<string> l3 = new List<string>();
             srcList.ForEach((c) => l3.Add(c.DATA_1_NAME));
-            searchDic[cd.GetType().GetProperties()[5].Name] = l3;
+            searchDic[cd.GetType().GetProperties()[5].Name] = l3;*/
+
 
             sd.SearchList = searchDic;
             
@@ -328,7 +331,7 @@ namespace Cohesion_Project
         [Category("추적"), Description("CREATE_TIME"), DisplayName("생성 시간")]
         public DateTime CREATE_TIME { get; set; }
 
-        [Category("추적"), Description("CREATE_USER_ID"), DisplayName("생성자")]
+        [Category("추적"), Description("CREATE_USER_ID"), DisplayName("생성자"), TypeConverter(typeof(ComboStringConverter))]
         public string CREATE_USER_ID { get; set; }
 
         [Category("추적"), Description("UPDATE_TIME"), DisplayName("변경 시간")]
@@ -350,6 +353,8 @@ namespace Cohesion_Project
         [Category("속성"), Description("DATA_1_NAME"), DisplayName("데이터1 명"), TypeConverter(typeof(ComboStringConverter))]
         public string DATA_1_NAME { get; set; }
 
+        [Category("추적"), Description("CREATE_USER_ID"), DisplayName("생성자"), TypeConverter(typeof(ComboStringConverter))]
+        public string CREATE_USER_ID { get; set; }
 
         [Browsable(false)]
         public Dictionary<string,List<string>> SearchList { get; set; }

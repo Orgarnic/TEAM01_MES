@@ -81,5 +81,13 @@ namespace Cohesion_Project.Service
 
             return result;
         }
+        public List<CommonData_DTO> SelectAllCommonTableData()
+        {
+            Common_DAO dao = new Common_DAO();
+            List<CommonData_DTO> list = dao.SelectAllCommonTableData();
+            dao.Dispose();
+
+            return list;
+        }
     }
 }

@@ -159,6 +159,20 @@ namespace Cohesion_DAO
             return list;
         }
 
+        public List<CommonData_DTO> SelectAllCommonTableData()
+        {
+            string sql = @"SELECT   CODE_TABLE_NAME
+                                  , DISPLAY_SEQ
+                                  , KEY_1 , KEY_2 , KEY_3 
+                                  , DATA_1 , DATA_2 , DATA_3 , DATA_4 , DATA_5 
+                           FROM CODE_DATA_MST";
+            SqlCommand cmd = new SqlCommand(sql, conn);
+            conn.Open();
+            var list = Helper.DataReaderMapToList<CommonData_DTO>(cmd.ExecuteReader());
+            conn.Close();
+            return list;
+        }
+
         public bool InsertCommonTableData(CommonData_DTO dto)
         {
             try
@@ -203,15 +217,15 @@ namespace Cohesion_DAO
                                
                                IF @COUNT > 0
                                BEGIN
-                               UPDATE CODE_DATA_MST SET KEY_1 = KEY_1
-                               						,KEY_2 = KEY_2
-                               						,KEY_3 = KEY_3
-                               						,DATA_1 = DATA_1
-                               						,DATA_2 = DATA_2
-                               						,DATA_3 = DATA_3
-                               						,DATA_4 = DATA_4
-                               						,DATA_5 = DATA_5
-                               						,DISPLAY_SEQ = DISPLAY_SEQ
+                               UPDATE CODE_DATA_MST SET KEY_1 = @KEY_1
+                               						,KEY_2 = @KEY_2
+                               						,KEY_3 = @KEY_3
+                               						,DATA_1 = @DATA_1
+                               						,DATA_2 = @DATA_2
+                               						,DATA_3 = @DATA_3
+                               						,DATA_4 = @DATA_4
+                               						,DATA_5 = @DATA_5
+                               						,DISPLAY_SEQ = @DISPLAY_SEQ
                                						,UPDATE_TIME = GETDATE()
                                                     WHERE KEY_1 = @KEY_1 AND CODE_TABLE_NAME = @CODE_TABLE_NAME
                                END
@@ -231,6 +245,7 @@ namespace Cohesion_DAO
                 cmd.Parameters.Add(new SqlParameter("@DATA_3", SqlDbType.NVarChar));
                 cmd.Parameters.Add(new SqlParameter("@DATA_4", SqlDbType.NVarChar));
                 cmd.Parameters.Add(new SqlParameter("@DATA_5", SqlDbType.NVarChar));
+                cmd.Parameters.Add(new SqlParameter("@DISPLAY_SEQ", SqlDbType.Int));
                 cmd.Transaction = trans;
 
 
@@ -244,6 +259,7 @@ namespace Cohesion_DAO
                     cmd.Parameters["@DATA_3"].Value = (item.DATA_3 == null) ? (object)DBNull.Value : item.DATA_3;
                     cmd.Parameters["@DATA_4"].Value = (item.DATA_4 == null) ? (object)DBNull.Value : item.DATA_4;
                     cmd.Parameters["@DATA_5"].Value = (item.DATA_5 == null) ? (object)DBNull.Value : item.DATA_5;
+                    cmd.Parameters["@DISPLAY_SEQ"].Value = (item.DISPLAY_SEQ == null) ? (object)DBNull.Value : item.DISPLAY_SEQ;
                     cmd.ExecuteNonQuery();
                 }
                 trans.Commit();

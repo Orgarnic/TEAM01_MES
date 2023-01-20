@@ -36,7 +36,7 @@ namespace Cohesion_Project
             DataGridViewCheckBoxColumn chk = new DataGridViewCheckBoxColumn();
             chk.HeaderText = "수정 여부";
             Dgv_DataTable.Columns.Add(chk);
-            DgvUtil.AddTextCol(Dgv_DataTable, "순서", "DISPLAY_SEQ", 100, readOnly: true, align:1 );
+            DgvUtil.AddTextCol(Dgv_DataTable, "순서", "DISPLAY_SEQ", 100, readOnly: false, align:1 );
 
             MakeColumn();
             LoadData();

@@ -8,6 +8,7 @@ namespace Cohesion_DTO
 {
     public class CommonData_DTO
     {
+        public string CODE_TABLE_NAME { get; set; }
         public string KEY_1 { get; set; }
         public string KEY_2 { get; set; }
         public string KEY_3 { get; set; }
