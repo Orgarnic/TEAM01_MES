@@ -16,7 +16,7 @@ namespace Cohesion_Project
         Srv_UserGroup srv_UG = new Srv_UserGroup();
         Srv_UserGroup Srv_UserGroup;
         List<UserGroup_DTO> UGroupList;
-
+        private SearchCondition condtion = new SearchCondition();
         private UGdate ugd = new UGdate();
         private SearchData sd = new SearchData();
         public Frm_UserGroup()
@@ -53,7 +53,7 @@ namespace Cohesion_Project
         {
             UGroupList = Srv_UserGroup.SelectUserGroup();
             DgvUserGroup.DataSource = UGroupList;
-       
+
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -86,7 +86,7 @@ namespace Cohesion_Project
             MessageBox.Show("권한 저장정보가 삭제되었습니다.", "알람", MessageBoxButtons.OK, MessageBoxIcon.Information);
             DataGridViewFill();
             DgvUserGroup.ClearSelection();
-  
+
         }
 
 
@@ -266,7 +266,7 @@ namespace Cohesion_Project
                 MessageBox.Show("수정 실패");
             }
 
-         //   Ppg_UserGourp.Enabled = false; 추적창만 펄스헤야ㅐ되는대 안됨
+            //   Ppg_UserGourp.Enabled = false; 추적창만 펄스헤야ㅐ되는대 안됨
             btnAdd.Enabled = true;
         }
 
@@ -304,7 +304,33 @@ namespace Cohesion_Project
             return (T)dgv.Rows[dgv.CurrentRow.Index].DataBoundItem;
         }
 
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            UGroupList = Srv_UserGroup.SSelectUserGroup(condtion.GetCondition());
+            DgvUserGroup.DataSource = UGroupList;
+        }
+        private class SearchCondition
+        {
+            public UserGroup_DTO GetCondition()
+            {
+                UserGroup_DTO dto = new UserGroup_DTO
+                {
+                    USER_GROUP_CODE = this.USER_GROUP_CODE,
+                    USER_GROUP_NAME = this.USER_GROUP_NAME,
+                    USER_GROUP_TYPE = this.USER_GROUP_TYPE,
 
+                };
+                return dto;
+            }
+            [Category("속성"), Description("USER_GROUP_CODE")]
+            public string USER_GROUP_CODE { get; set; }
+
+            [Category("속성"), Description("USER_GROUP_NAME")]
+            public string USER_GROUP_NAME { get; set; }
+
+            [Category("속성"), Description("USER_GROUP_TYPE"), DisplayName("사용자 그룹 유형"), TypeConverter(typeof(ComboStringConverter))]
+            public string USER_GROUP_TYPE { get; set; }
+        }
     }
 }
 
