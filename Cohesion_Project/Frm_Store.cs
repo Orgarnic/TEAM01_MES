@@ -183,6 +183,7 @@ namespace Cohesion_Project
                 MessageBox.Show("창고 정보 수정을 실패하였습니다.\n다시 시도하여 주십시오.");
             }
         }
+        
     }
 
     public class PropertyGridStore
@@ -254,19 +255,21 @@ namespace Cohesion_Project
         }
     }
 
-    public class JobStringConverter : StringConverter
-    {
-        public override bool GetStandardValuesSupported(ITypeDescriptorContext context)
-        {
-            return true;
-        }
 
-        public override TypeConverter.StandardValuesCollection GetStandardValues(ITypeDescriptorContext context)
-        {
-            Customer refMyObject = context.Instance as Customer;
-            return new StandardValuesCollection(new JobSource().GetSourceList());
-        }
-    }
+
+    //public class JobStringConverter : StringConverter
+    //{
+    //    public override bool GetStandardValuesSupported(ITypeDescriptorContext context)
+    //    {
+    //        return true;
+    //    }
+
+    //    public override TypeConverter.StandardValuesCollection GetStandardValues(ITypeDescriptorContext context)
+    //    {
+    //        Customer refMyObject = context.Instance as Customer;
+    //        return new StandardValuesCollection(new JobSource().GetSourceList());
+    //    }
+    //}
 }
 
 
