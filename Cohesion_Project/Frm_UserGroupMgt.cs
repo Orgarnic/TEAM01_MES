@@ -53,10 +53,26 @@ namespace Cohesion_Project
         {
             UGroupList = Srv_UserGroup.SelectUserGroup();
             DgvUserGroup.DataSource = UGroupList;
+       
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            //if (!MboxUtil.MboxInfo_("선택된 테이블 정보를 삭제하시겠습니까 ? "))
+            //{
+            //    return;
+            //}
+            //var dto = DgvUtil.DgvToDto<UserGroup_DTO>(DgvUserGroup);
+            //bool result = srv_UG.DeleteUserGroup(dto);
+            //if (result)
+            //{
+            //    MboxUtil.MboxInfo("테이블 삭제 성공.");
+            //    DataGridViewFill();
+            //}
+            //else
+            //{
+            //    MboxUtil.MboxError("테이블 삭제 실패.");
+            //}
             if (DgvUserGroup.SelectedRows.Count < 1)
                 return;
             if (MessageBox.Show($"{DgvUserGroup[1, DgvUserGroup.CurrentRow.Index].Value.ToString()} 사용자구룹을 삭제하시겠습니까 ?", "알림", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel) return;
@@ -64,10 +80,13 @@ namespace Cohesion_Project
             bool result = Srv_UserGroup.DeleteUserGroup(userGroupCode);
             if (!result)
             {
-                MessageBox.Show("권한 저장정보가 삭제되었습니다.", "알람", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                DataGridViewFill();
-                DgvUserGroup.ClearSelection();
+                MessageBox.Show("오류가 발생했습니다.", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
+            MessageBox.Show("권한 저장정보가 삭제되었습니다.", "알람", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            DataGridViewFill();
+            DgvUserGroup.ClearSelection();
+  
         }
 
 
@@ -101,6 +120,8 @@ namespace Cohesion_Project
             public string UPDATE_USER_ID { get; set; }
         }
 
+        //테이블 정보 그리드뷰에 보여주기
+
         private void DgvUserGroup_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0)
@@ -111,6 +132,7 @@ namespace Cohesion_Project
             var target = UGroupList.Find((s) => s.USER_GROUP_CODE.Equals(DgvUserGroup["사용자 그룹 코드", e.RowIndex].Value));
             SelectedRowData(target);
             Ppg_UserGourp.SelectedObject = ugd;
+
         }
 
         private void SelectedRowData(UserGroup_DTO target)
@@ -165,8 +187,11 @@ namespace Cohesion_Project
         private void btnAdd_Click(object sender, EventArgs e)
         {
             UGdate data = Ppg_UserGourp.SelectedObject as UGdate;
+
             var dto = PropertyToDto<UGdate, UserGroup_DTO>(data);
+            dto.CREATE_TIME = DateTime.Now;
             bool result = srv_UG.InsertUserGroup(dto);
+
             if (result)
             {
                 MessageBox.Show("입력 성공");
@@ -194,10 +219,24 @@ namespace Cohesion_Project
 
         public class SearchData
         {
-            [Category("속성"), Description("USER_GROUP_CODE"), DisplayName("사용자 그룹 코드")]
-            public string CODE_TABLE_NAME { get; set; }
 
-   
+            [Category("속성"), Description("USER_GROUP_CODE"), DisplayName("사용자 그룹 코드"), TypeConverter(typeof(ComboStringConverter))]
+            public string USER_GROUP_CODE { get; set; }
+
+            [Category("속성"), Description("USER_GROUP_NAME"), DisplayName("사용자 그룹 명"), TypeConverter(typeof(ComboStringConverter))]
+            public string USER_GROUP_NAME { get; set; }
+
+            [Category("속성"), Description("USER_GROUP_TYPE"), DisplayName("사용자 그룹 유형"), TypeConverter(typeof(ComboStringConverter))]
+            public string USER_GROUP_TYPE { get; set; }
+
+
+            [Browsable(false)]
+            public Dictionary<string, List<string>> SearchList { get; set; }
+
+            public Dictionary<string, List<string>> GetList()
+            {
+                return SearchList;
+            }
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
@@ -208,18 +247,13 @@ namespace Cohesion_Project
 
         private void btnInsert_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void btnUpdate_Click(object sender, EventArgs e)
-        {
             var data = Ppg_UserGourp.SelectedObject as UGdate;
             if (data.USER_GROUP_CODE == null)
             {
                 MessageBox.Show("변경할 테이블을 선택해주세요.");
                 return;
             }
-            var dto = PropertyToDto< UGdate ,UserGroup_DTO>(data);
+            var dto = PropertyToDto<UGdate, UserGroup_DTO>(data);
             dto.UPDATE_TIME = DateTime.Now;
             bool result = srv_UG.UpdateUserGroup(dto);
             if (result)
@@ -231,23 +265,16 @@ namespace Cohesion_Project
             {
                 MessageBox.Show("수정 실패");
             }
-            //var data = Ppg_CommonTable.SelectedObject as CommonData;
-            //if (data.CODE_TABLE_NAME == null)
-            //{
-            //    MessageBox.Show("변경할 테이블을 선택해주세요.");
-            //    return;
-            //}
-            //var dto = PropertyToDto<CommonData, CommonTable_DTO>(data);
-            //bool result = srvC.UpdateCommonTable(dto);
-            //if (result)
-            //{
-            //    MessageBox.Show("수정 성공");
-            //    LoadData();
-            //}
-            //else
-            //{
-            //    MessageBox.Show("수정 실패");
-            //}
+
+         //   Ppg_UserGourp.Enabled = false; 추적창만 펄스헤야ㅐ되는대 안됨
+            btnAdd.Enabled = true;
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            Ppg_UserGourp.Enabled = true;
+            btnAdd.Enabled = false;
+
         }
 
 
@@ -256,6 +283,28 @@ namespace Cohesion_Project
         {
             this.Close();
         }
+
+
+        public class ComboStringConverter : StringConverter
+        {
+            public override bool GetStandardValuesSupported(ITypeDescriptorContext context)
+            {
+                return true;
+            }
+
+            public override TypeConverter.StandardValuesCollection GetStandardValues(ITypeDescriptorContext context)
+            {
+                SearchData refMyObject = context.Instance as SearchData;
+                return new StandardValuesCollection(refMyObject.SearchList[context.PropertyDescriptor.Description]);
+            }
+        }
+
+        public static T DgvToDto<T>(DataGridView dgv)
+        {
+            return (T)dgv.Rows[dgv.CurrentRow.Index].DataBoundItem;
+        }
+
+
     }
 }
 
