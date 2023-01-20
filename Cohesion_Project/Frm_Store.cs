@@ -33,8 +33,13 @@ namespace Cohesion_Project
 
             DataGridViewBinding();
 
+            //Customer bill = new Customer();
+            //ppg_Store.SelectedObject = bill;
+
             ppg_Store.PropertySort = PropertySort.NoSort;
             ppg_Store.SelectedObject = pg;
+
+            // ppg_Store.Enabled = false;
         }
         private void DataGridViewBinding()
         {
@@ -47,7 +52,7 @@ namespace Cohesion_Project
             DgvUtil.AddTextCol(dgv_Store, "생성 사용자", "CREATE_USER_ID", 160, readOnly: true, align: 0);
             DgvUtil.AddTextCol(dgv_Store, "변경시간", "UPDATE_TIME", 250, readOnly: true, align: 1);
             DgvUtil.AddTextCol(dgv_Store, "변경 사용자", "UPDATE_USER_ID", 160, readOnly: true, align: 0);
-            
+
             LoadData();
         }
         private void LoadData()
@@ -116,13 +121,13 @@ namespace Cohesion_Project
         {
             T1 dto = new T1();
 
-            for (int i = 0; i < data.GetType().GetProperties().Length-1; i++)
+            for (int i = 0; i < data.GetType().GetProperties().Length; i++)
             {
-                for (int j = 0; j < dto.GetType().GetProperties().Length-1 ; j++)
+                for (int j = 0; j < dto.GetType().GetProperties().Length; j++)
                 {
-                    if (data.GetType().GetProperties()[i].Name.Equals(dto.GetType().GetProperties()[j].Name, StringComparison.OrdinalIgnoreCase))
+                    if (data.GetType().GetProperties()[i].Name.Equals(dto.GetType().GetProperties()[i].Name, StringComparison.OrdinalIgnoreCase))
                     {
-                        dto.GetType().GetProperties()[i].SetValue(dto, data.GetType().GetProperties()[j].GetValue(data));
+                        dto.GetType().GetProperties()[i].SetValue(dto, data.GetType().GetProperties()[i].GetValue(data));
                         break;
                     }
                 }
@@ -154,6 +159,11 @@ namespace Cohesion_Project
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            //ppg_Store.Enabled = true;
+        }
+
+        private void btnInsert_Click(object sender, EventArgs e)
+        {
             var data = ppg_Store.SelectedObject as PropertyGridStore;
             if (data.STORE_CODE == null)
             {
@@ -166,12 +176,14 @@ namespace Cohesion_Project
             {
                 MessageBox.Show("창고 정보 수정 완료");
                 LoadData();
+                //ppg_Store.Enabled = false;
             }
             else
             {
                 MessageBox.Show("창고 정보 수정을 실패하였습니다.\n다시 시도하여 주십시오.");
             }
         }
+        
     }
 
     public class PropertyGridStore
@@ -217,4 +229,47 @@ namespace Cohesion_Project
         [Category("속성"), DisplayName("창고 유형")]
         public string STORE_TYPE { get; set; }
     }
+
+    public class Customer
+    {
+        private string _job2;
+
+        public Customer() { }
+        [TypeConverter(typeof(JobStringConverter))]
+        public string Job2
+        {
+            get { return _job2; }
+            set { _job2 = value; }
+        }
+    }
+    public class JobSource
+    {
+        public List<string> GetSourceList()
+        {
+            List<string> jobList = new List<string>();
+            jobList.Add("Student");
+            jobList.Add("Lecture");
+            jobList.Add("Employee");
+
+            return jobList;
+        }
+    }
+
+
+
+    //public class JobStringConverter : StringConverter
+    //{
+    //    public override bool GetStandardValuesSupported(ITypeDescriptorContext context)
+    //    {
+    //        return true;
+    //    }
+
+    //    public override TypeConverter.StandardValuesCollection GetStandardValues(ITypeDescriptorContext context)
+    //    {
+    //        Customer refMyObject = context.Instance as Customer;
+    //        return new StandardValuesCollection(new JobSource().GetSourceList());
+    //    }
+    //}
 }
+
+
