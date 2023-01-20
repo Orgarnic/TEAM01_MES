@@ -121,13 +121,18 @@ namespace Cohesion_Project
             this.Close();
         }
 
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            BOM_MST_DTO prod = (BOM_MST_DTO)ppgSearch.SelectedObject;
+
+        }
+
         // 부모제품의 BOM 목록에서 자녀제품 삭제(제품 목록에서 삭제는 X)
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if(dgvBOMChild.CurrentCell.Value == null)
             {
                 MboxUtil.MboxWarn("삭제할 제품을 선택해주세요.");
-                return;
             }
             else
             {

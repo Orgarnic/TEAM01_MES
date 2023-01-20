@@ -141,6 +141,7 @@ namespace Cohesion_Project
             // btnAdd
             // 
             this.btnAdd.FlatAppearance.BorderSize = 0;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnUpdate
             // 
