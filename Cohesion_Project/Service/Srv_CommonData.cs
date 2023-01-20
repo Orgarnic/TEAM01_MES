@@ -63,5 +63,23 @@ namespace Cohesion_Project.Service
 
             return result;
         }
+
+        public bool DeleteTable(CommonTable_DTO dto)
+        {
+            Common_DAO dao = new Common_DAO();
+            bool result = dao.DeleteTable(dto);
+            dao.Dispose();
+
+            return result;
+        }
+
+        public bool DeleteTableData(string CODE_TABLE_NAME,CommonData_DTO dto)
+        {
+            Common_DAO dao = new Common_DAO();
+            bool result = dao.DeleteTableData(CODE_TABLE_NAME,dto);
+            dao.Dispose();
+
+            return result;
+        }
     }
 }

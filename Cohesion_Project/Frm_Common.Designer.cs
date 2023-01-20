@@ -56,7 +56,6 @@ namespace Cohesion_Project
             // btnSearch
             // 
             this.btnSearch.FlatAppearance.BorderSize = 0;
-            
             // 
             // btnSearchCondition
             // 
@@ -90,17 +89,16 @@ namespace Cohesion_Project
             // btnInsert
             // 
             this.btnInsert.FlatAppearance.BorderSize = 0;
+            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
             // btnAdd
             // 
             this.btnAdd.FlatAppearance.BorderSize = 0;
-            this.btnAdd.Location = new System.Drawing.Point(1018, 1003);
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnUpdate
             // 
             this.btnUpdate.FlatAppearance.BorderSize = 0;
-            this.btnUpdate.Location = new System.Drawing.Point(1119, 1003);
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnRefresh
