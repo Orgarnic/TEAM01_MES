@@ -26,12 +26,24 @@ namespace Cohesion_DAO
         }
 
         // 사용자 그룹 Insert
+        //public bool InsertUserGroup1(UserGroup_DTO dto)
+        //{
+        //    conn.Open();
+
+        //    string sql = @"insert into USER_GROUP_MST(USER_GROUP_CODE, USER_GROUP_NAME, USER_GROUP_TYPE, CREATE_TIME, CREATE_USER_ID, UPDATE_TIME, UPDATE_USER_ID)
+        //                        values(@USER_GROUP_CODE,@USER_GROUP_NAME,@USER_GROUP_TYPE,@CREATE_TIME,@CREATE_USER_ID,@UPDATE_TIME,@UPDATE_USER_ID)";
+        //    SqlCommand cmd = Helper.UpsertCmdValue<UserGroup_DTO>(dto, sql, conn);
+        //    int result = cmd.ExecuteNonQuery();
+        //    return result > 0;
+
+        //}
+
         public bool InsertUserGroup(UserGroup_DTO dto)
         {
+            conn.Open();
 
-
-            string sql = @"insert into USER_GROUP_MST(USER_GROUP_CODE, USER_GROUP_NAME, USER_GROUP_TYPE, CREATE_TIME, CREATE_USER_ID, UPDATE_TIME, UPDATE_USER_ID)
-                                values(@USER_GROUP_CODE,@USER_GROUP_NAME,@USER_GROUP_TYPE,@CREATE_TIME,@CREATE_USER_ID,@UPDATE_TIME,@UPDATE_USER_ID)";
+            string sql = @"insert into USER_GROUP_MST(USER_GROUP_CODE, USER_GROUP_NAME, USER_GROUP_TYPE, CREATE_USER_ID)
+                                values(@USER_GROUP_CODE,@USER_GROUP_NAME,@USER_GROUP_TYPE,@CREATE_USER_ID)";
             SqlCommand cmd = Helper.UpsertCmdValue<UserGroup_DTO>(dto, sql, conn);
             int result = cmd.ExecuteNonQuery();
             return result > 0;
@@ -51,7 +63,7 @@ namespace Cohesion_DAO
                 conn.Open();
                 list = Helper.DataReaderMapToList<UserGroup_DTO>(cmd.ExecuteReader());
             }
-            catch(Exception err)
+            catch (Exception err)
             {
                 Debug.WriteLine(err.StackTrace);
                 Debug.WriteLine(err.Message);
@@ -73,24 +85,36 @@ namespace Cohesion_DAO
         //}
 
         // 사용자 그룹 Update
-        public int UpdateUserGroup(UserGroup_DTO dto)
+        public bool UpdateUserGroup(UserGroup_DTO dto)
         {
-        
+            try
+            {
 
-            conn.Open();
-            //SqlTransaction trans = conn.BeginTransaction();
-            int iRowAffect = default;
-            string sql = @"UPDATE USER_GROUP_MST 
-                            SET  USER_GROUP_NAME=@USER_GROUP_NAME, USER_GROUP_TYPE=@USER_GROUP_TYPE, 
-		                            CREATE_TIME=@CREATE_TIME, CREATE_USER_ID=@CREATE_USER_ID, UPDATE_TIME=@UPDATE_TIME, 
-		                            UPDATE_USER_ID=@UPDATE_USER_ID
-                            WHERE USER_GROUP_CODE=@USER_GROUP_CODE";
-            SqlCommand CMD = Helper.UpsertCmdValue<UserGroup_DTO>(dto, sql, conn);
-            //CMD.Transaction = trans;
-            // trans.Commit();
+                conn.Open();
+                //SqlTransaction trans = conn.BeginTransaction();
+                int iRowAffect = default;
+                string sql = @"UPDATE USER_GROUP_MST 
+                            SET  USER_GROUP_NAME = @USER_GROUP_NAME, USER_GROUP_TYPE = @USER_GROUP_TYPE, 
+		                          UPDATE_TIME = @UPDATE_TIME, UPDATE_USER_ID = @UPDATE_USER_ID
+                            WHERE USER_GROUP_CODE = @USER_GROUP_CODE";
+                SqlCommand CMD = Helper.UpsertCmdValue<UserGroup_DTO>(dto, sql, conn);
+                iRowAffect = CMD.ExecuteNonQuery();
+                //CMD.Transaction = trans;
+                // trans.Commit();
 
-            return iRowAffect;
-     
+                return iRowAffect > 0;
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                Debug.WriteLine(err.StackTrace);
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
         }
 
         // 사용자 그룹 Delete
@@ -99,14 +123,14 @@ namespace Cohesion_DAO
         {
             try
             {
-            string sql = @"delete USER_GROUP_MST where USER_GROUP_CODE = @USER_GROUP_CODE";
-            SqlCommand cmd = new SqlCommand(sql, conn);
-            cmd.Parameters.AddWithValue("@USER_GROUP_CODE", USER_GROUP_CODE);
-            conn.Open();
-            int result = cmd.ExecuteNonQuery();
-            return result > 0;
+                string sql = @"delete USER_GROUP_MST where USER_GROUP_CODE = @USER_GROUP_CODE";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@USER_GROUP_CODE", USER_GROUP_CODE);
+                conn.Open();
+                int result = cmd.ExecuteNonQuery();
+                return result > 0;
             }
-            catch(Exception err)
+            catch (Exception err)
             {
                 Debug.WriteLine(err.Message);
                 Debug.WriteLine(err.StackTrace);
@@ -118,7 +142,7 @@ namespace Cohesion_DAO
             }
 
 
-            
+
 
         }
     }

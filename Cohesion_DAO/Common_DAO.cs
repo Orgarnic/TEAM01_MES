@@ -58,6 +58,8 @@ namespace Cohesion_DAO
             }
         }
 
+        
+
         public bool InsertCommonTable(CommonTable_DTO dto)
         {
             try
@@ -79,8 +81,8 @@ namespace Cohesion_DAO
                 cmd.Parameters.AddWithValue("@CREATE_USER_ID", string.IsNullOrEmpty(dto.CREATE_USER_ID) ? (object)DBNull.Value : dto.CREATE_USER_ID);
 
                 conn.Open();
-                cmd.ExecuteNonQuery();
-                return true;
+                int irowAffect=cmd.ExecuteNonQuery();
+                return irowAffect>0;
             }
             catch (Exception err)
             {
@@ -126,8 +128,8 @@ namespace Cohesion_DAO
                 cmd.Parameters.AddWithValue("@CODE_TABLE_NAME", string.IsNullOrEmpty(dto.CODE_TABLE_NAME) ? (object)DBNull.Value : dto.CODE_TABLE_NAME);
 
                 conn.Open();
-                cmd.ExecuteNonQuery();
-                return true;
+                int iRowAffect=cmd.ExecuteNonQuery();
+                return iRowAffect>0;
             }
             catch (Exception err)
             {
@@ -175,8 +177,8 @@ namespace Cohesion_DAO
                 cmd.Parameters.AddWithValue("@DATA_5_NAME", string.IsNullOrEmpty(dto.DATA_5) ? (object)DBNull.Value : dto.DATA_5);
 
                 conn.Open();
-                cmd.ExecuteNonQuery();
-                return true;
+                int iRowAffect = cmd.ExecuteNonQuery();
+                return iRowAffect>0;
             }
             catch (Exception err)
             {

@@ -36,7 +36,17 @@ namespace Cohesion_Project
 
             return result;
         }
+        public bool UpdateUserGroup(UserGroup_DTO dto)
+        {
+            UserGroup_DAO dao = new UserGroup_DAO();
+            bool result = dao.UpdateUserGroup(dto);
+            dao.Dispose();
+            return result;
+        }
 
+
+       
+      
 
     }
 }
