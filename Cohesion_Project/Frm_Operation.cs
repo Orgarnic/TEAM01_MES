@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace Cohesion_Project
 {
-   public partial class Frm_Process : Cohesion_Project.Frm_Base_2
+   public partial class Frm_Operation : Cohesion_Project.Frm_Base_2
    {
-      public Frm_Process()
+      public Frm_Operation()
       {
          InitializeComponent();
       }

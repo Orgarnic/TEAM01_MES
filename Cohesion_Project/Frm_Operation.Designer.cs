@@ -1,7 +1,7 @@
 ﻿
 namespace Cohesion_Project
 {
-   partial class Frm_Process
+   partial class Frm_Operation
    {
       /// <summary>
       /// 필수 디자이너 변수입니다.

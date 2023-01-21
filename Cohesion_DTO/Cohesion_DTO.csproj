@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BOM_MST_DTO.cs" />
+    <Compile Include="OPERATION_MST_DTO.cs" />
     <Compile Include="Util\ComboUtil.cs" />
     <Compile Include="CommonData_DTO.cs" />
     <Compile Include="CommonTable_DTO.cs" />
