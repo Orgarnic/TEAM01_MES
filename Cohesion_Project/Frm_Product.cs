@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Cohesion_DTO;
@@ -15,8 +17,7 @@ namespace Cohesion_Project
       private List<PRODUCT_MST_DTO> products = new List<PRODUCT_MST_DTO>();
       private PRODUCT_MST_DTO product = new PRODUCT_MST_DTO();
       private SearchCondition condtion = new SearchCondition();
-      //Util.ComboUtil comboUtil = new Util.ComboUtil();
-
+      Util.ComboUtil comboUtil = new Util.ComboUtil();
       bool isCondition = true;
 
       public Frm_Product()
@@ -49,12 +50,12 @@ namespace Cohesion_Project
       private void dgvProduct_CellClick(object sender, DataGridViewCellEventArgs e)
       {
          int row = e.RowIndex;
-         int col = e.ColumnIndex;
          if (row < 0) return;
          product = DgvUtil.DgvToDto<PRODUCT_MST_DTO>(dgvProduct);
          ppgProduct.SelectedObject = product;
-         btnAdd.Enabled = false;
+
          ppgProduct.Enabled = false;
+         btnAdd.Enabled = false;
          btnUpdate.Enabled = true;
          btnInsert.Enabled = true;
          isCondition = true;
@@ -72,10 +73,28 @@ namespace Cohesion_Project
          btnInsert.Enabled = false;
          product = new PRODUCT_MST_DTO();
          ppgProduct.SelectedObject = product;
+
+
       }
       private void btnAdd_Click(object sender, EventArgs e)
       {
          PRODUCT_MST_DTO dto = ppgProduct.SelectedObject as PRODUCT_MST_DTO;
+         if (dto == null) return;
+         if (string.IsNullOrWhiteSpace(dto.PRODUCT_CODE))
+         {
+            MboxUtil.MboxWarn("품번 코드는 필수 입력입니다.");
+            return;
+         }
+         if (string.IsNullOrWhiteSpace(dto.PRODUCT_NAME))
+         {
+            MboxUtil.MboxWarn("품번명은 필수 입력입니다.");
+            return;
+         }
+         if (string.IsNullOrWhiteSpace(dto.PRODUCT_TYPE))
+         {
+            MboxUtil.MboxWarn("품번 유형은 필수 입력입니다.");
+            return;
+         }
          dto.CREATE_USER_ID = "TEST";
          bool result = srvProduct.InsertProduct(dto);
          if (result)
@@ -90,6 +109,21 @@ namespace Cohesion_Project
       {
          if (!ppgProduct.Enabled)
             return;
+         if (string.IsNullOrWhiteSpace(product.PRODUCT_CODE))
+         {
+            MboxUtil.MboxWarn("품번 코드는 필수 입력입니다.");
+            return;
+         }
+         if (string.IsNullOrWhiteSpace(product.PRODUCT_NAME))
+         {
+            MboxUtil.MboxWarn("품번명은 필수 입력입니다.");
+            return;
+         }
+         if (string.IsNullOrWhiteSpace(product.PRODUCT_TYPE))
+         {
+            MboxUtil.MboxWarn("품번 유형은 필수 입력입니다.");
+            return;
+         }
          product.UPDATE_TIME = DateTime.Now;
          product.UPDATE_USER_ID = "김재형";
          bool result = srvProduct.UpdateProduct(product);
@@ -123,6 +157,7 @@ namespace Cohesion_Project
          else
          {
             ppgProduct.SelectedObject = product;
+            condtion = new SearchCondition();
             isCondition = true;
             ppgProduct.Enabled = false;
          }
@@ -138,6 +173,7 @@ namespace Cohesion_Project
       }
       private void btnDelete_Click(object sender, EventArgs e)
       {
+         if (dgvProduct.SelectedRows.Count < 1) return;
          if (!MboxUtil.MboxInfo_("선택된 품번을 삭제하시겠습니까 ? ")) return;
          PRODUCT_MST_DTO dto = DgvUtil.DgvToDto<PRODUCT_MST_DTO>(dgvProduct);
          bool result = srvProduct.DeleteProduct(dto);
@@ -162,10 +198,10 @@ namespace Cohesion_Project
             };
             return dto;
          }
-         [Category("검색조건"), Description("PRODUCT_CODE"), DisplayName("제품 코드")]
+         [Category("검색조건"), Description("PRODUCT_CODE"), DisplayName("품번 코드")]
          public string PRODUCT_CODE { get; set; }
 
-         [Category("검색조건"), Description("PRODUCT_NAME"), DisplayName("제품명")]
+         [Category("검색조건"), Description("PRODUCT_NAME"), DisplayName("품명")]
          public string PRODUCT_NAME { get; set; }
 
          [Category("검색조건"), Description("CM_PRODUCT_TYPE"), DisplayName("품번 유형"), TypeConverter(typeof(Util.ComboStringConverter))]
@@ -175,5 +211,4 @@ namespace Cohesion_Project
          public string CUSTOMER_CODE { get; set; }
       }
    }
-
 }
