@@ -83,26 +83,32 @@ namespace Cohesion_Project
          // btnClose
          // 
          this.btnClose.FlatAppearance.BorderSize = 0;
+         this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
          // 
          // btnDelete
          // 
          this.btnDelete.FlatAppearance.BorderSize = 0;
+         this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
          // 
          // btnInsert
          // 
          this.btnInsert.FlatAppearance.BorderSize = 0;
+         this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
          // 
          // btnAdd
          // 
          this.btnAdd.FlatAppearance.BorderSize = 0;
+         this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
          // 
          // btnUpdate
          // 
          this.btnUpdate.FlatAppearance.BorderSize = 0;
+         this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
          // 
          // btnRefresh
          // 
          this.btnRefresh.FlatAppearance.BorderSize = 0;
+         this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
          // 
          // dgvOperation
          // 
@@ -112,6 +118,7 @@ namespace Cohesion_Project
          this.dgvOperation.RowTemplate.Height = 23;
          this.dgvOperation.Size = new System.Drawing.Size(240, 150);
          this.dgvOperation.TabIndex = 6;
+         this.dgvOperation.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProduct_CellClick);
          // 
          // ppgOperation
          // 

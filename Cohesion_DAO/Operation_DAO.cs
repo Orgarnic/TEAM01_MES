@@ -78,6 +78,87 @@ namespace Cohesion_DAO
          }
          return list;
       }
+      public bool InsertOperation(OPERATION_MST_DTO dto)
+      {
+         try
+         {
+            string sql = @"INSERT INTO OPERATION_MST(OPERATION_CODE, OPERATION_NAME, CHECK_DEFECT_FLAG, CHECK_INSPECT_FLAG, CHECK_MATERIAL_FLAG, CREATE_TIME, CREATE_USER_ID)
+                           VALUES(@OPERATION_CODE, @OPERATION_NAME, @CHECK_DEFECT_FLAG, @CHECK_INSPECT_FLAG, @CHECK_MATERIAL_FLAG, @CREATE_TIME, @CREATE_USER_ID);";
+            SqlCommand cmd = Helper.UpsertCmdValue<OPERATION_MST_DTO>(dto, sql, conn);
+            cmd.Parameters["@CHECK_DEFECT_FLAG"].Value = dto.CHECK_DEFECT_FLAG == '\0' ? (object)DBNull.Value : dto.CHECK_DEFECT_FLAG;
+            cmd.Parameters["@CHECK_INSPECT_FLAG"].Value = dto.CHECK_INSPECT_FLAG == '\0' ? (object)DBNull.Value : dto.CHECK_INSPECT_FLAG;
+            cmd.Parameters["@CHECK_MATERIAL_FLAG"].Value = dto.CHECK_MATERIAL_FLAG == '\0' ? (object)DBNull.Value : dto.CHECK_MATERIAL_FLAG;
+            conn.Open();
+            int result = cmd.ExecuteNonQuery();
+            conn.Close();
+
+            return result > 0;
+         }
+         catch (Exception err)
+         {
+            Debug.WriteLine(err.StackTrace);
+            Debug.WriteLine(err.Message);
+            return false;
+         }
+         finally
+         {
+            conn.Close();
+         }
+      }
+      public bool UpdateOperation(OPERATION_MST_DTO dto)
+      {
+         try
+         {
+            string sql = @"UPDATE OPERATION_MST SET 
+                           OPERATION_NAME = @OPERATION_NAME, CHECK_DEFECT_FLAG = @CHECK_DEFECT_FLAG,
+                           CHECK_INSPECT_FLAG = @CHECK_INSPECT_FLAG, CHECK_MATERIAL_FLAG =@CHECK_MATERIAL_FLAG, 
+                           UPDATE_TIME = @UPDATE_TIME, UPDATE_USER_ID = @UPDATE_USER_ID
+                           WHERE OPERATION_CODE = @OPERATION_CODE";
+            SqlCommand cmd = Helper.UpsertCmdValue<OPERATION_MST_DTO>(dto, sql, conn);
+            cmd.Parameters["@CHECK_DEFECT_FLAG"].Value = dto.CHECK_DEFECT_FLAG == '\0' ? (object)DBNull.Value : dto.CHECK_DEFECT_FLAG;
+            cmd.Parameters["@CHECK_INSPECT_FLAG"].Value = dto.CHECK_INSPECT_FLAG == '\0' ? (object)DBNull.Value : dto.CHECK_INSPECT_FLAG;
+            cmd.Parameters["@CHECK_MATERIAL_FLAG"].Value = dto.CHECK_MATERIAL_FLAG == '\0' ? (object)DBNull.Value : dto.CHECK_MATERIAL_FLAG;
+            conn.Open();
+            int result = cmd.ExecuteNonQuery();
+            conn.Close();
+
+            return result > 0;
+         }
+         catch (Exception err)
+         {
+            Debug.WriteLine(err.StackTrace);
+            Debug.WriteLine(err.Message);
+            return false;
+         }
+         finally
+         {
+            conn.Close();
+         }
+      }
+      public bool DeleteOperation(OPERATION_MST_DTO dto)
+      {
+         try
+         {
+            string sql = @"DELETE FROM OPERATION_MST WHERE OPERATION_CODE = @OPERATION_CODE ";
+            SqlCommand cmd = new SqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@OPERATION_CODE", dto.OPERATION_CODE);
+            conn.Open();
+            int result = cmd.ExecuteNonQuery();
+            conn.Close();
+
+            return result > 0;
+         }
+         catch (Exception err)
+         {
+            Debug.WriteLine(err.StackTrace);
+            Debug.WriteLine(err.Message);
+            return false;
+         }
+         finally
+         {
+            conn.Close();
+         }
+      }
       public void Dispose()
       {
          if (conn != null || conn.State == ConnectionState.Open)

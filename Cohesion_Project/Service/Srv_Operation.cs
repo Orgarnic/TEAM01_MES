@@ -18,5 +18,30 @@ namespace Cohesion_Project
 
          return list;
       }
+      public bool InsertOperation(OPERATION_MST_DTO dto)
+      {
+         Operation_DAO dao = new Operation_DAO();
+         bool result = dao.InsertOperation(dto);
+         dao.Dispose();
+
+         return result;
+      }
+
+      public bool UpdateOperation(OPERATION_MST_DTO dto)
+      {
+         Operation_DAO dao = new Operation_DAO();
+         bool result = dao.UpdateOperation(dto);
+         dao.Dispose();
+
+         return result;
+      }
+      public bool DeleteOperation(OPERATION_MST_DTO dto)
+      {
+         Operation_DAO dao = new Operation_DAO();
+         bool result = dao.DeleteOperation(dto);
+         dao.Dispose();
+
+         return result;
+      }
    }
 }

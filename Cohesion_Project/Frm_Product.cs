@@ -78,22 +78,9 @@ namespace Cohesion_Project
       {
          PRODUCT_MST_DTO dto = ppgProduct.SelectedObject as PRODUCT_MST_DTO;
          if (dto == null) return;
-         if (string.IsNullOrWhiteSpace(dto.PRODUCT_CODE))
-         {
-            MboxUtil.MboxWarn("품번 코드는 필수 입력입니다.");
-            return;
-         }
-         if (string.IsNullOrWhiteSpace(dto.PRODUCT_NAME))
-         {
-            MboxUtil.MboxWarn("품번명은 필수 입력입니다.");
-            return;
-         }
-         if (string.IsNullOrWhiteSpace(dto.PRODUCT_TYPE))
-         {
-            MboxUtil.MboxWarn("품번 유형은 필수 입력입니다.");
-            return;
-         }
+         if (!Available(dto)) return;
          dto.CREATE_USER_ID = "TEST";
+         dto.CREATE_TIME = DateTime.Now;
          bool result = srvProduct.InsertProduct(dto);
          if (result)
          {
@@ -107,21 +94,7 @@ namespace Cohesion_Project
       {
          if (!ppgProduct.Enabled)
             return;
-         if (string.IsNullOrWhiteSpace(product.PRODUCT_CODE))
-         {
-            MboxUtil.MboxWarn("품번 코드는 필수 입력입니다.");
-            return;
-         }
-         if (string.IsNullOrWhiteSpace(product.PRODUCT_NAME))
-         {
-            MboxUtil.MboxWarn("품번명은 필수 입력입니다.");
-            return;
-         }
-         if (string.IsNullOrWhiteSpace(product.PRODUCT_TYPE))
-         {
-            MboxUtil.MboxWarn("품번 유형은 필수 입력입니다.");
-            return;
-         }
+         if (!Available(product)) return;
          product.UPDATE_TIME = DateTime.Now;
          product.UPDATE_USER_ID = "김재형";
          bool result = srvProduct.UpdateProduct(product);
@@ -184,6 +157,25 @@ namespace Cohesion_Project
          }
          else
             MboxUtil.MboxError("오류가 발생했습니다.");
+      }
+      private bool Available(PRODUCT_MST_DTO dto)
+      {
+         if (string.IsNullOrWhiteSpace(dto.PRODUCT_CODE))
+         {
+            MboxUtil.MboxWarn("품번 코드는 필수 입력입니다.");
+            return false;
+         }
+         if (string.IsNullOrWhiteSpace(dto.PRODUCT_NAME))
+         {
+            MboxUtil.MboxWarn("품번명은 필수 입력입니다.");
+            return false;
+         }
+         if (string.IsNullOrWhiteSpace(dto.PRODUCT_TYPE))
+         {
+            MboxUtil.MboxWarn("품번 유형은 필수 입력입니다.");
+            return false;
+         }
+         return true;
       }
    }
 }
