@@ -150,12 +150,14 @@ namespace Cohesion_Project
       {
          if (isCondition)
          {
+            lbl3.Text = "▶ 검색 조건";
             ppgProduct.Enabled = true;
             ppgProduct.SelectedObject = condtion;
             isCondition = false;
          }
          else
          {
+            lbl3.Text = "▶ 속성";
             ppgProduct.SelectedObject = product;
             condtion = new SearchCondition();
             isCondition = true;
