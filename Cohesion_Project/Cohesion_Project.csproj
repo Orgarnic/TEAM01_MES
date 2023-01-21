@@ -157,6 +157,7 @@
     <Compile Include="Service\Srv_BOM.cs" />
     <Compile Include="Service\Srv_CommonData.cs" />
     <Compile Include="Service\Srv_Equipment.cs" />
+    <Compile Include="Service\Srv_Operation.cs" />
     <Compile Include="Service\Srv_Store.cs" />
     <Compile Include="Service\Srv_Product.cs" />
     <Compile Include="Service\Srv_UserGroup.cs" />

@@ -16,7 +16,7 @@ namespace Cohesion_Project
       private Srv_Product srvProduct = new Srv_Product();
       private List<PRODUCT_MST_DTO> products = new List<PRODUCT_MST_DTO>();
       private PRODUCT_MST_DTO product = new PRODUCT_MST_DTO();
-      private SearchCondition condtion = new SearchCondition();
+      private PRODUCT_MST_DTO_Condition condition = new PRODUCT_MST_DTO_Condition();
       Util.ComboUtil comboUtil = new Util.ComboUtil();
       bool isCondition = true;
 
@@ -33,8 +33,8 @@ namespace Cohesion_Project
       private void DgvInit()
       {
          DgvUtil.DgvInit(dgvProduct);
-         DgvUtil.AddTextCol(dgvProduct, "제품 코드", "PRODUCT_CODE", width: 140, readOnly: true, frozen: true);
-         DgvUtil.AddTextCol(dgvProduct, "제품 명칭", "PRODUCT_NAME", width: 140, readOnly: true, frozen: true);
+         DgvUtil.AddTextCol(dgvProduct, "품번 코드", "PRODUCT_CODE", width: 140, readOnly: true, frozen: true);
+         DgvUtil.AddTextCol(dgvProduct, "품번 명칭", "PRODUCT_NAME", width: 140, readOnly: true, frozen: true);
          DgvUtil.AddTextCol(dgvProduct, "품번 유형", "PRODUCT_TYPE", width: 140, readOnly: true, frozen: true);
          DgvUtil.AddTextCol(dgvProduct, "고객 코드", "CUSTOMER_CODE", width: 140, readOnly: true);
          DgvUtil.AddTextCol(dgvProduct, "납품 업체 코드", "VENDOR_CODE", width: 140, readOnly: true);
@@ -73,8 +73,6 @@ namespace Cohesion_Project
          btnInsert.Enabled = false;
          product = new PRODUCT_MST_DTO();
          ppgProduct.SelectedObject = product;
-
-
       }
       private void btnAdd_Click(object sender, EventArgs e)
       {
@@ -152,21 +150,21 @@ namespace Cohesion_Project
          {
             lbl3.Text = "▶ 검색 조건";
             ppgProduct.Enabled = true;
-            ppgProduct.SelectedObject = condtion;
+            ppgProduct.SelectedObject = condition;
             isCondition = false;
          }
          else
          {
             lbl3.Text = "▶ 속성";
             ppgProduct.SelectedObject = product;
-            condtion = new SearchCondition();
+            condition = new PRODUCT_MST_DTO_Condition();
             isCondition = true;
             ppgProduct.Enabled = false;
          }
       }
       private void btnSearch_Click(object sender, EventArgs e)
       {
-         products = srvProduct.SelectProduts(condtion.GetCondition());
+         products = srvProduct.SelectProduts(condition);
          dgvProduct.DataSource = products;
       }
       private void btnClose_Click(object sender, EventArgs e)
@@ -186,31 +184,6 @@ namespace Cohesion_Project
          }
          else
             MboxUtil.MboxError("오류가 발생했습니다.");
-      }
-      private class SearchCondition
-      {
-         public PRODUCT_MST_DTO GetCondition()
-         {
-            PRODUCT_MST_DTO dto = new PRODUCT_MST_DTO
-            {
-               PRODUCT_CODE = this.PRODUCT_CODE,
-               PRODUCT_NAME = this.PRODUCT_NAME,
-               PRODUCT_TYPE = this.PRODUCT_TYPE,
-               CUSTOMER_CODE = this.CUSTOMER_CODE
-            };
-            return dto;
-         }
-         [Category("검색조건"), Description("PRODUCT_CODE"), DisplayName("품번 코드")]
-         public string PRODUCT_CODE { get; set; }
-
-         [Category("검색조건"), Description("PRODUCT_NAME"), DisplayName("품명")]
-         public string PRODUCT_NAME { get; set; }
-
-         [Category("검색조건"), Description("CM_PRODUCT_TYPE"), DisplayName("품번 유형"), TypeConverter(typeof(Util.ComboStringConverter))]
-         public string PRODUCT_TYPE { get; set; }
-
-         [Category("검색조건"), Description("CUSTOMER_CODE"), DisplayName("고객코드")]
-         public string CUSTOMER_CODE { get; set; }
       }
    }
 }

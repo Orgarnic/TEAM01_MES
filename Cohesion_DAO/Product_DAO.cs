@@ -19,8 +19,7 @@ namespace Cohesion_DAO
       {
          conn = new SqlConnection(DB);
       }
-
-      public List<PRODUCT_MST_DTO> SelectProduts(PRODUCT_MST_DTO condtion)
+      public List<PRODUCT_MST_DTO> SelectProduts(PRODUCT_MST_DTO_Condition condition)
       {
          List<PRODUCT_MST_DTO> list = null;
          try
@@ -28,25 +27,13 @@ namespace Cohesion_DAO
             SqlCommand cmd = new SqlCommand();
             StringBuilder sql = new StringBuilder(@"SELECT PRODUCT_CODE, PRODUCT_NAME, PRODUCT_TYPE, CUSTOMER_CODE, 
                                                    VENDOR_CODE, CREATE_TIME, CREATE_USER_ID, UPDATE_TIME, UPDATE_USER_ID FROM PRODUCT_MST where 1 = 1");
-            if (!string.IsNullOrWhiteSpace(condtion.PRODUCT_CODE))
+            foreach (var prop in condition.GetType().GetProperties())
             {
-               sql.Append(" and PRODUCT_CODE = @PRODUCT_CODE");
-               cmd.Parameters.AddWithValue("@PRODUCT_CODE", condtion.PRODUCT_CODE);
-            }
-            if (!string.IsNullOrWhiteSpace(condtion.PRODUCT_NAME))
-            {
-               sql.Append(" and PRODUCT_NAME = @PRODUCT_CODE");
-               cmd.Parameters.AddWithValue("@PRODUCT_NAME", condtion.PRODUCT_NAME);
-            }
-            if (!string.IsNullOrWhiteSpace(condtion.PRODUCT_TYPE))
-            {
-               sql.Append(" and PRODUCT_TYPE = @PRODUCT_TYPE");
-               cmd.Parameters.AddWithValue("@PRODUCT_TYPE", condtion.PRODUCT_TYPE);
-            }
-            if (!string.IsNullOrWhiteSpace(condtion.CUSTOMER_CODE))
-            {
-               sql.Append(" and CUSTOMER_CODE = @CUSTOMER_CODE");
-               cmd.Parameters.AddWithValue("@CUSTOMER_CODE", condtion.CUSTOMER_CODE);
+               if (!string.IsNullOrWhiteSpace((string)prop.GetValue(condition)))
+               {
+                  sql.Append($" and {prop.Name} = @{prop.Name}");
+                  cmd.Parameters.AddWithValue($"@{prop.Name}", prop.GetValue(condition).ToString());
+               }
             }
             cmd.CommandText = sql.ToString();
             cmd.Connection = conn;
@@ -96,6 +83,8 @@ namespace Cohesion_DAO
                            CUSTOMER_CODE = @CUSTOMER_CODE, VENDOR_CODE = @VENDOR_CODE, UPDATE_TIME = @UPDATE_TIME, UPDATE_USER_ID = @UPDATE_USER_ID
                            WHERE PRODUCT_CODE = @PRODUCT_CODE ";
             SqlCommand cmd = Helper.UpsertCmdValue<PRODUCT_MST_DTO>(dto, sql, conn);
+            cmd.Parameters["@CUSTOMER_CODE"].Value = string.IsNullOrWhiteSpace(dto.CUSTOMER_CODE) ? (object)DBNull.Value : dto.CUSTOMER_CODE;
+            cmd.Parameters["@VENDOR_CODE"].Value = string.IsNullOrWhiteSpace(dto.VENDOR_CODE) ? (object)DBNull.Value : dto.VENDOR_CODE;
             conn.Open();
             int result = cmd.ExecuteNonQuery();
             conn.Close();

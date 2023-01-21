@@ -29,6 +29,8 @@ namespace Cohesion_Project
       /// </summary>
       private void InitializeComponent()
       {
+         this.dgvOperation = new System.Windows.Forms.DataGridView();
+         this.ppgOperation = new System.Windows.Forms.PropertyGrid();
          this.pnlSearch.SuspendLayout();
          this.panel2.SuspendLayout();
          this.panel4.SuspendLayout();
@@ -38,11 +40,18 @@ namespace Cohesion_Project
          this.splitContainer1.Panel2.SuspendLayout();
          this.splitContainer1.SuspendLayout();
          this.panel7.SuspendLayout();
+         ((System.ComponentModel.ISupportInitialize)(this.dgvOperation)).BeginInit();
          this.SuspendLayout();
          // 
          // lbl1
          // 
          this.lbl1.Text = "/ 기준정보관리 / 공정관리";
+         // 
+         // panel2
+         // 
+         this.panel2.Controls.Add(this.dgvOperation);
+         this.panel2.Controls.SetChildIndex(this.lbl4, 0);
+         this.panel2.Controls.SetChildIndex(this.dgvOperation, 0);
          // 
          // lbl4
          // 
@@ -51,13 +60,21 @@ namespace Cohesion_Project
          // btnSearch
          // 
          this.btnSearch.FlatAppearance.BorderSize = 0;
+         this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
          // 
          // btnSearchCondition
          // 
          this.btnSearchCondition.FlatAppearance.BorderSize = 0;
+         this.btnSearchCondition.Click += new System.EventHandler(this.btnSearchCondition_Click);
          // 
          // splitContainer1
          // 
+         // 
+         // panel7
+         // 
+         this.panel7.Controls.Add(this.ppgOperation);
+         this.panel7.Controls.SetChildIndex(this.lbl3, 0);
+         this.panel7.Controls.SetChildIndex(this.ppgOperation, 0);
          // 
          // lbl3
          // 
@@ -87,11 +104,30 @@ namespace Cohesion_Project
          // 
          this.btnRefresh.FlatAppearance.BorderSize = 0;
          // 
-         // Frm_Process
+         // dgvOperation
+         // 
+         this.dgvOperation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+         this.dgvOperation.Location = new System.Drawing.Point(455, 361);
+         this.dgvOperation.Name = "dgvOperation";
+         this.dgvOperation.RowTemplate.Height = 23;
+         this.dgvOperation.Size = new System.Drawing.Size(240, 150);
+         this.dgvOperation.TabIndex = 6;
+         // 
+         // ppgOperation
+         // 
+         this.ppgOperation.Dock = System.Windows.Forms.DockStyle.Fill;
+         this.ppgOperation.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+         this.ppgOperation.Location = new System.Drawing.Point(0, 30);
+         this.ppgOperation.Name = "ppgOperation";
+         this.ppgOperation.Size = new System.Drawing.Size(356, 920);
+         this.ppgOperation.TabIndex = 8;
+         // 
+         // Frm_Operation
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
          this.ClientSize = new System.Drawing.Size(1521, 1041);
-         this.Name = "Frm_Process";
+         this.Name = "Frm_Operation";
+         this.Load += new System.EventHandler(this.Frm_Operation_Load);
          this.pnlSearch.ResumeLayout(false);
          this.panel2.ResumeLayout(false);
          this.panel4.ResumeLayout(false);
@@ -102,10 +138,14 @@ namespace Cohesion_Project
          ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
          this.splitContainer1.ResumeLayout(false);
          this.panel7.ResumeLayout(false);
+         ((System.ComponentModel.ISupportInitialize)(this.dgvOperation)).EndInit();
          this.ResumeLayout(false);
 
       }
 
       #endregion
+
+      private System.Windows.Forms.DataGridView dgvOperation;
+      private System.Windows.Forms.PropertyGrid ppgOperation;
    }
 }
