@@ -78,7 +78,7 @@ namespace Cohesion_Project
             public string USER_GROUP_CODE { get; set; }
 
             [Category("추적"), Description("USER_PASSWORD"), DisplayName("암호")]
-            public DateTime USER_PASSWORD { get; set; }
+            public string USER_PASSWORD { get; set; }
 
             [Category("추적"), Description("USER_DEPARTMENT"), DisplayName("부서")]
             public string USER_DEPARTMENT { get; set; }
@@ -87,7 +87,7 @@ namespace Cohesion_Project
             public DateTime CREATE_TIME { get; set; }
 
             [Category("추적"), Description("CREATE_USER_ID"), DisplayName("생성 사용자")]
-            public string CREATE_USER_ID { get; set; }
+            public DateTime CREATE_USER_ID { get; set; }
             [Category("추적"), Description("UPDATE_TIME"), DisplayName("변경 시간")]
             public string UPDATE_TIME { get; set; }
             [Category("추적"), Description("UPDATE_USER_ID"), DisplayName("변경 사용자")]
@@ -101,7 +101,7 @@ namespace Cohesion_Project
                 return;
             }
             string sTableName = DgvUser["사용자 코드", e.RowIndex].Value.ToString();
-            var target = UserList.Find((s) => s.USER_GROUP_CODE.Equals(DgvUser["사용자 코드", e.RowIndex].Value));
+            var target = UserList.Find((s) => s.USER_ID.Equals(DgvUser["사용자 코드", e.RowIndex].Value));
             SelectedRowData(target);
             Ppg_User.SelectedObject = ud;
         }
