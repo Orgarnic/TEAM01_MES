@@ -57,6 +57,7 @@ namespace Cohesion_Project
             iProperty = dgvInspection.Rows[e.RowIndex].DataBoundItem as Inspection_DTO;
             ppgInspection.SelectedObject = iProperty;
             ppgInspection.Enabled = false;
+            btnAdd.Enabled = false;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
