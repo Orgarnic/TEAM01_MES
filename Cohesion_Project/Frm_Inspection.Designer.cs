@@ -126,6 +126,7 @@ namespace Cohesion_Project
             this.ppgInspection.Name = "ppgInspection";
             this.ppgInspection.Size = new System.Drawing.Size(356, 920);
             this.ppgInspection.TabIndex = 6;
+            this.ppgInspection.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.ppgInspection_PropertyValueChanged);
             // 
             // Frm_Inspection
             // 

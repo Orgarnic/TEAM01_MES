@@ -63,9 +63,17 @@ namespace Cohesion_Project
         private void btnAdd_Click(object sender, EventArgs e)
         {
             Inspection_DTO dto = ppgInspection.SelectedObject as Inspection_DTO;
-            if (dto == null)
+            if (dto.INSPECT_ITEM_CODE == null)
             {
                 MboxUtil.MboxInfo("검사 항목 정보를 입력해주세요.");
+                return;
+            }
+
+            var list = dgvInspection.DataSource as List<Inspection_DTO>;
+            bool codeExist = list.Exists((i) => i.INSPECT_ITEM_CODE.Equals(dto.INSPECT_ITEM_CODE, StringComparison.OrdinalIgnoreCase));
+            if (codeExist)
+            {
+                MboxUtil.MboxInfo("동일한 코드의 검사항목이 존재합니다.");
                 return;
             }
             dto.CREATE_USER_ID = "서지환";
@@ -75,7 +83,7 @@ namespace Cohesion_Project
             {
                 if (dto.SPEC_TARGET == null)
                 {
-                    dto.SPEC_TARGET = ((Convert.ToInt32(dto.SPEC_LSL) + Convert.ToInt32(dto.SPEC_USL)) / 2).ToString();
+                    dto.SPEC_TARGET = ((Convert.ToDouble(dto.SPEC_LSL) + Convert.ToDouble(dto.SPEC_USL)) / 2).ToString();
                 }
             }
             else if(dto.VALUE_TYPE == 'C')
@@ -90,6 +98,7 @@ namespace Cohesion_Project
             if (result)
             {
                 MboxUtil.MboxInfo("검사 항목이 등록되었습니다.");
+                LoadData();
             }
             else
                 MboxUtil.MboxError("검사 항목 등록 중 오류가 발생했습니다.");
@@ -122,13 +131,10 @@ namespace Cohesion_Project
                 if (dto.SPEC_TARGET == null)
                 {
                     dto.SPEC_TARGET = "OK";
-                    dto.SPEC_LSL = null;
-                    dto.SPEC_USL = null;
                 }
                 else
                 {
-                    dto.SPEC_LSL = null;
-                    dto.SPEC_USL = null;
+                    dto.SPEC_TARGET = dto.SPEC_TARGET.ToUpper();
                 }
             }
 
@@ -207,13 +213,14 @@ namespace Cohesion_Project
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            string inspectCode = sProperty.INSPECT_ITEM_CODE;
-            char valueType = sProperty.VALUE_TYPE;
+            Inspection_DTO_Search condition= ppgInspection.SelectedObject as Inspection_DTO_Search;
+            string inspectCode = condition.INSPECT_ITEM_CODE;
+            char valueType = condition.VALUE_TYPE;
             string searchText = txtSearch.Text;
 
             //데이터 베이스 안가고 조회조건
 
-            if (!string.IsNullOrEmpty(inspectCode) && valueType.ToString() != null)
+            if (!string.IsNullOrEmpty(inspectCode) && valueType.ToString() != "\0")
             {
                 if (!string.IsNullOrEmpty(searchText))
                 {
@@ -225,7 +232,7 @@ namespace Cohesion_Project
                 }
             }
 
-            else if (!string.IsNullOrEmpty(inspectCode) && valueType.ToString() == null)
+            else if (!string.IsNullOrEmpty(inspectCode) && valueType.ToString() == "\0")
             {
                 if (!string.IsNullOrEmpty(searchText))
                 {
@@ -237,7 +244,7 @@ namespace Cohesion_Project
                 }
             }
 
-            else if (string.IsNullOrEmpty(inspectCode) && valueType.ToString() != null)
+            else if (string.IsNullOrEmpty(inspectCode) && valueType.ToString() != "\0")
             {
                 if (!string.IsNullOrEmpty(searchText))
                 {
@@ -249,7 +256,7 @@ namespace Cohesion_Project
                 }
             }
 
-            else if (string.IsNullOrEmpty(inspectCode) && valueType.ToString() == null)
+            else if (string.IsNullOrEmpty(inspectCode) && valueType.ToString() == "\0")
             {
                 if (!string.IsNullOrEmpty(searchText))
                 {
@@ -267,6 +274,25 @@ namespace Cohesion_Project
         {
             srcList = srvInspection.SelectInspection();
             dgvInspection.DataSource = srcList;
+        }
+
+        private void ppgInspection_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
+        {
+            Inspection_DTO dto = ppgInspection.SelectedObject as Inspection_DTO;
+            if (dto.VALUE_TYPE == 'C')
+            {
+                int result = default;
+                if (dto.SPEC_LSL != null && !int.TryParse(dto.SPEC_TARGET, out result))
+                {
+                    dto.SPEC_TARGET = null;
+                    dto.SPEC_LSL = null;
+                    dto.SPEC_USL = null;
+                }
+            }
+            else
+            {
+                return;
+            }
         }
     }
 }
