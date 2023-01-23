@@ -160,6 +160,7 @@
     <Compile Include="Service\Srv_Operation.cs" />
     <Compile Include="Service\Srv_Store.cs" />
     <Compile Include="Service\Srv_Product.cs" />
+    <Compile Include="Service\Srv_UserMgt.cs" />
     <Compile Include="Service\Srv_UserGroup.cs" />
     <Compile Include="Uc\Cc_TabControl.cs">
       <SubType>Component</SubType>

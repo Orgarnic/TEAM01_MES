@@ -1,0 +1,39 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Cohesion_DTO;
+using Cohesion_DAO;
+
+namespace Cohesion_Project
+{
+   public class Srv_User
+    {
+
+        public List<User_DTO> SelectUser()
+        {
+            UserMgt_DAO dao = new UserMgt_DAO();
+            List<User_DTO> list = dao.SelectUser();
+            dao.Dispose();
+
+            return list;
+        }
+
+        public bool InsertUser(User_DTO dto)
+        {
+            UserMgt_DAO dao = new UserMgt_DAO();
+            bool result = dao.InsertUser(dto);
+            dao.Dispose();
+            return result;
+        }
+
+        public bool UpdateUser(User_DTO dto)
+        {
+            UserMgt_DAO dao = new UserMgt_DAO();
+            bool result = dao.UpdateUser(dto);
+            dao.Dispose();
+            return result;
+        }
+    }
+}

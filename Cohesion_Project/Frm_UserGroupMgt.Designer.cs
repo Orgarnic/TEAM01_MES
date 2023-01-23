@@ -144,7 +144,7 @@ namespace Cohesion_Project
             // DgvUserGroup
             // 
             this.DgvUserGroup.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgvUserGroup.Location = new System.Drawing.Point(319, 127);
+            this.DgvUserGroup.Location = new System.Drawing.Point(404, 178);
             this.DgvUserGroup.Name = "DgvUserGroup";
             this.DgvUserGroup.Size = new System.Drawing.Size(240, 150);
             this.DgvUserGroup.TabIndex = 6;

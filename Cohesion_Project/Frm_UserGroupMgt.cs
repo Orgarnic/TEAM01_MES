@@ -42,7 +42,6 @@ namespace Cohesion_Project
             DgvUtil.AddTextCol(DgvUserGroup, "수정 시간 ", "UPDATE_TIME", 120, true, align: 2);
             DgvUtil.AddTextCol(DgvUserGroup, "수정 사용자", "UPDATE_USER_ID", 120, true, align: 1);
 
-
             //프로퍼티 그리드 초기 설정
             Ppg_UserGourp.PropertySort = PropertySort.Categorized;
             Ppg_UserGourp.SelectedObject = ugd;
