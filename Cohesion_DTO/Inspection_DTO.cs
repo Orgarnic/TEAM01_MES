@@ -11,13 +11,13 @@ namespace Cohesion_DTO
     {
         [Category("속성"), Description("INSPECT_ITEM_CODE"), DisplayName("검사 항목"), ReadOnly(false)]
         public string INSPECT_ITEM_CODE { get; set; }
-        
+
         [Category("속성"), Description("INSPECT_ITEM_NAME"), DisplayName("검사 항목명")]
         public string INSPECT_ITEM_NAME { get; set; }
 
         [Category("속성"), Description("VALUE_TYPE"), DisplayName("값 유형"), TypeConverter(typeof(ComboInspectUnitConverter))]
         public char VALUE_TYPE { get; set; }
-        
+
         [Category("속성"), Description("SPEC_LSL"), DisplayName("규격 하한")]
         public string SPEC_LSL { get; set; }
 
@@ -26,7 +26,7 @@ namespace Cohesion_DTO
 
         [Category("속성"), Description("SPEC_USL"), DisplayName("규격 상한")]
         public string SPEC_USL { get; set; }
-        
+
         [Category("추적"), Description("CREATE_TIME"), DisplayName("생성 시간"), ReadOnly(true)]
         public DateTime CREATE_TIME { get; set; }  //생성 시간
 
