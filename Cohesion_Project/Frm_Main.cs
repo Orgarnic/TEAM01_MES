@@ -31,7 +31,7 @@ namespace Cohesion_Project
 
         private void button3_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -49,35 +49,35 @@ namespace Cohesion_Project
 
         private void button6_Click(object sender, EventArgs e)
         {
-         Frm_Base_2 frm = new Frm_Base_2();
-         frm.MdiParent = this;
-         frm.WindowState = FormWindowState.Maximized;
-         frm.Show();
-      }
+            Frm_Common frm = new Frm_Common();
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.Show();
+        }
 
         private void button7_Click(object sender, EventArgs e)
         {
-         Frm_Base_3 frm = new Frm_Base_3();
-         frm.MdiParent = this;
-         frm.WindowState = FormWindowState.Maximized;
-         frm.Show();
-      }
+            Frm_Inspection frm = new Frm_Inspection();
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.Show();
+        }
 
         private void button8_Click(object sender, EventArgs e)
         {
-         Frm_Base_4 frm = new Frm_Base_4();
-         frm.MdiParent = this;
-         frm.WindowState = FormWindowState.Maximized;
-         frm.Show();
-      }
+            Frm_Base_4 frm = new Frm_Base_4();
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.Show();
+        }
 
         private void button9_Click(object sender, EventArgs e)
         {
-         Frm_Base_5 frm = new Frm_Base_5();
-         frm.MdiParent = this;
-         frm.WindowState = FormWindowState.Maximized;
-         frm.Show();
-      }
+            Frm_Base_5 frm = new Frm_Base_5();
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.Show();
+        }
 
         private void button10_Click(object sender, EventArgs e)
         {

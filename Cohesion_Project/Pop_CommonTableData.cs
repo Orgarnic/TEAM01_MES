@@ -16,6 +16,7 @@ namespace Cohesion_Project
     {
         Srv_CommonData srvC = new Srv_CommonData();
         CommonTable_DTO target = new CommonTable_DTO();
+        List<CommonData_DTO> list = new List<CommonData_DTO>();
         bool tagMove;
         int x, y = default;
         public Pop_CommonTableData()
@@ -73,7 +74,7 @@ namespace Cohesion_Project
         }
         private void LoadData()
         {
-            var list = srvC.SelectCommonTableData(target.CODE_TABLE_NAME);
+            list = srvC.SelectCommonTableData(target.CODE_TABLE_NAME);
             
             //데이터 입력을 받기위한, 행추가
             list.Add(new CommonData_DTO { DISPLAY_SEQ = null });
@@ -146,6 +147,23 @@ namespace Cohesion_Project
             else
             {
                 MboxUtil.MboxError("데이터 삭제 실패.");
+            }
+        }
+
+        private void Btn_Search_Click(object sender, EventArgs e)
+        {
+            string searchText = txtSearch.Text.ToUpper();
+            if (!string.IsNullOrEmpty(searchText))
+            {
+                var srcList = Dgv_DataTable.DataSource as List<CommonData_DTO>;
+                srcList.RemoveAll((c)=>c.KEY_1==null);
+                Dgv_DataTable.DataSource = srcList.FindAll((c)=>c.KEY_1.ToUpper().Contains(searchText));
+                txtSearch.Text = default;
+            }
+            else
+            {
+                list.Add(new CommonData_DTO { DISPLAY_SEQ = null });
+                Dgv_DataTable.DataSource = list;
             }
         }
 

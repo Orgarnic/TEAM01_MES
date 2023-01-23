@@ -15,15 +15,14 @@ namespace Cohesion_Project
     public partial class Frm_Common : Cohesion_Project.Frm_Base_2
     {
         Srv_CommonData srvC = new Srv_CommonData();
-
         private CommonData cd = new CommonData();
-
-
         private SearchData sd = new SearchData();
-        bool state = false;
+        
+        public CommonTable_DTO Table { get; set; }
 
         List<CommonTable_DTO> srcList;
-        public CommonTable_DTO Table { get; set; }
+        bool state = false;
+
 
         public Frm_Common()
         {
@@ -73,9 +72,9 @@ namespace Cohesion_Project
             this.Table = target;
 
             Pop_CommonTableData pop = new Pop_CommonTableData();
+            pop.Owner = this;
             pop.Location = new Point(200, 250);
-            pop.ShowDialog(this);
-
+            pop.ShowDialog();
         }
 
         //테이블 정보 그리드뷰에 보여주기
@@ -139,6 +138,7 @@ namespace Cohesion_Project
                 MboxUtil.MboxError("테이블 삭제 실패.");
             }
         }
+
         private void btnInsert_Click(object sender, EventArgs e)
         {
             var data = Ppg_CommonTable.SelectedObject as CommonData;
@@ -201,6 +201,34 @@ namespace Cohesion_Project
             }
         }
 
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string tableName = sd.CODE_TABLE_NAME;
+            string searchText = txtSearch.Text;
+            //검색창 내부에 텍스트가 1개도 없으면 전체를 출력
+            //검색창 내부에 텍스트가 1개라도 있으면 /  프로퍼티 그리드  null
+            //검색창 내부 텍스트 null / 프로퍼티 그리드 입력
+
+            if (!string.IsNullOrEmpty(tableName) && !string.IsNullOrEmpty(searchText))
+            {
+                Dgv_CommonTable.DataSource = srcList.FindAll((c) => c.CODE_TABLE_NAME == tableName && c.CODE_TABLE_NAME.Contains(searchText));
+            }
+
+            else if (!string.IsNullOrEmpty(tableName) && string.IsNullOrEmpty(searchText))
+            {
+                Dgv_CommonTable.DataSource = srcList.FindAll((c) => c.CODE_TABLE_NAME == tableName);
+            }
+
+            else if (string.IsNullOrEmpty(tableName) && !string.IsNullOrEmpty(searchText))
+            {
+                Dgv_CommonTable.DataSource = srcList.FindAll((c) => c.CODE_TABLE_NAME.Contains(searchText));
+            }
+            else
+            {
+                Dgv_CommonTable.DataSource = srcList;
+            }
+        }
+
         //==================================================================================================================================
 
 
@@ -216,19 +244,8 @@ namespace Cohesion_Project
             Dictionary<string, List<string>> searchDic = new Dictionary<string, List<string>>();
             
             List<string> l1 = new List<string>();
-            srcList.ForEach((c) => l1.Add(c.CREATE_USER_ID));
-            searchDic.Add("CREATE_USER_ID", l1);
-            /*srcList.ForEach((c) => l1.Add(c.CODE_TABLE_NAME));
-            searchDic[cd.GetType().GetProperties()[0].Name] = l1;
-
-            List<string> l2 = new List<string>();
-            srcList.ForEach((c) => l2.Add(c.KEY_1_NAME));
-            searchDic[cd.GetType().GetProperties()[2].Name] = l2;
-
-            List<string> l3 = new List<string>();
-            srcList.ForEach((c) => l3.Add(c.DATA_1_NAME));
-            searchDic[cd.GetType().GetProperties()[5].Name] = l3;*/
-
+            srcList.ForEach((c) => l1.Add(c.CODE_TABLE_NAME));
+            searchDic.Add("CODE_TABLE_NAME", l1);
 
             sd.SearchList = searchDic;
             
@@ -286,12 +303,6 @@ namespace Cohesion_Project
             return dto;
         }
 
-
-
-
-
-
-
         //==================================================================================================================================
     }
 
@@ -346,15 +357,6 @@ namespace Cohesion_Project
     {
         [Category("속성"), Description("CODE_TABLE_NAME"), DisplayName("테이블명"), TypeConverter(typeof(ComboStringConverter))]
         public string CODE_TABLE_NAME { get; set; }
-
-        [Category("속성"), Description("KEY_1_NAME"), DisplayName("키1 명"), TypeConverter(typeof(ComboStringConverter))]
-        public string KEY_1_NAME { get; set; }
-
-        [Category("속성"), Description("DATA_1_NAME"), DisplayName("데이터1 명"), TypeConverter(typeof(ComboStringConverter))]
-        public string DATA_1_NAME { get; set; }
-
-        [Category("추적"), Description("CREATE_USER_ID"), DisplayName("생성자"), TypeConverter(typeof(ComboStringConverter))]
-        public string CREATE_USER_ID { get; set; }
 
         [Browsable(false)]
         public Dictionary<string,List<string>> SearchList { get; set; }

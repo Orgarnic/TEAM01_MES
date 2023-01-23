@@ -31,10 +31,11 @@ namespace Cohesion_Project
         {
             this.Lbl_Title = new System.Windows.Forms.Label();
             this.Tlp_Button = new System.Windows.Forms.TableLayoutPanel();
-            this.Btn_Delete = new System.Windows.Forms.Button();
             this.Btn_Save = new System.Windows.Forms.Button();
             this.Btn_Search = new System.Windows.Forms.Button();
             this.Btn_Close = new System.Windows.Forms.Button();
+            this.Btn_Delete = new System.Windows.Forms.Button();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.Dgv_DataTable = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.Tlp_Button.SuspendLayout();
@@ -51,7 +52,7 @@ namespace Cohesion_Project
             this.Lbl_Title.ForeColor = System.Drawing.Color.White;
             this.Lbl_Title.Location = new System.Drawing.Point(0, 0);
             this.Lbl_Title.Name = "Lbl_Title";
-            this.Lbl_Title.Size = new System.Drawing.Size(800, 52);
+            this.Lbl_Title.Size = new System.Drawing.Size(800, 30);
             this.Lbl_Title.TabIndex = 1;
             this.Lbl_Title.Text = "코드 데이터";
             this.Lbl_Title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -69,36 +70,17 @@ namespace Cohesion_Project
             this.Tlp_Button.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.85372F));
             this.Tlp_Button.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 1.134931F));
             this.Tlp_Button.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.97982F));
-            this.Tlp_Button.Controls.Add(this.Btn_Delete, 3, 0);
             this.Tlp_Button.Controls.Add(this.Btn_Save, 7, 0);
             this.Tlp_Button.Controls.Add(this.Btn_Search, 5, 0);
             this.Tlp_Button.Controls.Add(this.Btn_Close, 9, 0);
+            this.Tlp_Button.Controls.Add(this.Btn_Delete, 1, 0);
+            this.Tlp_Button.Controls.Add(this.txtSearch, 4, 0);
             this.Tlp_Button.Location = new System.Drawing.Point(-4, 8);
             this.Tlp_Button.Name = "Tlp_Button";
             this.Tlp_Button.RowCount = 1;
             this.Tlp_Button.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.Tlp_Button.Size = new System.Drawing.Size(793, 35);
             this.Tlp_Button.TabIndex = 0;
-            // 
-            // Btn_Delete
-            // 
-            this.Btn_Delete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(76)))), ((int)(((byte)(115)))));
-            this.Btn_Delete.FlatAppearance.BorderSize = 0;
-            this.Btn_Delete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Btn_Delete.Font = new System.Drawing.Font("맑은 고딕", 9F);
-            this.Btn_Delete.ForeColor = System.Drawing.Color.White;
-            this.Btn_Delete.Image = global::Cohesion_Project.Properties.Resources.minus;
-            this.Btn_Delete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Btn_Delete.Location = new System.Drawing.Point(110, 3);
-            this.Btn_Delete.Name = "Btn_Delete";
-            this.Btn_Delete.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.Btn_Delete.Size = new System.Drawing.Size(88, 29);
-            this.Btn_Delete.TabIndex = 0;
-            this.Btn_Delete.Text = "     삭  제";
-            this.Btn_Delete.UseVisualStyleBackColor = false;
-            this.Btn_Delete.Click += new System.EventHandler(this.Btn_Delete_Click);
-            this.Btn_Delete.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Btn_Delete_MouseDown);
-            this.Btn_Delete.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Btn_Delete_MouseUp);
             // 
             // Btn_Save
             // 
@@ -136,6 +118,7 @@ namespace Cohesion_Project
             this.Btn_Search.TabIndex = 0;
             this.Btn_Search.Text = "     조  회";
             this.Btn_Search.UseVisualStyleBackColor = false;
+            this.Btn_Search.Click += new System.EventHandler(this.Btn_Search_Click);
             this.Btn_Search.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Btn_Delete_MouseDown);
             this.Btn_Search.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Btn_Delete_MouseUp);
             // 
@@ -159,14 +142,43 @@ namespace Cohesion_Project
             this.Btn_Close.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Btn_Delete_MouseDown);
             this.Btn_Close.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Btn_Delete_MouseUp);
             // 
+            // Btn_Delete
+            // 
+            this.Btn_Delete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(76)))), ((int)(((byte)(115)))));
+            this.Btn_Delete.FlatAppearance.BorderSize = 0;
+            this.Btn_Delete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Btn_Delete.Font = new System.Drawing.Font("맑은 고딕", 9F);
+            this.Btn_Delete.ForeColor = System.Drawing.Color.White;
+            this.Btn_Delete.Image = global::Cohesion_Project.Properties.Resources.trash;
+            this.Btn_Delete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Btn_Delete.Location = new System.Drawing.Point(12, 3);
+            this.Btn_Delete.Name = "Btn_Delete";
+            this.Btn_Delete.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
+            this.Btn_Delete.Size = new System.Drawing.Size(83, 29);
+            this.Btn_Delete.TabIndex = 0;
+            this.Btn_Delete.Text = "     삭  제";
+            this.Btn_Delete.UseVisualStyleBackColor = false;
+            this.Btn_Delete.Click += new System.EventHandler(this.Btn_Delete_Click);
+            this.Btn_Delete.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Btn_Delete_MouseDown);
+            this.Btn_Delete.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Btn_Delete_MouseUp);
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtSearch.Location = new System.Drawing.Point(204, 7);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 7, 3, 3);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(284, 21);
+            this.txtSearch.TabIndex = 1;
+            // 
             // Dgv_DataTable
             // 
             this.Dgv_DataTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Dgv_DataTable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Dgv_DataTable.Location = new System.Drawing.Point(0, 52);
+            this.Dgv_DataTable.Location = new System.Drawing.Point(0, 30);
             this.Dgv_DataTable.Name = "Dgv_DataTable";
             this.Dgv_DataTable.RowTemplate.Height = 23;
-            this.Dgv_DataTable.Size = new System.Drawing.Size(800, 408);
+            this.Dgv_DataTable.Size = new System.Drawing.Size(800, 430);
             this.Dgv_DataTable.TabIndex = 2;
             // 
             // panel1
@@ -196,6 +208,7 @@ namespace Cohesion_Project
             this.Text = "Pop_TableData";
             this.Load += new System.EventHandler(this.Pop_CommonTableData_Load);
             this.Tlp_Button.ResumeLayout(false);
+            this.Tlp_Button.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_DataTable)).EndInit();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -211,5 +224,6 @@ namespace Cohesion_Project
         private System.Windows.Forms.TableLayoutPanel Tlp_Button;
         private System.Windows.Forms.DataGridView Dgv_DataTable;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox txtSearch;
     }
 }
