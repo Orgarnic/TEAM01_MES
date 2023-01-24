@@ -110,6 +110,7 @@ namespace Cohesion_Project
             // 
             this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.Location = new System.Drawing.Point(1391, 771);
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnDelete
             // 
@@ -120,21 +121,25 @@ namespace Cohesion_Project
             // 
             this.btnInsert.FlatAppearance.BorderSize = 0;
             this.btnInsert.Location = new System.Drawing.Point(1189, 771);
+            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
             // btnAdd
             // 
             this.btnAdd.FlatAppearance.BorderSize = 0;
             this.btnAdd.Location = new System.Drawing.Point(987, 771);
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnUpdate
             // 
             this.btnUpdate.FlatAppearance.BorderSize = 0;
             this.btnUpdate.Location = new System.Drawing.Point(1088, 771);
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnRefresh
             // 
             this.btnRefresh.FlatAppearance.BorderSize = 0;
             this.btnRefresh.Location = new System.Drawing.Point(1290, 771);
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // propertyGrid1
             // 
