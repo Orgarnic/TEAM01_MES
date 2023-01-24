@@ -115,6 +115,7 @@ namespace Cohesion_Project
             // btnSearchCondition
             // 
             this.btnSearchCondition.FlatAppearance.BorderSize = 0;
+            this.btnSearchCondition.Click += new System.EventHandler(this.btnSearchCondition_Click);
             // 
             // btnSearch
             // 
@@ -137,6 +138,7 @@ namespace Cohesion_Project
             // btnInsert
             // 
             this.btnInsert.FlatAppearance.BorderSize = 0;
+            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
             // btnAdd
             // 
@@ -146,6 +148,7 @@ namespace Cohesion_Project
             // btnUpdate
             // 
             this.btnUpdate.FlatAppearance.BorderSize = 0;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnRefresh
             // 
@@ -198,6 +201,7 @@ namespace Cohesion_Project
             // ppgBOMAttribute
             // 
             this.ppgBOMAttribute.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ppgBOMAttribute.Enabled = false;
             this.ppgBOMAttribute.Location = new System.Drawing.Point(0, 30);
             this.ppgBOMAttribute.Name = "ppgBOMAttribute";
             this.ppgBOMAttribute.Size = new System.Drawing.Size(356, 429);

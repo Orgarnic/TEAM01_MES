@@ -36,5 +36,14 @@ namespace Cohesion_Project
 
             return result;
         }
+
+        public List<PRODUCT_MST_DTO> SelectGetProduct(BOM_PRODUCT_SEARCH search)
+        {
+            BOM_DAO dao = new BOM_DAO();
+            List<PRODUCT_MST_DTO> list = dao.SelectGetProduct(search);
+            dao.Dispose();
+
+            return list;
+        }
     }
 }
