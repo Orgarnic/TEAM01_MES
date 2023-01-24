@@ -15,8 +15,15 @@ namespace Cohesion_Project
     public partial class Frm_Equipment : Cohesion_Project.Frm_Base_2
     {
         Srv_Equipment srv = new Srv_Equipment();
-        private PropertyGridEquipment pg = new PropertyGridEquipment();
         List<Equipment_DTO> srvList;
+
+        private PropertyGridEquipment pg = new PropertyGridEquipment();
+        private SearchConditionEquipment condtion = new SearchConditionEquipment();
+        private List<Equipment_DTO> equipments = new List<Equipment_DTO>();
+        private Equipment_DTO equipment = new Equipment_DTO();
+        
+        bool srcCondition = true;
+
         public Frm_Equipment()
         {
             InitializeComponent();
@@ -24,12 +31,7 @@ namespace Cohesion_Project
 
         private void Frm_Equipment_Load(object sender, EventArgs e)
         {
-            lbl4.Text = "▶ 설비 목록";
-            lbl3.Text = "▶ 설비 속성";
-
-            ppg_Equipment.PropertySort = PropertySort.NoSort;
-            ppg_Equipment.SelectedObject = pg;
-
+            FormCondition();
             DataGridViewBinding();
         }
         private void DataGridViewBinding()
@@ -45,10 +47,21 @@ namespace Cohesion_Project
             DgvUtil.AddTextCol(dgv_Equipment, "변경 시간", "UPDATE_TIME", 250, readOnly: true, align: 1);
             DgvUtil.AddTextCol(dgv_Equipment, "변경 사용자", "UPDATE_USER_ID", 150, readOnly: true, align: 1);
 
+            LoadData();
+        }
+        private void LoadData()
+        {
             srvList = srv.SelectEquipmentList();
             dgv_Equipment.DataSource = srvList;
         }
+        private void FormCondition()
+        {
+            lbl4.Text = "▶ 설비 목록";
+            lbl3.Text = "▶ 설비 속성";
 
+            ppg_Equipment.PropertySort = PropertySort.NoSort;
+            ppg_Equipment.SelectedObject = pg;
+        }
         private void dgv_Equipment_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0)
@@ -90,15 +103,20 @@ namespace Cohesion_Project
                 }
             }
         }
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            equipments = srv.SelectEquipment(condtion.SearchCondition());
+            dgv_Equipment.DataSource = equipments;
+        }
 
         //PropertyGrid 속성값 DTO 만들기
         private T1 PropertyToDto<T, T1>(T data) where T1 : class, new()
         {
             T1 dto = new T1();
 
-            for (int i = 0; i < data.GetType().GetProperties().Length - 1; i++)
+            for (int i = 0; i < data.GetType().GetProperties().Length; i++)
             {
-                for (int j = 0; j < dto.GetType().GetProperties().Length - 1; j++)
+                for (int j = 0; j < dto.GetType().GetProperties().Length; j++)
                 {
                     if (data.GetType().GetProperties()[i].Name.Equals(dto.GetType().GetProperties()[i].Name, StringComparison.OrdinalIgnoreCase))
                     {
@@ -109,43 +127,150 @@ namespace Cohesion_Project
             }
             return dto;
         }
-
         
+        private class SearchConditionEquipment
+        {
+            public Equipment_DTO SearchCondition()
+            {
+                Equipment_DTO dto = new Equipment_DTO
+                {
+                    EQUIPMENT_CODE = this.EQUIPMENT_CODE,
+                    EQUIPMENT_NAME = this.EQUIPMENT_NAME,
+                    EQUIPMENT_TYPE = this.EQUIPMENT_TYPE,
+                    EQUIPMENT_STATUS = this.EQUIPMENT_STATUS
+                };
+                return dto;
+            }
+            [Category("검색조건"), Description("설비코드 (FC_xxxx) 입력"), DisplayName("설비코드")]
+            public string EQUIPMENT_CODE { get; set; }
+
+            [Category("검색조건"), Description("설비명 입력"), DisplayName("설비명")]
+            public string EQUIPMENT_NAME { get; set; }
+            [Category("검색조건"), Description("설비 유형 = 장비 : EQUIP, 도구 : TOOL, 측정기 : INSP"), DisplayName("설비유형")]
+            public string EQUIPMENT_TYPE { get; set; }
+
+            [Category("검색조건"), Description("설비 상태 = 가동 : PROC, 고장비가동 : DOWN, 일반비가동 : WAIT"), DisplayName("설비상태")]
+            public string EQUIPMENT_STATUS { get; set; }
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            PropertyGridEquipment data = ppg_Equipment.SelectedObject as PropertyGridEquipment;
+            var dto = PropertyToDto<PropertyGridEquipment, Equipment_DTO>(data);
+            bool result = srv.InsertStore(dto);
+            if (result)
+            {
+                MboxUtil.MboxInfo("신규 설비가 생성 완료되었습니다.");
+                LoadData();
+            }
+            else
+            {
+                MboxUtil.MboxError("설비 생성을 실패하였습니다.\n다시 시도하여 주십시오.");
+            }
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnInsert_Click(object sender, EventArgs e)
+        {
+            var data =ppg_Equipment.SelectedObject as PropertyGridEquipment;
+            if (data.EQUIPMENT_CODE == null)
+            {
+                MessageBox.Show("변경할 테이블을 선택해주세요.");
+                return;
+            }
+            var dto = PropertyToDto<PropertyGridEquipment, Equipment_DTO>(data);
+            if (!MboxUtil.MboxInfo_("선택하신 설비 정보를 수정하시겠습니까?")) return;
+            bool result = srv.UpdateEquipment(dto);
+            if (result)
+            {
+                MboxUtil.MboxInfo("선택하신 설비 정보가 수정되었습니다.");
+                LoadData();
+            }
+            else
+            {
+                MboxUtil.MboxError("설비 정보 수정을 실패하였습니다.\n다시 시도하여 주십시오.");
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (!MboxUtil.MboxInfo_("선택하신 설비를 삭제하시겠습니까?")) return;
+            Equipment_DTO dto = DgvUtil.DgvToDto<Equipment_DTO>(dgv_Equipment);
+            bool result = srv.DeleteEquipment(dto);
+            if (result)
+            {
+                MboxUtil.MboxInfo("선택하신 설비가 삭제되었습니다.");
+                btnSearch.PerformClick();
+            }
+            else
+                MboxUtil.MboxError("설비 정보 삭제 중 실패하였습니다.\n다시 시도하여 주십시오.");
+        }
+
+        private void btnSearchCondition_Click(object sender, EventArgs e)
+        {
+            if (srcCondition)
+            {
+                ppg_Equipment.Enabled = true;
+                ppg_Equipment.SelectedObject = condtion;
+                srcCondition = false;
+            }
+            else
+            {
+                ppg_Equipment.Enabled = false;
+                ppg_Equipment.SelectedObject = equipment;
+                srcCondition = true;
+            }
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            PropertyGridEquipment blankData = new PropertyGridEquipment();
+            ppg_Equipment.SelectedObject = blankData;
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
     public class PropertyGridEquipment
     {
-        [Category("속성"), DisplayName("설비코드")]
+        [Category("속성"), Description("설비코드 (FC_xxxx) 입력"), DisplayName("설비코드")]
         public string EQUIPMENT_CODE { get; set; }
 
 
-        [Category("속성"), DisplayName("설비명")]
+        [Category("속성"), Description("설비명 입력"), DisplayName("설비명")]
         public string EQUIPMENT_NAME { get; set; }
 
 
-        [Category("속성"), DisplayName("설비유형")]
+        [Category("속성"), Description("설비 유형 = 장비 : EQUIP, 도구 : TOOL, 측정기 : INSP"), DisplayName("설비유형")]
         public string EQUIPMENT_TYPE { get; set; }
 
-        [Category("속성"), DisplayName("설비상태")]
+        [Category("속성"), Description("설비 상태 = 가동 : PROC, 고장비가동 : DOWN, 일반비가동 : WAIT"), DisplayName("설비상태")]
         public string EQUIPMENT_STATUS { get; set; }
 
 
-        [Category("속성"), ReadOnlyAttribute(true), DisplayName("다운시간")]
+        [Category("속성"), Description("설비 상태 변경/확정 시 현재 시간 자동입력"), ReadOnlyAttribute(true), DisplayName("다운시간")]
         public DateTime LAST_DOWN_TIME { get; set; }
 
 
-        [Category("속성"), ReadOnlyAttribute(true), DisplayName("생성 시간")]
+        [Category("속성"), Description("생성 시간 현재 시간 자동입력"), ReadOnlyAttribute(true), DisplayName("생성 시간")]
         public DateTime CREATE_TIME { get; set; }
 
 
-        [Category("속성"), DisplayName("생성 사용자")]
+        [Category("속성"), Description("생성 시 사용자 자동입력"), DisplayName("생성 사용자")]
         public string CREATE_USER_ID { get; set; }
 
 
-        [Category("속성"), ReadOnlyAttribute(true), DisplayName("변경 시간")]
+        [Category("속성"), Description("변경 시 현재 시간 자동입력"), ReadOnlyAttribute(true), DisplayName("변경 시간")]
         public DateTime UPDATE_TIME { get; set; }
 
 
-        [Category("속성"), DisplayName("변경 사용자")]
+        [Category("속성"), Description("변경 시 사용자 자동입력"), DisplayName("변경 사용자")]
         public string UPDATE_USER_ID { get; set; }
     }
 }

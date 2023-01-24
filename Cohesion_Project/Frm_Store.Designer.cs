@@ -43,38 +43,66 @@ namespace Cohesion_Project
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Store)).BeginInit();
             this.SuspendLayout();
             // 
+            // txtSearch
+            // 
+            this.txtSearch.Size = new System.Drawing.Size(1039, 21);
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.dgv_Store);
             this.panel2.ForeColor = System.Drawing.Color.Black;
+            this.panel2.Size = new System.Drawing.Size(1204, 874);
             this.panel2.Controls.SetChildIndex(this.lbl4, 0);
             this.panel2.Controls.SetChildIndex(this.dgv_Store, 0);
+            // 
+            // lbl4
+            // 
+            this.lbl4.Size = new System.Drawing.Size(1202, 30);
             // 
             // btnSearch
             // 
             this.btnSearch.FlatAppearance.BorderSize = 0;
+            this.btnSearch.Location = new System.Drawing.Point(1055, 38);
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // panel4
+            // 
+            this.panel4.Size = new System.Drawing.Size(1204, 72);
             // 
             // btnSearchCondition
             // 
             this.btnSearchCondition.FlatAppearance.BorderSize = 0;
+            this.btnSearchCondition.Location = new System.Drawing.Point(1115, 38);
             this.btnSearchCondition.Click += new System.EventHandler(this.btnSearchCondition_Click);
+            // 
+            // lbl2
+            // 
+            this.lbl2.Size = new System.Drawing.Size(1202, 30);
             // 
             // splitContainer1
             // 
+            this.splitContainer1.SplitterDistance = 1207;
             // 
             // panel7
             // 
             this.panel7.Controls.Add(this.ppg_Store);
+            this.panel7.Size = new System.Drawing.Size(307, 952);
             this.panel7.Controls.SetChildIndex(this.lbl3, 0);
             this.panel7.Controls.SetChildIndex(this.ppg_Store, 0);
+            // 
+            // lbl3
+            // 
+            this.lbl3.Size = new System.Drawing.Size(305, 30);
             // 
             // btnClose
             // 
             this.btnClose.FlatAppearance.BorderSize = 0;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnDelete
             // 
             this.btnDelete.FlatAppearance.BorderSize = 0;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnInsert
             // 
@@ -101,7 +129,7 @@ namespace Cohesion_Project
             this.ppg_Store.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ppg_Store.Location = new System.Drawing.Point(0, 30);
             this.ppg_Store.Name = "ppg_Store";
-            this.ppg_Store.Size = new System.Drawing.Size(356, 920);
+            this.ppg_Store.Size = new System.Drawing.Size(305, 920);
             this.ppg_Store.TabIndex = 7;
             // 
             // dgv_Store
@@ -110,7 +138,7 @@ namespace Cohesion_Project
             this.dgv_Store.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_Store.Location = new System.Drawing.Point(0, 30);
             this.dgv_Store.Name = "dgv_Store";
-            this.dgv_Store.Size = new System.Drawing.Size(1151, 842);
+            this.dgv_Store.Size = new System.Drawing.Size(1202, 842);
             this.dgv_Store.TabIndex = 6;
             this.dgv_Store.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Store_CellClick);
             // 

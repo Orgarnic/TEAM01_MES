@@ -10,17 +10,20 @@ using Cohesion_DAO;
 using Cohesion_DTO;
 using Cohesion_Project.Service;
 
-
 namespace Cohesion_Project
 {
     public partial class Frm_Store : Cohesion_Project.Frm_Base_2
     {
-        Srv_Store srv = new Srv_Store();
         private PropertyGridStore pg = new PropertyGridStore();
-        private SearchDataStore sd = new SearchDataStore();
+        private List<Store_DTO> stores = new List<Store_DTO>();
+        private SearchConditionStore condtion = new SearchConditionStore();
+        private Store_DTO store = new Store_DTO();
+
+        Srv_Store srv = new Srv_Store();
         List<Store_DTO> srvList;
 
-        bool state = false;
+        bool srcCondition = true; 
+
         public Frm_Store()
         {
             InitializeComponent();
@@ -28,16 +31,8 @@ namespace Cohesion_Project
 
         private void Frm_Store_Load(object sender, EventArgs e)
         {
-            lbl4.Text = "▶ 창고 목록";
-            lbl3.Text = "▶ 창고 속성";
-
+            FormCondition();
             DataGridViewBinding();
-
-            //Customer bill = new Customer();
-            //ppg_Store.SelectedObject = bill;
-
-            ppg_Store.PropertySort = PropertySort.NoSort;
-            ppg_Store.SelectedObject = pg;
 
             // ppg_Store.Enabled = false;
         }
@@ -55,6 +50,14 @@ namespace Cohesion_Project
 
             LoadData();
         }
+        private void FormCondition()
+        {
+            lbl4.Text = "▶ 창고 목록";
+            lbl3.Text = "▶ 창고 속성";
+
+            ppg_Store.PropertySort = PropertySort.NoSort;
+            ppg_Store.SelectedObject = pg;
+        }
         private void LoadData()
         {
             srvList = srv.SelectStoreList();
@@ -71,22 +74,88 @@ namespace Cohesion_Project
             SelectedRowData(target);
             ppg_Store.SelectedObject = pg;
         }
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            stores = srv.SelectStore(condtion.SearchCondition());
+            dgv_Store.DataSource = stores;
+        }
         private void btnSearchCondition_Click(object sender, EventArgs e)
         {
-            if (state)
+            if (srcCondition)
             {
-                ppg_Store.SelectedObject = pg;
-                state = false;
-                lbl3.Text = "▶ 창고 속성";
+                ppg_Store.Enabled = true;
+                ppg_Store.SelectedObject = condtion;
+                srcCondition = false;
             }
             else
             {
-                ppg_Store.SelectedObject = sd;
-                state = true;
-                lbl3.Text = "▶ 검색 조건";
+                ppg_Store.Enabled = false;
+                ppg_Store.SelectedObject = store;
+                srcCondition = true;
+                
             }
         }
+        private void btnInsert_Click(object sender, EventArgs e)
+        {
+            var data = ppg_Store.SelectedObject as PropertyGridStore;
+            if (data.STORE_CODE == null)
+            {
+                MessageBox.Show("변경할 테이블을 선택해주세요.");
+                return;
+            }
+            var dto = PropertyToDto<PropertyGridStore, Store_DTO>(data);
+            if (!MboxUtil.MboxInfo_("선택하신 창고 정보를 수정하시겠습니까?")) return;
+            bool result = srv.UpdateStore(dto);
+            if (result)
+            {
+                MboxUtil.MboxInfo("선택하신 창고 정보가 수정되었습니다.");
+                LoadData();
+                //ppg_Store.Enabled = false;
+            }
+            else
+            {
+                MboxUtil.MboxError("창고 정보 수정을 실패하였습니다.\n다시 시도하여 주십시오.");
+            }
+        }
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            PropertyGridStore data = ppg_Store.SelectedObject as PropertyGridStore;
+            var dto = PropertyToDto<PropertyGridStore, Store_DTO>(data);
+            bool result = srv.InsertStore(dto);
+            if (result)
+            {
+                MboxUtil.MboxInfo("신규 창고가 생성 완료되었습니다.");
+                LoadData();
+            }
+            else
+            {
+                MboxUtil.MboxError("창고 생성을 실패하였습니다.\n다시 시도하여 주십시오.");
+            }
+        }
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            PropertyGridStore blankData = new PropertyGridStore();
+            ppg_Store.SelectedObject = blankData;
+        }
 
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            //ppg_Store.Enabled = true;
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (!MboxUtil.MboxInfo_("선택하신 창고를 삭제하시겠습니까?")) return;
+            Store_DTO dto = DgvUtil.DgvToDto<Store_DTO>(dgv_Store);
+            bool result = srv.DeleteStore(dto);
+            if (result)
+            {
+                MboxUtil.MboxInfo("선택하신 창고가 삭제되었습니다.");
+                btnSearch.PerformClick();
+            }
+            else
+                MboxUtil.MboxError("창고 정보 삭제 중 실패하였습니다.\n다시 시도하여 주십시오.");
+        }
         private void SelectedRowData(Store_DTO target)
         {
             TypeConverter typeConverter = new TypeConverter();
@@ -135,68 +204,44 @@ namespace Cohesion_Project
             return dto;
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private class SearchConditionStore
         {
-            PropertyGridStore data = ppg_Store.SelectedObject as PropertyGridStore;
-            var dto = PropertyToDto<PropertyGridStore, Store_DTO>(data);
-            bool result = srv.InsertStore(dto);
-            if (result)
+            public Store_DTO SearchCondition()
             {
-                MessageBox.Show("신규 창고 생성 완료");
-                LoadData();
+                Store_DTO dto = new Store_DTO
+                {
+                    STORE_CODE = this.STORE_CODE,
+                    STORE_NAME = this.STORE_NAME,
+                    STORE_TYPE = this.STORE_TYPE
+                };
+                return dto;
             }
-            else
-            {
-                MessageBox.Show("창고 생성을 실패하였습니다.\n다시 시도하여 주십시오.");
-            }
+            [Category("검색조건"), Description("창고코드 (= ST_xxxx) 입력"), DisplayName("창고코드")]
+            public string STORE_CODE { get; set; }
+            [Category("검색조건"), Description("창고명 입력"), DisplayName("창고명")]
+            public string STORE_NAME { get; set; }
+
+            [Category("검색조건"), Description("창고 타입 = 원자재창고 : RS, 반제품창고 : HS, 완제품창고 : FS"), DisplayName("창고유형")]
+            public string STORE_TYPE { get; set; }
         }
 
-        private void btnRefresh_Click(object sender, EventArgs e)
+        private void btnClose_Click(object sender, EventArgs e)
         {
-            PropertyGridStore blankData = new PropertyGridStore();
-            ppg_Store.SelectedObject = blankData;
+            this.Close();
         }
-
-        private void btnUpdate_Click(object sender, EventArgs e)
-        {
-            //ppg_Store.Enabled = true;
-        }
-
-        private void btnInsert_Click(object sender, EventArgs e)
-        {
-            var data = ppg_Store.SelectedObject as PropertyGridStore;
-            if (data.STORE_CODE == null)
-            {
-                MessageBox.Show("변경할 테이블을 선택해주세요.");
-                return;
-            }
-            var dto = PropertyToDto<PropertyGridStore, Store_DTO>(data);
-            bool result = srv.UpdateStore(dto);
-            if (result)
-            {
-                MessageBox.Show("창고 정보 수정 완료");
-                LoadData();
-                //ppg_Store.Enabled = false;
-            }
-            else
-            {
-                MessageBox.Show("창고 정보 수정을 실패하였습니다.\n다시 시도하여 주십시오.");
-            }
-        }
-        
     }
 
     public class PropertyGridStore
     {
-        [Category("속성"), DisplayName("창고코드")]
+        [Category("속성"), Description("창고코드 (= ST_xxxx) 입력"), DisplayName("창고코드")]
         public string STORE_CODE { get; set; }
 
 
-        [Category("속성"), DisplayName("창고명")]
+        [Category("속성"), Description("창고명 입력"), DisplayName("창고명")]
         public string STORE_NAME { get; set; }
 
 
-        [Category("속성"), DisplayName("창고유형")]
+        [Category("속성"), Description("창고 타입 = 원자재창고 : RS, 반제품창고 : HS, 완제품창고 : FS"), DisplayName("창고유형")]
         public string STORE_TYPE { get; set; }
 
 
@@ -204,58 +249,21 @@ namespace Cohesion_Project
         //public string FIFO_FLAG { get; set; }
 
 
-        [Category("속성"), ReadOnlyAttribute(true), DisplayName("생성시간")]
+        [Category("속성"), Description("생성 시 현재 시간 자동입력"), ReadOnlyAttribute(true), DisplayName("생성시간")]
         public DateTime CREATE_TIME { get; set; }
 
 
-        [Category("속성"), DisplayName("생성 사용자")]
+        [Category("속성"), Description("생성 시 사용자 자동입력"), DisplayName("생성 사용자")]
         public string CREATE_USER_ID { get; set; }
 
 
-        [Category("속성"), ReadOnlyAttribute(true), DisplayName("변경시간")]
+        [Category("속성"), Description("변경 시 현재 시간 자동입력"), ReadOnlyAttribute(true), DisplayName("변경시간")]
         public DateTime UPDATE_TIME { get; set; }
 
 
-        [Category("속성"), DisplayName("변경 사용자")]
+        [Category("속성"), Description("변경 시 최근 사용자 자동 업데이트"), DisplayName("변경 사용자")]
         public string UPDATE_USER_ID { get; set; }
     }
-
-    public class SearchDataStore
-    {
-        [Category("속성"), DisplayName("창고명")]
-        public string STORE_NAME { get; set; }
-
-
-        [Category("속성"), DisplayName("창고 유형")]
-        public string STORE_TYPE { get; set; }
-    }
-
-    public class Customer
-    {
-        private string _job2;
-
-        public Customer() { }
-        [TypeConverter(typeof(JobStringConverter))]
-        public string Job2
-        {
-            get { return _job2; }
-            set { _job2 = value; }
-        }
-    }
-    public class JobSource
-    {
-        public List<string> GetSourceList()
-        {
-            List<string> jobList = new List<string>();
-            jobList.Add("Student");
-            jobList.Add("Lecture");
-            jobList.Add("Employee");
-
-            return jobList;
-        }
-    }
-
-
 
     //public class JobStringConverter : StringConverter
     //{
