@@ -239,8 +239,17 @@ namespace Cohesion_Project
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            UserList = Srv_User.SelectUser2(condition);
-            DgvUser.DataSource = UserList;
+            if(Ppg_User.SelectedObject is SearchData)
+            {
+
+                UserList = Srv_User.SelectUser2(condition);
+                DgvUser.DataSource = UserList;
+
+            }
+            else
+            {
+                MboxUtil.MboxError("검색조건을 먼저 눌러주세요");
+            }
         }
 
         private void btnSearchCondition_Click(object sender, EventArgs e)
