@@ -16,9 +16,11 @@ namespace Cohesion_Project
         Srv_UserGroup srv_UG = new Srv_UserGroup();
         Srv_UserGroup Srv_UserGroup;
         List<UserGroup_DTO> UGroupList;
-        private SearchCondition condtion = new SearchCondition();
+        private UserGoupCondition_DTO condition = new UserGoupCondition_DTO();
+       // private SearchCondition condtion = new SearchCondition();
         private UGdate ugd = new UGdate();
         private SearchData sd = new SearchData();
+        bool isCondition = true;
         public Frm_UserGroup()
         {
             InitializeComponent();
@@ -204,16 +206,31 @@ namespace Cohesion_Project
 
         private void btnSearchCondition_Click(object sender, EventArgs e)
         {
-            if (state)
+            if (isCondition)
             {
-                Ppg_UserGourp.SelectedObject = ugd;
-                state = false;
+                lbl3.Text = "▶ 검색 조건";
+                Ppg_UserGourp.Enabled = true;
+                Ppg_UserGourp.SelectedObject = condition;
+                isCondition = false;
             }
             else
             {
-                Ppg_UserGourp.SelectedObject = sd;
-                state = true;
+                lbl3.Text = "▶ 속성";
+                Ppg_UserGourp.SelectedObject = ugd;
+                condition = new UserGoupCondition_DTO();
+                isCondition = true;
+                Ppg_UserGourp.Enabled = false;
             }
+            //if (state)
+            //{
+            //    Ppg_UserGourp.SelectedObject = ugd;
+            //    state = false;
+            //}
+            //else
+            //{
+            //    Ppg_UserGourp.SelectedObject = sd;
+            //    state = true;
+            //}
         }
 
         public class SearchData
@@ -275,8 +292,18 @@ namespace Cohesion_Project
             btnAdd.Enabled = false;
 
         }
+        public class ComboProductConverter : StringConverter
+        {
+            public override bool GetStandardValuesSupported(ITypeDescriptorContext context)
+            {
+                return true;
+            }
 
-
+            public override TypeConverter.StandardValuesCollection GetStandardValues(ITypeDescriptorContext context)
+            {
+                return new StandardValuesCollection(ComboUtil.ProductCode);
+            }
+        }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -300,36 +327,61 @@ namespace Cohesion_Project
 
         public static T DgvToDto<T>(DataGridView dgv)
         {
-            return (T)dgv.Rows[dgv.CurrentRow.Index].DataBoundItem;
+          
+                return (T)dgv.Rows[dgv.CurrentRow.Index].DataBoundItem;
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            UGroupList = Srv_UserGroup.SSelectUserGroup(condtion.GetCondition());
-            DgvUserGroup.DataSource = UGroupList;
+     
+                UGroupList = Srv_UserGroup.SelectUserGroup2(condition);
+                DgvUserGroup.DataSource = UGroupList;
+          
+
         }
-        private class SearchCondition
-        {
-            public UserGroup_DTO GetCondition()
-            {
-                UserGroup_DTO dto = new UserGroup_DTO
-                {
-                    USER_GROUP_CODE = this.USER_GROUP_CODE,
-                    USER_GROUP_NAME = this.USER_GROUP_NAME,
-                    USER_GROUP_TYPE = this.USER_GROUP_TYPE,
+        //private void btnSearchCondition_Click(object sender, EventArgs e)
+        //{
+        //    if (isCondition)
+        //    {
+        //        lbl3.Text = "▶ 검색 조건";
+        //        Ppg_User.Enabled = true;
+        //        Ppg_User.SelectedObject = condition;
+        //        isCondition = false;
+        //    }
+        //    else
+        //    {
+        //        lbl3.Text = "▶ 속성";
+        //        Ppg_User.SelectedObject = ud;
+        //        condition = new User_Condition_DTO();
+        //        isCondition = true;
+        //        Ppg_User.Enabled = false;
+        //    }
+        //}
 
-                };
-                return dto;
-            }
-            [Category("속성"), Description("USER_GROUP_CODE")]
-            public string USER_GROUP_CODE { get; set; }
+        //private class SearchCondition
+        //{
+        //    public UserGroup_DTO GetCondition()
+        //    {
+        //        UserGroup_DTO dto = new UserGroup_DTO
+        //        {
+        //            USER_GROUP_CODE = this.USER_GROUP_CODE,
+        //            USER_GROUP_NAME = this.USER_GROUP_NAME,
+        //            USER_GROUP_TYPE = this.USER_GROUP_TYPE,
 
-            [Category("속성"), Description("USER_GROUP_NAME")]
-            public string USER_GROUP_NAME { get; set; }
+        //        };
+        //        return dto;
+        //    }
+        //    [Category("속성"), Description("USER_GROUP_CODE")]
+        //    public string USER_GROUP_CODE { get; set; }
 
-            [Category("속성"), Description("USER_GROUP_TYPE"), DisplayName("사용자 그룹 유형"), TypeConverter(typeof(ComboStringConverter))]
-            public string USER_GROUP_TYPE { get; set; }
-        }
+        //    [Category("속성"), Description("USER_GROUP_NAME")]
+        //    public string USER_GROUP_NAME { get; set; }
+
+        //    [Category("속성"), Description("USER_GROUP_TYPE"), DisplayName("사용자 그룹 유형"), TypeConverter(typeof(ComboStringConverter))]
+        //    public string USER_GROUP_TYPE { get; set; }
+        //}
+
     }
+
 }
 

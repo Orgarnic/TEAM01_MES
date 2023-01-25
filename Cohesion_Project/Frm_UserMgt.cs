@@ -238,8 +238,8 @@ namespace Cohesion_Project
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
-        {
-            if(Ppg_User.SelectedObject is SearchData)
+        { 
+            if(Ppg_User.SelectedObject is User_Condition_DTO )
             {
 
                 UserList = Srv_User.SelectUser2(condition);
