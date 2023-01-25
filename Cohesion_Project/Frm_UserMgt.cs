@@ -16,11 +16,11 @@ namespace Cohesion_Project
         Srv_User srv_U = new Srv_User();
         Srv_User Srv_User;
         List<User_DTO> UserList;
-
-     //   private SearchCondition condtion = new SearchCondition();
+        private User_Condition_DTO condition = new User_Condition_DTO();
+        //   private SearchCondition condtion = new SearchCondition();
         private Udate ud = new Udate();
         private SearchData sd = new SearchData();
-
+        bool isCondition = true;
         public Frm_UserMgt()
         {
             InitializeComponent();
@@ -83,14 +83,14 @@ namespace Cohesion_Project
             [Category("추적"), Description("USER_DEPARTMENT"), DisplayName("부서")]
             public string USER_DEPARTMENT { get; set; }
 
-            [Category("추적"), Description("CREATE_TIME"), DisplayName("생성 시간")]
+            [Category("추적"), Description("CREATE_TIME"), DisplayName("생성 시간"),ReadOnly(true)]
             public DateTime CREATE_TIME { get; set; }
 
-            [Category("추적"), Description("CREATE_USER_ID"), DisplayName("생성 사용자")]
+            [Category("추적"), Description("CREATE_USER_ID"), DisplayName("생성 사용자"),ReadOnly(true)]
             public string CREATE_USER_ID { get; set; }
-            [Category("추적"), Description("UPDATE_TIME"), DisplayName("변경 시간")]
+            [Category("추적"), Description("UPDATE_TIME"), DisplayName("변경 시간"), ReadOnly(true)]
             public DateTime UPDATE_TIME { get; set; }
-            [Category("추적"), Description("UPDATE_USER_ID"), DisplayName("변경 사용자")]
+            [Category("추적"), Description("UPDATE_USER_ID"), DisplayName("변경 사용자"), ReadOnly(true)]
             public string UPDATE_USER_ID { get; set; }
         }
         //테이블 정보 그리드뷰에 보여주기
@@ -164,7 +164,7 @@ namespace Cohesion_Project
             Udate data = Ppg_User.SelectedObject as Udate;
 
             var dto = PropertyToDto<Udate, User_DTO>(data);
-           // dto.CREATE_TIME = DateTime.Now;
+            dto.CREATE_TIME = DateTime.Now;
             bool result = srv_U.InsertUser(dto);
 
             if (result)
@@ -218,6 +218,48 @@ namespace Cohesion_Project
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (DgvUser.SelectedRows.Count < 1)
+                return;
+            if (MessageBox.Show($"{DgvUser[1, DgvUser.CurrentRow.Index].Value.ToString()} 사용자구룹을 삭제하시겠습니까 ?", "알림", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel) return;
+            int userCode = Convert.ToInt32(DgvUser[0, DgvUser.CurrentRow.Index].Value);
+            bool result = Srv_User.DeleteUser(userCode);
+            if (!result)
+            {
+                MessageBox.Show("오류가 발생했습니다.", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            MessageBox.Show("권한 저장정보가 삭제되었습니다.", "알람", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            DataGridViewFill();
+            DgvUser.ClearSelection();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            UserList = Srv_User.SelectUser2(condition);
+            DgvUser.DataSource = UserList;
+        }
+
+        private void btnSearchCondition_Click(object sender, EventArgs e)
+        {
+            if (isCondition)
+            {
+                lbl3.Text = "▶ 검색 조건";
+                Ppg_User.Enabled = true;
+                Ppg_User.SelectedObject = condition;
+                isCondition = false;
+            }
+            else
+            {
+                lbl3.Text = "▶ 속성";
+               Ppg_User.SelectedObject = ud;
+                condition = new User_Condition_DTO();
+                isCondition = true;
+                Ppg_User.Enabled = false;
+            }
         }
     }
 }

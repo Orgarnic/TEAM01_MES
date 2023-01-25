@@ -106,16 +106,16 @@ namespace Cohesion_Project
             [Category("속성"), Description("USER_GROUP_TYPE"), DisplayName("사용자 그룹 유형")]
             public string USER_GROUP_TYPE { get; set; }
 
-            [Category("추적"), Description("CREATE_TIME"), DisplayName("생성 시간")]
+            [Category("추적"), Description("CREATE_TIME"), DisplayName("생성 시간"), ReadOnly(true)]
             public DateTime CREATE_TIME { get; set; }
 
-            [Category("추적"), Description("CREATE_USER_ID"), DisplayName("생성자")]
+            [Category("추적"), Description("CREATE_USER_ID"), DisplayName("생성자"), ReadOnly(true)]
             public string CREATE_USER_ID { get; set; }
 
-            [Category("추적"), Description("UPDATE_TIME"), DisplayName("변경 시간")]
+            [Category("추적"), Description("UPDATE_TIME"), DisplayName("변경 시간"), ReadOnly(true)]
             public DateTime UPDATE_TIME { get; set; }
 
-            [Category("추적"), Description("UPDATE_USER_ID"), DisplayName("변경자")]
+            [Category("추적"), Description("UPDATE_USER_ID"), DisplayName("변경자"), ReadOnly(true)]
             public string UPDATE_USER_ID { get; set; }
         }
 
@@ -187,7 +187,7 @@ namespace Cohesion_Project
         {
             UGdate data = Ppg_UserGourp.SelectedObject as UGdate;
 
-            var dto = PropertyToDto<UGdate, UserGroup_DTO>(data);
+            var dto = PropertyToDto<UGdate, UserGroup_DTO>(data); dto.CREATE_USER_ID = "123";
             dto.CREATE_TIME = DateTime.Now;
             bool result = srv_UG.InsertUserGroup(dto);
 
@@ -252,7 +252,7 @@ namespace Cohesion_Project
                 MessageBox.Show("변경할 테이블을 선택해주세요.");
                 return;
             }
-            var dto = PropertyToDto<UGdate, UserGroup_DTO>(data);
+            var dto = PropertyToDto<UGdate, UserGroup_DTO>(data); dto.UPDATE_USER_ID = "123";
             dto.UPDATE_TIME = DateTime.Now;
             bool result = srv_UG.UpdateUserGroup(dto);
             if (result)

@@ -40,13 +40,26 @@ namespace Cohesion_DAO
 
         public bool InsertUserGroup(UserGroup_DTO dto)
         {
-            conn.Open();
+            try
+            {
 
-            string sql = @"insert into USER_GROUP_MST(USER_GROUP_CODE, USER_GROUP_NAME, USER_GROUP_TYPE, CREATE_USER_ID)
-                                values(@USER_GROUP_CODE,@USER_GROUP_NAME,@USER_GROUP_TYPE,@CREATE_USER_ID)";
-            SqlCommand cmd = Helper.UpsertCmdValue<UserGroup_DTO>(dto, sql, conn);
-            int result = cmd.ExecuteNonQuery();
-            return result > 0;
+                conn.Open();
+
+                string sql = @"insert into USER_GROUP_MST(USER_GROUP_CODE, USER_GROUP_NAME, USER_GROUP_TYPE, CREATE_USER_ID,CREATE_TIME )
+                                    values( @USER_GROUP_CODE, @USER_GROUP_NAME, @USER_GROUP_TYPE, @CREATE_USER_ID, @CREATE_TIME)";
+                SqlCommand cmd = Helper.UpsertCmdValue<UserGroup_DTO>(dto, sql, conn);
+                int result = cmd.ExecuteNonQuery();
+                return result > 0;
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err);
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
 
         }
 
