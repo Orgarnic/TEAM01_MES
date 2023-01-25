@@ -19,7 +19,7 @@ namespace Cohesion_Project.Service
 
             return list;
         }
-        public bool InsertStore(Equipment_DTO dto)
+        public bool InsertEquipment(Equipment_DTO dto)
         {
             Equipment_DAO dao = new Equipment_DAO();
             bool result = dao.InsertEquipment(dto);

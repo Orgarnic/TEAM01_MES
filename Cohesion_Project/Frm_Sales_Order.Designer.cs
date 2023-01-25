@@ -1,7 +1,7 @@
 ﻿
 namespace Cohesion_Project
 {
-    partial class Frm_Store
+    partial class Frm_Sales_Order
     {
         /// <summary>
         /// 필수 디자이너 변수입니다.
@@ -29,8 +29,8 @@ namespace Cohesion_Project
         /// </summary>
         private void InitializeComponent()
         {
-            this.ppg_Store = new System.Windows.Forms.PropertyGrid();
-            this.dgv_Store = new System.Windows.Forms.DataGridView();
+            this.dgv_SalesOrder = new System.Windows.Forms.DataGridView();
+            this.ppg_SalesOrder = new System.Windows.Forms.PropertyGrid();
             this.pnlSearch.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -40,115 +40,82 @@ namespace Cohesion_Project
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.panel7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_Store)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_SalesOrder)).BeginInit();
             this.SuspendLayout();
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.Size = new System.Drawing.Size(1039, 21);
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.dgv_Store);
+            this.panel2.Controls.Add(this.dgv_SalesOrder);
             this.panel2.ForeColor = System.Drawing.Color.Black;
-            this.panel2.Size = new System.Drawing.Size(1204, 874);
             this.panel2.Controls.SetChildIndex(this.lbl4, 0);
-            this.panel2.Controls.SetChildIndex(this.dgv_Store, 0);
-            // 
-            // lbl4
-            // 
-            this.lbl4.Size = new System.Drawing.Size(1202, 30);
+            this.panel2.Controls.SetChildIndex(this.dgv_SalesOrder, 0);
             // 
             // btnSearch
             // 
             this.btnSearch.FlatAppearance.BorderSize = 0;
-            this.btnSearch.Location = new System.Drawing.Point(1055, 38);
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
-            // 
-            // panel4
-            // 
-            this.panel4.Size = new System.Drawing.Size(1204, 72);
             // 
             // btnSearchCondition
             // 
             this.btnSearchCondition.FlatAppearance.BorderSize = 0;
-            this.btnSearchCondition.Location = new System.Drawing.Point(1115, 38);
-            this.btnSearchCondition.Click += new System.EventHandler(this.btnSearchCondition_Click);
-            // 
-            // lbl2
-            // 
-            this.lbl2.Size = new System.Drawing.Size(1202, 30);
             // 
             // splitContainer1
             // 
-            this.splitContainer1.SplitterDistance = 1207;
             // 
             // panel7
             // 
-            this.panel7.Controls.Add(this.ppg_Store);
-            this.panel7.Size = new System.Drawing.Size(307, 952);
+            this.panel7.Controls.Add(this.ppg_SalesOrder);
+            this.panel7.ForeColor = System.Drawing.Color.Black;
             this.panel7.Controls.SetChildIndex(this.lbl3, 0);
-            this.panel7.Controls.SetChildIndex(this.ppg_Store, 0);
-            // 
-            // lbl3
-            // 
-            this.lbl3.Size = new System.Drawing.Size(305, 30);
+            this.panel7.Controls.SetChildIndex(this.ppg_SalesOrder, 0);
             // 
             // btnClose
             // 
             this.btnClose.FlatAppearance.BorderSize = 0;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnDelete
             // 
             this.btnDelete.FlatAppearance.BorderSize = 0;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnInsert
             // 
             this.btnInsert.FlatAppearance.BorderSize = 0;
-            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
             // btnAdd
             // 
             this.btnAdd.FlatAppearance.BorderSize = 0;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnUpdate
             // 
             this.btnUpdate.FlatAppearance.BorderSize = 0;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnRefresh
             // 
             this.btnRefresh.FlatAppearance.BorderSize = 0;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
-            // ppg_Store
+            // dgv_SalesOrder
             // 
-            this.ppg_Store.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ppg_Store.Location = new System.Drawing.Point(0, 30);
-            this.ppg_Store.Name = "ppg_Store";
-            this.ppg_Store.Size = new System.Drawing.Size(305, 920);
-            this.ppg_Store.TabIndex = 7;
-            this.ppg_Store.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.ppg_Store_PropertyValueChanged);
+            this.dgv_SalesOrder.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_SalesOrder.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgv_SalesOrder.Location = new System.Drawing.Point(0, 30);
+            this.dgv_SalesOrder.Name = "dgv_SalesOrder";
+            this.dgv_SalesOrder.RowTemplate.Height = 23;
+            this.dgv_SalesOrder.Size = new System.Drawing.Size(1151, 842);
+            this.dgv_SalesOrder.TabIndex = 5;
             // 
-            // dgv_Store
+            // ppg_SalesOrder
             // 
-            this.dgv_Store.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_Store.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv_Store.Location = new System.Drawing.Point(0, 30);
-            this.dgv_Store.Name = "dgv_Store";
-            this.dgv_Store.Size = new System.Drawing.Size(1202, 842);
-            this.dgv_Store.TabIndex = 6;
-            this.dgv_Store.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Store_CellClick);
+            this.ppg_SalesOrder.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ppg_SalesOrder.Location = new System.Drawing.Point(0, 30);
+            this.ppg_SalesOrder.Name = "ppg_SalesOrder";
+            this.ppg_SalesOrder.Size = new System.Drawing.Size(356, 920);
+            this.ppg_SalesOrder.TabIndex = 7;
             // 
-            // Frm_Store
+            // Frm_Sales_Order
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.ClientSize = new System.Drawing.Size(1521, 1041);
-            this.Name = "Frm_Store";
-            this.Load += new System.EventHandler(this.Frm_Store_Load);
+            this.Name = "Frm_Sales_Order";
+            this.Load += new System.EventHandler(this.Frm_Sales_Order_Load);
             this.pnlSearch.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
@@ -159,13 +126,14 @@ namespace Cohesion_Project
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_Store)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_SalesOrder)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.PropertyGrid ppg_Store;
-        private System.Windows.Forms.DataGridView dgv_Store;
+
+        private System.Windows.Forms.DataGridView dgv_SalesOrder;
+        private System.Windows.Forms.PropertyGrid ppg_SalesOrder;
     }
 }
