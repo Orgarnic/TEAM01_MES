@@ -30,8 +30,8 @@ namespace Cohesion_DAO
         public List<Store_DTO> SelectStoreList()
         {
             string sql = @"SELECT STORE_CODE, STORE_NAME, STORE_TYPE, FIFO_FLAG, CREATE_TIME, CREATE_USER_ID, UPDATE_TIME, UPDATE_USER_ID
-                           FROM STORE_MST
-                           ORDER BY STORE_CODE";
+                        FROM STORE_MST
+                        ORDER BY STORE_CODE";
             SqlCommand cmd = new SqlCommand(sql, conn);
             conn.Open();
 
@@ -76,6 +76,73 @@ namespace Cohesion_DAO
             conn.Open();
             cmd.ExecuteNonQuery();
             return true;
+        }
+
+        public List<Store_DTO> SelectStore(Store_DTO condtion)
+        {
+            List<Store_DTO> list = null;
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                StringBuilder sql = new StringBuilder(
+                    @"SELECT STORE_CODE, STORE_NAME, STORE_TYPE, CREATE_TIME, CREATE_USER_ID, UPDATE_TIME, UPDATE_USER_ID
+                      FROM STORE_MST
+                      where 1 = 1 ");
+                if (!string.IsNullOrWhiteSpace(condtion.STORE_CODE))
+                {
+                    sql.Append(" and STORE_CODE = @STORE_CODE ");
+                    cmd.Parameters.AddWithValue("@STORE_CODE", condtion.STORE_CODE);
+                }
+                if (!string.IsNullOrWhiteSpace(condtion.STORE_NAME))
+                {
+                    sql.Append(" and STORE_NAME = @STORE_NAME ");
+                    cmd.Parameters.AddWithValue("@STORE_NAME", condtion.STORE_NAME);
+                }
+                if (!string.IsNullOrWhiteSpace(condtion.STORE_TYPE))
+                {
+                    sql.Append(" and STORE_TYPE = @STORE_TYPE ");
+                    cmd.Parameters.AddWithValue("@STORE_TYPE", condtion.STORE_TYPE);
+                }
+                cmd.CommandText = sql.ToString();
+                cmd.Connection = conn;
+                conn.Open();
+                list = Helper.DataReaderMapToList<Store_DTO>(cmd.ExecuteReader());
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.StackTrace);
+                Debug.WriteLine(err.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return list;
+        }
+
+        public bool DeleteStore(Store_DTO dto)
+        {
+            try
+            {
+                string sql = @"DELETE FROM STORE_MST WHERE STORE_CODE = @STORE_CODE ";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@STORE_CODE", dto.STORE_CODE);
+                conn.Open();
+                int result = cmd.ExecuteNonQuery();
+                conn.Close();
+
+                return result > 0;
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.StackTrace);
+                Debug.WriteLine(err.Message);
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
     }
 }
