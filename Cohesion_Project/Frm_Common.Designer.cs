@@ -29,136 +29,143 @@ namespace Cohesion_Project
         /// </summary>
         private void InitializeComponent()
         {
-         this.Dgv_CommonTable = new System.Windows.Forms.DataGridView();
-         this.Ppg_CommonTable = new System.Windows.Forms.PropertyGrid();
-         this.pnlSearch.SuspendLayout();
-         this.panel2.SuspendLayout();
-         this.panel4.SuspendLayout();
-         this.panel5.SuspendLayout();
-         ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-         this.splitContainer1.Panel1.SuspendLayout();
-         this.splitContainer1.Panel2.SuspendLayout();
-         this.splitContainer1.SuspendLayout();
-         this.panel7.SuspendLayout();
-         ((System.ComponentModel.ISupportInitialize)(this.Dgv_CommonTable)).BeginInit();
-         this.SuspendLayout();
-         // 
-         // panel2
-         // 
-         this.panel2.Controls.Add(this.Dgv_CommonTable);
-         this.panel2.Size = new System.Drawing.Size(1153, 806);
-         this.panel2.Controls.SetChildIndex(this.Dgv_CommonTable, 0);
-         this.panel2.Controls.SetChildIndex(this.lbl4, 0);
-         // 
-         // lbl4
-         // 
-         this.lbl4.Size = new System.Drawing.Size(1151, 28);
-         this.lbl4.Text = "▶ 공통코드 테이블 정보";
-         // 
-         // btnSearch
-         // 
-         this.btnSearch.FlatAppearance.BorderSize = 0;
-         // 
-         // btnSearchCondition
-         // 
-         this.btnSearchCondition.FlatAppearance.BorderSize = 0;
-         this.btnSearchCondition.Click += new System.EventHandler(this.btnSearchCondition_Click);
-         // 
-         // panel5
-         // 
-         this.panel5.Size = new System.Drawing.Size(1521, 887);
-         // 
-         // splitContainer1
-         // 
-         this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.Dgv_CommonTable = new System.Windows.Forms.DataGridView();
+            this.Ppg_CommonTable = new System.Windows.Forms.PropertyGrid();
+            this.pnlSearch.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            this.panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Dgv_CommonTable)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // lbl1
+            // 
+            this.lbl1.Text = "공통코드 테이블 등록";
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel2.Controls.Add(this.Dgv_CommonTable);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(3, 75);
+            this.panel2.Size = new System.Drawing.Size(1153, 872);
+            this.panel2.Controls.SetChildIndex(this.Dgv_CommonTable, 0);
+            this.panel2.Controls.SetChildIndex(this.lbl4, 0);
+            // 
+            // lbl4
+            // 
+            this.lbl4.Text = "▶ 공통코드 테이블 정보";
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.FlatAppearance.BorderSize = 0;
+            // 
+            // btnSearchCondition
+            // 
+            this.btnSearchCondition.FlatAppearance.BorderSize = 0;
+            this.btnSearchCondition.Click += new System.EventHandler(this.btnSearchCondition_Click);
+            // 
+            // panel5
+            // 
+            this.panel5.Size = new System.Drawing.Size(1521, 950);
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-         this.splitContainer1.Dock = System.Windows.Forms.DockStyle.None;
-         this.splitContainer1.Size = new System.Drawing.Size(1521, 956);
-         // 
-         // panel7
-         // 
-         this.panel7.Controls.Add(this.Ppg_CommonTable);
-         this.panel7.Size = new System.Drawing.Size(358, 884);
-         this.panel7.Controls.SetChildIndex(this.lbl3, 0);
-         this.panel7.Controls.SetChildIndex(this.Ppg_CommonTable, 0);
-         // 
-         // lbl3
-         // 
-         this.lbl3.Size = new System.Drawing.Size(356, 28);
-         this.lbl3.Text = "";
-         // 
-         // btnClose
-         // 
-         this.btnClose.FlatAppearance.BorderSize = 0;
-         this.btnClose.Location = new System.Drawing.Point(1422, 934);
-         this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-         // 
-         // btnDelete
-         // 
-         this.btnDelete.FlatAppearance.BorderSize = 0;
-         this.btnDelete.Location = new System.Drawing.Point(4, 934);
-         this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-         // 
-         // btnInsert
-         // 
-         this.btnInsert.FlatAppearance.BorderSize = 0;
-         this.btnInsert.Location = new System.Drawing.Point(1220, 934);
-         this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
-         // 
-         // btnAdd
-         // 
-         this.btnAdd.FlatAppearance.BorderSize = 0;
-         this.btnAdd.Location = new System.Drawing.Point(1018, 934);
-         this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-         // 
-         // btnUpdate
-         // 
-         this.btnUpdate.FlatAppearance.BorderSize = 0;
-         this.btnUpdate.Location = new System.Drawing.Point(1119, 934);
-         this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-         // 
-         // btnRefresh
-         // 
-         this.btnRefresh.FlatAppearance.BorderSize = 0;
-         this.btnRefresh.Location = new System.Drawing.Point(1321, 934);
-         this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-         // 
-         // Dgv_CommonTable
-         // 
-         this.Dgv_CommonTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-         this.Dgv_CommonTable.Dock = System.Windows.Forms.DockStyle.Fill;
-         this.Dgv_CommonTable.Location = new System.Drawing.Point(0, 0);
-         this.Dgv_CommonTable.Name = "Dgv_CommonTable";
-         this.Dgv_CommonTable.Size = new System.Drawing.Size(1151, 804);
-         this.Dgv_CommonTable.TabIndex = 5;
-         // 
-         // Ppg_CommonTable
-         // 
-         this.Ppg_CommonTable.Dock = System.Windows.Forms.DockStyle.Fill;
-         this.Ppg_CommonTable.Location = new System.Drawing.Point(0, 28);
-         this.Ppg_CommonTable.Name = "Ppg_CommonTable";
-         this.Ppg_CommonTable.Size = new System.Drawing.Size(356, 854);
-         this.Ppg_CommonTable.TabIndex = 8;
-         // 
-         // Frm_Common
-         // 
-         this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
-         this.ClientSize = new System.Drawing.Size(1521, 972);
-         this.Name = "Frm_Common";
-         this.Load += new System.EventHandler(this.Frm_Common_Load);
-         this.pnlSearch.ResumeLayout(false);
-         this.panel2.ResumeLayout(false);
-         this.panel4.ResumeLayout(false);
-         this.panel4.PerformLayout();
-         this.panel5.ResumeLayout(false);
-         this.splitContainer1.Panel1.ResumeLayout(false);
-         this.splitContainer1.Panel2.ResumeLayout(false);
-         ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-         this.splitContainer1.ResumeLayout(false);
-         this.panel7.ResumeLayout(false);
-         ((System.ComponentModel.ISupportInitialize)(this.Dgv_CommonTable)).EndInit();
-         this.ResumeLayout(false);
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.None;
+            this.splitContainer1.Size = new System.Drawing.Size(1521, 950);
+            // 
+            // panel7
+            // 
+            this.panel7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel7.Controls.Add(this.Ppg_CommonTable);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel7.Size = new System.Drawing.Size(358, 944);
+            this.panel7.Controls.SetChildIndex(this.lbl3, 0);
+            this.panel7.Controls.SetChildIndex(this.Ppg_CommonTable, 0);
+            // 
+            // lbl3
+            // 
+            this.lbl3.Text = "";
+            // 
+            // btnClose
+            // 
+            this.btnClose.FlatAppearance.BorderSize = 0;
+            this.btnClose.Location = new System.Drawing.Point(1422, 996);
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.FlatAppearance.BorderSize = 0;
+            this.btnDelete.Location = new System.Drawing.Point(4, 996);
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnInsert
+            // 
+            this.btnInsert.FlatAppearance.BorderSize = 0;
+            this.btnInsert.Location = new System.Drawing.Point(1220, 996);
+            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.FlatAppearance.BorderSize = 0;
+            this.btnAdd.Location = new System.Drawing.Point(1018, 996);
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.FlatAppearance.BorderSize = 0;
+            this.btnUpdate.Location = new System.Drawing.Point(1119, 996);
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.FlatAppearance.BorderSize = 0;
+            this.btnRefresh.Location = new System.Drawing.Point(1321, 996);
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
+            // Dgv_CommonTable
+            // 
+            this.Dgv_CommonTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Dgv_CommonTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Dgv_CommonTable.Location = new System.Drawing.Point(0, 0);
+            this.Dgv_CommonTable.Name = "Dgv_CommonTable";
+            this.Dgv_CommonTable.Size = new System.Drawing.Size(1151, 870);
+            this.Dgv_CommonTable.TabIndex = 5;
+            // 
+            // Ppg_CommonTable
+            // 
+            this.Ppg_CommonTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Ppg_CommonTable.Location = new System.Drawing.Point(0, 30);
+            this.Ppg_CommonTable.Name = "Ppg_CommonTable";
+            this.Ppg_CommonTable.Size = new System.Drawing.Size(356, 912);
+            this.Ppg_CommonTable.TabIndex = 8;
+            // 
+            // Frm_Common
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.ClientSize = new System.Drawing.Size(1521, 1041);
+            this.Name = "Frm_Common";
+            this.Load += new System.EventHandler(this.Frm_Common_Load);
+            this.pnlSearch.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
+            this.panel7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Dgv_CommonTable)).EndInit();
+            this.ResumeLayout(false);
 
         }
 
