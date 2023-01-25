@@ -90,10 +90,12 @@ namespace Cohesion_Project
             // btnDelete
             // 
             this.btnDelete.FlatAppearance.BorderSize = 0;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnInsert
             // 
             this.btnInsert.FlatAppearance.BorderSize = 0;
+            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
             // btnAdd
             // 
@@ -103,10 +105,12 @@ namespace Cohesion_Project
             // btnUpdate
             // 
             this.btnUpdate.FlatAppearance.BorderSize = 0;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnRefresh
             // 
             this.btnRefresh.FlatAppearance.BorderSize = 0;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // dgvWorkOrderList
             // 
@@ -116,6 +120,7 @@ namespace Cohesion_Project
             this.dgvWorkOrderList.RowTemplate.Height = 23;
             this.dgvWorkOrderList.Size = new System.Drawing.Size(513, 150);
             this.dgvWorkOrderList.TabIndex = 5;
+            this.dgvWorkOrderList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvWorkOrderList_CellClick);
             // 
             // ppgWorkOrderSearch
             // 

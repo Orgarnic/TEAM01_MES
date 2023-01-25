@@ -27,5 +27,32 @@ namespace Cohesion_Project.Service
 
             return list;
         }
+
+        public bool InsertWorkOrder(Work_Order_MST_DTO work)
+        {
+            WorkOrder_DAO db = new WorkOrder_DAO();
+            bool result = db.InsertWorkOrder(work);
+            db.Dispose();
+
+            return result;
+        }
+
+        public bool UpdateWorkOrder(Work_Order_MST_DTO work, string uid)
+        {
+            WorkOrder_DAO db = new WorkOrder_DAO();
+            bool result = db.UpdateWorkOrder(work, uid);
+            db.Dispose();
+
+            return result;
+        }
+
+        public bool DeleteWorkOrder(string wCode)
+        {
+            WorkOrder_DAO db = new WorkOrder_DAO();
+            bool result = db.DeleteWorkOrder(wCode);
+            db.Dispose();
+
+            return result;
+        }
     }
 }

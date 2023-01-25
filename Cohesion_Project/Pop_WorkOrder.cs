@@ -16,9 +16,15 @@ namespace Cohesion_Project
     {
         Work_Order_MST_DTO initWork = null;
         Srv_WorkOrder work = new Srv_WorkOrder();
+        string userID;
         int row;
         public Pop_WorkOrder()
         {
+            InitializeComponent();
+        }
+        public Pop_WorkOrder(string userid)
+        {
+            userID = userid;
             InitializeComponent();
         }
 
@@ -61,7 +67,9 @@ namespace Cohesion_Project
                 if (MboxUtil.MboxInfo_("해당 주문내역으로 작업지시를 등록하시겠습니까?") == false) return;
                 else
                 {
-                    
+                    work.InsertWorkOrder(initWork);
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
                     return;
                 }
             }
@@ -71,9 +79,13 @@ namespace Cohesion_Project
         {
             initWork = new Work_Order_MST_DTO
             {
-                CUSTOMER_CODE = dgvOrderList[2, e.RowIndex].Value.ToString(),
-                PRODUCT_CODE = dgvOrderList[3, e.RowIndex].Value.ToString(),
-                PRODUCT_QTY = Convert.ToInt32(dgvOrderList[4, e.RowIndex].Value.ToString())
+                ORDER_DATE = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")),
+                CUSTOMER_CODE = dgvOrderList[2, e.RowIndex].Value.ToString().Trim(),
+                PRODUCT_CODE = dgvOrderList[3, e.RowIndex].Value.ToString().Trim(),
+                ORDER_QTY = Convert.ToInt32(dgvOrderList[4, e.RowIndex].Value.ToString().Trim()),
+                ORDER_STATUS = "OPEN",
+                CREATE_TIME = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")),
+                CREATE_USER_ID = userID
             };
         }
     }
