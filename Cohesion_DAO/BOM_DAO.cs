@@ -27,6 +27,44 @@ namespace Cohesion_DAO
                 conn.Close();
         }
 
+        public List<PRODUCT_MST_DTO> SelectGetProduct(BOM_PRODUCT_SEARCH search)
+        {
+            List<PRODUCT_MST_DTO> list = null;
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                StringBuilder sql = new StringBuilder(@"select PRODUCT_CODE, PRODUCT_NAME, PRODUCT_TYPE, CUSTOMER_CODE, CREATE_TIME, CREATE_USER_ID, UPDATE_TIME, UPDATE_USER_ID
+                                                        from PRODUCT_MST
+                                                        where PRODUCT_TYPE = 'FERT'");
+
+                foreach (var property in search.GetType().GetProperties())
+                {
+                    if (!string.IsNullOrWhiteSpace((string)property.GetValue(search)))
+                    {
+                        sql.Append($" and {property.Name} = @{property.Name}");
+                        cmd.Parameters.AddWithValue($"@{property.Name}", property.GetValue(search).ToString());
+                    }
+                }
+                cmd.CommandText = sql.ToString();
+                cmd.Connection = conn;
+                conn.Open();
+
+                list = Helper.DataReaderMapToList<PRODUCT_MST_DTO>(cmd.ExecuteReader());
+
+            }
+            catch(Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                Debug.WriteLine(err.StackTrace);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return list;
+        }
+
         public List<PRODUCT_MST_DTO> SelectGetAllProductList()
         {
             List<PRODUCT_MST_DTO> list = null;

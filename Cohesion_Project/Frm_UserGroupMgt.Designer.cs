@@ -113,7 +113,7 @@ namespace Cohesion_Project
             // btnDelete
             // 
             this.btnDelete.FlatAppearance.BorderSize = 0;
-            this.btnDelete.Location = new System.Drawing.Point(0, 839);
+            this.btnDelete.Location = new System.Drawing.Point(7, 838);
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnInsert

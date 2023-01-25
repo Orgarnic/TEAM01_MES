@@ -36,5 +36,65 @@ namespace Cohesion_Project
         }
         
 
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            Udate data = Ppg_User.SelectedObject as Udate;
+
+            var dto = PropertyToDto<Udate, User_DTO>(data);
+            dto.CREATE_TIME = DateTime.Now;
+            bool result = srv_U.InsertUser(dto);
+
+            if (result)
+            {
+                MessageBox.Show("입력 성공");
+                DataGridViewFill();
+            }
+            else
+            {
+                MessageBox.Show("입력 실패");
+            }
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            Ppg_User.Enabled = true;
+            btnAdd.Enabled = false;
+        }
+
+        private void btnInsert_Click(object sender, EventArgs e)
+        {
+            var data = Ppg_User.SelectedObject as Udate;
+            if (data.USER_ID == null)
+            {
+                MessageBox.Show("변경할 유저ID을 선택해주세요.");
+                return;
+            }
+            var dto = PropertyToDto<Udate, User_DTO>(data);
+            dto.UPDATE_TIME = DateTime.Now;
+            bool result = srv_U.UpdateUser(dto);
+            if (result)
+            {
+                MessageBox.Show("수정 성공");
+                DataGridViewFill();
+            }
+            else
+            {
+                MessageBox.Show("수정 실패");
+            }
+
+            //   Ppg_UserGourp.Enabled = false; 추적창만 펄스해야 됨 안됨
+            btnAdd.Enabled = true;
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            Udate blankData = new Udate();
+            Ppg_User.SelectedObject = blankData;
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

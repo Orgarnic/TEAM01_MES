@@ -14,8 +14,9 @@ namespace Cohesion_Project
     {
         Srv_BOM srv = new Srv_BOM();
         List<PRODUCT_MST_DTO> product = null;
+        BOM_PRODUCT_SEARCH search = new BOM_PRODUCT_SEARCH();
+        List<BOM_MST_DTO> bom = null;
 
-        private SearchData sdata = new SearchData();
         string pcode, ccode;
 
         public Frm_BOM()
@@ -29,7 +30,7 @@ namespace Cohesion_Project
             DataGirdViewChild();
 
             ppgSearch.PropertySort = PropertySort.Categorized;
-            ppgSearch.SelectedObject = new PRODUCT_MST_DTO();
+            ppgSearch.SelectedObject = new BOM_PRODUCT_SEARCH();
             ppgBOMAttribute.SelectedObject = new BOM_MST_DTO();
         }
 
@@ -83,9 +84,10 @@ namespace Cohesion_Project
 
             dgvBOMChild.DataSource = srv.SelectBOMList(code);
 
-            PRODUCT_MST_DTO product = DgvUtil.DgvToDto<PRODUCT_MST_DTO>(dgvBOMParent);
-            ppgSearch.SelectedObject = product;
-
+            //PRODUCT_MST_DTO product = DgvUtil.DgvToDto<PRODUCT_MST_DTO>(dgvBOMParent);
+            //ppgSearch.SelectedObject = product;
+            BOM_PRODUCT_SEARCH search = new BOM_PRODUCT_SEARCH();
+            ppgSearch.SelectedObject = search;
             ppgBOMAttribute.SelectedObject = new BOM_MST_DTO();
 
             pcode = dgvBOMParent[0, e.RowIndex].Value.ToString();
@@ -95,7 +97,7 @@ namespace Cohesion_Project
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             dgvBOMParent.DataSource = dgvBOMChild.DataSource = null;
-            ppgSearch.SelectedObject = new PRODUCT_MST_DTO();
+            ppgSearch.SelectedObject = srv.SelectGetProduct(search);
             ppgBOMAttribute.SelectedObject = new BOM_MST_DTO();
         }
 
@@ -103,7 +105,8 @@ namespace Cohesion_Project
         private void btnSearch_Click(object sender, EventArgs e)
         {
             if (txtSearch.Text == null) return;
-            dgvBOMParent.DataSource = product.FindAll((s) => s.PRODUCT_NAME.Contains(txtSearch.Text));
+            //dgvBOMParent.DataSource = product.FindAll((s) => s.PRODUCT_NAME.Contains(txtSearch.Text));
+            
         }
 
         // 자녀제품 리스트에서 선택
@@ -121,13 +124,69 @@ namespace Cohesion_Project
             this.Close();
         }
 
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            BOM_MST_DTO prod = (BOM_MST_DTO)ppgSearch.SelectedObject;
+
+        }
+
+        private void btnSearchCondition_Click(object sender, EventArgs e)
+        {
+            ppgSearch.SelectedObject = new BOM_PRODUCT_SEARCH();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            if (btnUpdate.Text == "      변  경")
+            {
+                btnUpdate.Text = "      취  소";
+                btnAdd.Text = "      추  가";
+                btnDelete.Enabled = false;
+                btnRefresh.Enabled = false;
+                ppgBOMAttribute.Enabled = true;
+            }
+            else
+            {
+                btnUpdate.Text = "      변  경";
+                btnAdd.Text = "      생  성";
+                btnDelete.Enabled = true;
+                btnRefresh.Enabled = true;
+                ppgBOMAttribute.Enabled = false;
+                ppgBOMAttribute.SelectedObject = new BOM_PRODUCT_SEARCH();
+            }
+        }
+
+        private void btnInsert_Click(object sender, EventArgs e)
+        {
+            BOM_MST_DTO dto = null;
+            if (btnUpdate.Text != "      취  소") return;
+            if (!MboxUtil.MboxInfo_($"제품 {pcode}에 '해당'제품을 BOM등록하시겠습니까?")) return;
+            else
+            {
+                for(int i = 0; i < dgvBOMChild.Rows.Count; i++)
+                {
+                    dto = new BOM_MST_DTO
+                    {
+                        PRODUCT_CODE = dgvBOMChild[0, i].Value.ToString(),
+                        REQUIRE_QTY = Convert.ToInt32(dgvBOMChild[1, i].Value),
+                        ALTER_PRODUCT_CODE = dgvBOMChild[2, i].Value.ToString(),
+                        CREATE_TIME = Convert.ToDateTime(dgvBOMChild[3, i].Value.ToString()),
+                        CREATE_USER_ID = dgvBOMChild[4, i].Value.ToString(),
+                        UPDATE_TIME = Convert.ToDateTime(dgvBOMChild[5, i].Value.ToString()),
+                        UPDATE_USER_ID = dgvBOMChild[6, i].Value.ToString()
+                    };
+                }
+                bom.Add(ppgBOMAttribute.SelectedObject as BOM_MST_DTO);
+                dgvBOMChild.DataSource = bom;
+            }
+        }
+
         // 부모제품의 BOM 목록에서 자녀제품 삭제(제품 목록에서 삭제는 X)
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if(dgvBOMChild.CurrentCell.Value == null)
             {
                 MboxUtil.MboxWarn("삭제할 제품을 선택해주세요.");
-                return;
             }
             else
             {
@@ -153,4 +212,6 @@ namespace Cohesion_Project
         [Category("속성"), Description("PRODUCT_NAME"), DisplayName("제품명")]
         public string PRODUCT_NAME { get; set; }
     }
+
+
 }

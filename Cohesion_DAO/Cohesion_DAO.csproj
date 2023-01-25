@@ -49,10 +49,14 @@
     <Compile Include="BOM_DAO.cs" />
     <Compile Include="Common_DAO.cs" />
     <Compile Include="Equipment_DAO.cs" />
+    <Compile Include="Inspection_DAO.cs" />
+    <Compile Include="Operation_DAO.cs" />
     <Compile Include="Product_DAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sales_Order_DAO.cs" />
     <Compile Include="Store_DAO.cs" />
     <Compile Include="UserGroup_DAO.cs" />
+    <Compile Include="UserMgt_DAO.cs" />
     <Compile Include="Util\Helper.cs" />
     <Compile Include="Util\LoggingUtility.cs" />
   </ItemGroup>
