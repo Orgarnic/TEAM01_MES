@@ -87,9 +87,9 @@ namespace Cohesion_Project
             public DateTime CREATE_TIME { get; set; }
 
             [Category("추적"), Description("CREATE_USER_ID"), DisplayName("생성 사용자")]
-            public DateTime CREATE_USER_ID { get; set; }
+            public string CREATE_USER_ID { get; set; }
             [Category("추적"), Description("UPDATE_TIME"), DisplayName("변경 시간")]
-            public string UPDATE_TIME { get; set; }
+            public DateTime UPDATE_TIME { get; set; }
             [Category("추적"), Description("UPDATE_USER_ID"), DisplayName("변경 사용자")]
             public string UPDATE_USER_ID { get; set; }
         }
@@ -164,7 +164,7 @@ namespace Cohesion_Project
             Udate data = Ppg_User.SelectedObject as Udate;
 
             var dto = PropertyToDto<Udate, User_DTO>(data);
-            dto.CREATE_TIME = DateTime.Now;
+           // dto.CREATE_TIME = DateTime.Now;
             bool result = srv_U.InsertUser(dto);
 
             if (result)
