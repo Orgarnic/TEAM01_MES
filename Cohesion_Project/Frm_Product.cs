@@ -45,7 +45,9 @@ namespace Cohesion_Project
       }
       public void DgvFill()
       {
-         btnSearch.PerformClick();
+         //btnSearch.PerformClick();
+         products = srvProduct.SelectProduts(condition);
+         dgvProduct.DataSource = products;
       }
       private void dgvProduct_CellClick(object sender, DataGridViewCellEventArgs e)
       {
@@ -137,6 +139,11 @@ namespace Cohesion_Project
       }
       private void btnSearch_Click(object sender, EventArgs e)
       {
+         if (isCondition)
+         {
+            MboxUtil.MboxError("검색 조건을 먼저 눌러주세요.");
+            return;
+         }
          products = srvProduct.SelectProduts(condition);
          dgvProduct.DataSource = products;
       }
