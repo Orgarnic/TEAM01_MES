@@ -13,9 +13,12 @@ namespace Cohesion_Project
     public partial class Frm_BOM : Cohesion_Project.Frm_Base_3
     {
         Srv_BOM srv = new Srv_BOM();
+        Srv_Product srv2 = new Srv_Product();
         List<PRODUCT_MST_DTO> product = null;
         BOM_PRODUCT_SEARCH search = new BOM_PRODUCT_SEARCH();
         List<BOM_MST_DTO> bom = null;
+        List<PRODUCT_MST_DTO> temp = null;
+        Util.ComboUtil comboUtil = new Util.ComboUtil();
 
         string pcode, ccode;
 
@@ -28,13 +31,20 @@ namespace Cohesion_Project
         {
             DataGirdViewParent();
             DataGirdViewChild();
-
-            ppgSearch.PropertySort = PropertySort.Categorized;
-            ppgSearch.SelectedObject = new BOM_PRODUCT_SEARCH();
+            GetComboData();
             ppgBOMAttribute.SelectedObject = new BOM_MST_DTO();
+            temp = srv2.SelectProduts(new PRODUCT_MST_DTO_Condition());
+            Cohesion_DTO.ComboUtil.ProductCode = (from t in temp
+                                                 select t.PRODUCT_CODE).ToList();
         }
 
-        public void DataGirdViewParent()
+        private void GetComboData()
+        {
+            ppgSearch.PropertySort = PropertySort.Categorized;
+            ppgSearch.SelectedObject = new BOM_PRODUCT_SEARCH();
+        }
+
+        private void DataGirdViewParent()
         {
             DgvUtil.DgvInit(dgvBOMParent);
             DgvUtil.AddTextCol(dgvBOMParent, "제품 코드", "PRODUCT_CODE", 150, true, 1, frozen:true);
@@ -53,7 +63,7 @@ namespace Cohesion_Project
             dgvBOMParent.DataSource = product;
         }
 
-        public void DataGirdViewChild()
+        private void DataGirdViewChild()
         {
             dgvBOMChild.DataSource = null;
 
@@ -69,7 +79,7 @@ namespace Cohesion_Project
         }
 
         // 자녀제품 목록 리셋
-        public void DataGridViewReSet()
+        private void DataGridViewReSet()
         {
             dgvBOMChild.DataSource = null;
             dgvBOMChild.DataSource = srv.SelectBOMList(pcode);
@@ -126,8 +136,10 @@ namespace Cohesion_Project
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            BOM_MST_DTO prod = (BOM_MST_DTO)ppgSearch.SelectedObject;
-
+            if (btnUpdate.Text != "      취  소")
+            {
+                
+            }
         }
 
         private void btnSearchCondition_Click(object sender, EventArgs e)
@@ -160,9 +172,10 @@ namespace Cohesion_Project
         {
             BOM_MST_DTO dto = null;
             if (btnUpdate.Text != "      취  소") return;
-            if (!MboxUtil.MboxInfo_($"제품 {pcode}에 '해당'제품을 BOM등록하시겠습니까?")) return;
+            if (!MboxUtil.MboxInfo_($"제품 {pcode}에 '해당'제품을 BOM에 추가하시겠습니까?")) return;
             else
             {
+                bom = new List<BOM_MST_DTO>(Convert.ToInt32(dgvBOMChild.DataSource));
                 for(int i = 0; i < dgvBOMChild.Rows.Count; i++)
                 {
                     dto = new BOM_MST_DTO
@@ -178,6 +191,21 @@ namespace Cohesion_Project
                 }
                 bom.Add(ppgBOMAttribute.SelectedObject as BOM_MST_DTO);
                 dgvBOMChild.DataSource = bom;
+            }
+        }
+
+        // ppgBOMAttribute에 제품 코드에 따라 제품명, 타입을 가져옴.
+        private void ppgBOMAttribute_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
+        {
+            if (e.ChangedItem.PropertyDescriptor.Description.Equals("PRODUCT_CODE"))
+            {
+                var list = temp.Find((c) => c.PRODUCT_CODE.Equals(e.ChangedItem.Value.ToString()));
+                if(list != null)
+                {
+                    BOM_MST_DTO bbom = (BOM_MST_DTO)ppgBOMAttribute.SelectedObject;
+                    bbom.PRODUCT_NAME = list.PRODUCT_NAME;
+                    bbom.PRODUCT_TYPE = list.PRODUCT_TYPE;
+                }
             }
         }
 

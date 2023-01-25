@@ -147,11 +147,23 @@
     <Compile Include="Frm_UserMgt.Designer.cs">
       <DependentUpon>Frm_UserMgt.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm_WorkOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_WorkOrder.Designer.cs">
+      <DependentUpon>Frm_WorkOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pop_CommonTableData.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Pop_CommonTableData.Designer.cs">
       <DependentUpon>Pop_CommonTableData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pop_WorkOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pop_WorkOrder.Designer.cs">
+      <DependentUpon>Pop_WorkOrder.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -228,8 +240,14 @@
     <EmbeddedResource Include="Frm_UserMgt.resx">
       <DependentUpon>Frm_UserMgt.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Frm_WorkOrder.resx">
+      <DependentUpon>Frm_WorkOrder.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pop_CommonTableData.resx">
       <DependentUpon>Pop_CommonTableData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pop_WorkOrder.resx">
+      <DependentUpon>Pop_WorkOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

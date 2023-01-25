@@ -55,6 +55,7 @@
     <Compile Include="Store_DTO.cs" />
     <Compile Include="UserGroup_DTO.cs" />
     <Compile Include="User_DTO.cs" />
+    <Compile Include="Work_Order_MST_DTO.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

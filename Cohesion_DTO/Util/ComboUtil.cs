@@ -14,6 +14,8 @@ namespace Cohesion_DTO
         public static List<char> Answer = new List<char> { 'Y', 'N' };
 
         public static List<char> InspectUnit = new List<char> { 'N', 'C' };
+
+        public static List<string> ProductCode = new List<string> { };
     }
 
     public class ComboStringConverter : StringConverter
@@ -29,8 +31,21 @@ namespace Cohesion_DTO
         }
     }
 
-   // 검사 데이터 같은 char 타입은 바인딩이 안되서 유기현이 추가함
-   public class ComboCharConverter : CharConverter
+    public class ComboProductConverter : StringConverter
+    {
+        public override bool GetStandardValuesSupported(ITypeDescriptorContext context)
+        {
+            return true;
+        }
+
+        public override TypeConverter.StandardValuesCollection GetStandardValues(ITypeDescriptorContext context)
+        {
+            return new StandardValuesCollection(ComboUtil.ProductCode);
+        }
+    }
+
+    // 검사 데이터 같은 char 타입은 바인딩이 안되서 유기현이 추가함
+    public class ComboCharConverter : CharConverter
    {
       public override bool GetStandardValuesSupported(ITypeDescriptorContext context)
       {
