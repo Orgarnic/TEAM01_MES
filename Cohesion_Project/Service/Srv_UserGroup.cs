@@ -44,11 +44,11 @@ namespace Cohesion_Project
             return result;
         }
 
-        public List<UserGroup_DTO> SSelectUserGroup(UserGroup_DTO condtion)
+        public List<UserGroup_DTO> SelectUserGroup2(UserGoupCondition_DTO condtion)
         {
             
             UserGroup_DAO dao = new UserGroup_DAO();
-            List<UserGroup_DTO> list = dao.SelectUserGroup();
+            List<UserGroup_DTO> list = dao.SelectUserGroup2(condtion);
             dao.Dispose();
 
             return list;

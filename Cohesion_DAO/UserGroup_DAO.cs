@@ -158,6 +158,41 @@ namespace Cohesion_DAO
 
 
         }
+        public List<UserGroup_DTO> SelectUserGroup2(UserGoupCondition_DTO condition)
+        {
+            List<UserGroup_DTO> list = new List<UserGroup_DTO>();
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                StringBuilder sql = new StringBuilder(@"select USER_GROUP_CODE,USER_GROUP_NAME,USER_GROUP_TYPE
+                                    from USER_GROUP_MST where   1 = 1");
+                foreach (var prop in condition.GetType().GetProperties())
+                {
+                    if (!string.IsNullOrWhiteSpace((string)prop.GetValue(condition)))
+                    {
+                        sql.Append($" and {prop.Name} = @{prop.Name}");
+                        cmd.Parameters.AddWithValue($"@{prop.Name}", prop.GetValue(condition).ToString());
+                    }
+                }
+                cmd.CommandText = sql.ToString();
+                cmd.Connection = conn;
+                conn.Open();
+
+                list = Helper.DataReaderMapToList<UserGroup_DTO>(cmd.ExecuteReader());
+                conn.Close();
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return list;
+
+        }
     }
 
 
