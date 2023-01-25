@@ -66,9 +66,9 @@ namespace Cohesion_Project
             this.btnSearch.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSearch.Location = new System.Drawing.Point(916, 43);
+            this.btnSearch.Location = new System.Drawing.Point(914, 43);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(54, 23);
+            this.btnSearch.Size = new System.Drawing.Size(60, 23);
             this.btnSearch.TabIndex = 4;
             this.btnSearch.Text = "조  회";
             this.btnSearch.UseVisualStyleBackColor = false;
@@ -89,9 +89,9 @@ namespace Cohesion_Project
             // txtSearch
             // 
             this.txtSearch.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.txtSearch.Location = new System.Drawing.Point(12, 43);
+            this.txtSearch.Location = new System.Drawing.Point(9, 44);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(890, 22);
+            this.txtSearch.Size = new System.Drawing.Size(895, 22);
             this.txtSearch.TabIndex = 3;
             // 
             // panel2
@@ -116,7 +116,7 @@ namespace Cohesion_Project
             this.btnDelete.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnDelete.Image = global::Cohesion_Project.Properties.Resources.trash;
             this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDelete.Location = new System.Drawing.Point(12, 8);
+            this.btnDelete.Location = new System.Drawing.Point(7, 8);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.btnDelete.Size = new System.Drawing.Size(95, 35);
@@ -134,13 +134,14 @@ namespace Cohesion_Project
             this.btnCreate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnCreate.Image = global::Cohesion_Project.Properties.Resources.tabs;
             this.btnCreate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCreate.Location = new System.Drawing.Point(771, 8);
+            this.btnCreate.Location = new System.Drawing.Point(778, 8);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.btnCreate.Size = new System.Drawing.Size(95, 35);
             this.btnCreate.TabIndex = 1;
             this.btnCreate.Text = "      생  성";
             this.btnCreate.UseVisualStyleBackColor = false;
+            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
             // btnClose
             // 
@@ -151,13 +152,14 @@ namespace Cohesion_Project
             this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnClose.Image = global::Cohesion_Project.Properties.Resources.cancel;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(877, 8);
+            this.btnClose.Location = new System.Drawing.Point(881, 8);
             this.btnClose.Name = "btnClose";
             this.btnClose.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.btnClose.Size = new System.Drawing.Size(95, 35);
             this.btnClose.TabIndex = 0;
             this.btnClose.Text = "      닫  기";
             this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // panel3
             // 
@@ -178,6 +180,7 @@ namespace Cohesion_Project
             this.dgvOrderList.RowTemplate.Height = 23;
             this.dgvOrderList.Size = new System.Drawing.Size(984, 436);
             this.dgvOrderList.TabIndex = 0;
+            this.dgvOrderList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOrderList_CellClick);
             // 
             // Pop_WorkOrder
             // 
@@ -190,6 +193,8 @@ namespace Cohesion_Project
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("나눔고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Pop_WorkOrder";
             this.Text = "작업 지시 등록";
             this.Load += new System.EventHandler(this.Pop_WorkOrder_Load);
