@@ -6,10 +6,17 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
+using Cohesion_DAO;
+using Cohesion_DTO;
+using Cohesion_Project.Service;
+
 namespace Cohesion_Project
 {
     public partial class Frm_Sales_Order : Cohesion_Project.Frm_Base_2
     {
+        private Sales_Order_DTO iProperty = new Sales_Order_DTO();
+        Srv_Sales_Order srvSalesOrder = new Srv_Sales_Order();
+        List<Sales_Order_DTO> srcList;
         public Frm_Sales_Order()
         {
             InitializeComponent();
@@ -17,6 +24,7 @@ namespace Cohesion_Project
 
         private void Frm_Sales_Order_Load(object sender, EventArgs e)
         {
+            DataGridViewBinding();
 
         }
         private void DataGridViewBinding()
@@ -36,9 +44,21 @@ namespace Cohesion_Project
             DgvUtil.AddTextCol(dgv_SalesOrder, "변경시간", "UPDATE_TIME", 150, readOnly: true, align: 1);
             DgvUtil.AddTextCol(dgv_SalesOrder, "변경 사용자", "UPDATE_USER_ID", 150, readOnly: true, align: 1);
 
+            LoadData();
+        }
+        private void FormCondition()
+        {
+            lbl4.Text = "▶ 주문 목록";
+            lbl3.Text = "▶ 주문 속성";
 
+            ppg_SalesOrder.PropertySort = PropertySort.Categorized;
+            ppg_SalesOrder.SelectedObject = iProperty;
+        }
 
-            //LoadData();
+        private void LoadData()
+        {
+            srcList = srvSalesOrder.SelectSalesList();
+            dgv_SalesOrder.DataSource = srcList;
         }
     }
 }

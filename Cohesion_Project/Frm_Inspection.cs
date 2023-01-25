@@ -213,59 +213,66 @@ namespace Cohesion_Project
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            Inspection_DTO_Search condition= ppgInspection.SelectedObject as Inspection_DTO_Search;
-            string inspectCode = condition.INSPECT_ITEM_CODE;
-            char valueType = condition.VALUE_TYPE;
-            string searchText = txtSearch.Text;
-
-            //데이터 베이스 안가고 조회조건
-
-            if (!string.IsNullOrEmpty(inspectCode) && valueType.ToString() != "\0")
+            if (ppgInspection.SelectedObject is Inspection_DTO_Search)
             {
-                if (!string.IsNullOrEmpty(searchText))
+                Inspection_DTO_Search condition = ppgInspection.SelectedObject as Inspection_DTO_Search;
+                string inspectCode = condition.INSPECT_ITEM_CODE;
+                char valueType = condition.VALUE_TYPE;
+                string searchText = txtSearch.Text.ToUpper();
+
+                //데이터 베이스 안가고 조회조건
+
+                if (!string.IsNullOrEmpty(inspectCode) && valueType.ToString() != "\0")
                 {
-                    dgvInspection.DataSource = srcList.FindAll((c) => c.INSPECT_ITEM_CODE == inspectCode && c.VALUE_TYPE == valueType && c.INSPECT_ITEM_CODE.Contains(searchText));
+                    if (!string.IsNullOrEmpty(searchText))
+                    {
+                        dgvInspection.DataSource = srcList.FindAll((c) => c.INSPECT_ITEM_CODE == inspectCode && c.VALUE_TYPE == valueType && c.INSPECT_ITEM_CODE.Contains(searchText));
+                    }
+                    else
+                    {
+                        dgvInspection.DataSource = srcList.FindAll((c) => c.INSPECT_ITEM_CODE == inspectCode && c.VALUE_TYPE == valueType);
+                    }
                 }
-                else
+
+                else if (!string.IsNullOrEmpty(inspectCode) && valueType.ToString() == "\0")
                 {
-                    dgvInspection.DataSource = srcList.FindAll((c) => c.INSPECT_ITEM_CODE == inspectCode && c.VALUE_TYPE == valueType);
+                    if (!string.IsNullOrEmpty(searchText))
+                    {
+                        dgvInspection.DataSource = srcList.FindAll((c) => c.INSPECT_ITEM_CODE == inspectCode && c.INSPECT_ITEM_CODE.Contains(searchText));
+                    }
+                    else
+                    {
+                        dgvInspection.DataSource = srcList.FindAll((c) => c.INSPECT_ITEM_CODE == inspectCode);
+                    }
+                }
+
+                else if (string.IsNullOrEmpty(inspectCode) && valueType.ToString() != "\0")
+                {
+                    if (!string.IsNullOrEmpty(searchText))
+                    {
+                        dgvInspection.DataSource = srcList.FindAll((c) => c.INSPECT_ITEM_CODE.Contains(searchText) && c.VALUE_TYPE == valueType);
+                    }
+                    else
+                    {
+                        dgvInspection.DataSource = srcList.FindAll((c) => c.VALUE_TYPE == valueType);
+                    }
+                }
+
+                else if (string.IsNullOrEmpty(inspectCode) && valueType.ToString() == "\0")
+                {
+                    if (!string.IsNullOrEmpty(searchText))
+                    {
+                        dgvInspection.DataSource = srcList.FindAll((c) => c.INSPECT_ITEM_CODE.Contains(searchText));
+                    }
+                    else
+                    {
+                        dgvInspection.DataSource = srcList;
+                    }
                 }
             }
-
-            else if (!string.IsNullOrEmpty(inspectCode) && valueType.ToString() == "\0")
+            else
             {
-                if (!string.IsNullOrEmpty(searchText))
-                {
-                    dgvInspection.DataSource = srcList.FindAll((c) => c.INSPECT_ITEM_CODE == inspectCode && c.INSPECT_ITEM_CODE.Contains(searchText));
-                }
-                else
-                {
-                    dgvInspection.DataSource = srcList.FindAll((c) => c.INSPECT_ITEM_CODE == inspectCode);
-                }
-            }
-
-            else if (string.IsNullOrEmpty(inspectCode) && valueType.ToString() != "\0")
-            {
-                if (!string.IsNullOrEmpty(searchText))
-                {
-                    dgvInspection.DataSource = srcList.FindAll((c) => c.INSPECT_ITEM_CODE.Contains(searchText) && c.VALUE_TYPE == valueType);
-                }
-                else
-                {
-                    dgvInspection.DataSource = srcList.FindAll((c) => c.VALUE_TYPE == valueType);
-                }
-            }
-
-            else if (string.IsNullOrEmpty(inspectCode) && valueType.ToString() == "\0")
-            {
-                if (!string.IsNullOrEmpty(searchText))
-                {
-                    dgvInspection.DataSource = srcList.FindAll((c) => c.INSPECT_ITEM_CODE.Contains(searchText));
-                }
-                else
-                {
-                    dgvInspection.DataSource = srcList;
-                }
+                MboxUtil.MboxError("검색 조건을 먼저 눌러주세요.");
             }
 
         }
@@ -278,15 +285,23 @@ namespace Cohesion_Project
 
         private void ppgInspection_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
         {
-            Inspection_DTO dto = ppgInspection.SelectedObject as Inspection_DTO;
-            if (dto.VALUE_TYPE == 'C')
+            if (ppgInspection.SelectedObject is Inspection_DTO)
             {
-                int result = default;
-                if (dto.SPEC_LSL != null && !int.TryParse(dto.SPEC_TARGET, out result))
+                Inspection_DTO dto = ppgInspection.SelectedObject as Inspection_DTO;
+                if (dto.VALUE_TYPE == 'C')
+                {
+                    int result = default;
+                    if (dto.SPEC_LSL != null && int.TryParse(dto.SPEC_TARGET, out result))
+                    {
+                        dto.SPEC_TARGET = null;
+                        dto.SPEC_LSL = null;
+                        dto.SPEC_USL = null;
+                    }
+                }
+                else
                 {
                     dto.SPEC_TARGET = null;
-                    dto.SPEC_LSL = null;
-                    dto.SPEC_USL = null;
+                    return;
                 }
             }
             else
