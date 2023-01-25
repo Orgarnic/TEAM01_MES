@@ -29,8 +29,8 @@ namespace Cohesion_Project
         /// </summary>
         private void InitializeComponent()
         {
-            this.Dgv_CommonTable = new System.Windows.Forms.DataGridView();
             this.Ppg_CommonTable = new System.Windows.Forms.PropertyGrid();
+            this.Dgv_CommonTable = new System.Windows.Forms.DataGridView();
             this.pnlSearch.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -54,8 +54,8 @@ namespace Cohesion_Project
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 75);
             this.panel2.Size = new System.Drawing.Size(1153, 872);
-            this.panel2.Controls.SetChildIndex(this.Dgv_CommonTable, 0);
             this.panel2.Controls.SetChildIndex(this.lbl4, 0);
+            this.panel2.Controls.SetChildIndex(this.Dgv_CommonTable, 0);
             // 
             // lbl4
             // 
@@ -64,6 +64,7 @@ namespace Cohesion_Project
             // btnSearch
             // 
             this.btnSearch.FlatAppearance.BorderSize = 0;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // btnSearchCondition
             // 
@@ -131,15 +132,6 @@ namespace Cohesion_Project
             this.btnRefresh.Location = new System.Drawing.Point(1321, 996);
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
-            // Dgv_CommonTable
-            // 
-            this.Dgv_CommonTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Dgv_CommonTable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Dgv_CommonTable.Location = new System.Drawing.Point(0, 0);
-            this.Dgv_CommonTable.Name = "Dgv_CommonTable";
-            this.Dgv_CommonTable.Size = new System.Drawing.Size(1151, 870);
-            this.Dgv_CommonTable.TabIndex = 5;
-            // 
             // Ppg_CommonTable
             // 
             this.Ppg_CommonTable.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -147,6 +139,15 @@ namespace Cohesion_Project
             this.Ppg_CommonTable.Name = "Ppg_CommonTable";
             this.Ppg_CommonTable.Size = new System.Drawing.Size(356, 912);
             this.Ppg_CommonTable.TabIndex = 8;
+            // 
+            // Dgv_CommonTable
+            // 
+            this.Dgv_CommonTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Dgv_CommonTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Dgv_CommonTable.Location = new System.Drawing.Point(0, 30);
+            this.Dgv_CommonTable.Name = "Dgv_CommonTable";
+            this.Dgv_CommonTable.Size = new System.Drawing.Size(1151, 840);
+            this.Dgv_CommonTable.TabIndex = 6;
             // 
             // Frm_Common
             // 
@@ -170,8 +171,7 @@ namespace Cohesion_Project
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView Dgv_CommonTable;
       private System.Windows.Forms.PropertyGrid Ppg_CommonTable;
-   }
+        private System.Windows.Forms.DataGridView Dgv_CommonTable;
+    }
 }
