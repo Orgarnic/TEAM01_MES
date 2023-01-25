@@ -191,55 +191,55 @@ namespace Cohesion_Project
             string valueType = condition.STORE_TYPE;
             string searchText = txtSearch.Text;
 
-            ////데이터 베이스 안가고 조회조건
+            //데이터 베이스 안가고 조회조건
 
-            //if (!string.IsNullOrEmpty(storeCode) && valueType.ToString() != "\0")
-            //{
-            //    if (!string.IsNullOrEmpty(searchText))
-            //    {
-            //        dgv_Store.DataSource = srcList.FindAll((c) => c.STORE_CODE == storeCode && c.STORE_TYPE == valueType && c.STORE_CODE.Contains(searchText));
-            //    }
-            //    else
-            //    {
-            //        dgv_Store.DataSource = srcList.FindAll((c) => c.STORE_CODE == storeCode && c.STORE_TYPE == valueType);
-            //    }
-            //}
+            if (!string.IsNullOrEmpty(storeCode) && valueType.ToString() != "\0")
+            {
+                if (!string.IsNullOrEmpty(searchText))
+                {
+                    dgv_Store.DataSource = srcList.FindAll((c) => c.STORE_CODE == storeCode && c.STORE_TYPE == valueType && c.STORE_CODE.Contains(searchText));
+                }
+                else
+                {
+                    dgv_Store.DataSource = srcList.FindAll((c) => c.STORE_CODE == storeCode && c.STORE_TYPE == valueType);
+                }
+            }
 
-            //else if (!string.IsNullOrEmpty(storeCode) && valueType.ToString() == "\0")
-            //{
-            //    if (!string.IsNullOrEmpty(searchText))
-            //    {
-            //        dgv_Store.DataSource = srcList.FindAll((c) => c.STORE_CODE == storeCode && c.STORE_CODE.Contains(searchText));
-            //    }
-            //    else
-            //    {
-            //        dgv_Store.DataSource = srcList.FindAll((c) => c.STORE_CODE == storeCode);
-            //    }
-            //}
+            else if (!string.IsNullOrEmpty(storeCode) && valueType.ToString() == "\0")
+            {
+                if (!string.IsNullOrEmpty(searchText))
+                {
+                    dgv_Store.DataSource = srcList.FindAll((c) => c.STORE_CODE == storeCode && c.STORE_CODE.Contains(searchText));
+                }
+                else
+                {
+                    dgv_Store.DataSource = srcList.FindAll((c) => c.STORE_CODE == storeCode);
+                }
+            }
 
-            //else if (string.IsNullOrEmpty(storeCode) && valueType.ToString() != "\0")
-            //{
-            //    if (!string.IsNullOrEmpty(searchText))
-            //    {
-            //        dgv_Store.DataSource = srcList.FindAll((c) => c.STORE_CODE.Contains(searchText) && c.STORE_TYPE == valueType);
-            //    }
-            //    else
-            //    {
-            //        dgv_Store.DataSource = srcList.FindAll((c) => c.STORE_TYPE == valueType);
-            //    }
-            //}
+            else if (string.IsNullOrEmpty(storeCode) && valueType.ToString() != "\0")
+            {
+                if (!string.IsNullOrEmpty(searchText))
+                {
+                    dgv_Store.DataSource = srcList.FindAll((c) => c.STORE_CODE.Contains(searchText) && c.STORE_TYPE == valueType);
+                }
+                else
+                {
+                    dgv_Store.DataSource = srcList.FindAll((c) => c.STORE_TYPE == valueType);
+                }
+            }
 
-            //else if (string.IsNullOrEmpty(storeCode) && valueType.ToString() == "\0")
-            //{
-            //    if (!string.IsNullOrEmpty(searchText))
-            //    {
-            //        dgv_Store.DataSource = srcList.FindAll((c) => c.STORE_CODE.Contains(searchText));
-            //    }
-            //    else
-            //    {
-            //        dgv_Store.DataSource = srcList;
-            //    }
-            //}
+            else if (string.IsNullOrEmpty(storeCode) && valueType.ToString() == "\0")
+            {
+                if (!string.IsNullOrEmpty(searchText))
+                {
+                    dgv_Store.DataSource = srcList.FindAll((c) => c.STORE_CODE.Contains(searchText));
+                }
+                else
+                {
+                    dgv_Store.DataSource = srcList;
+                }
+            }
         }
         
         private void btnClose_Click(object sender, EventArgs e)

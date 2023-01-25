@@ -54,7 +54,7 @@ namespace Cohesion_DTO
         [Category("검색조건"), Description("창고명 입력"), DisplayName("창고명")]
         public string STORE_NAME { get; set; }
 
-        [Category("검색조건"), Description("창고 타입 = 원자재창고 : RS, 반제품창고 : HS, 완제품창고 : FS"), DisplayName("창고유형")]
+        [Category("검색조건"), Description("CM_ST_CODE"), DisplayName("창고유형"), TypeConverter(typeof(ComboStringConverter))]
         public string STORE_TYPE { get; set; }
     }
 }
