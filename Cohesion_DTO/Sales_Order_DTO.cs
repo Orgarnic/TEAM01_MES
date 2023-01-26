@@ -32,10 +32,10 @@ namespace Cohesion_DTO
         [Category("속성"), Description("ORDER_QTY"), DisplayName("주문수량")]
         public string ORDER_QTY { get; set; }
 
-        [Category("속성"), Description("CM_ANSWER"), DisplayName("확정여부"), TypeConverter(typeof(ComboStringConverter))]
+        [Category("속성"), Description("CM_ANSWER"), DisplayName("확정여부"), TypeConverter(typeof(ComboCharConverter))]
         public string CONFIRM_FLAG { get; set; }
 
-        [Category("속성"), Description("CM_ANSWER"), DisplayName("배송여부"), TypeConverter(typeof(ComboStringConverter))]
+        [Category("속성"), Description("CM_ANSWER"), DisplayName("배송여부"), TypeConverter(typeof(ComboCharConverter))]
         public string SHIP_FLAG { get; set; }
 
         [Category("추적"), Description("CREATE_TIME"), DisplayName("생성시간"), ReadOnly(true)]
@@ -70,7 +70,7 @@ namespace Cohesion_DTO
         [Category("검색조건"), Description("CM_PRODUCT_CODE"), DisplayName("품번"), TypeConverter(typeof(ComboStringConverter))]
         public string PRODUCT_CODE { get; set; }
 
-        [Category("검색조건"), Description("CM_ANSWER"), DisplayName("확정여부"), TypeConverter(typeof(ComboStringConverter))]
-        public string CONFIRM_FLAG { get; set; }
+        [Category("검색조건"), Description("CM_ANSWER"), DisplayName("확정여부"), TypeConverter(typeof(ComboCharConverter))]
+        public char CONFIRM_FLAG { get; set; }
     }
 }
