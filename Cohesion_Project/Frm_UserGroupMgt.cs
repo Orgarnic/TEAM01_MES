@@ -77,7 +77,7 @@ namespace Cohesion_Project
             if (DgvUserGroup.SelectedRows.Count < 1)
                 return;
             if (MessageBox.Show($"{DgvUserGroup[1, DgvUserGroup.CurrentRow.Index].Value.ToString()} 사용자구룹을 삭제하시겠습니까 ?", "알림", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel) return;
-            int userGroupCode = Convert.ToInt32(DgvUserGroup[0, DgvUserGroup.CurrentRow.Index].Value);
+            string userGroupCode = Convert.ToString(DgvUserGroup[0, DgvUserGroup.CurrentRow.Index].Value);
             bool result = Srv_UserGroup.DeleteUserGroup(userGroupCode);
             if (!result)
             {

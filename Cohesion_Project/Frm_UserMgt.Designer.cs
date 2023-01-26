@@ -48,6 +48,10 @@ namespace Cohesion_Project
             // 
             this.pnlSearch.Size = new System.Drawing.Size(1490, 35);
             // 
+            // lbl1
+            // 
+            this.lbl1.Text = "/ 기준정보관리 / 사용자 마스터";
+            // 
             // txtSearch
             // 
             this.txtSearch.Size = new System.Drawing.Size(964, 21);

@@ -28,7 +28,7 @@ namespace Cohesion_Project
             return list;
         }
 
-        public bool DeleteUserGroup(int usergroupcode)
+        public bool DeleteUserGroup(string usergroupcode)
         {
             UserGroup_DAO dao = new UserGroup_DAO();
             bool result = dao.DeleteUserGroup(usergroupcode);
