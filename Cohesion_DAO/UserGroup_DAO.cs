@@ -40,13 +40,26 @@ namespace Cohesion_DAO
 
         public bool InsertUserGroup(UserGroup_DTO dto)
         {
-            conn.Open();
+            try
+            {
 
-            string sql = @"insert into USER_GROUP_MST(USER_GROUP_CODE, USER_GROUP_NAME, USER_GROUP_TYPE, CREATE_USER_ID)
-                                values(@USER_GROUP_CODE,@USER_GROUP_NAME,@USER_GROUP_TYPE,@CREATE_USER_ID)";
-            SqlCommand cmd = Helper.UpsertCmdValue<UserGroup_DTO>(dto, sql, conn);
-            int result = cmd.ExecuteNonQuery();
-            return result > 0;
+                conn.Open();
+
+                string sql = @"insert into USER_GROUP_MST(USER_GROUP_CODE, USER_GROUP_NAME, USER_GROUP_TYPE, CREATE_USER_ID,CREATE_TIME )
+                                    values( @USER_GROUP_CODE, @USER_GROUP_NAME, @USER_GROUP_TYPE, @CREATE_USER_ID, @CREATE_TIME)";
+                SqlCommand cmd = Helper.UpsertCmdValue<UserGroup_DTO>(dto, sql, conn);
+                int result = cmd.ExecuteNonQuery();
+                return result > 0;
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err);
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
 
         }
 
@@ -119,7 +132,7 @@ namespace Cohesion_DAO
 
         // 사용자 그룹 Delete
 
-        public bool DeleteUserGroup(int USER_GROUP_CODE)
+        public bool DeleteUserGroup(string USER_GROUP_CODE)
         {
             try
             {
@@ -143,6 +156,41 @@ namespace Cohesion_DAO
 
 
 
+
+        }
+        public List<UserGroup_DTO> SelectUserGroup2(UserGoupCondition_DTO condition)
+        {
+            List<UserGroup_DTO> list = new List<UserGroup_DTO>();
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                StringBuilder sql = new StringBuilder(@"select USER_GROUP_CODE,USER_GROUP_NAME,USER_GROUP_TYPE
+                                    from USER_GROUP_MST where   1 = 1");
+                foreach (var prop in condition.GetType().GetProperties())
+                {
+                    if (!string.IsNullOrWhiteSpace((string)prop.GetValue(condition)))
+                    {
+                        sql.Append($" and {prop.Name} = @{prop.Name}");
+                        cmd.Parameters.AddWithValue($"@{prop.Name}", prop.GetValue(condition).ToString());
+                    }
+                }
+                cmd.CommandText = sql.ToString();
+                cmd.Connection = conn;
+                conn.Open();
+
+                list = Helper.DataReaderMapToList<UserGroup_DTO>(cmd.ExecuteReader());
+                conn.Close();
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return list;
 
         }
     }

@@ -17,7 +17,7 @@ namespace Cohesion_Project
         Srv_CommonData srvC = new Srv_CommonData();
         private CommonData cd = new CommonData();
         private SearchData sd = new SearchData();
-        
+
         public CommonTable_DTO Table { get; set; }
 
         List<CommonTable_DTO> srcList;
@@ -175,7 +175,7 @@ namespace Cohesion_Project
                 SearchData blankData = new SearchData();
                 Ppg_CommonTable.SelectedObject = blankData;
             }
-            else if(cd.CODE_TABLE_NAME != null)
+            else if (cd.CODE_TABLE_NAME != null)
             {
                 CommonData blankData = new CommonData();
                 Ppg_CommonTable.SelectedObject = blankData;
@@ -204,28 +204,35 @@ namespace Cohesion_Project
         private void btnSearch_Click(object sender, EventArgs e)
         {
             string tableName = sd.CODE_TABLE_NAME;
-            string searchText = txtSearch.Text;
+            string searchText = txtSearch.Text.ToUpper();
             //검색창 내부에 텍스트가 1개도 없으면 전체를 출력
             //검색창 내부에 텍스트가 1개라도 있으면 /  프로퍼티 그리드  null
             //검색창 내부 텍스트 null / 프로퍼티 그리드 입력
-
-            if (!string.IsNullOrEmpty(tableName) && !string.IsNullOrEmpty(searchText))
+            if (Ppg_CommonTable.SelectedObject is SearchData)
             {
-                Dgv_CommonTable.DataSource = srcList.FindAll((c) => c.CODE_TABLE_NAME == tableName && c.CODE_TABLE_NAME.Contains(searchText));
-            }
 
-            else if (!string.IsNullOrEmpty(tableName) && string.IsNullOrEmpty(searchText))
-            {
-                Dgv_CommonTable.DataSource = srcList.FindAll((c) => c.CODE_TABLE_NAME == tableName);
-            }
+                if (!string.IsNullOrEmpty(tableName) && !string.IsNullOrEmpty(searchText))
+                {
+                    Dgv_CommonTable.DataSource = srcList.FindAll((c) => c.CODE_TABLE_NAME == tableName && c.CODE_TABLE_NAME.Contains(searchText));
+                }
 
-            else if (string.IsNullOrEmpty(tableName) && !string.IsNullOrEmpty(searchText))
-            {
-                Dgv_CommonTable.DataSource = srcList.FindAll((c) => c.CODE_TABLE_NAME.Contains(searchText));
+                else if (!string.IsNullOrEmpty(tableName) && string.IsNullOrEmpty(searchText))
+                {
+                    Dgv_CommonTable.DataSource = srcList.FindAll((c) => c.CODE_TABLE_NAME == tableName);
+                }
+
+                else if (string.IsNullOrEmpty(tableName) && !string.IsNullOrEmpty(searchText))
+                {
+                    Dgv_CommonTable.DataSource = srcList.FindAll((c) => c.CODE_TABLE_NAME.Contains(searchText));
+                }
+                else
+                {
+                    Dgv_CommonTable.DataSource = srcList;
+                }
             }
             else
             {
-                Dgv_CommonTable.DataSource = srcList;
+                MboxUtil.MboxError("검색 조건을 먼저 눌러주세요.");
             }
         }
 
@@ -242,13 +249,13 @@ namespace Cohesion_Project
             srcList = srvC.SelectCommonTable();
 
             Dictionary<string, List<string>> searchDic = new Dictionary<string, List<string>>();
-            
+
             List<string> l1 = new List<string>();
             srcList.ForEach((c) => l1.Add(c.CODE_TABLE_NAME));
             searchDic.Add("CODE_TABLE_NAME", l1);
 
             sd.SearchList = searchDic;
-            
+
             Dgv_CommonTable.DataSource = srcList;
         }
 
@@ -359,7 +366,7 @@ namespace Cohesion_Project
         public string CODE_TABLE_NAME { get; set; }
 
         [Browsable(false)]
-        public Dictionary<string,List<string>> SearchList { get; set; }
+        public Dictionary<string, List<string>> SearchList { get; set; }
 
         public Dictionary<string, List<string>> GetList()
         {

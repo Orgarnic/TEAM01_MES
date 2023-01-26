@@ -30,7 +30,7 @@ namespace Cohesion_DAO
         {
             string sql = @"SELECT EQUIPMENT_CODE, EQUIPMENT_NAME, EQUIPMENT_TYPE, EQUIPMENT_STATUS, 
                                   LAST_DOWN_TIME, CREATE_TIME, CREATE_USER_ID, UPDATE_TIME, UPDATE_USER_ID
-                           FROM EQUIPMENT_MST";
+                           FROM EQUIPMENT_MST ";
 
             SqlCommand cmd = new SqlCommand(sql, conn);
             conn.Open();

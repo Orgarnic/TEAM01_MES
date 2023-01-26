@@ -206,6 +206,7 @@ namespace Cohesion_Project
             this.ppgBOMAttribute.Name = "ppgBOMAttribute";
             this.ppgBOMAttribute.Size = new System.Drawing.Size(356, 429);
             this.ppgBOMAttribute.TabIndex = 9;
+            this.ppgBOMAttribute.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.ppgBOMAttribute_PropertyValueChanged);
             // 
             // Frm_BOM
             // 

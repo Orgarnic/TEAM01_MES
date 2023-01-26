@@ -28,7 +28,7 @@ namespace Cohesion_Project
             return list;
         }
 
-        public bool DeleteUserGroup(int usergroupcode)
+        public bool DeleteUserGroup(string usergroupcode)
         {
             UserGroup_DAO dao = new UserGroup_DAO();
             bool result = dao.DeleteUserGroup(usergroupcode);
@@ -44,11 +44,11 @@ namespace Cohesion_Project
             return result;
         }
 
-        public List<UserGroup_DTO> SSelectUserGroup(UserGroup_DTO condtion)
+        public List<UserGroup_DTO> SelectUserGroup2(UserGoupCondition_DTO condtion)
         {
             
             UserGroup_DAO dao = new UserGroup_DAO();
-            List<UserGroup_DTO> list = dao.SelectUserGroup();
+            List<UserGroup_DTO> list = dao.SelectUserGroup2(condtion);
             dao.Dispose();
 
             return list;

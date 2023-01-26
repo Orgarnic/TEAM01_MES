@@ -55,10 +55,11 @@ namespace Cohesion_DAO
         {
             try
             {
+                //(@USER_GROUP_CODE,@USER_GROUP_NAME,@USER_GROUP_TYPE,@CREATE_USER_ID)";
                 conn.Open();
 
-                string sql = @"insert into USER_MST(USER_ID, USER_NAME, USER_GROUP_CODE, USER_PASSWORD, USER_DEPARTMENT, CREATE_TIME, CREATE_USER_ID, UPDATE_TIME, UPDATE_USER_ID)
-                                values(@USER_GROUP_CODE, @USER_PASSWORD, @USER_DEPARTMENT, @CREATE_USER_ID)";
+                string sql = @"insert into USER_MST(USER_ID, USER_NAME, USER_GROUP_CODE, USER_PASSWORD, USER_DEPARTMENT, CREATE_TIME, CREATE_USER_ID)
+                                values(@USER_ID,@USER_NAME,@USER_GROUP_CODE,@USER_PASSWORD,@USER_DEPARTMENT,@CREATE_TIME,@CREATE_USER_ID)";
                 SqlCommand cmd = Helper.UpsertCmdValue<User_DTO>(dto, sql, conn);
                 int result = cmd.ExecuteNonQuery();
                 return result > 0;
@@ -83,8 +84,8 @@ namespace Cohesion_DAO
                 //SqlTransaction trans = conn.BeginTransaction();
                 int iRowAffect = default;
                 string sql = @" UPDATE USER_MST
-                            SET USER_NAME=@USER_NAME, USER_GROUP_CODE = @USER_GROUP_CODE, USER_PASSWORD = @USER_PASSWORD, 
-		                          USER_DEPARTMENT = @USER_DEPARTMENT, CREATE_USER_ID = @CREATE_USER_ID
+                            SET USER_NAME=@USER_NAME, USER_GROUP_CODE = @USER_GROUP_CODE, USER_PASSWORD = @USER_PASSWORD, UPDATE_TIME =@UPDATE_TIME, 
+		                          USER_DEPARTMENT = @USER_DEPARTMENT, CREATE_USER_ID = @CREATE_USER_ID 
                             WHERE USER_ID = @USER_ID";
                 SqlCommand CMD = Helper.UpsertCmdValue<User_DTO>(dto, sql, conn);
                 iRowAffect = CMD.ExecuteNonQuery();
@@ -130,6 +131,40 @@ namespace Cohesion_DAO
 
         }
 
+        public List<User_DTO> SelectUser2(User_Condition_DTO condition)
+        {
+            List<User_DTO> list = new List<User_DTO>();
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                StringBuilder sql = new StringBuilder(@"select USER_ID , USER_NAME,USER_GROUP_CODE,USER_DEPARTMENT
+                                    from USER_MST where   1 = 1");
+                foreach (var prop in condition.GetType().GetProperties())
+                {
+                    if (!string.IsNullOrWhiteSpace((string)prop.GetValue(condition)))
+                    {
+                        sql.Append($" and {prop.Name} = @{prop.Name}");
+                        cmd.Parameters.AddWithValue($"@{prop.Name}", prop.GetValue(condition).ToString());
+                    }
+                }
+                cmd.CommandText = sql.ToString();
+                cmd.Connection = conn;
+                conn.Open();
 
-    }
+                list = Helper.DataReaderMapToList<User_DTO>(cmd.ExecuteReader());
+                conn.Close();
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return list;
+
+        }
+    } 
 }

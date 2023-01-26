@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Cohesion_Project
+{
+    public partial class Frm_Function : Frm_Base_2
+    {
+        public Frm_Function()
+        {
+            InitializeComponent();
+        }
+    }
+}

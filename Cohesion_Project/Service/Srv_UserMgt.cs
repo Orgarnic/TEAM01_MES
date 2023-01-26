@@ -35,5 +35,23 @@ namespace Cohesion_Project
             dao.Dispose();
             return result;
         }
+
+        public bool DeleteUser(int usercode)
+        {
+            UserMgt_DAO dao = new UserMgt_DAO();
+            bool result = dao.DeleteUser(usercode);
+            dao.Dispose();
+
+            return result;
+        }
+
+        public List<User_DTO> SelectUser2(User_Condition_DTO condition)
+        {
+            UserMgt_DAO dao = new UserMgt_DAO();
+            List<User_DTO> list = dao.SelectUser2(condition);
+            dao.Dispose();
+
+            return list;
+        }
     }
 }
