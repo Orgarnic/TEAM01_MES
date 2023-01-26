@@ -127,6 +127,7 @@ namespace Cohesion_Project
             // ppg_Store
             // 
             this.ppg_Store.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ppg_Store.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold);
             this.ppg_Store.Location = new System.Drawing.Point(0, 30);
             this.ppg_Store.Name = "ppg_Store";
             this.ppg_Store.Size = new System.Drawing.Size(305, 920);
