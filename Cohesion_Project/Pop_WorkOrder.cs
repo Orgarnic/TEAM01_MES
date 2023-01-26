@@ -14,9 +14,10 @@ namespace Cohesion_Project
 {
     public partial class Pop_WorkOrder : Form
     {
+        List<Sales_Order_DTO> order = null;
         Work_Order_MST_DTO initWork = null;
         Srv_WorkOrder work = new Srv_WorkOrder();
-        string userID;
+        string userID, pCode;
         int row;
         public Pop_WorkOrder()
         {
@@ -42,15 +43,18 @@ namespace Cohesion_Project
             DgvUtil.AddTextCol(dgvOrderList, "고객 코드", "CUSTOMER_CODE", width: 140, readOnly: true, frozen: true);
             DgvUtil.AddTextCol(dgvOrderList, "제품 코드", "PRODUCT_CODE", width: 140, readOnly: true, frozen: true);
             DgvUtil.AddTextCol(dgvOrderList, "주무 수량", "ORDER_QTY", width: 140, readOnly: true, frozen: true);
-
+            
             DgvUtil.DgvInit(dgvBOMStock);
-            DgvUtil.AddTextCol(dgvOrderList, "주문 코드", "SALES_ORDER_ID", width: 140, readOnly: true, frozen: true);
-
+            DgvUtil.AddTextCol(dgvBOMStock, "제품 코드", "CHILD_PRODUCT_CODE", width: 140, readOnly: true, frozen: true);
+            DgvUtil.AddTextCol(dgvBOMStock, "제품명", "PRODUCT_NAME", width: 140, readOnly: true, frozen: true);
+            DgvUtil.AddTextCol(dgvBOMStock, "제품 유형", "PRODUCT_TYPE", width: 140, readOnly: true, frozen: true);
+            DgvUtil.AddTextCol(dgvBOMStock, "단위 수량", "REQUIRE_QTY", width: 140, readOnly: true, frozen: true);
         }
 
         private void InitoOrderList()
         {
-            dgvOrderList.DataSource = work.SelectOrderList();
+            order = work.SelectOrderList();
+            dgvOrderList.DataSource = order;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -79,17 +83,26 @@ namespace Cohesion_Project
             }
         }
 
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            var list = order.FindAll((p) => p.PRODUCT_CODE.Contains(txtSearch.Text.ToUpper()));
+            dgvOrderList.DataSource = list;
+        }
+
         private void dgvOrderList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            dgvBOMStock.DataSource = 
+            if (e.RowIndex < 0) return;
+
+            pCode = dgvOrderList[3, e.RowIndex].Value.ToString();
+            dgvBOMStock.DataSource = work.GetOrderProductBOM(pCode);
             initWork = new Work_Order_MST_DTO
             {
-                ORDER_DATE =  DateTime.Now,
+                ORDER_DATE = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")),
                 CUSTOMER_CODE = dgvOrderList[2, e.RowIndex].Value.ToString().Trim(),
                 PRODUCT_CODE = dgvOrderList[3, e.RowIndex].Value.ToString().Trim(),
                 ORDER_QTY = Convert.ToInt32(dgvOrderList[4, e.RowIndex].Value.ToString().Trim()),
                 ORDER_STATUS = "OPEN",
-                CREATE_TIME = DateTime.Now,
+                CREATE_TIME = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")),
                 CREATE_USER_ID = userID
             };
 

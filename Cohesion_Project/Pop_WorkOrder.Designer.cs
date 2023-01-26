@@ -80,6 +80,7 @@ namespace Cohesion_Project
             this.btnSearch.TabIndex = 4;
             this.btnSearch.Text = "조  회";
             this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // label1
             // 

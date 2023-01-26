@@ -86,6 +86,7 @@ namespace Cohesion_Project
             // btnClose
             // 
             this.btnClose.FlatAppearance.BorderSize = 0;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnDelete
             // 

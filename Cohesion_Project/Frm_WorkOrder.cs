@@ -112,6 +112,11 @@ namespace Cohesion_Project
             }
         }
 
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             if (btnUpdate.Text == "      변  경")
