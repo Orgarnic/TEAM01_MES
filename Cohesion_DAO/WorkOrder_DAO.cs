@@ -86,20 +86,23 @@ namespace Cohesion_DAO
             try
             {
                 SqlCommand cmd = new SqlCommand("SP_InsertWorkOrderCode", conn);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+
                 cmd.Parameters.AddWithValue("@ORDER_DATE", work.ORDER_DATE);
                 cmd.Parameters.AddWithValue("@PRODUCT_CODE", work.PRODUCT_CODE);
                 cmd.Parameters.AddWithValue("@CUSTOMER_CODE", work.CUSTOMER_CODE);
                 cmd.Parameters.AddWithValue("@ORDER_QTY", work.ORDER_QTY);
                 cmd.Parameters.AddWithValue("@ORDER_STATUS", work.ORDER_STATUS);
-                cmd.Parameters.AddWithValue("@PRODUCT_QTY", null);
-                cmd.Parameters.AddWithValue("@DEFECT_QTY", null);
-                cmd.Parameters.AddWithValue("@WORK_START_TIME", null);
-                cmd.Parameters.AddWithValue("@WORK_CLOSE_TIME", null);
-                cmd.Parameters.AddWithValue("@WORK_CLOSE_USER_ID", null);
+                cmd.Parameters.AddWithValue("@PRODUCT_QTY", DBNull.Value);
+                cmd.Parameters.AddWithValue("@DEFECT_QTY", DBNull.Value);
+                cmd.Parameters.AddWithValue("@WORK_START_TIME", DBNull.Value);
+                cmd.Parameters.AddWithValue("@WORK_CLOSE_TIME", DBNull.Value);
+                cmd.Parameters.AddWithValue("@WORK_CLOSE_USER_ID", DBNull.Value);
                 cmd.Parameters.AddWithValue("@CREATE_TIME", work.CREATE_TIME);
                 cmd.Parameters.AddWithValue("@CREATE_USER_ID", work.CREATE_USER_ID);
-                cmd.Parameters.AddWithValue("@UPDATE_TIME", null);
-                cmd.Parameters.AddWithValue("@UPDATE_USER_ID", null);
+                cmd.Parameters.AddWithValue("@UPDATE_TIME", DBNull.Value);
+                cmd.Parameters.AddWithValue("@UPDATE_USER_ID", DBNull.Value);
 
                 conn.Open();
                 int iRowAffect = cmd.ExecuteNonQuery();
@@ -134,6 +137,7 @@ namespace Cohesion_DAO
                                  , UPDATE_TIME = @UPDATE_TIME
                                  , UPDATE_USER_ID = @UPDATE_USER_ID
                                where WORK_ORDER_ID = @WORK_ORDER_ID";
+
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@PRODUCT_CODE", work.PRODUCT_CODE);
                 cmd.Parameters.AddWithValue("@ORDER_QTY", work.ORDER_QTY);
@@ -142,8 +146,8 @@ namespace Cohesion_DAO
                 cmd.Parameters.AddWithValue("@DEFECT_QTY", work.DEFECT_QTY);
                 cmd.Parameters.AddWithValue("@WORK_START_TIME", work.WORK_START_TIME);
                 cmd.Parameters.AddWithValue("@WORK_CLOSE_TIME", work.WORK_CLOSE_TIME);
-                cmd.Parameters.AddWithValue("@WORK_CLOSE_USER_ID", work.WORK_CLOSE_USER_ID);
-                cmd.Parameters.AddWithValue("@UPDATE_TIME", Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")));
+                cmd.Parameters.AddWithValue("@WORK_CLOSE_USER_ID", work.WORK_CLOSE_USER_ID.Length);
+                cmd.Parameters.AddWithValue("@UPDATE_TIME", DateTime.Now);
                 cmd.Parameters.AddWithValue("@UPDATE_USER_ID", work.UPDATE_USER_ID);
                 // type이 datetime인 property들을 string으로 변경 필요.
 

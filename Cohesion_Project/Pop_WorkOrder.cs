@@ -42,6 +42,10 @@ namespace Cohesion_Project
             DgvUtil.AddTextCol(dgvOrderList, "고객 코드", "CUSTOMER_CODE", width: 140, readOnly: true, frozen: true);
             DgvUtil.AddTextCol(dgvOrderList, "제품 코드", "PRODUCT_CODE", width: 140, readOnly: true, frozen: true);
             DgvUtil.AddTextCol(dgvOrderList, "주무 수량", "ORDER_QTY", width: 140, readOnly: true, frozen: true);
+
+            DgvUtil.DgvInit(dgvBOMStock);
+            DgvUtil.AddTextCol(dgvOrderList, "주문 코드", "SALES_ORDER_ID", width: 140, readOnly: true, frozen: true);
+
         }
 
         private void InitoOrderList()
@@ -77,16 +81,19 @@ namespace Cohesion_Project
 
         private void dgvOrderList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            dgvBOMStock.DataSource = 
             initWork = new Work_Order_MST_DTO
             {
-                ORDER_DATE = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")),
+                ORDER_DATE =  DateTime.Now,
                 CUSTOMER_CODE = dgvOrderList[2, e.RowIndex].Value.ToString().Trim(),
                 PRODUCT_CODE = dgvOrderList[3, e.RowIndex].Value.ToString().Trim(),
                 ORDER_QTY = Convert.ToInt32(dgvOrderList[4, e.RowIndex].Value.ToString().Trim()),
                 ORDER_STATUS = "OPEN",
-                CREATE_TIME = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")),
+                CREATE_TIME = DateTime.Now,
                 CREATE_USER_ID = userID
             };
+
+            
         }
     }
 }
