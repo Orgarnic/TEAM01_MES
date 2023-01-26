@@ -132,7 +132,7 @@ namespace Cohesion_DAO
 
         // 사용자 그룹 Delete
 
-        public bool DeleteUserGroup(int USER_GROUP_CODE)
+        public bool DeleteUserGroup(string USER_GROUP_CODE)
         {
             try
             {

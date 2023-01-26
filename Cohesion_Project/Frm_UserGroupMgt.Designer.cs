@@ -47,6 +47,10 @@ namespace Cohesion_Project
             // 
             this.pnlSearch.Size = new System.Drawing.Size(1516, 35);
             // 
+            // lbl1
+            // 
+            this.lbl1.Text = "/ 기준정보관리 / 사용자 그룹 마스터";
+            // 
             // txtSearch
             // 
             this.txtSearch.Size = new System.Drawing.Size(984, 21);
@@ -64,6 +68,7 @@ namespace Cohesion_Project
             // lbl4
             // 
             this.lbl4.Size = new System.Drawing.Size(1147, 30);
+            this.lbl4.Text = "▶ 그룹 조회";
             // 
             // btnSearch
             // 
