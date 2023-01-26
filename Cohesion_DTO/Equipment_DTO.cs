@@ -51,10 +51,10 @@ namespace Cohesion_DTO
 
         [Category("검색조건"), Description("설비명 입력"), DisplayName("설비명")]
         public string EQUIPMENT_NAME { get; set; }
-        [Category("검색조건"), Description("설비 유형 = 장비 : EQUIP, 도구 : TOOL, 측정기 : INSP"), DisplayName("설비유형")]
+        [Category("검색조건"), Description("CM_EQUIPMENT_TYPE"), DisplayName("설비유형"), TypeConverter(typeof(ComboStringConverter))]
         public string EQUIPMENT_TYPE { get; set; }
 
-        [Category("검색조건"), Description("설비 상태 = 가동 : PROC, 고장비가동 : DOWN, 일반비가동 : WAIT"), DisplayName("설비상태")]
+        [Category("검색조건"), Description("CM_EQUIPMENT_CONDITON"), DisplayName("설비상태"), TypeConverter(typeof(ComboStringConverter))]
         public string EQUIPMENT_STATUS { get; set; }
     }
 }

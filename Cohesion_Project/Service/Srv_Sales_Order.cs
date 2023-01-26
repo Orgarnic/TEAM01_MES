@@ -19,5 +19,31 @@ namespace Cohesion_Project
 
             return list;
         }
+        public bool InsertSalesOrder(Sales_Order_DTO dto)
+        {
+            Sales_Order_DAO dao = new Sales_Order_DAO();
+            bool result = dao.InsertSalesOrder(dto);
+            dao.Dispose();
+
+            return result;
+        }
+
+        public bool UpdateSalesOrder(Sales_Order_DTO dto)
+        {
+            Sales_Order_DAO dao = new Sales_Order_DAO();
+            bool result = dao.UpdateSalesOrder(dto);
+            dao.Dispose();
+
+            return result;
+        }
+
+        public bool DeleteSalesOrder(Sales_Order_DTO dto)
+        {
+            Sales_Order_DAO dao = new Sales_Order_DAO();
+            bool result = dao.DeleteSalesOrder(dto);
+            dao.Dispose();
+
+            return result;
+        }
     }
 }

@@ -11,11 +11,11 @@ using Cohesion_DTO;
 
 namespace Cohesion_DAO
 {
-    class FUNCTION_DAO : IDisposable
+    class Function_DAO : IDisposable
     {
         SqlConnection conn = null;
         readonly string DB = ConfigurationManager.ConnectionStrings["DB"].ConnectionString;
-        public FUNCTION_DAO()
+        public Function_DAO()
         {
             conn = new SqlConnection(DB);
         }
@@ -27,15 +27,15 @@ namespace Cohesion_DAO
             }
         }
 
-        public bool InsertUserGroup(UserGroup_DTO dto)
+        public bool InsertFunction(Funct dto)
         {
             try
             {
 
                 conn.Open();
 
-                string sql = @"insert into USER_GROUP_MST(USER_GROUP_CODE, USER_GROUP_NAME, USER_GROUP_TYPE, CREATE_USER_ID,CREATE_TIME )
-                                    values( @USER_GROUP_CODE, @USER_GROUP_NAME, @USER_GROUP_TYPE, @CREATE_USER_ID, @CREATE_TIME)";
+                string sql = @"insert into FUNCTION_MST(FUNCTION_CODE, FUNCTION_NAME, SHORT_CUT_KEY, ICON_INDEX,  CREATE_USER_ID)
+                                    values(@FUNCTION_CODE,@FUNCTION_NAME,@SHORT_CUT_KEY,@ICON_INDEX,@CREATE_USER_ID)";
                 SqlCommand cmd = Helper.UpsertCmdValue<UserGroup_DTO>(dto, sql, conn);
                 int result = cmd.ExecuteNonQuery();
                 return result > 0;
