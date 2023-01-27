@@ -29,6 +29,8 @@ namespace Cohesion_Project
         /// </summary>
         private void InitializeComponent()
         {
+            this.PpgFunction = new System.Windows.Forms.PropertyGrid();
+            this.DgvFunction = new System.Windows.Forms.DataGridView();
             this.pnlSearch.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -38,6 +40,7 @@ namespace Cohesion_Project
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvFunction)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlSearch
@@ -54,11 +57,14 @@ namespace Cohesion_Project
             // 
             // panel2
             // 
-            this.panel2.Size = new System.Drawing.Size(939, 473);
+            this.panel2.Controls.Add(this.DgvFunction);
+            this.panel2.Size = new System.Drawing.Size(930, 470);
+            this.panel2.Controls.SetChildIndex(this.lbl4, 0);
+            this.panel2.Controls.SetChildIndex(this.DgvFunction, 0);
             // 
             // lbl4
             // 
-            this.lbl4.Size = new System.Drawing.Size(937, 30);
+            this.lbl4.Size = new System.Drawing.Size(928, 30);
             this.lbl4.Text = "▶ 화면 기능 목록";
             // 
             // btnSearch
@@ -74,6 +80,7 @@ namespace Cohesion_Project
             // 
             this.btnSearchCondition.FlatAppearance.BorderSize = 0;
             this.btnSearchCondition.Location = new System.Drawing.Point(850, 38);
+            this.btnSearchCondition.Click += new System.EventHandler(this.btnSearchCondition_Click);
             // 
             // lbl2
             // 
@@ -90,7 +97,10 @@ namespace Cohesion_Project
             // 
             // panel7
             // 
+            this.panel7.Controls.Add(this.PpgFunction);
             this.panel7.Size = new System.Drawing.Size(291, 551);
+            this.panel7.Controls.SetChildIndex(this.lbl3, 0);
+            this.panel7.Controls.SetChildIndex(this.PpgFunction, 0);
             // 
             // lbl3
             // 
@@ -100,11 +110,13 @@ namespace Cohesion_Project
             // 
             this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.Location = new System.Drawing.Point(1141, 602);
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnDelete
             // 
             this.btnDelete.FlatAppearance.BorderSize = 0;
             this.btnDelete.Location = new System.Drawing.Point(3, 602);
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnInsert
             // 
@@ -115,6 +127,7 @@ namespace Cohesion_Project
             // 
             this.btnAdd.FlatAppearance.BorderSize = 0;
             this.btnAdd.Location = new System.Drawing.Point(737, 602);
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnUpdate
             // 
@@ -126,6 +139,24 @@ namespace Cohesion_Project
             this.btnRefresh.FlatAppearance.BorderSize = 0;
             this.btnRefresh.Location = new System.Drawing.Point(1040, 602);
             // 
+            // PpgFunction
+            // 
+            this.PpgFunction.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PpgFunction.Location = new System.Drawing.Point(0, 30);
+            this.PpgFunction.Name = "PpgFunction";
+            this.PpgFunction.Size = new System.Drawing.Size(289, 519);
+            this.PpgFunction.TabIndex = 7;
+            // 
+            // DgvFunction
+            // 
+            this.DgvFunction.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvFunction.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DgvFunction.Location = new System.Drawing.Point(0, 30);
+            this.DgvFunction.Name = "DgvFunction";
+            this.DgvFunction.Size = new System.Drawing.Size(928, 438);
+            this.DgvFunction.TabIndex = 6;
+            this.DgvFunction.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvFunction_CellClick);
+            // 
             // Frm_Function
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -133,6 +164,7 @@ namespace Cohesion_Project
             this.ClientSize = new System.Drawing.Size(1240, 640);
             this.Name = "Frm_Function";
             this.Text = "FUNCTION_MST";
+            this.Load += new System.EventHandler(this.Frm_Function_Load);
             this.pnlSearch.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
@@ -143,10 +175,13 @@ namespace Cohesion_Project
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DgvFunction)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
+        private System.Windows.Forms.PropertyGrid PpgFunction;
+        private System.Windows.Forms.DataGridView DgvFunction;
     }
 }

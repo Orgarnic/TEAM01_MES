@@ -57,12 +57,14 @@ namespace Cohesion_Project
             // 
             // btnSearch
             // 
+            this.btnSearch.Enabled = false;
             this.btnSearch.FlatAppearance.BorderSize = 0;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // btnSearchCondition
             // 
             this.btnSearchCondition.FlatAppearance.BorderSize = 0;
+            this.btnSearchCondition.Click += new System.EventHandler(this.btnSearchCondition_Click);
             // 
             // lbl2
             // 
@@ -81,11 +83,12 @@ namespace Cohesion_Project
             // 
             // lbl3
             // 
-            this.lbl3.Text = "▶ 검색 상세 조건";
+            this.lbl3.Text = "▶ 속성";
             // 
             // btnClose
             // 
             this.btnClose.FlatAppearance.BorderSize = 0;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnDelete
             // 
@@ -125,6 +128,7 @@ namespace Cohesion_Project
             // ppgWorkOrderSearch
             // 
             this.ppgWorkOrderSearch.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ppgWorkOrderSearch.Enabled = false;
             this.ppgWorkOrderSearch.Location = new System.Drawing.Point(0, 30);
             this.ppgWorkOrderSearch.Name = "ppgWorkOrderSearch";
             this.ppgWorkOrderSearch.Size = new System.Drawing.Size(356, 920);
