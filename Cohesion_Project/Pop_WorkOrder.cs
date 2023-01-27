@@ -17,7 +17,7 @@ namespace Cohesion_Project
         List<Sales_Order_DTO> order = null;
         Work_Order_MST_DTO initWork = null;
         Srv_WorkOrder work = new Srv_WorkOrder();
-        string userID, pCode;
+        string userID, oCode, pCode;
         int row;
         public Pop_WorkOrder()
         {
@@ -49,6 +49,7 @@ namespace Cohesion_Project
             DgvUtil.AddTextCol(dgvBOMStock, "제품명", "PRODUCT_NAME", width: 140, readOnly: true, frozen: true);
             DgvUtil.AddTextCol(dgvBOMStock, "제품 유형", "PRODUCT_TYPE", width: 140, readOnly: true, frozen: true);
             DgvUtil.AddTextCol(dgvBOMStock, "단위 수량", "REQUIRE_QTY", width: 140, readOnly: true, frozen: true);
+            DgvUtil.AddTextCol(dgvBOMStock, "제작 수량", "ORDER_QTY", width: 140, readOnly: true, frozen: true);
         }
 
         private void InitoOrderList()
@@ -75,10 +76,17 @@ namespace Cohesion_Project
                 if (MboxUtil.MboxInfo_("해당 주문내역으로 작업지시를 등록하시겠습니까?") == false) return;
                 else
                 {
-                    work.InsertWorkOrder(initWork);
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
-                    return;
+                    bool result = work.InsertWorkOrder(initWork);
+                    if(!result)
+                    {
+                        MboxUtil.MboxError("등록되지 못했습니다.\n다시 시도해주세요.");
+                        return;
+                    }
+                    else
+                    {
+                        this.DialogResult = DialogResult.OK;
+                        this.Close();
+                    }
                 }
             }
         }
@@ -92,18 +100,18 @@ namespace Cohesion_Project
         private void dgvOrderList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
-
+            oCode = dgvOrderList[0, e.RowIndex].Value.ToString();
             pCode = dgvOrderList[3, e.RowIndex].Value.ToString();
-            dgvBOMStock.DataSource = work.GetOrderProductBOM(pCode);
+            dgvBOMStock.DataSource = work.GetOrderProductBOM(oCode, pCode);
             initWork = new Work_Order_MST_DTO
             {
-                ORDER_DATE = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")),
                 CUSTOMER_CODE = dgvOrderList[2, e.RowIndex].Value.ToString().Trim(),
                 PRODUCT_CODE = dgvOrderList[3, e.RowIndex].Value.ToString().Trim(),
-                ORDER_QTY = Convert.ToInt32(dgvOrderList[4, e.RowIndex].Value.ToString().Trim()),
+                ORDER_QTY = Convert.ToDecimal(dgvOrderList[4, e.RowIndex].Value.ToString().Trim()),
                 ORDER_STATUS = "OPEN",
-                CREATE_TIME = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")),
-                CREATE_USER_ID = userID
+                
+                CREATE_USER_ID = "김재형" // 임시 관리자 지정 => 추후에 관리자별 지정으로 변경 예정(로그인한 관리자에 따라)
+                //CREATE_USER_ID = userID
             };
 
             

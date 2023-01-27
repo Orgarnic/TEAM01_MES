@@ -28,11 +28,11 @@ namespace Cohesion_Project.Service
             return list;
         }
 
-        public List<BOM_MST_DTO> GetOrderProductBOM(string pcode)
+        public List<BOM_MST_DTO> GetOrderProductBOM(string ocode, string pcode)
         {
             // LOT 완성되면 쿼리 수정이 필요함.
             WorkOrder_DAO db = new WorkOrder_DAO();
-            List<BOM_MST_DTO> list = db.GetOrderProductBOM(pcode);
+            List<BOM_MST_DTO> list = db.GetOrderProductBOM(ocode, pcode);
             db.Dispose();
 
             return list;

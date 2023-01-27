@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Cohesion_DTO;
@@ -57,6 +58,7 @@ namespace Cohesion_Project
             dgvWorkOrderList.DataSource = srv.GetAllWorkOrderList();
             ppgWorkOrderSearch.PropertySort = PropertySort.Categorized;
             ppgWorkOrderSearch.SelectedObject = new Work_Order_MST_DTO();
+            dgvWorkOrderList.ClearSelection();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -71,7 +73,15 @@ namespace Cohesion_Project
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            
+            List<Work_Order_MST_DTO> list = (List<Work_Order_MST_DTO>)dgvWorkOrderList.DataSource;
+            if(string.IsNullOrWhiteSpace(txtSearch.Text))
+            {
+                MboxUtil.MboxWarn("조회하실 내용을 입력해주세요.");
+                return;
+            }
+
+            List<Work_Order_MST_DTO> result = list.FindAll((s) => s.PRODUCT_CODE.Contains(txtSearch.Text));
+            dgvWorkOrderList.DataSource = result;
         }
 
         private void dgvWorkOrderList_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -98,7 +108,7 @@ namespace Cohesion_Project
             {
                 if(wOrder.Equals((Work_Order_MST_DTO)ppgWorkOrderSearch.SelectedObject))
                 {
-                    MboxUtil.MboxInfo("변경사항이 존재하지 않습니다.\n변경을 취소합니다.");
+                    MboxUtil.MboxWarn("변경사항이 존재하지 않습니다.\n변경을 취소합니다.");
                     btnUpdate.PerformClick();
                 }
                 else
@@ -117,18 +127,47 @@ namespace Cohesion_Project
             this.Close();
         }
 
+        private void btnSearchCondition_Click(object sender, EventArgs e)
+        {
+            if (lbl3.Text == "▶ 속성")
+            {
+                btnSearch.Enabled = true;
+                dgvWorkOrderList.ClearSelection();
+                ppgWorkOrderSearch.Enabled = true;
+                ppgWorkOrderSearch.SelectedObject = new Work_Order_MST_DTO();
+                lbl3.Text = "▶ 검색 상세 조건";
+            }
+            else
+            {
+                btnSearch.Enabled = false;
+                dgvWorkOrderList.ClearSelection();
+                ppgWorkOrderSearch.Enabled = false;
+                ppgWorkOrderSearch.SelectedObject = DgvUtil.DgvToDto<Work_Order_MST_DTO>(dgvWorkOrderList);
+                lbl3.Text = "▶ 속성";
+            }
+        }
+
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             if (btnUpdate.Text == "      변  경")
             {
+                if(dgvWorkOrderList.SelectedRows.Count < 1)
+                {
+                    MboxUtil.MboxWarn("선택된 내역이 없습니다.\n다시 시도해주세요.");
+                    return;
+                }
+                dgvWorkOrderList.Enabled = false;
                 btnUpdate.Text = "      취  소";
+                ppgWorkOrderSearch.Enabled = true;
                 btnAdd.Enabled = false;
                 btnRefresh.Enabled = false;
                 btnDelete.Enabled = false;
             }
             else
             {
+                dgvWorkOrderList.Enabled = true;
                 btnUpdate.Text = "      변  경";
+                ppgWorkOrderSearch.Enabled = false;
                 btnAdd.Enabled = true;
                 btnRefresh.Enabled = true;
                 btnDelete.Enabled = true;
@@ -144,6 +183,7 @@ namespace Cohesion_Project
             }
             else
             {
+                if (string.IsNullOrWhiteSpace(Status)) return;
                 if(!Status.Equals("OPEN"))
                 {
                     MboxUtil.MboxWarn("해당 작업지시는 삭제하실 수 없습니다.");
@@ -156,6 +196,7 @@ namespace Cohesion_Project
                     {
                         srv.DeleteWorkOrder(wCode);
                         MboxUtil.MboxInfo("삭제가 완료되었습니다.");
+                        dgvWorkOrderList.Refresh();
                     }
                 }
             }

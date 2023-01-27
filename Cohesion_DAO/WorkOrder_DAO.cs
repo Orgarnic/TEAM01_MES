@@ -81,20 +81,21 @@ namespace Cohesion_DAO
             }
         }
 
-        public List<BOM_MST_DTO> GetOrderProductBOM(string pcode)
+        public List<BOM_MST_DTO> GetOrderProductBOM(string ocode, string pcode)
         {
             // LOT 완성되면 쿼리 수정이 필요함.
             // 안전 재고수량, 현 재고수량, order 수량에 필요한 갯수 등등
             List<BOM_MST_DTO> list = null;
-            string sql = @"select b.CHILD_PRODUCT_CODE, pd2.PRODUCT_NAME, REQUIRE_QTY, pd2.PRODUCT_TYPE
+            string sql = @"select b.CHILD_PRODUCT_CODE, pd2.PRODUCT_NAME, REQUIRE_QTY, pd2.PRODUCT_TYPE, so.ORDER_QTY
                            from SALES_ORDER_MST so inner join PRODUCT_MST pd on so.PRODUCT_CODE = pd.PRODUCT_CODE
 						                           inner join BOM_MST b on so.PRODUCT_CODE = b.PRODUCT_CODE
 						                           inner join PRODUCT_MST pd2 on b.CHILD_PRODUCT_CODE = pd2.PRODUCT_CODE
-                           where so.PRODUCT_CODE = @PRODUCT_CODE";
+                           where SALES_ORDER_ID = @SALES_ORDER_ID and so.PRODUCT_CODE = @PRODUCT_CODE";
 
             try
             {
                 SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@SALES_ORDER_ID", ocode);
                 cmd.Parameters.AddWithValue("@PRODUCT_CODE", pcode);
                 conn.Open();
 
@@ -123,17 +124,15 @@ namespace Cohesion_DAO
 
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@ORDER_DATE", work.ORDER_DATE);
                 cmd.Parameters.AddWithValue("@PRODUCT_CODE", work.PRODUCT_CODE);
                 cmd.Parameters.AddWithValue("@CUSTOMER_CODE", work.CUSTOMER_CODE);
                 cmd.Parameters.AddWithValue("@ORDER_QTY", work.ORDER_QTY);
                 cmd.Parameters.AddWithValue("@ORDER_STATUS", work.ORDER_STATUS);
-                cmd.Parameters.AddWithValue("@PRODUCT_QTY", DBNull.Value);
-                cmd.Parameters.AddWithValue("@DEFECT_QTY", DBNull.Value);
+                cmd.Parameters.AddWithValue("@PRODUCT_QTY", work.PRODUCT_QTY > 0 ? work.PRODUCT_QTY : 0);
+                cmd.Parameters.AddWithValue("@DEFECT_QTY", work.PRODUCT_QTY > 0 ? work.PRODUCT_QTY : 0);
                 cmd.Parameters.AddWithValue("@WORK_START_TIME", DBNull.Value);
                 cmd.Parameters.AddWithValue("@WORK_CLOSE_TIME", DBNull.Value);
                 cmd.Parameters.AddWithValue("@WORK_CLOSE_USER_ID", DBNull.Value);
-                cmd.Parameters.AddWithValue("@CREATE_TIME", work.CREATE_TIME);
                 cmd.Parameters.AddWithValue("@CREATE_USER_ID", work.CREATE_USER_ID);
                 cmd.Parameters.AddWithValue("@UPDATE_TIME", DBNull.Value);
                 cmd.Parameters.AddWithValue("@UPDATE_USER_ID", DBNull.Value);
@@ -173,17 +172,16 @@ namespace Cohesion_DAO
                                where WORK_ORDER_ID = @WORK_ORDER_ID";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@PRODUCT_CODE", work.PRODUCT_CODE);
-                cmd.Parameters.AddWithValue("@ORDER_QTY", work.ORDER_QTY);
+                cmd.Parameters.AddWithValue("@PRODUCT_CODE", work.PRODUCT_CODE != null ? work.PRODUCT_CODE : DBNull.Value.ToString());
+                cmd.Parameters.AddWithValue("@ORDER_QTY", work.ORDER_QTY > 0 ? work.ORDER_QTY : 0);
                 cmd.Parameters.AddWithValue("@ORDER_STATUS", work.ORDER_STATUS);
-                cmd.Parameters.AddWithValue("@PRODUCT_QTY", work.PRODUCT_QTY);
-                cmd.Parameters.AddWithValue("@DEFECT_QTY", work.DEFECT_QTY);
+                cmd.Parameters.AddWithValue("@PRODUCT_QTY", work.PRODUCT_QTY > 0 ? work.PRODUCT_QTY : 0);
+                cmd.Parameters.AddWithValue("@DEFECT_QTY", work.DEFECT_QTY > 0 ? work.DEFECT_QTY : 0);
                 cmd.Parameters.AddWithValue("@WORK_START_TIME", work.WORK_START_TIME);
                 cmd.Parameters.AddWithValue("@WORK_CLOSE_TIME", work.WORK_CLOSE_TIME);
-                cmd.Parameters.AddWithValue("@WORK_CLOSE_USER_ID", work.WORK_CLOSE_USER_ID.Length);
+                cmd.Parameters.AddWithValue("@WORK_CLOSE_USER_ID", work.WORK_CLOSE_USER_ID != null ? work.WORK_CLOSE_USER_ID : DBNull.Value.ToString());
                 cmd.Parameters.AddWithValue("@UPDATE_TIME", DateTime.Now);
-                cmd.Parameters.AddWithValue("@UPDATE_USER_ID", work.UPDATE_USER_ID);
-                // type이 datetime인 property들을 string으로 변경 필요.
+                cmd.Parameters.AddWithValue("@UPDATE_USER_ID", uid);
 
                 conn.Open();
                 int iRowAffect = cmd.ExecuteNonQuery();
