@@ -137,7 +137,7 @@ namespace Cohesion_DAO
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                StringBuilder sql = new StringBuilder(@"select USER_ID , USER_NAME,USER_GROUP_CODE,USER_DEPARTMENT
+                StringBuilder sql = new StringBuilder(@"Select USER_ID, USER_NAME, USER_GROUP_CODE, USER_PASSWORD, USER_DEPARTMENT, CREATE_TIME, CREATE_USER_ID, UPDATE_TIME, UPDATE_USER_ID
                                     from USER_MST where   1 = 1");
                 foreach (var prop in condition.GetType().GetProperties())
                 {

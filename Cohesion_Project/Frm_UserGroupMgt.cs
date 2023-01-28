@@ -16,6 +16,7 @@ namespace Cohesion_Project
         Srv_UserGroup srv_UG = new Srv_UserGroup();
         Srv_UserGroup Srv_UserGroup;
         List<UserGroup_DTO> UGroupList;
+        private UserGroup_DTO Udto = new UserGroup_DTO();
         private UserGoupCondition_DTO condition = new UserGoupCondition_DTO();
        // private SearchCondition condtion = new SearchCondition();
         private UGdate ugd = new UGdate();
@@ -333,10 +334,17 @@ namespace Cohesion_Project
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-     
+            if (Ppg_UserGourp.SelectedObject is UserGoupCondition_DTO)
+            {
+
                 UGroupList = Srv_UserGroup.SelectUserGroup2(condition);
                 DgvUserGroup.DataSource = UGroupList;
-          
+            }
+            else 
+            {
+                MboxUtil.MboxError("검색조건을 먼저 눌러주세요");
+            }
+
 
         }
         //private void btnSearchCondition_Click(object sender, EventArgs e)

@@ -160,11 +160,11 @@ namespace Cohesion_DAO
         }
         public List<UserGroup_DTO> SelectUserGroup2(UserGoupCondition_DTO condition)
         {
-            List<UserGroup_DTO> list = new List<UserGroup_DTO>();
+            List<UserGroup_DTO> list = null;
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                StringBuilder sql = new StringBuilder(@"select USER_GROUP_CODE,USER_GROUP_NAME,USER_GROUP_TYPE
+                StringBuilder sql = new StringBuilder(@"Select USER_GROUP_CODE, USER_GROUP_NAME, USER_GROUP_TYPE, CREATE_TIME, CREATE_USER_ID, UPDATE_TIME, UPDATE_USER_ID
                                     from USER_GROUP_MST where   1 = 1");
                 foreach (var prop in condition.GetType().GetProperties())
                 {

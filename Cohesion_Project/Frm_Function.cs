@@ -16,7 +16,7 @@ namespace Cohesion_Project
         Srv_Function Srv_F = new Srv_Function();
         List<FUNCTION_MST_DTO> FList;
         FUNCTION_MST_DTO_Condition condition = new FUNCTION_MST_DTO_Condition();
-        FUNCTION_MST_DTO FD;
+        FUNCTION_MST_DTO FD = new FUNCTION_MST_DTO();
         bool isCondition = true;
         public Frm_Function()
         {
@@ -62,8 +62,9 @@ namespace Cohesion_Project
         {
             if (DgvFunction.SelectedRows.Count < 1)
                 return;
-            if (MessageBox.Show($"{DgvFunction[1, DgvFunction.CurrentRow.Index].Value.ToString()} 화면기능을 삭제하시겠습니까 ?", "알림", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel) return;
+            if (!MboxUtil.MboxInfo_($"{DgvFunction[0, DgvFunction.CurrentRow.Index].Value.ToString()} 화면기능을 삭제하시겠습니까 ?")) return;
             string functioCode = Convert.ToString(DgvFunction[0, DgvFunction.CurrentRow.Index].Value);
+
             bool result = Srv_F.DeleteFunctio(functioCode);
             if (!result)
             {
@@ -175,6 +176,49 @@ namespace Cohesion_Project
                 isCondition = true;
                 PpgFunction.Enabled = false;
             }
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            PpgFunction.Enabled = true;
+            btnAdd.Enabled = false;
+        }
+
+        private void btnInsert_Click(object sender, EventArgs e)
+        {
+            var data = PpgFunction.SelectedObject as FUNCTION_MST_DTO;
+            if (data.FUNCTION_CODE == null)
+            {
+                MessageBox.Show("변경할 테이블을 선택해주세요.");
+                return;
+            }
+            var dto = PropertyToDto<FUNCTION_MST_DTO, FUNCTION_MST_DTO>(data); dto.UPDATE_USER_ID = "123";
+            dto.UPDATE_TIME = DateTime.Now;
+            bool result = Srv_F.UpdateFunction(dto);
+            if (result)
+            {
+                MessageBox.Show("수정 성공");
+                DataGridViewFill();
+            }
+            else
+            {
+                MessageBox.Show("수정 실패");
+            }
+
+            //   Ppg_UserGourp.Enabled = false; 추적창만 펄스헤야ㅐ되는대 안됨
+            btnAdd.Enabled = true;
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            FUNCTION_MST_DTO blankData = new FUNCTION_MST_DTO();
+            PpgFunction.SelectedObject = blankData;
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            FList = Srv_F.SelectFunction2(condition);
+            DgvFunction.DataSource = FList;
         }
     }
 }

@@ -58,19 +58,20 @@ namespace Cohesion_Project
             // panel2
             // 
             this.panel2.Controls.Add(this.DgvFunction);
-            this.panel2.Size = new System.Drawing.Size(930, 470);
+            this.panel2.Size = new System.Drawing.Size(937, 470);
             this.panel2.Controls.SetChildIndex(this.lbl4, 0);
             this.panel2.Controls.SetChildIndex(this.DgvFunction, 0);
             // 
             // lbl4
             // 
-            this.lbl4.Size = new System.Drawing.Size(928, 30);
+            this.lbl4.Size = new System.Drawing.Size(935, 30);
             this.lbl4.Text = "▶ 화면 기능 목록";
             // 
             // btnSearch
             // 
             this.btnSearch.FlatAppearance.BorderSize = 0;
             this.btnSearch.Location = new System.Drawing.Point(790, 38);
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // panel4
             // 
@@ -122,6 +123,7 @@ namespace Cohesion_Project
             // 
             this.btnInsert.FlatAppearance.BorderSize = 0;
             this.btnInsert.Location = new System.Drawing.Point(939, 602);
+            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
             // btnAdd
             // 
@@ -133,11 +135,13 @@ namespace Cohesion_Project
             // 
             this.btnUpdate.FlatAppearance.BorderSize = 0;
             this.btnUpdate.Location = new System.Drawing.Point(838, 602);
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnRefresh
             // 
             this.btnRefresh.FlatAppearance.BorderSize = 0;
             this.btnRefresh.Location = new System.Drawing.Point(1040, 602);
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // PpgFunction
             // 
@@ -153,7 +157,7 @@ namespace Cohesion_Project
             this.DgvFunction.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DgvFunction.Location = new System.Drawing.Point(0, 30);
             this.DgvFunction.Name = "DgvFunction";
-            this.DgvFunction.Size = new System.Drawing.Size(928, 438);
+            this.DgvFunction.Size = new System.Drawing.Size(935, 438);
             this.DgvFunction.TabIndex = 6;
             this.DgvFunction.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvFunction_CellClick);
             // 
