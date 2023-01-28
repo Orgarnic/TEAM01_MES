@@ -187,6 +187,7 @@ namespace Cohesion_Project
         private void btnInsert_Click(object sender, EventArgs e)
         {
             var data = Ppg_User.SelectedObject as Udate;
+            
             if (data.USER_ID == null)
             {
                 MessageBox.Show("변경할 유저ID을 선택해주세요.");
@@ -194,6 +195,7 @@ namespace Cohesion_Project
             }
             var dto = PropertyToDto<Udate, User_DTO>(data);
             dto.UPDATE_TIME = DateTime.Now;
+            dto.UPDATE_USER_ID = "321";
             bool result = srv_U.UpdateUser(dto);
             if (result)
             {
@@ -224,7 +226,7 @@ namespace Cohesion_Project
         {
             if (DgvUser.SelectedRows.Count < 1)
                 return;
-            if (MessageBox.Show($"{DgvUser[1, DgvUser.CurrentRow.Index].Value.ToString()} 사용자구룹을 삭제하시겠습니까 ?", "알림", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel) return;
+            if (MessageBox.Show($"{DgvUser[0, DgvUser.CurrentRow.Index].Value.ToString()} 사용자구룹을 삭제하시겠습니까 ?", "알림", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel) return;
             int userCode = Convert.ToInt32(DgvUser[0, DgvUser.CurrentRow.Index].Value);
             bool result = Srv_User.DeleteUser(userCode);
             if (!result)

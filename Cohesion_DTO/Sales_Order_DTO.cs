@@ -16,26 +16,27 @@ namespace Cohesion_DTO
 
         [Category("속성"), Description("ORDER_DATE"), DisplayName("주문일자"), ReadOnly(true)]
         public DateTime ORDER_DATE { get; set; }
+
+        [Category("속성"), Description("CM_CUSTOMER"), DisplayName("고객사코드"), TypeConverter(typeof(ComboStringConverter))]
+        public string CUSTOMER_CODE { get; set; }
+
         [Category("속성"), Description("CUSTOMER_NAME"), DisplayName("고객사명"), ReadOnly(true)]
         public string CUSTOMER_NAME { get; set; }
 
-        [Category("속성"), Description("CM_CUSTOMER"), DisplayName("고객사코드"), TypeConverter(typeof(ComboStringConverter))] // , ReadOnly(true)
-        public string CUSTOMER_CODE { get; set; }
 
-
-        [Category("속성"), Description("CM_PRODUCT_CODE"), DisplayName("제품코드"), TypeConverter(typeof(ComboStringConverter))] // , ReadOnly(true)
+        [Category("속성"), Description("CM_PRODUCT_CODE"), DisplayName("제품코드"), TypeConverter(typeof(ComboStringConverter))]
         public string PRODUCT_CODE { get; set; }
 
-        [Category("속성"), Description("PRODUCT_NAME"), DisplayName("제품명")]
+        [Category("속성"), Description("PRODUCT_NAME"), DisplayName("제품명"), ReadOnly(true)]
         public string PRODUCT_NAME { get; set; }
 
         [Category("속성"), Description("ORDER_QTY"), DisplayName("주문수량")]
         public string ORDER_QTY { get; set; }
 
-        [Category("속성"), Description("CM_ANSWER"), DisplayName("확정여부"), TypeConverter(typeof(ComboCharConverter))]
+        [Category("속성"), Description("CM_ANSWER"), DisplayName("확정여부"), TypeConverter(typeof(ComboStringConverter))]
         public string CONFIRM_FLAG { get; set; }
 
-        [Category("속성"), Description("CM_ANSWER"), DisplayName("배송여부"), TypeConverter(typeof(ComboCharConverter))]
+        [Category("속성"), Description("CM_ANSWER"), DisplayName("배송여부"), TypeConverter(typeof(ComboStringConverter))]
         public string SHIP_FLAG { get; set; }
 
         [Category("추적"), Description("CREATE_TIME"), DisplayName("생성시간"), ReadOnly(true)]
@@ -70,7 +71,7 @@ namespace Cohesion_DTO
         [Category("검색조건"), Description("CM_PRODUCT_CODE"), DisplayName("품번"), TypeConverter(typeof(ComboStringConverter))]
         public string PRODUCT_CODE { get; set; }
 
-        [Category("검색조건"), Description("CM_ANSWER"), DisplayName("확정여부"), TypeConverter(typeof(ComboCharConverter))]
-        public char CONFIRM_FLAG { get; set; }
+        [Category("검색조건"), Description("CM_ANSWER"), DisplayName("확정여부"), TypeConverter(typeof(ComboStringConverter))]
+        public string CONFIRM_FLAG { get; set; }
     }
 }

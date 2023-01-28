@@ -45,5 +45,14 @@ namespace Cohesion_Project
 
             return result;
         }
+
+        public List<Sales_Order_DTO> SelectOrderWithCondition(Sales_Order_DTO_Search condition)
+        {
+            Sales_Order_DAO dao = new Sales_Order_DAO();
+            var result = dao.SelectOrderWithCondition(condition);
+            dao.Dispose();
+
+            return result;
+        }
     }
 }
