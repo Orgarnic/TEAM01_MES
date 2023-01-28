@@ -89,7 +89,7 @@ namespace Cohesion_Project
             // 
             // lbl5
             // 
-            this.lbl5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lbl5.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl5.Text = "제품 BOM View";
             // 
             // panel7
@@ -119,6 +119,7 @@ namespace Cohesion_Project
             // 
             // btnSearch
             // 
+            this.btnSearch.Enabled = false;
             this.btnSearch.FlatAppearance.BorderSize = 0;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
@@ -193,6 +194,7 @@ namespace Cohesion_Project
             // ppgSearch
             // 
             this.ppgSearch.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ppgSearch.Enabled = false;
             this.ppgSearch.Location = new System.Drawing.Point(0, 30);
             this.ppgSearch.Name = "ppgSearch";
             this.ppgSearch.Size = new System.Drawing.Size(356, 412);
@@ -213,6 +215,7 @@ namespace Cohesion_Project
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.ClientSize = new System.Drawing.Size(1521, 1041);
             this.Name = "Frm_BOM";
+            this.Text = "BOM 등록";
             this.Load += new System.EventHandler(this.Frm_BOM_Load);
             this.panel9.ResumeLayout(false);
             this.panel6.ResumeLayout(false);

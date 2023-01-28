@@ -19,6 +19,7 @@ namespace Cohesion_Project
         List<BOM_MST_DTO> bom = null;
         List<PRODUCT_MST_DTO> temp = null;
         Util.ComboUtil comboUtil = new Util.ComboUtil();
+        bool check = true;
 
         string pcode, ccode;
 
@@ -32,6 +33,7 @@ namespace Cohesion_Project
             DataGirdViewParent();
             DataGirdViewChild();
             GetComboData();
+            dgvBOMParent.ClearSelection();
             ppgBOMAttribute.SelectedObject = new BOM_MST_DTO();
             temp = srv2.SelectProduts(new PRODUCT_MST_DTO_Condition());
             Cohesion_DTO.ComboUtil.ProductCode = (from t in temp
@@ -68,14 +70,14 @@ namespace Cohesion_Project
             dgvBOMChild.DataSource = null;
 
             DgvUtil.DgvInit(dgvBOMChild);
-            DgvUtil.AddTextCol(dgvBOMChild, "구성 제품명", "CHILD_PRODUCT_CODE", 150, true, 1);
+            DgvUtil.AddTextCol(dgvBOMChild, "구성 제품 코드", "CHILD_PRODUCT_CODE", 150, true, 1);
+            DgvUtil.AddTextCol(dgvBOMChild, "구성 제품명", "PRODUCT_NAME", 150, true, 1);
             DgvUtil.AddTextCol(dgvBOMChild, "단위 수량", "REQUIRE_QTY", 150, true, 1);
             DgvUtil.AddTextCol(dgvBOMChild, "대체 품번", "ALTER_PRODUCT_CODE", 150, true, 1);
             DgvUtil.AddTextCol(dgvBOMChild, "생성 시간", "CREATE_TIME", 150, true, 1);
             DgvUtil.AddTextCol(dgvBOMChild, "생성 사용자", "CREATE_USER_ID", 150, true, 1);
             DgvUtil.AddTextCol(dgvBOMChild, "변경 시간", "UPDATE_TIME", 150, true, 1);
             DgvUtil.AddTextCol(dgvBOMChild, "변경 사용자", "UPDATE_USER_ID", 150, true, 1);
-
         }
 
         // 자녀제품 목록 리셋
@@ -101,22 +103,38 @@ namespace Cohesion_Project
             ppgBOMAttribute.SelectedObject = new BOM_MST_DTO();
 
             pcode = dgvBOMParent[0, e.RowIndex].Value.ToString();
+            dgvBOMChild.ClearSelection();
         }
 
         // 전체 초기화
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            dgvBOMParent.DataSource = dgvBOMChild.DataSource = null;
-            ppgSearch.SelectedObject = srv.SelectGetProduct(search);
+            dgvBOMParent.DataSource = product;
+            dgvBOMChild.DataSource = null;
+            ppgSearch.SelectedObject = new BOM_PRODUCT_SEARCH();
             ppgBOMAttribute.SelectedObject = new BOM_MST_DTO();
+            dgvBOMParent.ClearSelection();
+            txtSearch.Text = "";
         }
 
         // 조건 검색
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            if (txtSearch.Text == null) return;
-            //dgvBOMParent.DataSource = product.FindAll((s) => s.PRODUCT_NAME.Contains(txtSearch.Text));
-            
+            BOM_PRODUCT_SEARCH ppgdata = (BOM_PRODUCT_SEARCH)ppgSearch.SelectedObject;
+
+            if (string.IsNullOrWhiteSpace(txtSearch.Text) &&
+                ppgdata.CREATE_USER_ID == null &&
+                ppgdata.PRODUCT_CODE == null &&
+                ppgdata.PRODUCT_NAME == null &&
+                ppgdata.PRODUCT_TYPE == null)
+            {
+                MboxUtil.MboxWarn("검색조건을 입력해주세요.");
+                return;
+            }
+            else
+            {
+                dgvBOMParent.DataSource = srv.SelectGetProduct(ppgdata);
+            }
         }
 
         // 자녀제품 리스트에서 선택
@@ -138,22 +156,38 @@ namespace Cohesion_Project
         {
             if (btnUpdate.Text != "      취  소")
             {
-                
+                btnUpdate.Text = "      취  소";
+                btnAdd.Text = "      추  가";
             }
         }
 
         private void btnSearchCondition_Click(object sender, EventArgs e)
         {
-            ppgSearch.SelectedObject = new BOM_PRODUCT_SEARCH();
+            if(check)
+            {
+                btnSearchCondition.Text = "취소";
+                btnSearch.Enabled = true;
+                ppgSearch.Enabled = true;
+                check = false;
+            }
+            else
+            {
+                btnSearchCondition.Text = "검색조건";
+                btnSearch.Enabled = false;
+                ppgSearch.Enabled = false;
+                ppgSearch.SelectedObject =  new BOM_PRODUCT_SEARCH();
+                check = true;
+            }
         }
 
+        // 부모제품 BOM 변경
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             if (btnUpdate.Text == "      변  경")
             {
                 btnUpdate.Text = "      취  소";
                 btnAdd.Text = "      추  가";
-                btnDelete.Enabled = false;
+                btnDelete.Text = "      제  거";
                 btnRefresh.Enabled = false;
                 ppgBOMAttribute.Enabled = true;
             }
@@ -164,7 +198,7 @@ namespace Cohesion_Project
                 btnDelete.Enabled = true;
                 btnRefresh.Enabled = true;
                 ppgBOMAttribute.Enabled = false;
-                ppgBOMAttribute.SelectedObject = new BOM_PRODUCT_SEARCH();
+                ppgBOMAttribute.SelectedObject = new BOM_MST_DTO();
             }
         }
 
@@ -212,23 +246,30 @@ namespace Cohesion_Project
         // 부모제품의 BOM 목록에서 자녀제품 삭제(제품 목록에서 삭제는 X)
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if(dgvBOMChild.CurrentCell.Value == null)
+            if (btnDelete.Text != "      삭  제")
             {
-                MboxUtil.MboxWarn("삭제할 제품을 선택해주세요.");
+
             }
             else
             {
-                if(MboxUtil.MboxInfo_("해당 제품의 BOM 제품을 삭제하시겠습니까?"))
+                if (dgvBOMChild.CurrentCell.Value == null)
                 {
-                    bool result = srv.DeleteProduct(pcode, ccode);
-                    if(result)
+                    MboxUtil.MboxWarn("삭제할 제품을 선택해주세요.");
+                }
+                else
+                {
+                    if (MboxUtil.MboxInfo_("해당 제품의 BOM 제품을 삭제하시겠습니까?"))
                     {
-                        MboxUtil.MboxInfo("삭제가 완료되었습니다.");
-                        DataGridViewReSet();
-                    }
-                    else
-                    {
-                        MboxUtil.MboxError("오류가 발생하였습니다.\n다시시도해주세요.");
+                        bool result = srv.DeleteProduct(pcode, ccode);
+                        if (result)
+                        {
+                            MboxUtil.MboxInfo("삭제가 완료되었습니다.");
+                            DataGridViewReSet();
+                        }
+                        else
+                        {
+                            MboxUtil.MboxError("오류가 발생하였습니다.\n다시시도해주세요.");
+                        }
                     }
                 }
             }
