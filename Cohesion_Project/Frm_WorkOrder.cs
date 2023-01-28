@@ -33,7 +33,8 @@ namespace Cohesion_Project
         }
 
         private void GetWorkOrderList()
-        {// WORK_ORDER_ID, ORDER_DATE, PRODUCT_CODE, CUSTOMER_CODE, ORDER_QTY, ORDER_STATUS, PRODUCT_QTY, DEFECT_QTY, WORK_START_TIME, WORK_CLOSE_TIME, WORK_CLOSE_USER_ID, CREATE_TIME, CREATE_USER_ID, UPDATE_TIME, UPDATE_USER_ID
+        {// WORK_ORDER_ID, ORDER_DATE, PRODUCT_CODE, CUSTOMER_CODE, ORDER_QTY, ORDER_STATUS, PRODUCT_QTY, DEFECT_QTY, WORK_START_TIME,
+         // WORK_CLOSE_TIME, WORK_CLOSE_USER_ID, CREATE_TIME, CREATE_USER_ID, UPDATE_TIME, UPDATE_USER_ID
             DgvUtil.DgvInit(dgvWorkOrderList);
             DgvUtil.AddTextCol(dgvWorkOrderList, "생산 작업지시 코드", "WORK_ORDER_ID", width: 200, readOnly: true, frozen: true);
             DgvUtil.AddTextCol(dgvWorkOrderList, "작업 일자", "ORDER_DATE", width: 140, readOnly: true, frozen: true);

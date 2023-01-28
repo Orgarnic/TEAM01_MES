@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,8 +32,8 @@ namespace Cohesion_DAO
             try
             {
                 conn.Open();
-                string sql = @"insert into FUNCTION_MST(FUNCTION_CODE, FUNCTION_NAME,CREATE_TIME , ICON_INDEX,  CREATE_USER_ID)
-                                    values(@FUNCTION_CODE,@FUNCTION_NAME,@CREATE_TIME,@ICON_INDEX,@CREATE_USER_ID)";
+                string sql = @"insert into FUNCTION_MST(FUNCTION_CODE, FUNCTION_NAME,CREATE_TIME ,SHORT_CUT_KEY ,ICON_INDEX,  CREATE_USER_ID)
+                                    values(@FUNCTION_CODE,@FUNCTION_NAME,@CREATE_TIME,@SHORT_CUT_KEY,@ICON_INDEX,@CREATE_USER_ID)";
                 SqlCommand cmd = Helper.UpsertCmdValue<FUNCTION_MST_DTO>(dto, sql, conn);
                 int result = cmd.ExecuteNonQuery();
                 return result > 0;
@@ -80,9 +80,10 @@ namespace Cohesion_DAO
                 conn.Open();
                 //SqlTransaction trans = conn.BeginTransaction();
                 int iRowAffect = default;
-                string sql = @"UPDATE FUNCTION_MST
-                            SET  FUNCTION_NAME＝＠FUNCTION_NAME，　SHORT_CUT_KEY＝＠SHORT_CUT_KEY，ICON_INDEX＝＠ICON_INDEX
-                            WHERE FUNCTION_CODE = ＠FUNCTION_CODE";
+                string sql = @"UPDATE  FUNCTION_MST
+                            SET  FUNCTION_NAME = @FUNCTION_NAME, SHORT_CUT_KEY = @SHORT_CUT_KEY, ICON_INDEX = @ICON_INDEX,
+		                          UPDATE_TIME = @UPDATE_TIME, UPDATE_USER_ID = @UPDATE_USER_ID
+                            WHERE FUNCTION_CODE = @FUNCTION_CODE";
                 SqlCommand CMD = Helper.UpsertCmdValue<FUNCTION_MST_DTO>(dto, sql, conn);
                 iRowAffect = CMD.ExecuteNonQuery();
                 //CMD.Transaction = trans;
@@ -106,7 +107,7 @@ namespace Cohesion_DAO
         {
             try
             {
-                string sql = @"delete FUNCTION_MST where FUNCTION_CODE = FUNCTION_CODE";
+                string sql = @"delete FUNCTION_MST where FUNCTION_CODE = @FUNCTION_CODE";
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@FUNCTION_CODE", FUNCTION_CODE);
                 conn.Open();
@@ -125,13 +126,13 @@ namespace Cohesion_DAO
             }
         }
 
-        public List<FUNCTION_MST_DTO> SelectFunction2(FUNCTION_MST_DTO condition)
+        public List<FUNCTION_MST_DTO> SelectFunction2(FUNCTION_MST_DTO_Condition condition)
         {
             List<FUNCTION_MST_DTO> list = new List<FUNCTION_MST_DTO>();
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                StringBuilder sql = new StringBuilder(@"select FUNCTION_NAME,SHORT_CUT_KEY,　ICON_INDEX
+                StringBuilder sql = new StringBuilder(@"SELECT FUNCTION_CODE, FUNCTION_NAME, SHORT_CUT_KEY, ICON_INDEX, CREATE_TIME, CREATE_USER_ID, UPDATE_TIME, UPDATE_USER_ID
                                     from FUNCTION_MST where   1 = 1");
                 foreach (var prop in condition.GetType().GetProperties())
                 {
@@ -160,6 +161,7 @@ namespace Cohesion_DAO
             return list;
 
         }
+
 
     }
 
