@@ -75,7 +75,13 @@ namespace Cohesion_DTO
         public string CONFIRM_FLAG { get; set; }
     }
 
-<<<<<<< HEAD
+    public class Sales_Order_State_DTO
+    {
+        public string PRODUCT_CODE { get; set; }
+        public string CHILD_PRODUCT_CODE { get; set; }
+        public decimal EQUIRE_QTY { get; set; }
+    }
+
     // 김재형 추가
     public class Sales_Order_Work_DTO
     {
@@ -119,14 +125,5 @@ namespace Cohesion_DTO
         [Category("추적"), Description("UPDATE_USER_ID"), DisplayName("변경 사용자"), ReadOnly(true)]
         public string UPDATE_USER_ID { get; set; }
 
-        // 김재형 추가
-        public decimal LOT_QTY { get; set; }
-=======
-    public class Sales_Order_State_DTO
-    {
-        public string   PRODUCT_CODE        { get; set; }
-        public string   CHILD_PRODUCT_CODE  { get; set; }
-        public decimal  EQUIRE_QTY          { get; set; }
->>>>>>> 33b87fa59755bc29a8a546066b26a39d3ce8b767
     }
 }
