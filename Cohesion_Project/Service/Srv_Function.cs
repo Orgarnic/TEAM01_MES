@@ -33,7 +33,23 @@ namespace Cohesion_Project
             bool result = dao.InsertFunction(dto);
             dao.Dispose();
             return result;
+        }
+        public bool UpdateFunction(FUNCTION_MST_DTO dto)
+        {
+            Function_DAO dao = new Function_DAO();
+            bool result = dao.UpdateFunction(dto);
+            dao.Dispose();
+            return result;
+        }
 
+        public List<FUNCTION_MST_DTO> SelectFunction2(FUNCTION_MST_DTO_Condition condtion)
+        {
+
+            Function_DAO dao = new Function_DAO();
+            List<FUNCTION_MST_DTO> list = dao.SelectFunction2(condtion);
+            dao.Dispose();
+
+            return list;
         }
 
     }
