@@ -105,6 +105,12 @@
     <Compile Include="Frm_Equipment.Designer.cs">
       <DependentUpon>Frm_Equipment.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm_Function.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Function.Designer.cs">
+      <DependentUpon>Frm_Function.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm_Inspection.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -181,6 +187,7 @@
     <Compile Include="Service\Srv_BOM.cs" />
     <Compile Include="Service\Srv_CommonData.cs" />
     <Compile Include="Service\Srv_Equipment.cs" />
+    <Compile Include="Service\Srv_Function.cs" />
     <Compile Include="Service\Srv_Inspection.cs" />
     <Compile Include="Service\Srv_Operation.cs" />
     <Compile Include="Service\Srv_Sales_Order.cs" />
@@ -226,6 +233,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_Equipment.resx">
       <DependentUpon>Frm_Equipment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Function.resx">
+      <DependentUpon>Frm_Function.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_Inspection.resx">
       <DependentUpon>Frm_Inspection.cs</DependentUpon>
