@@ -59,8 +59,9 @@ namespace Cohesion_DAO
             List<Sales_Order_DTO> list = null;
             try
             {
-                string sql = @"select SALES_ORDER_ID, ORDER_DATE, CUSTOMER_CODE, PRODUCT_CODE, ORDER_QTY
-                               from SALES_ORDER_MST";
+                string sql = @"select SALES_ORDER_ID, ORDER_DATE, CUSTOMER_CODE, so.PRODUCT_CODE, ORDER_QTY, sum(ls.LOT_QTY) LOT_QTY
+                               from SALES_ORDER_MST so inner join LOT_STS ls on so.PRODUCT_CODE = ls.PRODUCT_CODE
+							   group by SALES_ORDER_ID, ORDER_DATE, CUSTOMER_CODE, so.PRODUCT_CODE, ORDER_QTY";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 conn.Open();
@@ -86,11 +87,14 @@ namespace Cohesion_DAO
             // LOT 완성되면 쿼리 수정이 필요함.
             // 안전 재고수량, 현 재고수량, order 수량에 필요한 갯수 등등
             List<BOM_MST_DTO> list = null;
-            string sql = @"select b.CHILD_PRODUCT_CODE, pd2.PRODUCT_NAME, REQUIRE_QTY, pd2.PRODUCT_TYPE, so.ORDER_QTY
-                           from SALES_ORDER_MST so inner join PRODUCT_MST pd on so.PRODUCT_CODE = pd.PRODUCT_CODE
-						                           inner join BOM_MST b on so.PRODUCT_CODE = b.PRODUCT_CODE
-						                           inner join PRODUCT_MST pd2 on b.CHILD_PRODUCT_CODE = pd2.PRODUCT_CODE
-                           where SALES_ORDER_ID = @SALES_ORDER_ID and so.PRODUCT_CODE = @PRODUCT_CODE";
+            string sql = @"with BOM as(select b.CHILD_PRODUCT_CODE, pd2.PRODUCT_NAME, REQUIRE_QTY, pd2.PRODUCT_TYPE, so.ORDER_QTY
+                                       from SALES_ORDER_MST so inner join PRODUCT_MST pd on so.PRODUCT_CODE = pd.PRODUCT_CODE
+						                                       inner join BOM_MST b on so.PRODUCT_CODE = b.PRODUCT_CODE
+						                                       inner join PRODUCT_MST pd2 on b.CHILD_PRODUCT_CODE = pd2.PRODUCT_CODE
+                                       where 1 = 1 and SALES_ORDER_ID = @SALES_ORDER_ID and so.PRODUCT_CODE = @PRODUCT_CODE
+						               group by b.CHILD_PRODUCT_CODE, pd2.PRODUCT_NAME, REQUIRE_QTY, pd2.PRODUCT_TYPE, so.ORDER_QTY)
+						               select CHILD_PRODUCT_CODE, PRODUCT_NAME, REQUIRE_QTY, PRODUCT_TYPE, ORDER_QTY, ls.LOT_QTY
+						               from BOM m inner join LOT_STS ls on m.CHILD_PRODUCT_CODE = ls.PRODUCT_CODE";
 
             try
             {

@@ -35,7 +35,7 @@ namespace Cohesion_DAO
                 SqlCommand cmd = new SqlCommand();
                 StringBuilder sql = new StringBuilder(@"select PRODUCT_CODE, PRODUCT_NAME, PRODUCT_TYPE, CUSTOMER_CODE, CREATE_TIME, CREATE_USER_ID, UPDATE_TIME, UPDATE_USER_ID
                                                         from PRODUCT_MST
-                                                        where PRODUCT_TYPE = 'FERT'");
+                                                        where 1 = 1");
 
                 foreach (var property in search.GetType().GetProperties())
                 {
@@ -52,7 +52,7 @@ namespace Cohesion_DAO
                 list = Helper.DataReaderMapToList<PRODUCT_MST_DTO>(cmd.ExecuteReader());
 
             }
-            catch(Exception err)
+            catch (Exception err)
             {
                 Debug.WriteLine(err.Message);
                 Debug.WriteLine(err.StackTrace);
