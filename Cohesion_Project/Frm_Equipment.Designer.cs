@@ -43,6 +43,10 @@ namespace Cohesion_Project
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Equipment)).BeginInit();
             this.SuspendLayout();
             // 
+            // lbl1
+            // 
+            this.lbl1.Text = "/ 기준정보관리 / 설비 등록";
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.dgv_Equipment);

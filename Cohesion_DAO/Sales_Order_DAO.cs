@@ -161,5 +161,22 @@ namespace Cohesion_DAO
             }
             return list;
         }
+
+        public bool SelectBOM(Sales_Order_State_DTO dto)
+        {
+            string sql = @"SELECT PRODUCT_CODE, CHILD_PRODUCT_CODE, REQUIRE_QTY
+                           FROM BOM_MST
+                           WHERE PRODUCT_CODE = @PRODUCT_CODE AND CHILD_PRODUCT_CODE LIKE '%ERS%'
+                              OR PRODUCT_CODE = @PRODUCT_CODE AND CHILD_PRODUCT_CODE LIKE '%SPR%'
+                              OR PRODUCT_CODE = @PRODUCT_CODE AND CHILD_PRODUCT_CODE LIKE '%GRP%' ";
+
+            SqlCommand cmd = new SqlCommand(sql, conn);
+
+            cmd.Parameters.AddWithValue("@PRODUCT_CODE", string.IsNullOrEmpty(dto.PRODUCT_CODE) ? (object)DBNull.Value : dto.PRODUCT_CODE);
+
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            return true;
+        }
     }
 }

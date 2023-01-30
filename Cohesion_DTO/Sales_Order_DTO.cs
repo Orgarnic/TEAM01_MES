@@ -74,4 +74,11 @@ namespace Cohesion_DTO
         [Category("검색조건"), Description("CM_ANSWER"), DisplayName("확정여부"), TypeConverter(typeof(ComboStringConverter))]
         public string CONFIRM_FLAG { get; set; }
     }
+
+    public class Sales_Order_State_DTO
+    {
+        public string   PRODUCT_CODE        { get; set; }
+        public string   CHILD_PRODUCT_CODE  { get; set; }
+        public decimal  EQUIRE_QTY          { get; set; }
+    }
 }
