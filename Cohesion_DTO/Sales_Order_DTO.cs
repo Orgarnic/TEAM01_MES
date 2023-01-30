@@ -125,5 +125,7 @@ namespace Cohesion_DTO
         [Category("추적"), Description("UPDATE_USER_ID"), DisplayName("변경 사용자"), ReadOnly(true)]
         public string UPDATE_USER_ID { get; set; }
 
+        public decimal LOT_QTY { get; set; }
+
     }
 }
