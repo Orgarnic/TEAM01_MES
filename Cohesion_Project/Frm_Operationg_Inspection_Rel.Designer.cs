@@ -33,6 +33,9 @@ namespace Cohesion_Project
             this.dgvAddedInspection = new System.Windows.Forms.DataGridView();
             this.dgvInspectionList = new System.Windows.Forms.DataGridView();
             this.ppgSearchCondition = new System.Windows.Forms.PropertyGrid();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.panel3.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -48,6 +51,7 @@ namespace Cohesion_Project
             ((System.ComponentModel.ISupportInitialize)(this.dgvOperationList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAddedInspection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInspectionList)).BeginInit();
+            this.panel8.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnClose
@@ -56,6 +60,7 @@ namespace Cohesion_Project
             // 
             // lbl6
             // 
+            this.lbl6.Size = new System.Drawing.Size(826, 28);
             this.lbl6.Text = "▶ 할당 검사 항목 목록";
             // 
             // panel3
@@ -66,6 +71,7 @@ namespace Cohesion_Project
             // 
             // lbl7
             // 
+            this.lbl7.Size = new System.Drawing.Size(604, 28);
             this.lbl7.Text = "▶ 전체 검사 항목 목록";
             // 
             // btnLeft
@@ -82,12 +88,15 @@ namespace Cohesion_Project
             // 
             // panel6
             // 
+            this.panel6.Controls.Add(this.panel8);
             this.panel6.Controls.Add(this.dgvInspectionList);
             this.panel6.Controls.SetChildIndex(this.lbl7, 0);
             this.panel6.Controls.SetChildIndex(this.dgvInspectionList, 0);
+            this.panel6.Controls.SetChildIndex(this.panel8, 0);
             // 
             // lbl3
             // 
+            this.lbl3.Size = new System.Drawing.Size(356, 28);
             this.lbl3.Text = "▶ 조회 조건";
             // 
             // panel7
@@ -102,11 +111,13 @@ namespace Cohesion_Project
             // panel2
             // 
             this.panel2.Controls.Add(this.dgvOperationList);
+            this.panel2.Size = new System.Drawing.Size(1153, 396);
             this.panel2.Controls.SetChildIndex(this.lbl4, 0);
             this.panel2.Controls.SetChildIndex(this.dgvOperationList, 0);
             // 
             // lbl4
             // 
+            this.lbl4.Size = new System.Drawing.Size(1151, 28);
             this.lbl4.Text = "▶ 공정 목록";
             // 
             // btnSearchCondition
@@ -141,44 +152,72 @@ namespace Cohesion_Project
             // 
             this.dgvOperationList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvOperationList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvOperationList.Location = new System.Drawing.Point(0, 30);
+            this.dgvOperationList.Location = new System.Drawing.Point(0, 28);
             this.dgvOperationList.Name = "dgvOperationList";
             this.dgvOperationList.RowTemplate.Height = 23;
-            this.dgvOperationList.Size = new System.Drawing.Size(1151, 334);
+            this.dgvOperationList.Size = new System.Drawing.Size(1151, 366);
             this.dgvOperationList.TabIndex = 5;
             // 
             // dgvAddedInspection
             // 
             this.dgvAddedInspection.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAddedInspection.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvAddedInspection.Location = new System.Drawing.Point(0, 30);
+            this.dgvAddedInspection.Location = new System.Drawing.Point(0, 28);
             this.dgvAddedInspection.Name = "dgvAddedInspection";
             this.dgvAddedInspection.RowTemplate.Height = 23;
-            this.dgvAddedInspection.Size = new System.Drawing.Size(826, 430);
+            this.dgvAddedInspection.Size = new System.Drawing.Size(826, 432);
             this.dgvAddedInspection.TabIndex = 5;
             // 
             // dgvInspectionList
             // 
             this.dgvInspectionList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvInspectionList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvInspectionList.Location = new System.Drawing.Point(0, 30);
+            this.dgvInspectionList.Location = new System.Drawing.Point(0, 28);
             this.dgvInspectionList.Name = "dgvInspectionList";
             this.dgvInspectionList.RowTemplate.Height = 23;
-            this.dgvInspectionList.Size = new System.Drawing.Size(604, 430);
+            this.dgvInspectionList.Size = new System.Drawing.Size(604, 432);
             this.dgvInspectionList.TabIndex = 5;
             // 
             // ppgSearchCondition
             // 
             this.ppgSearchCondition.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ppgSearchCondition.Location = new System.Drawing.Point(0, 30);
+            this.ppgSearchCondition.Location = new System.Drawing.Point(0, 28);
             this.ppgSearchCondition.Name = "ppgSearchCondition";
-            this.ppgSearchCondition.Size = new System.Drawing.Size(356, 412);
+            this.ppgSearchCondition.Size = new System.Drawing.Size(356, 414);
             this.ppgSearchCondition.TabIndex = 7;
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.label1);
+            this.panel8.Controls.Add(this.comboBox1);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel8.Location = new System.Drawing.Point(0, 28);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(604, 43);
+            this.panel8.TabIndex = 6;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(184, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(43, 14);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "값 유형";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(274, 9);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(181, 22);
+            this.comboBox1.TabIndex = 0;
             // 
             // Frm_Operationg_Inspection_Rel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.ClientSize = new System.Drawing.Size(1521, 1041);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+            this.ClientSize = new System.Drawing.Size(1521, 972);
             this.Name = "Frm_Operationg_Inspection_Rel";
             this.Load += new System.EventHandler(this.Frm_Operationg_Inspection_Rel_Load);
             this.panel3.ResumeLayout(false);
@@ -197,6 +236,8 @@ namespace Cohesion_Project
             ((System.ComponentModel.ISupportInitialize)(this.dgvOperationList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAddedInspection)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInspectionList)).EndInit();
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -207,5 +248,8 @@ namespace Cohesion_Project
         private System.Windows.Forms.DataGridView dgvAddedInspection;
         private System.Windows.Forms.DataGridView dgvInspectionList;
         private System.Windows.Forms.PropertyGrid ppgSearchCondition;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
