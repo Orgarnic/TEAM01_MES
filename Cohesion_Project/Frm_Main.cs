@@ -29,16 +29,6 @@ namespace Cohesion_Project
             comboUtil = new Util.ComboUtil();
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button5_Click(object sender, EventArgs e)
         {
             Frm_Product frm = new Frm_Product();
@@ -77,11 +67,6 @@ namespace Cohesion_Project
             frm.MdiParent = this;
             frm.WindowState = FormWindowState.Maximized;
             frm.Show();
-        }
-
-        private void button10_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

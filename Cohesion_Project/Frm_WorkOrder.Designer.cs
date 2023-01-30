@@ -43,6 +43,10 @@ namespace Cohesion_Project
             ((System.ComponentModel.ISupportInitialize)(this.dgvWorkOrderList)).BeginInit();
             this.SuspendLayout();
             // 
+            // lbl1
+            // 
+            this.lbl1.Text = "/ 기준 정보 관리 / 작업지시관리";
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.dgvWorkOrderList);
@@ -133,6 +137,7 @@ namespace Cohesion_Project
             this.ppgWorkOrderSearch.Name = "ppgWorkOrderSearch";
             this.ppgWorkOrderSearch.Size = new System.Drawing.Size(356, 920);
             this.ppgWorkOrderSearch.TabIndex = 7;
+            this.ppgWorkOrderSearch.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.ppgWorkOrderSearch_PropertyValueChanged);
             // 
             // Frm_WorkOrder
             // 

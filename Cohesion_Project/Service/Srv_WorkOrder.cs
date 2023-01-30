@@ -19,10 +19,10 @@ namespace Cohesion_Project.Service
             return list;
         }
 
-        public List<Sales_Order_DTO> SelectOrderList()
+        public List<Sales_Order_Work_DTO> SelectOrderList()
         {
             WorkOrder_DAO db = new WorkOrder_DAO();
-            List<Sales_Order_DTO> list = db.SelectOrderList();
+            List<Sales_Order_Work_DTO> list = db.SelectOrderList();
             db.Dispose();
 
             return list;
@@ -63,6 +63,15 @@ namespace Cohesion_Project.Service
             db.Dispose();
 
             return result;
+        }
+
+        public List<PRODUCT_OPERATION_REL_DTO> GetOperationRel()
+        {
+            WorkOrder_DAO db = new WorkOrder_DAO();
+            List<PRODUCT_OPERATION_REL_DTO> list = db.GetOperationRel();
+            db.Dispose();
+
+            return list;
         }
     }
 }

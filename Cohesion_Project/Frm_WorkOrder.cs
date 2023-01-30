@@ -103,7 +103,6 @@ namespace Cohesion_Project
 
         private void btnInsert_Click(object sender, EventArgs e)
         {
-            wOrder = (Work_Order_MST_DTO)ppgWorkOrderSearch.SelectedObject;
             if (btnUpdate.Text == "      변  경") return;
             else
             {
@@ -146,6 +145,11 @@ namespace Cohesion_Project
                 ppgWorkOrderSearch.SelectedObject = DgvUtil.DgvToDto<Work_Order_MST_DTO>(dgvWorkOrderList);
                 lbl3.Text = "▶ 속성";
             }
+        }
+
+        private void ppgWorkOrderSearch_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
+        {
+            wOrder = (Work_Order_MST_DTO)ppgWorkOrderSearch.SelectedObject;
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
