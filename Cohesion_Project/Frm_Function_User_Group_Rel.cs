@@ -63,7 +63,7 @@ namespace Cohesion_Project
             DgvFUG.DataSource = FList;
 
             FList = SrvFUG.SelectFUG1();
-            DgvF1.DataSource = FList;
+            DgvF2.DataSource = FList;
         }
 
         private void DataGridViewFill1()
@@ -74,11 +74,50 @@ namespace Cohesion_Project
             DgvF1.DataSource = FList;
         }
 
+        private void btnRight_Click(object sender, EventArgs e)
+        {
+            if (DgvFUG.Rows.Count == 0)
+            {
+                return;
+            }
+            int seq = 1;
+            int seqI = 1;
+            int idx = DgvFUG.CurrentRow.Index;
 
+            if (idx < 0)
+            {
+                MboxUtil.MboxError("검사 항목을 선택해주세요.");
+                return;
+            }
+            if (DgvFUG.Rows.Count == 0)
+            {
+                MboxUtil.MboxError("검사 항목이 존재하지 않습니다.");
+                return;
+            }
+            else
+            {
+                var dto = DgvFUG.Rows[idx].DataBoundItem as Inspection_REL_DTO;
+                var addList = DgvFUG.DataSource as List<Inspection_REL_DTO>;
+                addList.Remove(dto);
+                DgvFUG.DataSource = null;
+                DgvFUG.DataSource = addList.OrderBy((i) => i.INSPECT_ITEM_CODE).Select((i) => new Inspection_REL_DTO { INSPECT_ITEM_CODE = i.INSPECT_ITEM_CODE, INSPECT_ITEM_NAME = i.INSPECT_ITEM_NAME, DISPLAY_SEQ = seq++ }).ToList();
 
-
-
-
-
+                List<Inspection_REL_DTO> list = DgvF1.DataSource as List<Inspection_REL_DTO>;
+                if (list.Exists((i) => i.INSPECT_ITEM_CODE.Equals(dto.INSPECT_ITEM_CODE)))
+                {
+                    return;
+                }
+                else
+                {
+                    list.Add(dto);
+                    DgvF1.DataSource = list.Select((i) => new Inspection_REL_DTO
+                    {
+                        INSPECT_ITEM_CODE = i.INSPECT_ITEM_CODE,
+                        INSPECT_ITEM_NAME = i.INSPECT_ITEM_NAME,
+                        DISPLAY_SEQ = seqI++
+                    }).ToList();
+                }
+            }
+        }
     }
 }
