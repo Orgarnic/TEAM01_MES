@@ -43,10 +43,7 @@ namespace Cohesion_DAO
                   cmd.Parameters.AddWithValue($"@{prop.Name}", prop.GetValue(condition).ToString());
                }
             }
-            cmd.CommandText = sql.ToString();
-                ]
-
-
+            cmd.CommandText = sql.ToString();   
             cmd.Connection = conn;
             conn.Open();
             SqlDataReader reader = cmd.ExecuteReader();
