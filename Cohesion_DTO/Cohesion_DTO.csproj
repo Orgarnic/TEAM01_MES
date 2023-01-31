@@ -43,6 +43,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BOM_MST_DTO.cs" />
+    <Compile Include="Function_DTO.cs" />
+    <Compile Include="Function_User_Group_Rel_DTO.cs" />
     <Compile Include="Inspection_DTO.cs" />
     <Compile Include="OPERATION_MST_DTO.cs" />
     <Compile Include="Sales_Order_DTO.cs" />
