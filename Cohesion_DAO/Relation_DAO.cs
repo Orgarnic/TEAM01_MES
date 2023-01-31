@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Cohesion_DTO;
 
@@ -204,36 +206,47 @@ namespace Cohesion_DAO
             {
                 StringBuilder sb = new StringBuilder();
                 list.ForEach((c) => sb.Append(c.EQUIPMENT_CODE+"','"));
-                string codes = "'" + sb.ToString().TrimEnd(',','\'') + "'";
-                string sql1 = @"DELETE EQUIPMENT_OPERATION_REL WHERE OPERATION_CODE = @OPERATION_CODE AND EQUIPMENT_CODE NOT IN (@CODE)";
+                string codes = "'"+sb.ToString().TrimEnd(',','\'')+"'";
+                string sql1 = $@"DELETE EQUIPMENT_OPERATION_REL WHERE OPERATION_CODE = @OPERATION_CODE AND EQUIPMENT_CODE NOT IN (SELECT DISTINCT EQUIPMENT_CODE
+                                                                                                                                     FROM EQUIPMENT_OPERATION_REL
+                                                                                                                                     WHERE EQUIPMENT_CODE IN ({codes}))";
                 SqlCommand cmd = new SqlCommand(sql1, conn);
                 cmd.Parameters.AddWithValue("@OPERATION_CODE", operationCode);
-                cmd.Parameters.AddWithValue("@CODE", codes);
                 cmd.Transaction = trans;
-                cmd.ExecuteNonQuery();
+                int irow=cmd.ExecuteNonQuery();
+                trans.Commit();
+                conn.Close();
 
-                string sql2 = @"DECLARE @EXIST INT
-                               SET @EXIST = (SELECT COUNT(*) FROM EQUIPMENT_OPERATION_REL WHERE OPERATION_CODE = @OPERATION_CODE AND EQUIPMENT_CODE = @EQUIPMENT_CODE)
-                               
-                               IF @EXIST != 0
-                               BEGIN 
-                               UPDATE EQUIPMENT_OPERATION_REL SET UPDATE_TIME = GETDATE(), UPDATE_USER_ID = @UPDATE_USER_ID  WHERE OPERATION_CODE = @OPERATION_CODE AND EQUIPMENT_CODE = @EQUIPMENT_CODE
-                               END
-                               ELSE
-                               BEGIN
-                               	INSERT INTO  EQUIPMENT_OPERATION_REL (OPERATION_CODE, EQUIPMENT_CODE, CREATE_TIME, CREATE_USER_ID)
-                                                   		   VALUES (@OPERATION_CODE, @EQUIPMENT_CODE, GETDATE(), @CREATE_USER_ID)
-                               END";
-                SqlCommand cmd1 = new SqlCommand(sql2, conn);
-                cmd1.Transaction = trans;
-                cmd1.Parameters.AddWithValue("@OPERATION_CODE", operationCode);
-                cmd1.Parameters.AddWithValue("@UPDATE_USER_ID", "서지환");
-                cmd1.Parameters.AddWithValue("@CREATE_USER_ID", "서지환");
-                cmd1.Parameters.Add("@EQUIPMENT_CODE", System.Data.SqlDbType.VarChar);
+                conn.Open();
+                trans=conn.BeginTransaction();
+                SqlCommand cmd2 = new SqlCommand();
+                cmd2.Connection = conn;
+                cmd2.Parameters.Add(new SqlParameter("@OPERATION_CODE", SqlDbType.VarChar));
+                cmd2.Parameters.Add(new SqlParameter("@EQUIPMENT_CODE", SqlDbType.VarChar));
+                cmd2.Parameters.Add(new SqlParameter("@UPDATE_USER_ID", SqlDbType.VarChar));
+                cmd2.Parameters.Add(new SqlParameter("@CREATE_USER_ID", SqlDbType.VarChar));
+                
+                cmd2.Transaction = trans;
                 for (int i = 0; i < list.Count; i++)
                 {
-                    cmd1.Parameters["@EQUIPMENT_CODE"].Value = list[i].EQUIPMENT_CODE;
-                    cmd1.ExecuteNonQuery();
+                    cmd2.CommandText = @"DECLARE @EQUIP INT
+                                         SET @EQUIP = (SELECT COUNT(*) FROM EQUIPMENT_OPERATION_REL WHERE OPERATION_CODE = @OPERATION_CODE AND EQUIPMENT_CODE = @EQUIPMENT_CODE)       
+                                         IF @EQUIP > 0
+                                         BEGIN 
+                                              UPDATE EQUIPMENT_OPERATION_REL SET UPDATE_TIME = GETDATE(), UPDATE_USER_ID = @UPDATE_USER_ID
+                                              WHERE OPERATION_CODE = @OPERATION_CODE AND EQUIPMENT_CODE = @EQUIPMENT_CODE
+                                         END
+                                         ELSE
+                                         BEGIN
+                                         	  INSERT INTO  EQUIPMENT_OPERATION_REL (OPERATION_CODE, EQUIPMENT_CODE, CREATE_TIME, CREATE_USER_ID)
+                                                                    		   VALUES (@OPERATION_CODE, @EQUIPMENT_CODE, GETDATE(), @CREATE_USER_ID)
+                                         END;";
+                    cmd2.Parameters["@OPERATION_CODE"].Value = operationCode;
+                    cmd2.Parameters["@UPDATE_USER_ID"].Value = "서지환";
+                    cmd2.Parameters["@CREATE_USER_ID"].Value = "서지환";
+                    cmd2.Parameters["@EQUIPMENT_CODE"].Value = list[i].EQUIPMENT_CODE;
+                    cmd2.ExecuteNonQuery();
+                    cmd.CommandText = null;
                 }
                 trans.Commit();
                 return true;
