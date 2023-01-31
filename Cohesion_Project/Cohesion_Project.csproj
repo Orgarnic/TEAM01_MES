@@ -171,6 +171,12 @@
     <Compile Include="Pop_CommonTableData.Designer.cs">
       <DependentUpon>Pop_CommonTableData.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pop_Sales_Order.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pop_Sales_Order.Designer.cs">
+      <DependentUpon>Pop_Sales_Order.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pop_WorkOrder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -243,6 +249,9 @@
     <EmbeddedResource Include="Frm_Operation.resx">
       <DependentUpon>Frm_Operation.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Operationg_Inspection_Rel.resx">
+      <DependentUpon>Frm_Operationg_Inspection_Rel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frm_Product.resx">
       <DependentUpon>Frm_Product.cs</DependentUpon>
     </EmbeddedResource>
@@ -264,6 +273,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pop_CommonTableData.resx">
       <DependentUpon>Pop_CommonTableData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pop_Sales_Order.resx">
+      <DependentUpon>Pop_Sales_Order.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pop_WorkOrder.resx">
       <DependentUpon>Pop_WorkOrder.cs</DependentUpon>

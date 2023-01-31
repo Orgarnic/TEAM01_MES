@@ -54,9 +54,9 @@ namespace Cohesion_DAO
             }
         }
 
-        public List<Sales_Order_DTO> SelectOrderList()
+        public List<Sales_Order_Work_DTO> SelectOrderList()
         {
-            List<Sales_Order_DTO> list = null;
+            List<Sales_Order_Work_DTO> list = null;
             try
             {
                 string sql = @"select SALES_ORDER_ID, ORDER_DATE, CUSTOMER_CODE, so.PRODUCT_CODE, ORDER_QTY, sum(ls.LOT_QTY) LOT_QTY
@@ -66,7 +66,7 @@ namespace Cohesion_DAO
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 conn.Open();
 
-                list = Helper.DataReaderMapToList<Sales_Order_DTO>(cmd.ExecuteReader());
+                list = Helper.DataReaderMapToList<Sales_Order_Work_DTO>(cmd.ExecuteReader());
 
                 return list;
             }
@@ -223,6 +223,36 @@ namespace Cohesion_DAO
                 Debug.WriteLine(err.Message);
                 Debug.WriteLine(err.StackTrace);
                 return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public List<PRODUCT_OPERATION_REL_DTO> GetOperationRel()
+        {
+            // LOT 완성되면 쿼리 수정이 필요함.
+            // 안전 재고수량, 현 재고수량, order 수량에 필요한 갯수 등등
+            List<PRODUCT_OPERATION_REL_DTO> list = null;
+            string sql = @"select PRODUCT_CODE, OPERATION_CODE, FLOW_SEQ, CREATE_TIME, CREATE_USER_ID, UPDATE_TIME, UPDATE_USER_ID
+                           from PRODUCT_OPERATION_REL";
+
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                conn.Open();
+
+                list = Helper.DataReaderMapToList<PRODUCT_OPERATION_REL_DTO>(cmd.ExecuteReader());
+
+                return list;
+
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                Debug.WriteLine(err.StackTrace);
+                return null;
             }
             finally
             {

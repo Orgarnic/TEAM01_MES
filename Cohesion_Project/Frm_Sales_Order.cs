@@ -164,10 +164,24 @@ namespace Cohesion_Project
                 return;
             }
 
+            int rIdx = dgv_SalesOrder.CurrentRow.Index;
+            Sales_Order_DTO sDTO = new Sales_Order_DTO()
+            {
+                PRODUCT_CODE = dgv_SalesOrder["PRODUCT_CODE", rIdx].Value.ToString()
+            };
+
+            if (dto.CONFIRM_FLAG == "Y")
+            {
+                Pop_Sales_Order pop = new Pop_Sales_Order();
+                pop.ShowDialog();
+                if(DialogResult == DialogResult.OK)
+                return;
+            }
             if (!MboxUtil.MboxInfo_("선택하신 주문 정보를 수정하시겠습니까?"))
             {
                 return;
             }
+            
             dto.UPDATE_USER_ID = "정민영";
 
             bool result = srvSalesOrder.UpdateSalesOrder(dto);

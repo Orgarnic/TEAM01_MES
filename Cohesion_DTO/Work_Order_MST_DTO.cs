@@ -9,7 +9,7 @@ namespace Cohesion_DTO
 {
     public class Work_Order_MST_DTO
     {
-		[Category("속성"), Description("WORK_ORDER_ID"), DisplayName("생산 작업지시 코드")]
+		[Category("속성"), Description("WORK_ORDER_ID"), DisplayName("생산 작업지시 코드"), ReadOnly(true)]
 		public string WORK_ORDER_ID { get; set; }       //생산 작업지시 코드
 		[Category("속성"), Description("ORDER_DATE"), DisplayName("작업 일자")]
 		public DateTime ORDER_DATE { get; set; }        //작업 일자

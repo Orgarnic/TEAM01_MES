@@ -103,11 +103,11 @@ namespace Cohesion_Project
 
         private void btnInsert_Click(object sender, EventArgs e)
         {
-            wOrder = (Work_Order_MST_DTO)ppgWorkOrderSearch.SelectedObject;
+            var list = this.ppgWorkOrderSearch.SelectedObject as Work_Order_MST_DTO;
             if (btnUpdate.Text == "      변  경") return;
             else
             {
-                if(wOrder.Equals((Work_Order_MST_DTO)ppgWorkOrderSearch.SelectedObject))
+                if (wOrder.Equals(list))
                 {
                     MboxUtil.MboxWarn("변경사항이 존재하지 않습니다.\n변경을 취소합니다.");
                     btnUpdate.PerformClick();
@@ -148,6 +148,10 @@ namespace Cohesion_Project
             }
         }
 
+        private void ppgWorkOrderSearch_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
+        {
+        }
+
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             if (btnUpdate.Text == "      변  경")
@@ -157,6 +161,8 @@ namespace Cohesion_Project
                     MboxUtil.MboxWarn("선택된 내역이 없습니다.\n다시 시도해주세요.");
                     return;
                 }
+                wOrder = (Work_Order_MST_DTO)ppgWorkOrderSearch.SelectedObject;
+
                 dgvWorkOrderList.Enabled = false;
                 btnUpdate.Text = "      취  소";
                 ppgWorkOrderSearch.Enabled = true;

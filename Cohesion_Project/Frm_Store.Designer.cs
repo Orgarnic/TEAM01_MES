@@ -43,6 +43,10 @@ namespace Cohesion_Project
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Store)).BeginInit();
             this.SuspendLayout();
             // 
+            // lbl1
+            // 
+            this.lbl1.Text = "/ 기준정보관리 / 창고 등록";
+            // 
             // txtSearch
             // 
             this.txtSearch.Size = new System.Drawing.Size(1039, 21);
