@@ -68,7 +68,7 @@ namespace Cohesion_Project
                 return;
             }
             //갖고있는 데이터의 프로퍼티의 정보를 갖고 간다.
-            var target = srcList.Find((s) => s.CODE_TABLE_NAME.Equals(Dgv_CommonTable["테이블명", e.RowIndex].Value));
+            var target = srcList.Find((s) => s.CODE_TABLE_NAME.Equals(Dgv_CommonTable[0, e.RowIndex].Value));
             this.Table = target;
 
             Pop_CommonTableData pop = new Pop_CommonTableData();
@@ -84,8 +84,8 @@ namespace Cohesion_Project
             {
                 return;
             }
-            string sTableName = Dgv_CommonTable["테이블명", e.RowIndex].Value.ToString();
-            var target = srcList.Find((s) => s.CODE_TABLE_NAME.Equals(Dgv_CommonTable["테이블명", e.RowIndex].Value));
+            string sTableName = Dgv_CommonTable[0, e.RowIndex].Value.ToString();
+            var target = srcList.Find((s) => s.CODE_TABLE_NAME.Equals(Dgv_CommonTable[0, e.RowIndex].Value));
             SelectedRowData(target);
             Ppg_CommonTable.SelectedObject = cd;
         }

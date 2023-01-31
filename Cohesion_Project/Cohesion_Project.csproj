@@ -87,12 +87,6 @@
     <Compile Include="Base\Frm_Base_1.Designer.cs">
       <DependentUpon>Frm_Base_1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frm_Operationg_Inspection_Rel.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Frm_Operationg_Inspection_Rel.Designer.cs">
-      <DependentUpon>Frm_Operationg_Inspection_Rel.cs</DependentUpon>
-    </Compile>
     <Compile Include="Frm_BOM.cs">
       <SubType>Form</SubType>
     </Compile>
