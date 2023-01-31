@@ -44,15 +44,16 @@
   <ItemGroup>
     <Compile Include="BOM_MST_DTO.cs" />
     <Compile Include="Function_DTO.cs" />
+    <Compile Include="Function_User_Group_Rel_DTO.cs" />
     <Compile Include="Inspection_DTO.cs" />
     <Compile Include="OPERATION_MST_DTO.cs" />
-    <Compile Include="Rel_DTO.cs" />
     <Compile Include="Sales_Order_DTO.cs" />
     <Compile Include="Util\ComboUtil.cs" />
     <Compile Include="CommonData_DTO.cs" />
     <Compile Include="CommonTable_DTO.cs" />
     <Compile Include="Equipment_DTO.cs" />
     <Compile Include="PRODUCT_MST_DTO.cs" />
+    <Compile Include="PRODUCT_OPERATION_REL_DTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Store_DTO.cs" />
     <Compile Include="UserGroup_DTO.cs" />

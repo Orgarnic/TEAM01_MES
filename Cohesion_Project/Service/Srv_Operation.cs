@@ -43,13 +43,5 @@ namespace Cohesion_Project
 
          return result;
       }
-        public List<Operation_Inspection_Rel_DTO> SelectOperationInRel(Operation_Inspection_Rel_DTO condition)
-        {
-            Operation_DAO dao = new Operation_DAO();
-            List<Operation_Inspection_Rel_DTO> list = dao.SelectOperationInRel(condition);
-            dao.Dispose();
-
-            return list;
-        }
-    }
+   }
 }

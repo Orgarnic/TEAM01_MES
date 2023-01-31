@@ -33,7 +33,7 @@ namespace Cohesion_DAO
             {
                 conn.Open();
                 string sql = @"insert into FUNCTION_MST(FUNCTION_CODE, FUNCTION_NAME,CREATE_TIME ,SHORT_CUT_KEY ,ICON_INDEX,  CREATE_USER_ID)
-                                    values(@FUNCTION_CODE,@FUNCTION_NAME,@CREATE_TIME,@SHORT_CUT_KEY,@ICON_INDEX,@CREATE_USER_ID)";
+                                    values((FORMAT(cast(GETDATE() as datetime), 'F_'+'yyMMddHHmmss')),@FUNCTION_NAME,@CREATE_TIME,@SHORT_CUT_KEY,@ICON_INDEX,@CREATE_USER_ID)";
                 SqlCommand cmd = Helper.UpsertCmdValue<FUNCTION_MST_DTO>(dto, sql, conn);
                 int result = cmd.ExecuteNonQuery();
                 return result > 0;

@@ -362,3 +362,16 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/Cohesion_Project/Frm_Operation_Inspection_Rel.resx
+/Cohesion_Project/Frm_Operation_Inspection_Rel.Designer.cs
+/Cohesion_Project/Frm_Operation_Inspection_Rel.cs
+/Cohesion_Project/Frm_Operationg_Inspection_Rel.resx
+/Cohesion_Project/Frm_Equipment_Operation_Rel.resx
+/Cohesion_Project/Frm_Equipment_Operation_Rel.Designer.cs
+/Cohesion_Project/Frm_Equipment_Operation_Rel.cs
+/Cohesion_DTO/Rel_DTO.cs
+/Cohesion_DAO/Relation_DAO.cs
+/Cohesion_Project/Service/Srv_Relation.cs
+/Cohesion_Project/Frm_Product_Operation_Rel.resx
+/Cohesion_Project/Frm_Product_Operation_Rel.Designer.cs
+/Cohesion_Project/Frm_Product_Operation_Rel.cs
