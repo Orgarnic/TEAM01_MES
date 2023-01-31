@@ -147,12 +147,6 @@
     <Compile Include="Frm_Product.Designer.cs">
       <DependentUpon>Frm_Product.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frm_Product_Operation_Rel.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Frm_Product_Operation_Rel.Designer.cs">
-      <DependentUpon>Frm_Product_Operation_Rel.cs</DependentUpon>
-    </Compile>
     <Compile Include="Frm_Sales_Order.cs">
       <SubType>Form</SubType>
     </Compile>
