@@ -42,5 +42,14 @@ namespace Cohesion_Project
 
          return result;
       }
-   }
+
+        public List<PRODUCT_OPERATION_REL_DTO> SelectProductInRel()
+        {
+            Product_DAO dao = new Product_DAO();
+            List<PRODUCT_OPERATION_REL_DTO> list = dao.SelectProductInRel();
+            dao.Dispose();
+
+            return list;
+        }
+    }
 }

@@ -131,5 +131,31 @@ namespace Cohesion_DAO
          if (conn != null || conn.State == ConnectionState.Open)
             conn.Close();
       }
-   }
+
+        public List<PRODUCT_OPERATION_REL_DTO> SelectProductInRel()
+        {
+            try
+            {
+                string sql = @"SELECT PRODUCT_CODE, PRODUCT_NAME, PRODUCT_TYPE, CUSTOMER_CODE, 
+                                      VENDOR_CODE, CREATE_TIME, CREATE_USER_ID, UPDATE_TIME, UPDATE_USER_ID
+                               FROM PRODUCT_MST";
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                conn.Open();
+                var list = Helper.DataReaderMapToList<PRODUCT_OPERATION_REL_DTO>(cmd.ExecuteReader());
+                conn.Close();
+                return list;
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.StackTrace);
+                Debug.WriteLine(err.Message);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+    }
 }
