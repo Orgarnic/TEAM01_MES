@@ -202,7 +202,17 @@ namespace Cohesion_DAO
             SqlTransaction trans = conn.BeginTransaction();
             try
             {
-                string sql = @"DECLARE @EXIST INT
+                StringBuilder sb = new StringBuilder();
+                list.ForEach((c) => sb.Append(c.EQUIPMENT_CODE+"','"));
+                string codes = "'" + sb.ToString().TrimEnd(',','\'') + "'";
+                string sql1 = @"DELETE EQUIPMENT_OPERATION_REL WHERE OPERATION_CODE = @OPERATION_CODE AND EQUIPMENT_CODE NOT IN (@CODE)";
+                SqlCommand cmd = new SqlCommand(sql1, conn);
+                cmd.Parameters.AddWithValue("@OPERATION_CODE", operationCode);
+                cmd.Parameters.AddWithValue("@CODE", codes);
+                cmd.Transaction = trans;
+                cmd.ExecuteNonQuery();
+
+                string sql2 = @"DECLARE @EXIST INT
                                SET @EXIST = (SELECT COUNT(*) FROM EQUIPMENT_OPERATION_REL WHERE OPERATION_CODE = @OPERATION_CODE AND EQUIPMENT_CODE = @EQUIPMENT_CODE)
                                
                                IF @EXIST != 0
@@ -214,16 +224,16 @@ namespace Cohesion_DAO
                                	INSERT INTO  EQUIPMENT_OPERATION_REL (OPERATION_CODE, EQUIPMENT_CODE, CREATE_TIME, CREATE_USER_ID)
                                                    		   VALUES (@OPERATION_CODE, @EQUIPMENT_CODE, GETDATE(), @CREATE_USER_ID)
                                END";
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.Transaction = trans;
-                cmd.Parameters.AddWithValue("@OPERATION_CODE", operationCode);
-                cmd.Parameters.AddWithValue("@UPDATE_USER_ID", "서지환");
-                cmd.Parameters.AddWithValue("@CREATE_USER_ID", "서지환");
-                cmd.Parameters.Add("@EQUIPMENT_CODE", System.Data.SqlDbType.VarChar);
+                SqlCommand cmd1 = new SqlCommand(sql2, conn);
+                cmd1.Transaction = trans;
+                cmd1.Parameters.AddWithValue("@OPERATION_CODE", operationCode);
+                cmd1.Parameters.AddWithValue("@UPDATE_USER_ID", "서지환");
+                cmd1.Parameters.AddWithValue("@CREATE_USER_ID", "서지환");
+                cmd1.Parameters.Add("@EQUIPMENT_CODE", System.Data.SqlDbType.VarChar);
                 for (int i = 0; i < list.Count; i++)
                 {
-                    cmd.Parameters["@EQUIPMENT_CODE"].Value = list[i].EQUIPMENT_CODE;
-                    cmd.ExecuteNonQuery();
+                    cmd1.Parameters["@EQUIPMENT_CODE"].Value = list[i].EQUIPMENT_CODE;
+                    cmd1.ExecuteNonQuery();
                 }
                 trans.Commit();
                 return true;
