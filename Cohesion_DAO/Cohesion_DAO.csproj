@@ -63,13 +63,13 @@
     <Compile Include="WorkOrder_DAO.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Cohesion_DTO\Cohesion_DTO.csproj">
       <Project>{b20fd49f-87cb-445f-b7ff-f3f6ba267cbd}</Project>
       <Name>Cohesion_DTO</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -44,7 +44,6 @@ namespace Cohesion_DAO
                }
             }
             cmd.CommandText = sql.ToString();
-                ]
 
 
             cmd.Connection = conn;
