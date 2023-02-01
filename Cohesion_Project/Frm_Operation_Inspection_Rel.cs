@@ -14,7 +14,6 @@ namespace Cohesion_Project
     public partial class Frm_Operation_Inspection_Rel : Cohesion_Project.Frm_Base_4
     {
         Operationg_Inspection_Rel_Search oSearch = new Operationg_Inspection_Rel_Search();
-        Srv_Operation svP = new Srv_Operation();
         Srv_Inspection svI = new Srv_Inspection();
         Srv_Relation svR = new Srv_Relation();
         List<Inspection_DTO> iList = new List<Inspection_DTO>();
@@ -28,7 +27,7 @@ namespace Cohesion_Project
         {
             InitDgv();
 
-            var list = svP.SelectOperationInRel(new Operation_Inspection_Rel_DTO());
+            var list = svR.SelectOperationInRel(new Operation_Inspection_Rel_DTO());
             int seq = 1;
             dgvOperationList.DataSource = list.Select((i) => new
             {
@@ -49,28 +48,28 @@ namespace Cohesion_Project
         {
             //데이터 그리드 뷰 초기 설정
             DgvUtil.DgvInit(dgvOperationList);
-            DgvUtil.AddTextCol(dgvOperationList, "NO", "DISPLAY_SEQ", 180, readOnly: true, align: 1, frozen: true);
-            DgvUtil.AddTextCol(dgvOperationList, "공정 코드", "OPERATION_CODE", 150, readOnly: true, align: 1, frozen: true);
-            DgvUtil.AddTextCol(dgvOperationList, "공정명", "OPERATION_NAME", 100, readOnly: true);
-            DgvUtil.AddTextCol(dgvOperationList, "불량입력", "CHECK_DEFECT_FLAG", 100, readOnly: true);
-            DgvUtil.AddTextCol(dgvOperationList, "검사 데이터 입력", "CHECK_INSPECT_FLAG", 100, readOnly: true);
-            DgvUtil.AddTextCol(dgvOperationList, "자재 사용", "CHECK_MATERIAL_FLAG", 120, readOnly: true);
-            DgvUtil.AddTextCol(dgvOperationList, "생성 시간", "CREATE_TIME", 140, readOnly: true);
-            DgvUtil.AddTextCol(dgvOperationList, "생성자", "CREATE_USER_ID", 120, readOnly: true);
-            DgvUtil.AddTextCol(dgvOperationList, "변경 시간", "UPDATE_TIME", 140, readOnly: true);
-            DgvUtil.AddTextCol(dgvOperationList, "변경자", "UPDATE_USER_ID", 120, readOnly: true);
+            DgvUtil.AddTextCol(dgvOperationList, "    NO", "DISPLAY_SEQ", 80, readOnly: true, align: 1, frozen: true);
+            DgvUtil.AddTextCol(dgvOperationList, "  공정 코드", "OPERATION_CODE", 150, readOnly: true, align: 1, frozen: true);
+            DgvUtil.AddTextCol(dgvOperationList, "  공정명", "OPERATION_NAME", 150, readOnly: true);
+            DgvUtil.AddTextCol(dgvOperationList, "    불량 입력", "CHECK_DEFECT_FLAG", 150, readOnly: true);
+            DgvUtil.AddTextCol(dgvOperationList, "    검사 데이터 입력", "CHECK_INSPECT_FLAG", 150, readOnly: true);
+            DgvUtil.AddTextCol(dgvOperationList, "    자재 사용", "CHECK_MATERIAL_FLAG", 150, readOnly: true);
+            DgvUtil.AddTextCol(dgvOperationList, "    생성 시간", "CREATE_TIME", 140, readOnly: true);
+            DgvUtil.AddTextCol(dgvOperationList, "    생성자", "CREATE_USER_ID", 120, readOnly: true);
+            DgvUtil.AddTextCol(dgvOperationList, "    변경 시간", "UPDATE_TIME", 140, readOnly: true);
+            DgvUtil.AddTextCol(dgvOperationList, "    변경자", "UPDATE_USER_ID", 120, readOnly: true);
 
             DgvUtil.DgvInit(dgvAddedInspection);
-            DgvUtil.AddTextCol(dgvAddedInspection, "순번", "DISPLAY_SEQ", 180, readOnly: true, align: 1, frozen: true);
-            DgvUtil.AddTextCol(dgvAddedInspection, "검사 항목 코드", "INSPECT_ITEM_CODE", 150, readOnly: true, align: 1, frozen: true);
-            DgvUtil.AddTextCol(dgvAddedInspection, "검사 항목명", "INSPECT_ITEM_NAME", 100, readOnly: true);
-            DgvUtil.AddTextCol(dgvAddedInspection, "검사 유형", "VALUE_TYPE", 100, readOnly: true);
+            DgvUtil.AddTextCol(dgvAddedInspection, "    NO", "DISPLAY_SEQ", 80, readOnly: true, align: 1, frozen: true);
+            DgvUtil.AddTextCol(dgvAddedInspection, "    검사 항목 코드", "INSPECT_ITEM_CODE", 150, readOnly: true, align: 1, frozen: true);
+            DgvUtil.AddTextCol(dgvAddedInspection, "    검사 항목명", "INSPECT_ITEM_NAME", 200, readOnly: true);
+            DgvUtil.AddTextCol(dgvAddedInspection, "    검사 유형", "VALUE_TYPE", 200, readOnly: true);
 
             DgvUtil.DgvInit(dgvInspectionList);
-            DgvUtil.AddTextCol(dgvInspectionList, "순번", "DISPLAY_SEQ", 180, readOnly: true, align: 1, frozen: true);
-            DgvUtil.AddTextCol(dgvInspectionList, "검사 항목 코드", "INSPECT_ITEM_CODE", 150, readOnly: true, align: 1, frozen: true);
-            DgvUtil.AddTextCol(dgvInspectionList, "검사 항목명", "INSPECT_ITEM_NAME", 100, readOnly: true);
-            DgvUtil.AddTextCol(dgvInspectionList, "검사 유형", "VALUE_TYPE", 100, readOnly: true);
+            DgvUtil.AddTextCol(dgvInspectionList, "     NO", "DISPLAY_SEQ", 80, readOnly: true, align: 1, frozen: true);
+            DgvUtil.AddTextCol(dgvInspectionList, "     검사 항목 코드", "INSPECT_ITEM_CODE", 150, readOnly: true, align: 1, frozen: true);
+            DgvUtil.AddTextCol(dgvInspectionList, "     검사 항목명", "INSPECT_ITEM_NAME", 200, readOnly: true);
+            DgvUtil.AddTextCol(dgvInspectionList, "     검사 유형", "VALUE_TYPE", 200, readOnly: true);
 
 
             btnLeft.Enabled = false;
@@ -346,6 +345,35 @@ namespace Cohesion_Project
             else
             {
                 MboxUtil.MboxError("검사 정보 수정중 오류가 발생했습니다.");
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            if (!ppgSearchCondition.Enabled)
+            {
+                MboxUtil.MboxError("검색조건을 활성화 시켜주세요.");
+                return;
+            }
+            else
+            {
+                var t = ppgSearchCondition.SelectedObject as Operationg_Inspection_Rel_Search;
+                Operation_Inspection_Rel_DTO dto = new Operation_Inspection_Rel_DTO { OPERATION_CODE = t.OPERATION_CODE, OPERATION_NAME = t.OPERATION_NAME, CHECK_DEFECT_FLAG = t.CHECK_DEFECT_FLAG, CHECK_INSPECT_FLAG = t.CHECK_INSPECT_FLAG, CHECK_MATERIAL_FLAG = t.CHECK_MATERIAL_FLAG };
+                var list = svR.SelectOperationInRel(dto);
+                int seq = 1;
+                dgvOperationList.DataSource = list.Select((i) => new
+                {
+                    OPERATION_CODE = i.OPERATION_CODE,
+                    OPERATION_NAME = i.OPERATION_NAME,
+                    CHECK_DEFECT_FLAG = i.CHECK_DEFECT_FLAG,
+                    CHECK_INSPECT_FLAG = i.CHECK_INSPECT_FLAG,
+                    CHECK_MATERIAL_FLAG = i.CHECK_MATERIAL_FLAG,
+                    CREATE_TIME = i.CREATE_TIME,
+                    CREATE_USER_ID = i.CREATE_USER_ID,
+                    UPDATE_TIME = i.UPDATE_TIME,
+                    UPDATE_USER_ID = i.UPDATE_USER_ID,
+                    DISPLAY_SEQ = seq++
+                }).ToList();
             }
         }
     }

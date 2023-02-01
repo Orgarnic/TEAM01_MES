@@ -85,5 +85,39 @@ namespace Cohesion_Project.Service
 
         }
 
+        
+        public List<Operation_Inspection_Rel_DTO> SelectOperationInRel(Operation_Inspection_Rel_DTO condition)
+        {
+            Relation_DAO dao = new Relation_DAO();
+            List<Operation_Inspection_Rel_DTO> list = dao.SelectOperationInRel(condition);
+            dao.Dispose();
+            return list;
+        }
+
+        public List<PRODUCT_OPERATION_REL_DTO> SelectProductInRel(PRODUCT_OPERATION_REL_DTO condition)
+        {
+            Relation_DAO dao = new Relation_DAO();
+            List<PRODUCT_OPERATION_REL_DTO> list = dao.SelectProductInRel(condition);
+            dao.Dispose();
+            return list;
+        }
+
+        public List<PRODUCT_OPERATION_REL_DTO> SelectProductInRel()
+        {
+            Relation_DAO dao = new Relation_DAO();
+            List<PRODUCT_OPERATION_REL_DTO> list = dao.SelectProductInRel();
+            dao.Dispose();
+
+            return list;
+        }
+
+        public List<Equipment_DTO> SelectEquipment(Equipment_DTO condtion)
+        {
+            Relation_DAO dao = new Relation_DAO();
+            List<Equipment_DTO> list = dao.SelectEquipment(condtion);
+            dao.Dispose();
+
+            return list;
+        }
     }
 }

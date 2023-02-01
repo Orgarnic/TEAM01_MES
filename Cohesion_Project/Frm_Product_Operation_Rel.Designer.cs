@@ -107,8 +107,11 @@ namespace Cohesion_Project
             // 
             // panel2
             // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
             this.panel2.Controls.Add(this.dgvProductList);
-            this.panel2.Size = new System.Drawing.Size(1153, 334);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(3, 75);
+            this.panel2.Size = new System.Drawing.Size(1153, 373);
             this.panel2.Controls.SetChildIndex(this.lbl4, 0);
             this.panel2.Controls.SetChildIndex(this.dgvProductList, 0);
             // 
@@ -125,6 +128,7 @@ namespace Cohesion_Project
             // btnSearch
             // 
             this.btnSearch.FlatAppearance.BorderSize = 0;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // btnDelete
             // 
@@ -157,7 +161,7 @@ namespace Cohesion_Project
             this.dgvProductList.Location = new System.Drawing.Point(0, 32);
             this.dgvProductList.Name = "dgvProductList";
             this.dgvProductList.RowTemplate.Height = 23;
-            this.dgvProductList.Size = new System.Drawing.Size(1151, 300);
+            this.dgvProductList.Size = new System.Drawing.Size(1151, 339);
             this.dgvProductList.TabIndex = 5;
             this.dgvProductList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductList_CellClick);
             // 

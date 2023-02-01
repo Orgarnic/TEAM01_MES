@@ -113,8 +113,11 @@ namespace Cohesion_Project
             // 
             // panel2
             // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
             this.panel2.Controls.Add(this.dgvOperationList);
-            this.panel2.Size = new System.Drawing.Size(1153, 334);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(3, 75);
+            this.panel2.Size = new System.Drawing.Size(1153, 373);
             this.panel2.Controls.SetChildIndex(this.lbl4, 0);
             this.panel2.Controls.SetChildIndex(this.dgvOperationList, 0);
             // 
@@ -131,6 +134,7 @@ namespace Cohesion_Project
             // btnSearch
             // 
             this.btnSearch.FlatAppearance.BorderSize = 0;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // btnDelete
             // 
@@ -202,7 +206,7 @@ namespace Cohesion_Project
             this.dgvOperationList.Location = new System.Drawing.Point(0, 32);
             this.dgvOperationList.Name = "dgvOperationList";
             this.dgvOperationList.RowTemplate.Height = 23;
-            this.dgvOperationList.Size = new System.Drawing.Size(1151, 300);
+            this.dgvOperationList.Size = new System.Drawing.Size(1151, 339);
             this.dgvOperationList.TabIndex = 5;
             this.dgvOperationList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOperationList_CellClick);
             // 

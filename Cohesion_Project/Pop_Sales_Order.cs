@@ -22,9 +22,11 @@ namespace Cohesion_Project
         Srv_Sales_Order svr = new Srv_Sales_Order();
         List<Sales_Order_VO> productList;
 
+        bool stockAvailable = false;
+
         public string ProductCode { get; set; }
         public string SalesOrderID { get; set; }
-        
+        public bool StockAvailable { get { return stockAvailable; } set { stockAvailable = value; } }
         public Pop_Sales_Order()
         {
             InitializeComponent();
@@ -34,6 +36,12 @@ namespace Cohesion_Project
         {
             DataGridViewBinding();
             FormCondition();
+            if (dgvList.Rows.Count == 0)
+            {
+                this.DialogResult = DialogResult.Cancel;
+                stockAvailable = true;
+                btnClose.PerformClick();
+            }
         }
         
         private void DataGridViewBinding()
@@ -72,10 +80,13 @@ namespace Cohesion_Project
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
+            if (MboxUtil.MboxInfo_("주문을 등록하시겠습니까?"))
+            {
+                return;
+            }
             var list = dgvList.DataSource as List<Sales_Order_VO>;
 
             int cnt = 0;
-            bool result = default;
 
             Sales_Order_VO purchase = new Sales_Order_VO();
             foreach (DataGridViewRow row in dgvList.Rows)
@@ -99,29 +110,12 @@ namespace Cohesion_Project
                     return;
                 }
 
-                result = svr.InsertPurchase(purchase);
             }
+            var result = svr.InsertPurchase(list);
 
-            //foreach (DataGridViewRow row in dgvList.Rows)
-            //{
-            //    Sales_Order_VO purchase = new Sales_Order_VO
-            //    {
-            //        CHILD_PRODUCT_NAME = row.Cells["CHILD_PRODUCT_NAME"].Value.ToString(),
-            //        SALES_ORDER_ID = row.Cells["SALES_ORDER_ID"].Value.ToString(),
-            //        VENDOR_CODE = row.Cells["VENDOR_CODE"].Value.ToString(),
-            //        MATERIAL_CODE = row.Cells["CHILD_PRODUCT_CODE"].Value.ToString(),
-            //        ORDER_QTY = row.Cells["PURCHASE_QTY"].Value.ToString()
-            //    };
-            //    //row.Cells["PURCHASE_SEQ"].Value = ;
-            //    list.Add(purchase);
-            //    cnt++;
-
-            //    result = svr.InsertPurchase(purchase);                
-            //}
             if (result)
-                MboxUtil.MboxInfo_("주문을 등록하시겠습니까?");
+                MboxUtil.MboxInfo("주문서 등록을 완료했습니다.");
             else
-
                 MboxUtil.MboxWarn("주문 등록 중중 오류가 발생했습니다. 다시 시도해주세요.");
 
             this.DialogResult = DialogResult.OK;

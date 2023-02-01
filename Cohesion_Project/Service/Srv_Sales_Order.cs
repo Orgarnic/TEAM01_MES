@@ -65,10 +65,10 @@ namespace Cohesion_Project
             return result;
         }
 
-        public bool InsertPurchase(Sales_Order_VO dto)
+        public bool InsertPurchase(List<Sales_Order_VO> list)
         {
             Sales_Order_DAO dao = new Sales_Order_DAO();
-            bool result = dao.InsertPurchase(dto);
+            bool result = dao.InsertPurchase(list);
             dao.Dispose();
 
             return result;
