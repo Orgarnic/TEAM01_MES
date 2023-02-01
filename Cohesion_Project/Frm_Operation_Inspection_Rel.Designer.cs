@@ -162,6 +162,7 @@ namespace Cohesion_Project
             // btnRefresh
             // 
             this.btnRefresh.FlatAppearance.BorderSize = 0;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // panel8
             // 
