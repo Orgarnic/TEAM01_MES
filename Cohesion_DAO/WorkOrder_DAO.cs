@@ -83,11 +83,11 @@ namespace Cohesion_DAO
             }
         }
 
-        public List<BOM_MST_DTO> GetOrderProductBOM(string ocode, string pcode)
+        public List<BOM_MST_WORKORDER_DTO> GetOrderProductBOM(string ocode, string pcode)
         {
             // LOT 완성되면 쿼리 수정이 필요함.
             // 안전 재고수량, 현 재고수량, order 수량에 필요한 갯수 등등
-            List<BOM_MST_DTO> list = null;
+            List<BOM_MST_WORKORDER_DTO> list = null;
             string sql = @"with BOM as(select b.CHILD_PRODUCT_CODE, pd2.PRODUCT_NAME, REQUIRE_QTY, pd2.PRODUCT_TYPE, so.ORDER_QTY
                                        from SALES_ORDER_MST so inner join PRODUCT_MST pd on so.PRODUCT_CODE = pd.PRODUCT_CODE
 						                                       inner join BOM_MST b on so.PRODUCT_CODE = b.PRODUCT_CODE
@@ -104,7 +104,7 @@ namespace Cohesion_DAO
                 cmd.Parameters.AddWithValue("@PRODUCT_CODE", pcode);
                 conn.Open();
 
-                list = Helper.DataReaderMapToList<BOM_MST_DTO>(cmd.ExecuteReader());
+                list = Helper.DataReaderMapToList<BOM_MST_WORKORDER_DTO>(cmd.ExecuteReader());
 
                 return list;
 
