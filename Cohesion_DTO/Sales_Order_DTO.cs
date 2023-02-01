@@ -50,9 +50,6 @@ namespace Cohesion_DTO
 
         [Category("추적"), Description("UPDATE_USER_ID"), DisplayName("변경 사용자"), ReadOnly(true)]
         public string UPDATE_USER_ID { get; set; }
-
-        // 김재형 추가
-        public decimal LOT_QTY { get; set; }
     }
 
     public class Sales_Order_DTO_Search
@@ -77,11 +74,43 @@ namespace Cohesion_DTO
         [Category("검색조건"), Description("CM_ANSWER"), DisplayName("확정여부"), TypeConverter(typeof(ComboStringConverter))]
         public string CONFIRM_FLAG { get; set; }
     }
-
-    public class Sales_Order_State_DTO
+    public class Sales_Order_VO
     {
-        public string   PRODUCT_CODE        { get; set; }
-        public string   CHILD_PRODUCT_CODE  { get; set; }
-        public decimal  EQUIRE_QTY          { get; set; }
+        public string SALES_ORDER_ID { get; set; }
+        public DateTime ORDER_DATE { get; set; }
+        public string CUSTOMER_CODE { get; set; }
+        public string CUSTOMER_NAME { get; set; }
+        public string PRODUCT_CODE { get; set; }
+        public string PRODUCT_NAME { get; set; }
+        public string ORDER_QTY { get; set; }
+        public string PURCHASE_QTY { get; set; }
+        public string CONFIRM_FLAG { get; set; }
+        public string SHIP_FLAG { get; set; }
+        public DateTime CREATE_TIME { get; set; }
+        public string CREATE_USER_ID { get; set; }
+        public DateTime UPDATE_TIME { get; set; }
+        public string UPDATE_USER_ID { get; set; }
+        public string CHILD_PRODUCT_CODE { get; set; }
+        public string CHILD_PRODUCT_NAME { get; set; }
+        public decimal REQUIRE_QTY { get; set; }
+        public decimal NEED_QTY { get; set; }
+        public string VENDOR_CODE { get; set; }
+        public decimal LOT_QTY { get; set; }
+        public decimal LEFT_QTY { get; set; }
+        public string STOCK_IN_FLAG { get; set; }
+        public string MATERIAL_CODE { get; set; }
+        public string PURCHASE_SEQ { get; set; }
+    }
+
+    public class Purchase_DTO
+    {
+        public string PURCHASE_ORDER_ID { get; set; }
+        public int PURCHASE_SEQ { get; set; }
+        public string SALES_ORDER_ID { get; set; }
+        public DateTime ORDER_DATE { get; set; }
+        public string VENDOR_CODE { get; set; }
+        public string MATERIAL_CODE { get; set; }
+        public decimal ORDER_QTY { get; set; }
+        public string STOCK_IN_FLAG { get; set; }
     }
 }

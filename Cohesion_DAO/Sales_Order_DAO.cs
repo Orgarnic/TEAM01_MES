@@ -124,12 +124,6 @@ namespace Cohesion_DAO
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                //StringBuilder sql = new StringBuilder(@"SELECT SOM.SALES_ORDER_ID, SOM.ORDER_DATE, SOM.CUSTOMER_CODE, DATA_1 AS CUSTOMER_NAME, SOM.PRODUCT_CODE, PRODUCT_NAME, SOM.ORDER_QTY, 
-                //                  SOM.CONFIRM_FLAG, SOM.SHIP_FLAG, SOM.CREATE_TIME, SOM.CREATE_USER_ID, SOM.UPDATE_TIME, SOM.UPDATE_USER_ID
-                //           FROM SALES_ORDER_MST SOM INNER JOIN CODE_DATA_MST CDM ON SOM.CUSTOMER_CODE = CDM.KEY_1
-                //                                    INNER JOIN PRODUCT_MST PM ON SOM.PRODUCT_CODE = PM.PRODUCT_CODE
-                //           WHERE 1 = 1");
-
                 StringBuilder sql = new StringBuilder(@"SELECT SOM.SALES_ORDER_ID, CONVERT(VARCHAR(30), SOM.ORDER_DATE, 121) ORDER_DATE, SOM.CUSTOMER_CODE, DATA_1 AS CUSTOMER_NAME, SOM.PRODUCT_CODE, PRODUCT_NAME, SOM.ORDER_QTY, 
                                                                SOM.CONFIRM_FLAG, SOM.SHIP_FLAG, SOM.CREATE_TIME, SOM.CREATE_USER_ID, SOM.UPDATE_TIME, SOM.UPDATE_USER_ID
                                                         FROM SALES_ORDER_MST SOM INNER JOIN CODE_DATA_MST CDM ON SOM.CUSTOMER_CODE = CDM.KEY_1
@@ -161,22 +155,66 @@ namespace Cohesion_DAO
             }
             return list;
         }
-
-        public bool SelectBOM(Sales_Order_State_DTO dto)
+        
+        public List<Sales_Order_VO> SelectSalesOrderState(string productCode, string orderID)
         {
-            string sql = @"SELECT PRODUCT_CODE, CHILD_PRODUCT_CODE, REQUIRE_QTY
-                           FROM BOM_MST
-                           WHERE PRODUCT_CODE = @PRODUCT_CODE AND CHILD_PRODUCT_CODE LIKE '%ERS%'
-                              OR PRODUCT_CODE = @PRODUCT_CODE AND CHILD_PRODUCT_CODE LIKE '%SPR%'
-                              OR PRODUCT_CODE = @PRODUCT_CODE AND CHILD_PRODUCT_CODE LIKE '%GRP%' ";
+            List<Sales_Order_VO> list = default;
+            try
+            {
+                string sql = @"SELECT SOM.SALES_ORDER_ID, SOM.CUSTOMER_CODE, SOM.PRODUCT_CODE, PM.PRODUCT_NAME, SOM.ORDER_QTY,
+                               		  BM.CHILD_PRODUCT_CODE, PMS.PRODUCT_NAME AS CHILD_PRODUCT_NAME, REQUIRE_QTY, 
+                               		  CAST(ORDER_QTY * REQUIRE_QTY AS DECIMAL) NEED_QTY, PMS1.VENDOR_CODE, 
+                                      CAST(LS.LOT_QTY AS DECIMAL) LOT_QTY,
+                               		  CAST(LS.LOT_QTY - (ORDER_QTY * REQUIRE_QTY)AS DECIMAL)LEFT_QTY
+                               FROM SALES_ORDER_MST SOM INNER JOIN CODE_DATA_MST CDM ON SOM.CUSTOMER_CODE = CDM.KEY_1
+                                                        INNER JOIN PRODUCT_MST PM ON SOM.PRODUCT_CODE = PM.PRODUCT_CODE
+                               						    INNER JOIN BOM_MST BM ON SOM.PRODUCT_CODE = BM.PRODUCT_CODE
+                               						    INNER JOIN PRODUCT_MST PMS ON BM.CHILD_PRODUCT_CODE = PMS.PRODUCT_CODE
+                               						    INNER JOIN PRODUCT_MST PMS1 ON BM.CHILD_PRODUCT_CODE = PMS1.PRODUCT_CODE AND PMS1.VENDOR_CODE IS NOT NULL
+                               						    INNER JOIN LOT_STS LS ON PMS.PRODUCT_CODE = LS.PRODUCT_CODE
+                               WHERE SOM.PRODUCT_CODE = @PRODUCT_CODE AND SOM.SALES_ORDER_ID = @SALES_ORDER_ID
+                               					   -- AND PMS1.VENDOR_CODE IS NOT NULL
+                               ORDER BY SALES_ORDER_ID DESC";
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@PRODUCT_CODE", productCode);
+                cmd.Parameters.AddWithValue("@SALES_ORDER_ID", orderID);
+                conn.Open();
+
+                list = Helper.DataReaderMapToList<Sales_Order_VO>(cmd.ExecuteReader());
+
+                return list;
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                Debug.WriteLine(err.StackTrace);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        public bool InsertPurchase(Sales_Order_VO dto)
+        {
+            string sql = @"INSERT INTO PURCHASE_ORDER_MST (PURCHASE_ORDER_ID, SALES_ORDER_ID, ORDER_DATE, 
+                                                           VENDOR_CODE, MATERIAL_CODE, ORDER_QTY, STOCK_IN_FLAG)
+                           VALUES((FORMAT(cast(GETDATE() as datetime), 'PURC_'+'yyMMddHHmmss')), @SALES_ORDER_ID, 
+                                   GETDATE(), @VENDOR_CODE, @MATERIAL_CODE, CAST(@ORDER_QTY AS DECIMAL), 'N') ";
 
             SqlCommand cmd = new SqlCommand(sql, conn);
 
-            cmd.Parameters.AddWithValue("@PRODUCT_CODE", string.IsNullOrEmpty(dto.PRODUCT_CODE) ? (object)DBNull.Value : dto.PRODUCT_CODE);
+            cmd.Parameters.AddWithValue("@SALES_ORDER_ID", string.IsNullOrEmpty(dto.SALES_ORDER_ID) ? (object)DBNull.Value : dto.SALES_ORDER_ID);
+            cmd.Parameters.AddWithValue("@VENDOR_CODE", string.IsNullOrEmpty(dto.VENDOR_CODE) ? (object)DBNull.Value : dto.VENDOR_CODE);
+            cmd.Parameters.AddWithValue("@MATERIAL_CODE", string.IsNullOrEmpty(dto.MATERIAL_CODE) ? (object)DBNull.Value : dto.MATERIAL_CODE);
+            cmd.Parameters.AddWithValue("@ORDER_QTY", dto.ORDER_QTY);
+            cmd.Parameters.AddWithValue("@STOCK_IN_FLAG", string.IsNullOrEmpty(dto.STOCK_IN_FLAG) ? (object)DBNull.Value : dto.STOCK_IN_FLAG);
 
             conn.Open();
             cmd.ExecuteNonQuery();
             return true;
         }
+
     }
 }
