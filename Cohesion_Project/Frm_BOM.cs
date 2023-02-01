@@ -85,7 +85,7 @@ namespace Cohesion_Project
         private void dgvBOMParent_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             // 셀클릭시, 클릭된 완제품의 BOM을 Child에 뿌려줌.
-            if (e.RowIndex < -1) return;
+            if (e.RowIndex < 0) return;
             prodID = dgvBOMParent[0, e.RowIndex].Value.ToString();
             bom = srv.SelectBOMList(prodID);
             dgvBOMChild.DataSource = null;

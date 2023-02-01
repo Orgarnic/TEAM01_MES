@@ -47,12 +47,11 @@ namespace Cohesion_Project
             DgvUtil.AddTextCol(dgvOrderList, "주문 일자", "ORDER_DATE", width: 140, readOnly: true, frozen: true);
             DgvUtil.AddTextCol(dgvOrderList, "고객 코드", "CUSTOMER_CODE", width: 140, readOnly: true, frozen: true);
             DgvUtil.AddTextCol(dgvOrderList, "제품 코드", "PRODUCT_CODE", width: 140, readOnly: true, frozen: true);
-            DgvUtil.AddTextCol(dgvOrderList, "주문 수량", "ORDER_QTY", width: 140, readOnly: true, frozen: true); 
-            DgvUtil.AddTextCol(dgvOrderList, "재고 수량", "LOT_QTY", width: 140, readOnly: true, frozen: true);
+            DgvUtil.AddTextCol(dgvOrderList, "주문 수량", "ORDER_QTY", width: 140, readOnly: true, frozen: true);
 
             DgvUtil.DgvInit(dgvBOMStock);
             DgvUtil.AddTextCol(dgvBOMStock, "제품 코드", "CHILD_PRODUCT_CODE", width: 140, readOnly: true, frozen: true);
-            DgvUtil.AddTextCol(dgvBOMStock, "제품명", "PRODUCT_NAME", width: 140, readOnly: true, frozen: true);
+            DgvUtil.AddTextCol(dgvBOMStock, "제품명",    "PRODUCT_NAME", width: 140, readOnly: true, frozen: true);
             DgvUtil.AddTextCol(dgvBOMStock, "제품 유형", "PRODUCT_TYPE", width: 140, readOnly: true, frozen: true);
             DgvUtil.AddTextCol(dgvBOMStock, "단위 수량", "REQUIRE_QTY", width: 140, readOnly: true, frozen: true);
             DgvUtil.AddTextCol(dgvBOMStock, "제작 수량", "ORDER_QTY", width: 140, readOnly: true, frozen: true);
@@ -158,7 +157,6 @@ namespace Cohesion_Project
             dgvBOMStock.ClearSelection();
             if (e.RowIndex < 0) return;
             orderQty = Convert.ToDecimal(dgvOrderList[4, e.RowIndex].Value.ToString());
-            lotQty = Convert.ToDecimal(dgvOrderList[5, e.RowIndex].Value.ToString());
             oCode = dgvOrderList[0, e.RowIndex].Value.ToString();
             pCode = dgvOrderList[3, e.RowIndex].Value.ToString();
             bom = work.GetOrderProductBOM(oCode, pCode);
@@ -167,6 +165,7 @@ namespace Cohesion_Project
             {
                 CUSTOMER_CODE = dgvOrderList[2, e.RowIndex].Value.ToString().Trim(),
                 PRODUCT_CODE = dgvOrderList[3, e.RowIndex].Value.ToString().Trim(),
+                ORDER_DATE = Convert.ToDateTime(dgvOrderList["ORDER_DATE", e.RowIndex].Value.ToString()),
                 ORDER_QTY = orderQty,
                 ORDER_STATUS = "OPEN",
                 

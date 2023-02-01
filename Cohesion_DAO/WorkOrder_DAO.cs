@@ -59,9 +59,10 @@ namespace Cohesion_DAO
             List<Sales_Order_Work_DTO> list = null;
             try
             {
-                string sql = @"select SALES_ORDER_ID, ORDER_DATE, CUSTOMER_CODE, so.PRODUCT_CODE, ORDER_QTY, sum(ls.LOT_QTY) LOT_QTY
-                               from SALES_ORDER_MST so inner join LOT_STS ls on so.PRODUCT_CODE = ls.PRODUCT_CODE
-							   group by SALES_ORDER_ID, ORDER_DATE, CUSTOMER_CODE, so.PRODUCT_CODE, ORDER_QTY";
+                string sql = @"select SALES_ORDER_ID, so.ORDER_DATE, so.CUSTOMER_CODE, so.PRODUCT_CODE, so.ORDER_QTY
+                               from SALES_ORDER_MST so inner join PRODUCT_MST p on so.PRODUCT_CODE = p.PRODUCT_CODE
+							   where so.CONFIRM_FLAG = 'Y' and so.SHIP_FLAG is null
+							   group by so.SALES_ORDER_ID, so.ORDER_DATE, so.CUSTOMER_CODE, so.PRODUCT_CODE, so.ORDER_QTY";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 conn.Open();
@@ -129,6 +130,7 @@ namespace Cohesion_DAO
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@PRODUCT_CODE", work.PRODUCT_CODE);
+                cmd.Parameters.AddWithValue("@ORDER_DATE", work.ORDER_DATE);
                 cmd.Parameters.AddWithValue("@CUSTOMER_CODE", work.CUSTOMER_CODE);
                 cmd.Parameters.AddWithValue("@ORDER_QTY", work.ORDER_QTY);
                 cmd.Parameters.AddWithValue("@ORDER_STATUS", work.ORDER_STATUS);
