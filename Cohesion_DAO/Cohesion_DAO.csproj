@@ -49,7 +49,6 @@
     <Compile Include="BOM_DAO.cs" />
     <Compile Include="Common_DAO.cs" />
     <Compile Include="Equipment_DAO.cs" />
-    <Compile Include="FUNCTION_DAO.cs" />
     <Compile Include="Inspection_DAO.cs" />
     <Compile Include="Operation_DAO.cs" />
     <Compile Include="Product_DAO.cs" />
