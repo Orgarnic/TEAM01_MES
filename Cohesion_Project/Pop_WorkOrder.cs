@@ -15,7 +15,7 @@ namespace Cohesion_Project
     public partial class Pop_WorkOrder : Form
     {
         List<Sales_Order_Work_DTO> order = null;
-        List<BOM_MST_DTO> bom = null;
+        List<BOM_MST_WORKORDER_DTO> bom = null;
         Work_Order_MST_DTO initWork = null;
         Srv_WorkOrder work = new Srv_WorkOrder();
         List<PRODUCT_OPERATION_REL_DTO> operations = null;
