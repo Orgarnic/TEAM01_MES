@@ -196,23 +196,31 @@ namespace Cohesion_DAO
                 conn.Close();
             }
         }
-        public bool InsertPurchase(Sales_Order_VO dto)
+        public bool InsertPurchase(List<Sales_Order_VO> list)
         {
             string sql = @"INSERT INTO PURCHASE_ORDER_MST (PURCHASE_ORDER_ID, SALES_ORDER_ID, ORDER_DATE, 
                                                            VENDOR_CODE, MATERIAL_CODE, ORDER_QTY, STOCK_IN_FLAG)
-                           VALUES((FORMAT(cast(GETDATE() as datetime), 'PURC_'+'yyMMddHHmmss')), @SALES_ORDER_ID, 
+                           VALUES(@PURCHASE_ORDER_ID, @SALES_ORDER_ID, 
                                    GETDATE(), @VENDOR_CODE, @MATERIAL_CODE, CAST(@ORDER_QTY AS DECIMAL), 'N') ";
 
             SqlCommand cmd = new SqlCommand(sql, conn);
-
-            cmd.Parameters.AddWithValue("@SALES_ORDER_ID", string.IsNullOrEmpty(dto.SALES_ORDER_ID) ? (object)DBNull.Value : dto.SALES_ORDER_ID);
-            cmd.Parameters.AddWithValue("@VENDOR_CODE", string.IsNullOrEmpty(dto.VENDOR_CODE) ? (object)DBNull.Value : dto.VENDOR_CODE);
-            cmd.Parameters.AddWithValue("@MATERIAL_CODE", string.IsNullOrEmpty(dto.MATERIAL_CODE) ? (object)DBNull.Value : dto.MATERIAL_CODE);
-            cmd.Parameters.AddWithValue("@ORDER_QTY", dto.ORDER_QTY);
-            cmd.Parameters.AddWithValue("@STOCK_IN_FLAG", string.IsNullOrEmpty(dto.STOCK_IN_FLAG) ? (object)DBNull.Value : dto.STOCK_IN_FLAG);
+            string pCode = "PURC" + DateTime.Now.ToString("yyMMddHHmmss");
+            cmd.Parameters.AddWithValue("@PURCHASE_ORDER_ID", pCode);
+            cmd.Parameters.Add("@SALES_ORDER_ID", SqlDbType.VarChar);
+            cmd.Parameters.Add("@VENDOR_CODE", SqlDbType.VarChar);
+            cmd.Parameters.Add("@MATERIAL_CODE", SqlDbType.VarChar);
+            cmd.Parameters.Add("@ORDER_QTY", SqlDbType.Decimal);
 
             conn.Open();
-            cmd.ExecuteNonQuery();
+            for (int i = 0; i < list.Count; i++)
+            {
+                cmd.Parameters["@SALES_ORDER_ID"].Value = list[i].SALES_ORDER_ID;
+                cmd.Parameters["@VENDOR_CODE"].Value = list[i].VENDOR_CODE;
+                cmd.Parameters["@MATERIAL_CODE"].Value = list[i].MATERIAL_CODE;
+                cmd.Parameters["@ORDER_QTY"].Value = Convert.ToDecimal(list[i].ORDER_QTY);
+                cmd.ExecuteNonQuery();
+            }
+
             return true;
         }
 

@@ -15,8 +15,6 @@ namespace Cohesion_Project
     public partial class Frm_Product_Operation_Rel : Cohesion_Project.Frm_Base_4
     {
         PRODUCT_OPERATION_Rel_Search oSearch = new PRODUCT_OPERATION_Rel_Search();
-        Srv_Operation svP = new Srv_Operation();
-        Srv_Product svC = new Srv_Product();
         Srv_Relation svR = new Srv_Relation();
         List<OPERATION_REL_DTO> iList = new List<OPERATION_REL_DTO>();
         Util.ComboUtil comboUtil = new Util.ComboUtil();
@@ -30,7 +28,11 @@ namespace Cohesion_Project
         private void Frm_Product_Operation_Rel_Load(object sender, EventArgs e)
         {
             InitDgv();
-            var list = svC.SelectProductInRel();
+            LoadData();
+        }
+        private void LoadData()
+        {
+            var list = svR.SelectProductInRel();
             int seq = 1;
             dgvProductList.DataSource = list.Select((i) => new
             {
@@ -46,37 +48,36 @@ namespace Cohesion_Project
                 DISPLAY_SEQ = seq++
             }).ToList();
         }
-
         private void InitDgv()
         {
             //데이터 그리드 뷰 초기 설정
             DgvUtil.DgvInit(dgvProductList);
-            DgvUtil.AddTextCol(dgvProductList, "NO", "DISPLAY_SEQ", 180, readOnly: true, align: 1, frozen: true);
-            DgvUtil.AddTextCol(dgvProductList, "품번", "PRODUCT_CODE", 150, readOnly: true, align: 1, frozen: true);
-            DgvUtil.AddTextCol(dgvProductList, "품명", "PRODUCT_NAME", 100, readOnly: true);
-            DgvUtil.AddTextCol(dgvProductList, "품번 유형", "PRODUCT_TYPE", 100, readOnly: true);
-            DgvUtil.AddTextCol(dgvProductList, "고객 코드", "CUSTOMER_CODE", 100, readOnly: true);
-            DgvUtil.AddTextCol(dgvProductList, "업체 코드", "VENDOR_CODE", 120, readOnly: true);
-            DgvUtil.AddTextCol(dgvProductList, "생성 시간", "CREATE_TIME", 140, readOnly: true);
-            DgvUtil.AddTextCol(dgvProductList, "생성자", "CREATE_USER_ID", 120, readOnly: true);
-            DgvUtil.AddTextCol(dgvProductList, "변경 시간", "UPDATE_TIME", 140, readOnly: true);
-            DgvUtil.AddTextCol(dgvProductList, "변경자", "UPDATE_USER_ID", 120, readOnly: true);
+            DgvUtil.AddTextCol(dgvProductList, "    NO", "DISPLAY_SEQ", 80, readOnly: true, align: 1, frozen: true);
+            DgvUtil.AddTextCol(dgvProductList, "  품번", "PRODUCT_CODE", 150, readOnly: true, align: 1, frozen: true);
+            DgvUtil.AddTextCol(dgvProductList, "  품명", "PRODUCT_NAME", 150, readOnly: true);
+            DgvUtil.AddTextCol(dgvProductList, "    품번 유형", "PRODUCT_TYPE", 100, readOnly: true);
+            DgvUtil.AddTextCol(dgvProductList, "    고객 코드", "CUSTOMER_CODE", 100, readOnly: true);
+            DgvUtil.AddTextCol(dgvProductList, "    업체 코드", "VENDOR_CODE", 120, readOnly: true);
+            DgvUtil.AddTextCol(dgvProductList, "    생성 시간", "CREATE_TIME", 140, readOnly: true);
+            DgvUtil.AddTextCol(dgvProductList, "    생성자", "CREATE_USER_ID", 120, readOnly: true);
+            DgvUtil.AddTextCol(dgvProductList, "    변경 시간", "UPDATE_TIME", 140, readOnly: true);
+            DgvUtil.AddTextCol(dgvProductList, "    변경자", "UPDATE_USER_ID", 120, readOnly: true);
 
             DgvUtil.DgvInit(dgvOperationList);
-            DgvUtil.AddTextCol(dgvOperationList, "순번", "DISPLAY_SEQ", 180, readOnly: true, align: 1, frozen: true);
-            DgvUtil.AddTextCol(dgvOperationList, "공정 코드", "OPERATION_CODE", 150, readOnly: true, align: 1, frozen: true);
-            DgvUtil.AddTextCol(dgvOperationList, "공정명", "OPERATION_NAME", 100, readOnly: true);
+            DgvUtil.AddTextCol(dgvOperationList, "    NO", "DISPLAY_SEQ", 80, readOnly: true, align: 1, frozen: true);
+            DgvUtil.AddTextCol(dgvOperationList, "    공정 코드", "OPERATION_CODE", 150, readOnly: true, align: 1, frozen: true);
+            DgvUtil.AddTextCol(dgvOperationList, "    공정명", "OPERATION_NAME", 100, readOnly: true);
 
             DgvUtil.DgvInit(dgvAddOperationList);
-            DgvUtil.AddTextCol(dgvAddOperationList, "순번", "DISPLAY_SEQ", 180, readOnly: true, align: 1, frozen: true);
-            DgvUtil.AddTextCol(dgvAddOperationList, "공정 코드", "OPERATION_CODE", 150, readOnly: true, align: 1, frozen: true);
-            DgvUtil.AddTextCol(dgvAddOperationList, "공정명", "OPERATION_NAME", 100, readOnly: true);
+            DgvUtil.AddTextCol(dgvAddOperationList, "    NO", "DISPLAY_SEQ", 80, readOnly: true, align: 1, frozen: true);
+            DgvUtil.AddTextCol(dgvAddOperationList, "    공정 코드", "OPERATION_CODE", 150, readOnly: true, align: 1, frozen: true);
+            DgvUtil.AddTextCol(dgvAddOperationList, "    공정명", "OPERATION_NAME", 100, readOnly: true);
 
 
             btnLeft.Enabled = false;
             btnRight.Enabled = false;
 
-            var list = svP.SelectOperationInRel(new Operation_Inspection_Rel_DTO());
+            var list = svR.SelectOperationInRel(new Operation_Inspection_Rel_DTO());
             int seq = 1;
             iList = list.Select((i) => new OPERATION_REL_DTO
             {
@@ -178,7 +179,7 @@ namespace Cohesion_Project
                 List<OPERATION_REL_DTO> addList = new List<OPERATION_REL_DTO>();
                 addList.Add(dto);
                 dgvAddOperationList.DataSource = null;
-                dgvAddOperationList.DataSource = addList.OrderBy((i) => i.OPERATION_CODE).Select((i) => new OPERATION_REL_DTO { OPERATION_CODE = i.OPERATION_CODE, OPERATION_NAME = i.OPERATION_NAME, DISPLAY_SEQ = seq++ }).ToList();
+                dgvAddOperationList.DataSource = addList.Select((i) => new OPERATION_REL_DTO { OPERATION_CODE = i.OPERATION_CODE, OPERATION_NAME = i.OPERATION_NAME, DISPLAY_SEQ = seq++ }).ToList();
                 var l1 = dgvAddOperationList.DataSource;
 
                 List<OPERATION_REL_DTO> list = dgvOperationList.DataSource as List<OPERATION_REL_DTO>;
@@ -203,7 +204,7 @@ namespace Cohesion_Project
                 //{
                     addList.Add(dto);
                     dgvAddOperationList.DataSource = null;
-                    dgvAddOperationList.DataSource = addList.OrderBy((i) => i.OPERATION_CODE).Select((i) => new OPERATION_REL_DTO { OPERATION_CODE = i.OPERATION_CODE, OPERATION_NAME = i.OPERATION_NAME, DISPLAY_SEQ = seq++ }).ToList();
+                    dgvAddOperationList.DataSource = addList.Select((i) => new OPERATION_REL_DTO { OPERATION_CODE = i.OPERATION_CODE, OPERATION_NAME = i.OPERATION_NAME, DISPLAY_SEQ = seq++ }).ToList();
 
                     List<OPERATION_REL_DTO> list = dgvOperationList.DataSource as List<OPERATION_REL_DTO>;
 
@@ -247,7 +248,7 @@ namespace Cohesion_Project
                 var addList = dgvAddOperationList.DataSource as List<OPERATION_REL_DTO>;
                 addList.Remove(dto);
                 dgvAddOperationList.DataSource = null;
-                dgvAddOperationList.DataSource = addList.OrderBy((i) => i.OPERATION_CODE).Select((i) => new OPERATION_REL_DTO { OPERATION_CODE = i.OPERATION_CODE, OPERATION_NAME = i.OPERATION_NAME, DISPLAY_SEQ = seq++ }).ToList();
+                dgvAddOperationList.DataSource = addList.Select((i) => new OPERATION_REL_DTO { OPERATION_CODE = i.OPERATION_CODE, OPERATION_NAME = i.OPERATION_NAME, DISPLAY_SEQ = seq++ }).ToList();
 
                 List<OPERATION_REL_DTO> list = dgvOperationList.DataSource as List<OPERATION_REL_DTO>;
                 if (list.Exists((i)=>i.OPERATION_CODE.Equals(dto.OPERATION_CODE)))
@@ -270,7 +271,7 @@ namespace Cohesion_Project
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            string productCode = dgvProductList[1, dgvOperationList.CurrentRow.Index].Value.ToString();
+            string productCode = dgvProductList[1, dgvProductList.CurrentRow.Index].Value.ToString();
             List<OPERATION_REL_DTO> list = dgvAddOperationList.DataSource as List<OPERATION_REL_DTO>;
 
             if (dgvAddOperationList.Rows.Count == 0)
@@ -291,6 +292,7 @@ namespace Cohesion_Project
                     OPERATION_NAME = i.OPERATION_NAME,
                     DISPLAY_SEQ = seq++
                 }).ToList();
+                btnRefresh.PerformClick();
                 return;
             }
             else
@@ -312,7 +314,7 @@ namespace Cohesion_Project
 
         private void btnInsert_Click(object sender, EventArgs e)
         {
-            string productCode = dgvProductList[1, dgvOperationList.CurrentRow.Index].Value.ToString();
+            string productCode = dgvProductList[1, dgvProductList.CurrentRow.Index].Value.ToString();
             List<OPERATION_REL_DTO> list = dgvAddOperationList.DataSource as List<OPERATION_REL_DTO>;
             var result = svR.UpdateOperWithProduct(productCode, list);
             if (result)
@@ -326,12 +328,53 @@ namespace Cohesion_Project
                     OPERATION_NAME = i.OPERATION_NAME,
                     DISPLAY_SEQ = seq++
                 }).ToList();
+                btnRefresh.PerformClick();
                 return;
             }
             else
             {
                 MboxUtil.MboxError("공정 정보 수정중 오류가 발생했습니다.");
             }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            if (!ppgSearchCondition.Enabled)
+            {
+                MboxUtil.MboxError("검색조건을 활성화 시켜주세요.");
+                return;
+            }
+            else
+            {
+                var t = ppgSearchCondition.SelectedObject as PRODUCT_OPERATION_Rel_Search;
+                PRODUCT_OPERATION_REL_DTO dto = new PRODUCT_OPERATION_REL_DTO { PRODUCT_CODE = t.PRODUCT_CODE, PRODUCT_NAME = t.PRODUCT_NAME, PRODUCT_TYPE = t.PRODUCT_TYPE, VENDOR_CODE = t.VENDOR_CODE, CUSTOMER_CODE = t.CUSTOMER_CODE };
+                var list = svR.SelectProductInRel(dto);
+                int seq = 1;
+                dgvProductList.DataSource = list.Select((i) => new
+                {
+                    PRODUCT_CODE = i.PRODUCT_CODE,
+                    PRODUCT_NAME = i.PRODUCT_NAME,
+                    PRODUCT_TYPE = i.PRODUCT_TYPE,
+                    CUSTOMER_CODE = i.CUSTOMER_CODE,
+                    VENDOR_CODE = i.VENDOR_CODE,
+                    CREATE_TIME = i.CREATE_TIME,
+                    CREATE_USER_ID = i.CREATE_USER_ID,
+                    UPDATE_TIME = i.UPDATE_TIME,
+                    UPDATE_USER_ID = i.UPDATE_USER_ID,
+                    DISPLAY_SEQ = seq++
+                }).ToList();
+                ppgSearchCondition.SelectedObject = new PRODUCT_OPERATION_Rel_Search();
+                dgvAddOperationList.DataSource = null;
+            }
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            ppgSearchCondition.SelectedObject = new PRODUCT_OPERATION_Rel_Search();
+            dgvAddOperationList.DataSource = null;
+            dgvOperationList.DataSource = iList;
+            LoadData();
+
         }
     }
 }
