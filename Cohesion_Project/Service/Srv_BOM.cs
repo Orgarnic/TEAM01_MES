@@ -28,6 +28,24 @@ namespace Cohesion_Project
             return list;
         }
 
+        public bool InsertBOM(List<BOM_MST_DTO> bom)
+        {
+            BOM_DAO dao = new BOM_DAO();
+            bool result = dao.InsertBOM(bom);
+            dao.Dispose();
+
+            return result;
+        }
+
+        public bool UpdateBOM(List<BOM_MST_DTO> bom)
+        {
+            BOM_DAO dao = new BOM_DAO();
+            bool result = dao.UpdateBOM(bom);
+            dao.Dispose();
+
+            return result;
+        }
+
         public bool DeleteProduct(string parentCode, string childCode)
         {
             BOM_DAO dao = new BOM_DAO();

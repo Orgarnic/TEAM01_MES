@@ -90,19 +90,19 @@ namespace Cohesion_Project
                     Work_Order_MST_DTO dto = null;
                     for (int i = 0; i < dgvBOMStock.Rows.Count; i++)
                     {
-                        oQty = Convert.ToDecimal(dgvBOMStock[4, i].Value);
-                        lQty = Convert.ToDecimal(dgvBOMStock[5, i].Value);
+                        oQty = Convert.ToDecimal(dgvBOMStock["ORDER_QTY", i].Value);
+                        lQty = Convert.ToDecimal(dgvBOMStock["LOT_QTY", i].Value);
                         int tQty = Convert.ToInt32(oQty - lQty);
-                        if (oQty > lQty /*&& operations.Find((p)=>p.PRODUCT_CODE.Equals(dgvBOMStock[0,i].Value.ToString())) != null*/)
+                        if (oQty > lQty && operations.Find((p) => p.PRODUCT_CODE.Equals(dgvBOMStock[0, i].Value.ToString())) != null)
                         {
                             dto = new Work_Order_MST_DTO
                             {
-                                PRODUCT_CODE = dgvBOMStock[0, i].Value.ToString(),
+                                PRODUCT_CODE = dgvBOMStock["CHILD_PRODUCT_CODE", i].Value.ToString(),
                                 ORDER_QTY = tQty,
                                 ORDER_STATUS = "OPEN",
                                 CREATE_USER_ID = "유기현",
                                 CREATE_TIME = DateTime.Now,
-                                CUSTOMER_CODE = DBNull.Value.ToString()
+                                CUSTOMER_CODE = dgvOrderList["CUSTOMER_CODE",i].Value.ToString()
                             };
                             inData.Add(dto);
                             cnt++;

@@ -73,7 +73,7 @@ namespace Cohesion_DAO
             {
                 string sql = @"select PRODUCT_CODE, PRODUCT_NAME, PRODUCT_TYPE, CUSTOMER_CODE, CREATE_TIME, CREATE_USER_ID, UPDATE_TIME, UPDATE_USER_ID
                                from PRODUCT_MST
-                               where PRODUCT_TYPE = 'FERT'";
+                               where PRODUCT_TYPE <> 'ROH'";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 conn.Open();
@@ -100,7 +100,7 @@ namespace Cohesion_DAO
 
             try
             {
-                string sql = $@"select CHILD_PRODUCT_CODE, p2.PRODUCT_NAME, REQUIRE_QTY, ALTER_PRODUCT_CODE, b.CREATE_TIME, b.CREATE_USER_ID, b.UPDATE_TIME, b.UPDATE_USER_ID
+                string sql = $@"select b.PRODUCT_CODE, CHILD_PRODUCT_CODE, p2.PRODUCT_NAME, REQUIRE_QTY, ALTER_PRODUCT_CODE, b.CREATE_TIME, b.CREATE_USER_ID, b.UPDATE_TIME, b.UPDATE_USER_ID
                                 from BOM_MST b inner join PRODUCT_MST p on b.PRODUCT_CODE = p.PRODUCT_CODE
 			                                   inner join PRODUCT_MST p2 on b.CHILD_PRODUCT_CODE = p2.PRODUCT_CODE
                                 where p.PRODUCT_CODE = '" + $"{code}" + "' ";
@@ -117,6 +117,111 @@ namespace Cohesion_DAO
                 Debug.WriteLine(err.Message);
                 Debug.WriteLine(err.StackTrace);
                 return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public bool InsertBOM(List<BOM_MST_DTO> bom)
+        {
+            SqlCommand cmd = new SqlCommand();
+            conn.Open();
+            SqlTransaction trans = conn.BeginTransaction();
+            try
+            {
+                string sql = @"insert into BOM_MST(PRODUCT_CODE, CHILD_PRODUCT_CODE, REQUIRE_QTY, CREATE_TIME, CREATE_USER_ID)
+                               values (@PRODUCT_CODE, @CHILD_PRODUCT_CODE, @REQUIRE_QTY, @CREATE_TIME, @CREATE_USER_ID)";
+
+                cmd.CommandText = sql;
+                cmd.Connection = conn;
+                cmd.Transaction = trans;
+
+                foreach (var item in bom)
+                {
+                    cmd.Parameters.AddWithValue("@PRODUCT_CODE", item.PRODUCT_CODE);
+                    cmd.Parameters.AddWithValue("@CHILD_PRODUCT_CODE", item.CHILD_PRODUCT_CODE);
+                    cmd.Parameters.AddWithValue("@REQUIRE_QTY", item.REQUIRE_QTY);
+                    cmd.Parameters.AddWithValue("@CREATE_TIME", item.CREATE_TIME);
+                    cmd.Parameters.AddWithValue("@CREATE_USER_ID", item.CREATE_USER_ID);
+
+                    cmd.ExecuteNonQuery();
+                    cmd.Parameters.Clear();
+                }
+
+                trans.Commit();
+                return true;
+            }
+            catch(Exception err)
+            {
+                trans.Rollback();
+                Debug.WriteLine(err.Message);
+                Debug.WriteLine(err.StackTrace);
+                
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public bool UpdateBOM(List<BOM_MST_DTO> bom)
+        {
+            SqlCommand cmd = new SqlCommand();
+            conn.Open();
+            StringBuilder sb = new StringBuilder();
+            bom.ForEach((s) => sb.Append("'" +s.CHILD_PRODUCT_CODE + "',"));
+            SqlTransaction trans = conn.BeginTransaction();
+            try
+            {
+                cmd.Connection = conn;
+                string sql = $@"delete from BOM_MST where PRODUCT_CODE = @PRODUCT_CODE and CHILD_PRODUCT_CODE not in ({sb.ToString().TrimEnd(',')}) ";
+                cmd.Parameters.AddWithValue("@PRODUCT_CODE", bom[0].PRODUCT_CODE);
+                cmd.CommandText = sql;
+                cmd.Transaction = trans;
+                cmd.ExecuteNonQuery();
+                
+                string sql2 = @"declare @num int
+                                set @num = (select count(*) from BOM_MST where PRODUCT_CODE = @PRODUCT_CODE and CHILD_PRODUCT_CODE = @CHILD_PRODUCT_CODE)
+                                if (@num <> 0)
+                                begin
+                                update BOM_MST set REQUIRE_QTY = @REQUIRE_QTY, ALTER_PRODUCT_CODE = @ALTER_PRODUCT_CODE, UPDATE_TIME = @UPDATE_TIME, UPDATE_USER_ID = @UPDATE_USER_ID
+                                where PRODUCT_CODE = @PRODUCT_CODE and CHILD_PRODUCT_CODE = @CHILD_PRODUCT_CODE
+                                end
+                                else
+                                begin
+                                insert into BOM_MST (PRODUCT_CODE, CHILD_PRODUCT_CODE, REQUIRE_QTY, ALTER_PRODUCT_CODE, CREATE_TIME, CREATE_USER_ID)
+                                values(@PRODUCT_CODE, @CHILD_PRODUCT_CODE, @REQUIRE_QTY, @ALTER_PRODUCT_CODE, @CREATE_TIME, @CREATE_USER_ID)
+                                end";
+                SqlCommand cmd2 = new SqlCommand(sql2, conn);
+                cmd2.Transaction = trans;
+                foreach (var item in bom)
+                {
+                      
+                    cmd2.Parameters.AddWithValue("@PRODUCT_CODE", item.PRODUCT_CODE);
+                    cmd2.Parameters.AddWithValue("@CHILD_PRODUCT_CODE", item.CHILD_PRODUCT_CODE);
+                    cmd2.Parameters.AddWithValue("@REQUIRE_QTY", item.REQUIRE_QTY);
+                    cmd2.Parameters.AddWithValue("@CREATE_TIME", DateTime.Now);
+                    cmd2.Parameters.AddWithValue("@ALTER_PRODUCT_CODE", string.IsNullOrWhiteSpace(item.ALTER_PRODUCT_CODE) ? (object)DBNull.Value : item.ALTER_PRODUCT_CODE);
+                    cmd2.Parameters.AddWithValue("@CREATE_USER_ID", string.IsNullOrWhiteSpace(item.CREATE_USER_ID) ? (object)DBNull.Value : item.CREATE_USER_ID);
+                    cmd2.Parameters.AddWithValue("@UPDATE_TIME", DateTime.Now);
+                    cmd2.Parameters.AddWithValue("@UPDATE_USER_ID", string.IsNullOrWhiteSpace(item.UPDATE_USER_ID) ? (object)DBNull.Value : item.UPDATE_USER_ID);
+
+                    cmd2.ExecuteNonQuery();
+                    cmd2.Parameters.Clear();
+                }
+                trans.Commit();
+                return true;
+            }
+            catch (Exception err)
+            {
+                trans.Rollback();
+                Debug.WriteLine(err.Message);
+                Debug.WriteLine(err.StackTrace);
+
+                return false;
             }
             finally
             {
