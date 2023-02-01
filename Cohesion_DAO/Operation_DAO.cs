@@ -181,8 +181,8 @@ namespace Cohesion_DAO
                 {
                     if (prop.PropertyType == typeof(string) && !string.IsNullOrWhiteSpace((string)prop.GetValue(condition)))
                     {
-                        sql.Append($" and {prop.Name} = @{prop.Name}");
-                        cmd.Parameters.AddWithValue($"@{prop.Name}", prop.GetValue(condition).ToString());
+                        sql.Append($" and {prop.Name} like @{prop.Name}");
+                        cmd.Parameters.AddWithValue($"@{prop.Name}", "%"+prop.GetValue(condition).ToString()+"%");
                     }
                     else if (prop.PropertyType == typeof(char) && (char)prop.GetValue(condition) != '\0')
                     {

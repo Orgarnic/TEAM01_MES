@@ -114,9 +114,9 @@ namespace Cohesion_DAO
                 trans = conn.BeginTransaction();
                 SqlCommand cmd2 = new SqlCommand();
                 cmd2.Connection = conn;
-                cmd2.CommandText = @"DECLARE @EQUIP INT
-                                        SET @EQUIP = (SELECT COUNT(*) FROM EQUIPMENT_OPERATION_REL WHERE OPERATION_CODE = @OPERATION_CODE AND INSPECT_ITEM_CODE = @INSPECT_ITEM_CODE)       
-                                        IF @EQUIP > 0
+                cmd2.CommandText = @"DECLARE @INS INT
+                                        SET @INS = (SELECT COUNT(*) FROM EQUIPMENT_OPERATION_REL WHERE OPERATION_CODE = @OPERATION_CODE AND INSPECT_ITEM_CODE = @INSPECT_ITEM_CODE)       
+                                        IF @INS > 0
                                         BEGIN 
                                             UPDATE INSPECT_ITEM_OPERATION_REL SET UPDATE_TIME = GETDATE(), UPDATE_USER_ID = @UPDATE_USER_ID
                                             WHERE OPERATION_CODE = @OPERATION_CODE AND INSPECT_ITEM_CODE = @INSPECT_ITEM_CODE
@@ -371,9 +371,9 @@ namespace Cohesion_DAO
                 conn.Open();
                 trans = conn.BeginTransaction();
                 SqlCommand cmd2 = new SqlCommand();
-                cmd2.CommandText = @"DECLARE @EQUIP INT
-                                        SET @EQUIP = (SELECT COUNT(*) FROM PRODUCT_OPERATION_REL WHERE PRODUCT_CODE = @PRODUCT_CODE AND OPERATION_CODE = @OPERATION_CODE)       
-                                        IF @EQUIP > 0
+                cmd2.CommandText = @"DECLARE @OPER INT
+                                        SET @OPER = (SELECT COUNT(*) FROM PRODUCT_OPERATION_REL WHERE PRODUCT_CODE = @PRODUCT_CODE AND OPERATION_CODE = @OPERATION_CODE)       
+                                        IF @OPER > 0
                                         BEGIN 
                                             UPDATE PRODUCT_OPERATION_REL SET UPDATE_TIME = GETDATE(), UPDATE_USER_ID = @UPDATE_USER_ID, FLOW_SEQ=@FLOW_SEQ
                                             WHERE PRODUCT_CODE = @PRODUCT_CODE AND OPERATION_CODE = @OPERATION_CODE
@@ -419,5 +419,195 @@ namespace Cohesion_DAO
             
         }
 
+        public List<Operation_Inspection_Rel_DTO> SelectOperationInRel(Operation_Inspection_Rel_DTO condition)
+        {
+            List<Operation_Inspection_Rel_DTO> list = new List<Operation_Inspection_Rel_DTO>();
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                StringBuilder sql = new StringBuilder(@"SELECT OPERATION_CODE, OPERATION_NAME, CHECK_DEFECT_FLAG,
+                                                           CHECK_INSPECT_FLAG, CHECK_MATERIAL_FLAG, CREATE_TIME, 
+                                                           CREATE_USER_ID, UPDATE_TIME, UPDATE_USER_ID
+                                                        FROM OPERATION_MST WHERE 1 = 1");
+                foreach (var prop in condition.GetType().GetProperties())
+                {
+                    if (prop.PropertyType == typeof(string) && !string.IsNullOrWhiteSpace((string)prop.GetValue(condition)))
+                    {
+                        sql.Append($" and {prop.Name} like @{prop.Name}");
+                        cmd.Parameters.AddWithValue($"@{prop.Name}", "%" + prop.GetValue(condition).ToString() + "%");
+                    }
+                    else if (prop.PropertyType == typeof(char) && (char)prop.GetValue(condition) != '\0')
+                    {
+                        sql.Append($" and {prop.Name} = @{prop.Name}");
+                        cmd.Parameters.AddWithValue($"@{prop.Name}", prop.GetValue(condition).ToString());
+                    }
+                }
+
+                cmd.CommandText = sql.ToString();
+                cmd.Connection = conn;
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Operation_Inspection_Rel_DTO dto = new Operation_Inspection_Rel_DTO();
+                    dto.OPERATION_CODE = reader["OPERATION_CODE"].ToString();
+                    dto.OPERATION_NAME = reader["OPERATION_NAME"].ToString();
+                    if (reader["CHECK_DEFECT_FLAG"] != DBNull.Value)
+                        dto.CHECK_DEFECT_FLAG = Convert.ToChar(reader["CHECK_DEFECT_FLAG"]);
+                    if (reader["CHECK_INSPECT_FLAG"] != DBNull.Value)
+                        dto.CHECK_INSPECT_FLAG = Convert.ToChar(reader["CHECK_INSPECT_FLAG"]);
+                    if (reader["CHECK_MATERIAL_FLAG"] != DBNull.Value)
+                        dto.CHECK_MATERIAL_FLAG = Convert.ToChar(reader["CHECK_MATERIAL_FLAG"]);
+                    if (reader["CREATE_TIME"] != DBNull.Value)
+                        dto.CREATE_TIME = Convert.ToDateTime(reader["CREATE_TIME"]);
+                    dto.CREATE_USER_ID = reader["CREATE_USER_ID"].ToString();
+                    if (reader["UPDATE_TIME"] != DBNull.Value)
+                        dto.UPDATE_TIME = Convert.ToDateTime(reader["UPDATE_TIME"]);
+                    dto.UPDATE_USER_ID = reader["UPDATE_USER_ID"].ToString();
+                    list.Add(dto);
+                }
+                conn.Close();
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.StackTrace);
+                Debug.WriteLine(err.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return list;
+        }
+        public List<PRODUCT_OPERATION_REL_DTO> SelectProductInRel(PRODUCT_OPERATION_REL_DTO condition)
+        {
+            List<PRODUCT_OPERATION_REL_DTO> list = new List<PRODUCT_OPERATION_REL_DTO>();
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                StringBuilder sql = new StringBuilder(@"SELECT PRODUCT_CODE, PRODUCT_NAME, PRODUCT_TYPE, CUSTOMER_CODE, 
+                                                               VENDOR_CODE, CREATE_TIME, CREATE_USER_ID, UPDATE_TIME, UPDATE_USER_ID
+                                                        FROM PRODUCT_MST
+                                                        WHERE 1 = 1");
+                foreach (var prop in condition.GetType().GetProperties())
+                {
+                    if (prop.PropertyType == typeof(string) && !string.IsNullOrWhiteSpace((string)prop.GetValue(condition)))
+                    {
+                        sql.Append($" and {prop.Name} like @{prop.Name}");
+                        cmd.Parameters.AddWithValue($"@{prop.Name}", "%" + prop.GetValue(condition).ToString() + "%");
+                    }
+                    else if (prop.PropertyType == typeof(char) && (char)prop.GetValue(condition) != '\0')
+                    {
+                        sql.Append($" and {prop.Name} = @{prop.Name}");
+                        cmd.Parameters.AddWithValue($"@{prop.Name}", prop.GetValue(condition).ToString());
+                    }
+                }
+
+                cmd.CommandText = sql.ToString();
+                cmd.Connection = conn;
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    PRODUCT_OPERATION_REL_DTO dto = new PRODUCT_OPERATION_REL_DTO();
+                    dto.PRODUCT_CODE = reader["PRODUCT_CODE"].ToString();
+                    dto.PRODUCT_NAME = reader["PRODUCT_NAME"].ToString();
+                    dto.PRODUCT_TYPE = reader["PRODUCT_TYPE"].ToString();
+                    dto.CUSTOMER_CODE = reader["CUSTOMER_CODE"].ToString();
+                    dto.VENDOR_CODE = reader["VENDOR_CODE"].ToString();
+                    if (reader["CREATE_TIME"] != DBNull.Value)
+                        dto.CREATE_TIME = Convert.ToDateTime(reader["CREATE_TIME"]);
+                    dto.CREATE_USER_ID = reader["CREATE_USER_ID"].ToString();
+                    if (reader["UPDATE_TIME"] != DBNull.Value)
+                        dto.UPDATE_TIME = Convert.ToDateTime(reader["UPDATE_TIME"]);
+                    dto.UPDATE_USER_ID = reader["UPDATE_USER_ID"].ToString();
+                    list.Add(dto);
+                }
+                conn.Close();
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.StackTrace);
+                Debug.WriteLine(err.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return list;
+        }
+
+        public List<PRODUCT_OPERATION_REL_DTO> SelectProductInRel()
+        {
+            try
+            {
+                string sql = @"SELECT PRODUCT_CODE, PRODUCT_NAME, PRODUCT_TYPE, CUSTOMER_CODE, 
+                                      VENDOR_CODE, CREATE_TIME, CREATE_USER_ID, UPDATE_TIME, UPDATE_USER_ID
+                               FROM PRODUCT_MST";
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                conn.Open();
+                var list = Helper.DataReaderMapToList<PRODUCT_OPERATION_REL_DTO>(cmd.ExecuteReader());
+                conn.Close();
+                return list;
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.StackTrace);
+                Debug.WriteLine(err.Message);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public List<Equipment_DTO> SelectEquipment(Equipment_DTO condtion)
+        {
+            List<Equipment_DTO> list = null;
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                StringBuilder sql = new StringBuilder(
+                    @"SELECT EQUIPMENT_CODE, EQUIPMENT_NAME, EQUIPMENT_TYPE, EQUIPMENT_STATUS, LAST_DOWN_TIME, CREATE_TIME, CREATE_USER_ID, UPDATE_TIME, UPDATE_USER_ID
+                      FROM EQUIPMENT_MST
+                      WHERE 1 = 1");
+                if (!string.IsNullOrWhiteSpace(condtion.EQUIPMENT_CODE))
+                {
+                    sql.Append(" and EQUIPMENT_CODE = @EQUIPMENT_CODE ");
+                    cmd.Parameters.AddWithValue("@EQUIPMENT_CODE", condtion.EQUIPMENT_CODE);
+                }
+                if (!string.IsNullOrWhiteSpace(condtion.EQUIPMENT_NAME))
+                {
+                    sql.Append(" and EQUIPMENT_NAME = @EQUIPMENT_NAME ");
+                    cmd.Parameters.AddWithValue("@EQUIPMENT_NAME", condtion.EQUIPMENT_NAME);
+                }
+                if (!string.IsNullOrWhiteSpace(condtion.EQUIPMENT_TYPE))
+                {
+                    sql.Append(" and EQUIPMENT_TYPE = @EQUIPMENT_TYPE ");
+                    cmd.Parameters.AddWithValue("@EQUIPMENT_TYPE", condtion.EQUIPMENT_TYPE);
+                }
+                if (!string.IsNullOrWhiteSpace(condtion.EQUIPMENT_STATUS))
+                {
+                    sql.Append(" and EQUIPMENT_STATUS = @EQUIPMENT_STATUS ");
+                    cmd.Parameters.AddWithValue("@EQUIPMENT_STATUS", condtion.EQUIPMENT_STATUS);
+                }
+                cmd.CommandText = sql.ToString();
+                cmd.Connection = conn;
+                conn.Open();
+                list = Helper.DataReaderMapToList<Equipment_DTO>(cmd.ExecuteReader());
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.StackTrace);
+                Debug.WriteLine(err.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return list;
+        }
     }
 }

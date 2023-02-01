@@ -27,14 +27,7 @@ namespace Cohesion_Project.Service
 
             return result;
         }
-        public List<Equipment_DTO> SelectEquipment(Equipment_DTO condtion)
-        {
-            Equipment_DAO dao = new Equipment_DAO();
-            List<Equipment_DTO> list = dao.SelectEquipment(condtion);
-            dao.Dispose();
 
-            return list;
-        }
         
         public bool UpdateEquipment(Equipment_DTO dto)
         {

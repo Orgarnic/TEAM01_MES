@@ -202,6 +202,10 @@ namespace Cohesion_Project
                     LoadData();
                     return;
                 }
+                else if (pop.StockAvailable)
+                {
+                    MboxUtil.MboxInfo("주문을 확정했습니다.");
+                }
                 else
                     MboxUtil.MboxInfo("다시 시도하여 주십시오.");
             }
