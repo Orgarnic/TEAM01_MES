@@ -87,12 +87,6 @@
     <Compile Include="Base\Frm_Base_1.Designer.cs">
       <DependentUpon>Frm_Base_1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frm_Operationg_Inspection_Rel.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Frm_Operationg_Inspection_Rel.Designer.cs">
-      <DependentUpon>Frm_Operationg_Inspection_Rel.cs</DependentUpon>
-    </Compile>
     <Compile Include="Frm_BOM.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,11 +105,23 @@
     <Compile Include="Frm_Equipment.Designer.cs">
       <DependentUpon>Frm_Equipment.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm_Equipment_Operation_Rel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Equipment_Operation_Rel.Designer.cs">
+      <DependentUpon>Frm_Equipment_Operation_Rel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm_Function.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Frm_Function.Designer.cs">
       <DependentUpon>Frm_Function.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_Function_User_Group_Rel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Function_User_Group_Rel.Designer.cs">
+      <DependentUpon>Frm_Function_User_Group_Rel.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm_Inspection.cs">
       <SubType>Form</SubType>
@@ -135,11 +141,23 @@
     <Compile Include="Frm_Operation.Designer.cs">
       <DependentUpon>Frm_Operation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm_Operation_Inspection_Rel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Operation_Inspection_Rel.Designer.cs">
+      <DependentUpon>Frm_Operation_Inspection_Rel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm_Product.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Frm_Product.Designer.cs">
       <DependentUpon>Frm_Product.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_Product_Operation_Rel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Product_Operation_Rel.Designer.cs">
+      <DependentUpon>Frm_Product_Operation_Rel.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm_Sales_Order.cs">
       <SubType>Form</SubType>
@@ -200,8 +218,10 @@
     <Compile Include="Service\Srv_CommonData.cs" />
     <Compile Include="Service\Srv_Equipment.cs" />
     <Compile Include="Service\Srv_Function.cs" />
+    <Compile Include="Service\Srv_Function_User_Group_Rel.cs" />
     <Compile Include="Service\Srv_Inspection.cs" />
     <Compile Include="Service\Srv_Operation.cs" />
+    <Compile Include="Service\Srv_Relation.cs" />
     <Compile Include="Service\Srv_Sales_Order.cs" />
     <Compile Include="Service\Srv_Store.cs" />
     <Compile Include="Service\Srv_Product.cs" />
@@ -246,6 +266,12 @@
     <EmbeddedResource Include="Frm_Equipment.resx">
       <DependentUpon>Frm_Equipment.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Equipment_Operation_Rel.resx">
+      <DependentUpon>Frm_Equipment_Operation_Rel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Function_User_Group_Rel.resx">
+      <DependentUpon>Frm_Function_User_Group_Rel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frm_Inspection.resx">
       <DependentUpon>Frm_Inspection.cs</DependentUpon>
     </EmbeddedResource>
@@ -255,11 +281,14 @@
     <EmbeddedResource Include="Frm_Operation.resx">
       <DependentUpon>Frm_Operation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Frm_Operationg_Inspection_Rel.resx">
-      <DependentUpon>Frm_Operationg_Inspection_Rel.cs</DependentUpon>
+    <EmbeddedResource Include="Frm_Operation_Inspection_Rel.resx">
+      <DependentUpon>Frm_Operation_Inspection_Rel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_Product.resx">
       <DependentUpon>Frm_Product.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Product_Operation_Rel.resx">
+      <DependentUpon>Frm_Product_Operation_Rel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_Sales_Order.resx">
       <DependentUpon>Frm_Sales_Order.cs</DependentUpon>

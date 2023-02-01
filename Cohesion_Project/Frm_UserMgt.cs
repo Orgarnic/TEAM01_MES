@@ -19,8 +19,8 @@ namespace Cohesion_Project
         private User_Condition_DTO condition = new User_Condition_DTO();
         //   private SearchCondition condtion = new SearchCondition();
         private Udate ud = new Udate();
-        private SearchData sd = new SearchData();
         bool isCondition = true;
+
         public Frm_UserMgt()
         {
             InitializeComponent();
@@ -74,7 +74,7 @@ namespace Cohesion_Project
             [Category("속성"), Description("USER_NAME"), DisplayName("사용자 이름")]
             public string USER_NAME { get; set; }
 
-            [Category("속성"), Description("USER_GROUP_CODE"), DisplayName("사용자 그룹")]
+            [Category("속성"), Description("USER_GROUP_CODE"), DisplayName("사용자 그룹"),TypeConverter(typeof(ComboStringConverter))]
             public string USER_GROUP_CODE { get; set; }
 
             [Category("추적"), Description("USER_PASSWORD"), DisplayName("암호")]
@@ -167,14 +167,29 @@ namespace Cohesion_Project
             dto.CREATE_TIME = DateTime.Now;
             bool result = srv_U.InsertUser(dto);
 
+            User_DTO Udto = Ppg_User.SelectedObject as User_DTO;
+            if (dto.USER_ID == null || dto.USER_NAME == null || dto.USER_PASSWORD == null)
+            {
+                MboxUtil.MboxInfo("등록하실 사원 정보를 입력해주세요.");
+                return;
+            }
+
+            var list = DgvUser.DataSource as List<User_DTO>;
+            bool codeExist = list.Exists((i) => i.USER_ID.Equals(dto.USER_ID, StringComparison.OrdinalIgnoreCase));
+            if (codeExist)
+            {
+                MboxUtil.MboxInfo("동일한 사원번호가 존재합니다.");
+                return;
+            }
+
             if (result)
             {
-                MessageBox.Show("입력 성공");
+                MessageBox.Show("사원 정보 등록이 완료되었습니다");
                 DataGridViewFill();
             }
             else
             {
-                MessageBox.Show("입력 실패");
+                MessageBox.Show("주문 등록 중 오류가 발생했습니다");
             }
         }
 

@@ -55,15 +55,15 @@ namespace Cohesion_DAO
         {
             try
             {
-                //(@USER_GROUP_CODE,@USER_GROUP_NAME,@USER_GROUP_TYPE,@CREATE_USER_ID)";
                 conn.Open();
 
                 string sql = @"insert into USER_MST(USER_ID, USER_NAME, USER_GROUP_CODE, USER_PASSWORD, USER_DEPARTMENT, CREATE_TIME, CREATE_USER_ID)
-                                values(@USER_ID,@USER_NAME,@USER_GROUP_CODE,@USER_PASSWORD,@USER_DEPARTMENT,@CREATE_TIME,@CREATE_USER_ID)";
+                                values(concat('User_', FORMAT(GETDATE(),'yyMMddHHmmss')),@USER_NAME,@USER_GROUP_CODE,@USER_PASSWORD,@USER_DEPARTMENT,@CREATE_TIME,@CREATE_USER_ID)";
                 SqlCommand cmd = Helper.UpsertCmdValue<User_DTO>(dto, sql, conn);
                 int result = cmd.ExecuteNonQuery();
                 return result > 0;
             }
+            
             catch (Exception err)
             {
                 Debug.WriteLine(err.Message);
