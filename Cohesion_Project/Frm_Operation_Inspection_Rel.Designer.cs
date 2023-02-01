@@ -97,6 +97,10 @@ namespace Cohesion_Project
             this.panel6.Controls.SetChildIndex(this.panel8, 0);
             this.panel6.Controls.SetChildIndex(this.dgvInspectionList, 0);
             // 
+            // lbl5
+            // 
+            this.lbl5.Text = "공정별 검사 할당";
+            // 
             // panel7
             // 
             this.panel7.Controls.Add(this.ppgSearchCondition);
@@ -130,6 +134,10 @@ namespace Cohesion_Project
             // 
             this.btnSearch.FlatAppearance.BorderSize = 0;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // lbl1
+            // 
+            this.lbl1.Text = "/ 기준 정보 관리 / 공정별 검사 설정";
             // 
             // btnDelete
             // 
@@ -233,6 +241,7 @@ namespace Cohesion_Project
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.ClientSize = new System.Drawing.Size(1521, 1061);
             this.Name = "Frm_Operation_Inspection_Rel";
+            this.Text = "Frm_Operation_Inspection_Rel";
             this.Load += new System.EventHandler(this.Frm_Operationg_Inspection_Rel_Load);
             this.panel3.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
