@@ -19,6 +19,7 @@ namespace Cohesion_Project
         List<CommonData_DTO> list = new List<CommonData_DTO>();
         bool tagMove;
         int x, y = default;
+        int wid = 100;
         public Pop_CommonTableData()
         {
             InitializeComponent();
@@ -34,13 +35,18 @@ namespace Cohesion_Project
             DgvUtil.DgvInit(Dgv_DataTable);
             Dgv_DataTable.DataSource = null;
 
+            Dgv_DataTable.Dock = DockStyle.None;
             DataGridViewCheckBoxColumn chk = new DataGridViewCheckBoxColumn();
-            chk.HeaderText = "수정 여부";
+            chk.HeaderText = "    수정 여부";
             Dgv_DataTable.Columns.Add(chk);
-            DgvUtil.AddTextCol(Dgv_DataTable, "순서", "DISPLAY_SEQ", 100, readOnly: false, align:1 );
-
+            DgvUtil.AddTextCol(Dgv_DataTable, "    순서", "DISPLAY_SEQ", 100, readOnly: false, align:1 );
+            
             MakeColumn();
             LoadData();
+            //Dgv_DataTable.Width = wid;
+            //Lbl_Title.Width = wid;
+            //panel1.Width = wid;
+            //this.Width = wid;
 
             Lbl_Title.MouseDown += Lbl_Title_MouseDown;
             Lbl_Title.MouseMove += Lbl_Title_MouseMove;
@@ -173,17 +179,20 @@ namespace Cohesion_Project
         {
             Frm_Common f1 = (Frm_Common)this.Owner;
             target = f1.Table;
-
+ 
             for (int i = 2; i < target.GetType().GetProperties().Length; i++)
             {
                 var value = target.GetType().GetProperties()[i].GetValue(target);
                 if (value == null || target.GetType().GetProperties()[i].Name.Contains("USER_ID") || target.GetType().GetProperties()[i].Name.Contains("TIME"))
                 {
-                    DgvUtil.AddTextCol(Dgv_DataTable, $"{value}", $"{target.GetType().GetProperties()[i].Name.Replace("_NAME", "")}", 100, visible: false, align: 1);
+                    DgvUtil.AddTextCol(Dgv_DataTable, $"    {value}", $"{target.GetType().GetProperties()[i].Name.Replace("_NAME", "")}", 100, visible: false, align: 1);
+                    wid += 40;
                     continue;
                 }
-                DgvUtil.AddTextCol(Dgv_DataTable, $"{value}", $"{target.GetType().GetProperties()[i].Name.Replace("_NAME", "")}", 100, readOnly: false, align: 1);
+                DgvUtil.AddTextCol(Dgv_DataTable, $"    {value}", $"{target.GetType().GetProperties()[i].Name.Replace("_NAME", "")}", 130, readOnly: false, align: 1);
+                wid += 50;
             }
+
         }
     }
 }
