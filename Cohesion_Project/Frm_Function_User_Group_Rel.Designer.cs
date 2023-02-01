@@ -74,6 +74,7 @@ namespace Cohesion_Project
             this.btnLeft.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.btnLeft.Location = new System.Drawing.Point(837, 162);
             this.btnLeft.Size = new System.Drawing.Size(69, 92);
+            this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
             // 
             // btnRight
             // 
@@ -97,7 +98,7 @@ namespace Cohesion_Project
             // 
             // lbl3
             // 
-            this.lbl3.Size = new System.Drawing.Size(1207, 30);
+            this.lbl3.Size = new System.Drawing.Size(1354, 30);
             // 
             // lbl5
             // 
@@ -106,7 +107,7 @@ namespace Cohesion_Project
             // panel7
             // 
             this.panel7.Controls.Add(this.PpgFUG);
-            this.panel7.Size = new System.Drawing.Size(1209, 448);
+            this.panel7.Size = new System.Drawing.Size(1356, 448);
             this.panel7.Controls.SetChildIndex(this.lbl3, 0);
             this.panel7.Controls.SetChildIndex(this.PpgFUG, 0);
             // 
@@ -206,7 +207,7 @@ namespace Cohesion_Project
             this.PpgFUG.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PpgFUG.Location = new System.Drawing.Point(0, 30);
             this.PpgFUG.Name = "PpgFUG";
-            this.PpgFUG.Size = new System.Drawing.Size(1207, 416);
+            this.PpgFUG.Size = new System.Drawing.Size(1354, 416);
             this.PpgFUG.TabIndex = 7;
             // 
             // DgvF1

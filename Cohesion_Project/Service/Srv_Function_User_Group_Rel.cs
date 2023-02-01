@@ -52,15 +52,15 @@ namespace Cohesion_Project
             return result;
         }
 
-        public List<FUNCTION_USER_GROUP_REL_DTO> SelectFUG2(FUNCTION_USER_GROUP_REL_Condition_DTO condtion)
-        {
+        //public List<FUNCTION_USER_GROUP_REL_DTO> SelectFUG2(FUNCTION_USER_GROUP_REL_Condition_DTO condtion)
+        //{
 
-            Function_User_Group_Rel_DAO dao = new Function_User_Group_Rel_DAO();
-            List<FUNCTION_USER_GROUP_REL_DTO> list = dao.SelectFUG2(condtion);
-            dao.Dispose();
+        //    Function_User_Group_Rel_DAO dao = new Function_User_Group_Rel_DAO();
+        //    List<FUNCTION_USER_GROUP_REL_DTO> list = dao.SelectFUG2(condtion);
+        //    dao.Dispose();
 
-            return list;
-        }
+        //    return list;
+        //}
 
     }
 }
