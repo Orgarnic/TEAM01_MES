@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-
-using Cohesion_DAO;
 using Cohesion_DTO;
 using Cohesion_Project.Service;
 
@@ -21,8 +20,10 @@ namespace Cohesion_Project
         Util.ComboUtil comboUtil = new Util.ComboUtil();
         List<Sales_Order_DTO> srcList;
 
+        private List<Sales_Order_DTO> productCode = new List<Sales_Order_DTO>();
+
+
         bool stateSearchCondition = false;
-        bool isCondition = true;
         public Frm_Sales_Order()
         {
             InitializeComponent();
@@ -59,11 +60,14 @@ namespace Cohesion_Project
 
             ppg_SalesOrder.PropertySort = PropertySort.Categorized;
             ppg_SalesOrder.SelectedObject = iProperty;
+
+            dgv_SalesOrder.ClearSelection();
         }
 
         private void LoadData()
         {
             srcList = srvSalesOrder.SelectSalesList();
+            dgv_SalesOrder.DataSource = null;
             dgv_SalesOrder.DataSource = srcList;
         }
 
@@ -142,6 +146,7 @@ namespace Cohesion_Project
                 ppg_SalesOrder.Enabled = true;
                 btnAdd.Enabled = true;
             }
+            LoadData();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -164,37 +169,50 @@ namespace Cohesion_Project
                 return;
             }
 
-            int rIdx = dgv_SalesOrder.CurrentRow.Index;
-            Sales_Order_DTO sDTO = new Sales_Order_DTO()
-            {
-                PRODUCT_CODE = dgv_SalesOrder["PRODUCT_CODE", rIdx].Value.ToString()
-            };
+            //>  =============== 주문확정 & 배송 확정 "Y"일 경우 수정 불가 ===============
+            //if (dto.CONFIRM_FLAG.Equals("Y") || dto.SHIP_FLAG.Equals("Y"))
+            //{
+            //    MboxUtil.MboxWarn("주문 또는 배송 확정된 주문은 변경하실 수 없습니다.");
+            //    return;
+            //}
+            //>  ======================================================================
 
             if (dto.CONFIRM_FLAG == "Y")
             {
-                Pop_Sales_Order pop = new Pop_Sales_Order();
-                pop.ShowDialog();
-                if(DialogResult == DialogResult.OK)
-                return;
-            }
-            if (!MboxUtil.MboxInfo_("선택하신 주문 정보를 수정하시겠습니까?"))
-            {
-                return;
-            }
-            
-            dto.UPDATE_USER_ID = "정민영";
+                if (dgv_SalesOrder["PRODUCT_CODE", dgv_SalesOrder.CurrentRow.Index].Value == null)
+                {
+                    if (dgv_SalesOrder[1, dgv_SalesOrder.CurrentRow.Index].Value == null)
+                    {
+                        return;
+                    }
+                    MessageBox.Show("수정하실 주문 정보를 선택해주세요.");
+                    return;
+                }
 
-            bool result = srvSalesOrder.UpdateSalesOrder(dto);
-            if (result)
-            {
-                MboxUtil.MboxInfo("선택하신 주문 정보 수정이 완료되었습니다.");
-                LoadData();
+                Pop_Sales_Order pop = new Pop_Sales_Order();
+                pop.ProductCode = dgv_SalesOrder["PRODUCT_CODE", dgv_SalesOrder.CurrentRow.Index].Value.ToString();
+                pop.SalesOrderID = dgv_SalesOrder["SALES_ORDER_ID", dgv_SalesOrder.CurrentRow.Index].Value.ToString();
+                if (pop.ShowDialog() == DialogResult.OK)
+                {
+                    MboxUtil.MboxInfo("주문 등록이 완료되었습니다.");
+
+                    dto.UPDATE_USER_ID = "정민영";
+                    dto.UPDATE_TIME = DateTime.Now;
+                    bool result = srvSalesOrder.UpdateSalesOrder(dto);
+                    LoadData();
+                    return;
+                }
+                else
+                    MboxUtil.MboxInfo("다시 시도하여 주십시오.");
             }
             else
             {
-                MboxUtil.MboxError("선택하신 주문 정보 수정 중 오류가 발생했습니다.\n다시 시도하여 주십시오.");
+                bool result = srvSalesOrder.UpdateSalesOrder(dto);
+                LoadData();
             }
+            LoadData();
         }
+        
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
@@ -240,6 +258,7 @@ namespace Cohesion_Project
             return true;                    
         }
 
+        
         private void btnSearch_Click(object sender, EventArgs e)
         {
             //if (isCondition)

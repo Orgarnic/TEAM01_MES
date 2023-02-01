@@ -154,6 +154,7 @@ namespace Cohesion_Project
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.ClientSize = new System.Drawing.Size(1521, 1041);
             this.Name = "Frm_Sales_Order";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.Frm_Sales_Order_Load);
             this.pnlSearch.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
