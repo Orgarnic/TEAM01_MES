@@ -33,20 +33,20 @@ namespace Cohesion_Project
         {
             //데이터 그리드 뷰 초기 설정
             DgvUtil.DgvInit(Dgv_CommonTable);
-            DgvUtil.AddTextCol(Dgv_CommonTable, "테이블명", "CODE_TABLE_NAME", 180, readOnly: true, align: 1, frozen: true);
-            DgvUtil.AddTextCol(Dgv_CommonTable, "테이블 설명", "CODE_TABLE_DESC", 150, readOnly: true, align: 1, frozen: true);
-            DgvUtil.AddTextCol(Dgv_CommonTable, "키1 이름", "KEY_1_NAME", 100, readOnly: true);
-            DgvUtil.AddTextCol(Dgv_CommonTable, "키2 이름", "KEY_2_NAME", 100, readOnly: true);
-            DgvUtil.AddTextCol(Dgv_CommonTable, "키3 이름", "KEY_3_NAME", 100, readOnly: true);
-            DgvUtil.AddTextCol(Dgv_CommonTable, "데이터1 이름", "DATA_1_NAME", 120, readOnly: true);
-            DgvUtil.AddTextCol(Dgv_CommonTable, "데이터2 이름", "DATA_2_NAME", 120, readOnly: true);
-            DgvUtil.AddTextCol(Dgv_CommonTable, "데이터3 이름", "DATA_3_NAME", 120, readOnly: true);
-            DgvUtil.AddTextCol(Dgv_CommonTable, "데이터4 이름", "DATA_4_NAME", 120, readOnly: true);
-            DgvUtil.AddTextCol(Dgv_CommonTable, "데이터5 이름", "DATA_5_NAME", 120, readOnly: true);
-            DgvUtil.AddTextCol(Dgv_CommonTable, "생성 시간", "CREATE_TIME", 140, readOnly: true);
-            DgvUtil.AddTextCol(Dgv_CommonTable, "생성자", "CREATE_USER_ID", 120, readOnly: true);
-            DgvUtil.AddTextCol(Dgv_CommonTable, "변경 시간", "UPDATE_TIME", 140, readOnly: true);
-            DgvUtil.AddTextCol(Dgv_CommonTable, "변경자", "UPDATE_USER_ID", 120, readOnly: true);
+            DgvUtil.AddTextCol(Dgv_CommonTable, "      테이블명", "CODE_TABLE_NAME", 180, readOnly: true, align: 1, frozen: true);
+            DgvUtil.AddTextCol(Dgv_CommonTable, "      테이블 설명", "CODE_TABLE_DESC", 150, readOnly: true, align: 1, frozen: true);
+            DgvUtil.AddTextCol(Dgv_CommonTable, "      키1 이름", "KEY_1_NAME", 110, readOnly: true);
+            DgvUtil.AddTextCol(Dgv_CommonTable, "      키2 이름", "KEY_2_NAME", 110, readOnly: true);
+            DgvUtil.AddTextCol(Dgv_CommonTable, "      키3 이름", "KEY_3_NAME", 110, readOnly: true);
+            DgvUtil.AddTextCol(Dgv_CommonTable, "      데이터1 이름", "DATA_1_NAME", 130, readOnly: true);
+            DgvUtil.AddTextCol(Dgv_CommonTable, "      데이터2 이름", "DATA_2_NAME", 130, readOnly: true);
+            DgvUtil.AddTextCol(Dgv_CommonTable, "      데이터3 이름", "DATA_3_NAME", 130, readOnly: true);
+            DgvUtil.AddTextCol(Dgv_CommonTable, "      데이터4 이름", "DATA_4_NAME", 130, readOnly: true);
+            DgvUtil.AddTextCol(Dgv_CommonTable, "      데이터5 이름", "DATA_5_NAME", 130, readOnly: true);
+            DgvUtil.AddTextCol(Dgv_CommonTable, "    생성 시간", "CREATE_TIME", 150, readOnly: true);
+            DgvUtil.AddTextCol(Dgv_CommonTable, "    생성자", "CREATE_USER_ID", 130, readOnly: true);
+            DgvUtil.AddTextCol(Dgv_CommonTable, "    변경 시간", "UPDATE_TIME", 150, readOnly: true);
+            DgvUtil.AddTextCol(Dgv_CommonTable, "    변경자", "UPDATE_USER_ID", 130, readOnly: true);
 
 
             //프로퍼티 그리드 초기 설정

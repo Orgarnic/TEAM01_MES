@@ -63,13 +63,11 @@ namespace Cohesion_Project
             DgvUtil.AddTextCol(dgvAddedInspection, "    NO", "DISPLAY_SEQ", 80, readOnly: true, align: 1, frozen: true);
             DgvUtil.AddTextCol(dgvAddedInspection, "    검사 항목 코드", "INSPECT_ITEM_CODE", 150, readOnly: true, align: 1, frozen: true);
             DgvUtil.AddTextCol(dgvAddedInspection, "    검사 항목명", "INSPECT_ITEM_NAME", 200, readOnly: true);
-            DgvUtil.AddTextCol(dgvAddedInspection, "    검사 유형", "VALUE_TYPE", 200, readOnly: true);
 
             DgvUtil.DgvInit(dgvInspectionList);
             DgvUtil.AddTextCol(dgvInspectionList, "     NO", "DISPLAY_SEQ", 80, readOnly: true, align: 1, frozen: true);
             DgvUtil.AddTextCol(dgvInspectionList, "     검사 항목 코드", "INSPECT_ITEM_CODE", 150, readOnly: true, align: 1, frozen: true);
             DgvUtil.AddTextCol(dgvInspectionList, "     검사 항목명", "INSPECT_ITEM_NAME", 200, readOnly: true);
-            DgvUtil.AddTextCol(dgvInspectionList, "     검사 유형", "VALUE_TYPE", 200, readOnly: true);
 
 
             btnLeft.Enabled = false;
