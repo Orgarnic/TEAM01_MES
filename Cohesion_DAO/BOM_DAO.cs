@@ -100,7 +100,7 @@ namespace Cohesion_DAO
 
             try
             {
-                string sql = $@"select b.PRODUCT_CODE, CHILD_PRODUCT_CODE, p2.PRODUCT_NAME, REQUIRE_QTY, ALTER_PRODUCT_CODE, b.CREATE_TIME, b.CREATE_USER_ID, b.UPDATE_TIME, b.UPDATE_USER_ID
+                string sql = $@"select b.PRODUCT_CODE, CHILD_PRODUCT_CODE, p2.PRODUCT_NAME, REQUIRE_QTY, ALTER_PRODUCT_CODE, b.CREATE_TIME, b.CREATE_USER_ID, b.UPDATE_TIME, b.UPDATE_USER_ID, p2.PRODUCT_TYPE
                                 from BOM_MST b inner join PRODUCT_MST p on b.PRODUCT_CODE = p.PRODUCT_CODE
 			                                   inner join PRODUCT_MST p2 on b.CHILD_PRODUCT_CODE = p2.PRODUCT_CODE
                                 where p.PRODUCT_CODE = '" + $"{code}" + "' ";
@@ -167,7 +167,7 @@ namespace Cohesion_DAO
             }
         }
 
-        public bool UpdateBOM(List<BOM_MST_DTO> bom)
+        public bool UpdateBOM(List<BOM_MST_DTO> bom, string prodID)
         {
             SqlCommand cmd = new SqlCommand();
             conn.Open();
@@ -177,8 +177,12 @@ namespace Cohesion_DAO
             try
             {
                 cmd.Connection = conn;
-                string sql = $@"delete from BOM_MST where PRODUCT_CODE = @PRODUCT_CODE and CHILD_PRODUCT_CODE not in ({sb.ToString().TrimEnd(',')}) ";
-                cmd.Parameters.AddWithValue("@PRODUCT_CODE", bom[0].PRODUCT_CODE);
+                string sql = $@"delete from BOM_MST where PRODUCT_CODE = @PRODUCT_CODE";
+                if(bom.Count > 0)
+                {
+                    sql += $" and CHILD_PRODUCT_CODE not in ({sb.ToString().TrimEnd(',')}) ";
+                }
+                cmd.Parameters.AddWithValue("@PRODUCT_CODE", prodID);
                 cmd.CommandText = sql;
                 cmd.Transaction = trans;
                 cmd.ExecuteNonQuery();
@@ -233,13 +237,12 @@ namespace Cohesion_DAO
         {
             try
             {
-                string sql = @"delete BOM_MST
+                string sql = $@"delete BOM_MST
                                where PRODUCT_CODE = @PRODUCT_CODE 
-                               and CHILD_PRODUCT_CODE = @CHILD_PRODUCT_CODE";
+                               and CHILD_PRODUCT_CODE in ({childCode})";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@PRODUCT_CODE", parentCode);
-                cmd.Parameters.AddWithValue("@CHILD_PRODUCT_CODE", childCode);
                 conn.Open();
 
                 int iRowAffect = cmd.ExecuteNonQuery();

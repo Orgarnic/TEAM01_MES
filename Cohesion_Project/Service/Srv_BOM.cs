@@ -37,10 +37,10 @@ namespace Cohesion_Project
             return result;
         }
 
-        public bool UpdateBOM(List<BOM_MST_DTO> bom)
+        public bool UpdateBOM(List<BOM_MST_DTO> bom, string prodID)
         {
             BOM_DAO dao = new BOM_DAO();
-            bool result = dao.UpdateBOM(bom);
+            bool result = dao.UpdateBOM(bom, prodID);
             dao.Dispose();
 
             return result;
