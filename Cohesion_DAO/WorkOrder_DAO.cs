@@ -130,7 +130,7 @@ namespace Cohesion_DAO
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@PRODUCT_CODE", work.PRODUCT_CODE);
-                cmd.Parameters.AddWithValue("@ORDER_DATE", work.ORDER_DATE);
+                //cmd.Parameters.AddWithValue("@ORDER_DATE", DBNull.Value);
                 cmd.Parameters.AddWithValue("@CUSTOMER_CODE", work.CUSTOMER_CODE);
                 cmd.Parameters.AddWithValue("@ORDER_QTY", work.ORDER_QTY);
                 cmd.Parameters.AddWithValue("@ORDER_STATUS", work.ORDER_STATUS);
