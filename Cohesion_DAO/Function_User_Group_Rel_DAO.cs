@@ -81,9 +81,9 @@ namespace Cohesion_DAO
             List<FUNCTION_USER_GROUP_REL_DTO> list = null;
             try
             {
-                string sql = @"select F.FUNCTION_CODE,F.FUNCTION_NAME,Rank() OVER(order by F.FUNCTION_CODE ASC) DISPLAY_SEQ
-                                from FUNCTION_USER_GROUP_REL FU RIGHT join FUNCTION_MST F ON FU.FUNCTION_CODE  = F.FUNCTION_CODE
-                                 　where 1=1";
+                string sql = @"select FUNCTION_NAME,FUNCTION_CODE, Rank() OVER(order by FUNCTION_CODE ASC) DISPLAY_SEQ
+from FUNCTION_MST where 1=1
+";
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 conn.Open();
                 list = Helper.DataReaderMapToList<FUNCTION_USER_GROUP_REL_DTO>(cmd.ExecuteReader());
