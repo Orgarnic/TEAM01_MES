@@ -29,10 +29,10 @@ namespace Cohesion_Project
         /// </summary>
         private void InitializeComponent()
         {
-            this.DgvFUG = new System.Windows.Forms.DataGridView();
             this.PpgFUG = new System.Windows.Forms.PropertyGrid();
             this.DgvF1 = new System.Windows.Forms.DataGridView();
             this.DgvF2 = new System.Windows.Forms.DataGridView();
+            this.DgvFUG = new System.Windows.Forms.DataGridView();
             this.panel3.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -45,26 +45,24 @@ namespace Cohesion_Project
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             this.pnlSearch.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DgvFUG)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvF1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvF2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvFUG)).BeginInit();
             this.SuspendLayout();
             // 
             // btnClose
             // 
+            this.btnClose.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnClose.FlatAppearance.BorderSize = 0;
-            this.btnClose.Location = new System.Drawing.Point(2031, 1238);
+            this.btnClose.Location = new System.Drawing.Point(1422, 948);
             // 
             // panel3
             // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
             this.panel3.Controls.Add(this.DgvF1);
-            this.panel3.Size = new System.Drawing.Size(828, 638);
+            this.panel3.Size = new System.Drawing.Size(828, 403);
             this.panel3.Controls.SetChildIndex(this.lbl6, 0);
             this.panel3.Controls.SetChildIndex(this.DgvF1, 0);
-            // 
-            // lbl7
-            // 
-            this.lbl7.Size = new System.Drawing.Size(612, 30);
             // 
             // btnLeft
             // 
@@ -72,8 +70,8 @@ namespace Cohesion_Project
             this.btnLeft.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnLeft.FlatAppearance.BorderSize = 0;
             this.btnLeft.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
-            this.btnLeft.Location = new System.Drawing.Point(837, 162);
-            this.btnLeft.Size = new System.Drawing.Size(69, 92);
+            this.btnLeft.Location = new System.Drawing.Point(838, 80);
+            this.btnLeft.Size = new System.Drawing.Size(69, 136);
             this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
             // 
             // btnRight
@@ -81,39 +79,45 @@ namespace Cohesion_Project
             this.btnRight.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnRight.FlatAppearance.BorderSize = 0;
             this.btnRight.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
-            this.btnRight.Location = new System.Drawing.Point(837, 39);
-            this.btnRight.Size = new System.Drawing.Size(69, 101);
+            this.btnRight.Location = new System.Drawing.Point(838, 213);
+            this.btnRight.Size = new System.Drawing.Size(69, 136);
             this.btnRight.Click += new System.EventHandler(this.btnRight_Click);
             // 
             // panel6
             // 
+            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
             this.panel6.Controls.Add(this.DgvF2);
-            this.panel6.Size = new System.Drawing.Size(614, 638);
+            this.panel6.Size = new System.Drawing.Size(606, 403);
             this.panel6.Controls.SetChildIndex(this.lbl7, 0);
             this.panel6.Controls.SetChildIndex(this.DgvF2, 0);
             // 
             // panel1
             // 
-            this.panel1.Size = new System.Drawing.Size(2130, 704);
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel1.Size = new System.Drawing.Size(1521, 409);
             // 
             // lbl3
             // 
-            this.lbl3.Size = new System.Drawing.Size(1354, 30);
+            this.lbl3.Size = new System.Drawing.Size(357, 30);
             // 
             // lbl5
             // 
-            this.lbl5.Size = new System.Drawing.Size(2124, 35);
+            this.lbl5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
             // 
             // panel7
             // 
+            this.panel7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
             this.panel7.Controls.Add(this.PpgFUG);
-            this.panel7.Size = new System.Drawing.Size(1356, 448);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel7.Location = new System.Drawing.Point(0, 4);
+            this.panel7.Size = new System.Drawing.Size(359, 443);
             this.panel7.Controls.SetChildIndex(this.lbl3, 0);
             this.panel7.Controls.SetChildIndex(this.PpgFUG, 0);
             // 
             // panel5
             // 
-            this.panel5.Size = new System.Drawing.Size(2130, 451);
+            this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
             // 
             // splitContainer1
             // 
@@ -125,89 +129,76 @@ namespace Cohesion_Project
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(0, 4, 3, 4);
-            this.splitContainer1.Size = new System.Drawing.Size(2130, 451);
-            this.splitContainer1.SplitterDistance = 1166;
+            this.splitContainer1.SplitterDistance = 1155;
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.DgvFUG);
-            this.panel2.Size = new System.Drawing.Size(1163, 370);
+            this.panel2.Location = new System.Drawing.Point(3, 76);
+            this.panel2.Size = new System.Drawing.Size(1153, 373);
             this.panel2.Controls.SetChildIndex(this.lbl4, 0);
             this.panel2.Controls.SetChildIndex(this.DgvFUG, 0);
-            // 
-            // lbl4
-            // 
-            this.lbl4.Size = new System.Drawing.Size(1161, 30);
             // 
             // panel4
             // 
             this.panel4.Location = new System.Drawing.Point(3, 4);
-            this.panel4.Size = new System.Drawing.Size(1163, 72);
+            this.panel4.Size = new System.Drawing.Size(1152, 72);
             // 
             // btnSearchCondition
             // 
             this.btnSearchCondition.FlatAppearance.BorderSize = 0;
-            this.btnSearchCondition.Location = new System.Drawing.Point(662, 38);
+            this.btnSearchCondition.Location = new System.Drawing.Point(1064, 37);
             // 
             // txtSearch
             // 
+            this.txtSearch.Location = new System.Drawing.Point(10, 38);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtSearch.Size = new System.Drawing.Size(586, 21);
             // 
             // btnSearch
             // 
             this.btnSearch.FlatAppearance.BorderSize = 0;
-            this.btnSearch.Location = new System.Drawing.Point(602, 38);
+            this.btnSearch.Location = new System.Drawing.Point(1004, 37);
             // 
             // lbl2
             // 
-            this.lbl2.Size = new System.Drawing.Size(1161, 30);
-            // 
-            // pnlSearch
-            // 
-            this.pnlSearch.Size = new System.Drawing.Size(1409, 35);
+            this.lbl2.Size = new System.Drawing.Size(1150, 30);
             // 
             // btnDelete
             // 
+            this.btnDelete.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnDelete.FlatAppearance.BorderSize = 0;
-            this.btnDelete.Location = new System.Drawing.Point(3, 1238);
+            this.btnDelete.Location = new System.Drawing.Point(3, 948);
             // 
             // btnInsert
             // 
+            this.btnInsert.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnInsert.FlatAppearance.BorderSize = 0;
-            this.btnInsert.Location = new System.Drawing.Point(1829, 1238);
+            this.btnInsert.Location = new System.Drawing.Point(1220, 948);
             // 
             // btnAdd
             // 
+            this.btnAdd.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnAdd.FlatAppearance.BorderSize = 0;
-            this.btnAdd.Location = new System.Drawing.Point(1627, 1238);
+            this.btnAdd.Location = new System.Drawing.Point(1018, 948);
             // 
             // btnUpdate
             // 
+            this.btnUpdate.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnUpdate.FlatAppearance.BorderSize = 0;
-            this.btnUpdate.Location = new System.Drawing.Point(1728, 1238);
+            this.btnUpdate.Location = new System.Drawing.Point(1119, 948);
             // 
             // btnRefresh
             // 
+            this.btnRefresh.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnRefresh.FlatAppearance.BorderSize = 0;
-            this.btnRefresh.Location = new System.Drawing.Point(1930, 1238);
-            // 
-            // DgvFUG
-            // 
-            this.DgvFUG.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgvFUG.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DgvFUG.Location = new System.Drawing.Point(0, 30);
-            this.DgvFUG.Name = "DgvFUG";
-            this.DgvFUG.RowTemplate.Height = 23;
-            this.DgvFUG.Size = new System.Drawing.Size(1161, 338);
-            this.DgvFUG.TabIndex = 5;
+            this.btnRefresh.Location = new System.Drawing.Point(1321, 948);
             // 
             // PpgFUG
             // 
             this.PpgFUG.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PpgFUG.Location = new System.Drawing.Point(0, 30);
             this.PpgFUG.Name = "PpgFUG";
-            this.PpgFUG.Size = new System.Drawing.Size(1354, 416);
+            this.PpgFUG.Size = new System.Drawing.Size(357, 411);
             this.PpgFUG.TabIndex = 7;
             // 
             // DgvF1
@@ -217,7 +208,7 @@ namespace Cohesion_Project
             this.DgvF1.Location = new System.Drawing.Point(0, 30);
             this.DgvF1.Name = "DgvF1";
             this.DgvF1.RowTemplate.Height = 23;
-            this.DgvF1.Size = new System.Drawing.Size(826, 606);
+            this.DgvF1.Size = new System.Drawing.Size(826, 371);
             this.DgvF1.TabIndex = 6;
             // 
             // DgvF2
@@ -227,14 +218,24 @@ namespace Cohesion_Project
             this.DgvF2.Location = new System.Drawing.Point(0, 30);
             this.DgvF2.Name = "DgvF2";
             this.DgvF2.RowTemplate.Height = 23;
-            this.DgvF2.Size = new System.Drawing.Size(612, 606);
+            this.DgvF2.Size = new System.Drawing.Size(604, 371);
             this.DgvF2.TabIndex = 7;
+            // 
+            // DgvFUG
+            // 
+            this.DgvFUG.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvFUG.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DgvFUG.Location = new System.Drawing.Point(0, 30);
+            this.DgvFUG.Name = "DgvFUG";
+            this.DgvFUG.RowTemplate.Height = 23;
+            this.DgvFUG.Size = new System.Drawing.Size(1151, 341);
+            this.DgvFUG.TabIndex = 6;
             // 
             // Frm_Function_User_Group_Rel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1409, 798);
+            this.ClientSize = new System.Drawing.Size(1521, 990);
             this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.Name = "Frm_Function_User_Group_Rel";
             this.Text = "Frm_Function_User_Group_Rel";
@@ -252,9 +253,9 @@ namespace Cohesion_Project
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.pnlSearch.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.DgvFUG)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvF1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvF2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvFUG)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -262,8 +263,8 @@ namespace Cohesion_Project
         #endregion
 
         private System.Windows.Forms.PropertyGrid PpgFUG;
-        private System.Windows.Forms.DataGridView DgvFUG;
         private System.Windows.Forms.DataGridView DgvF1;
         private System.Windows.Forms.DataGridView DgvF2;
+        private System.Windows.Forms.DataGridView DgvFUG;
     }
 }

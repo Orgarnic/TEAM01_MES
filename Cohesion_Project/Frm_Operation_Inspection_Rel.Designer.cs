@@ -81,9 +81,8 @@ namespace Cohesion_Project
             this.btnLeft.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnLeft.FlatAppearance.BorderSize = 0;
             this.btnLeft.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
-            this.btnLeft.Location = new System.Drawing.Point(838, 222);
+            this.btnLeft.Location = new System.Drawing.Point(836, 77);
             this.btnLeft.Size = new System.Drawing.Size(69, 137);
-            this.btnLeft.Text = "▶";
             this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
             // 
             // btnRight
@@ -91,9 +90,8 @@ namespace Cohesion_Project
             this.btnRight.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnRight.FlatAppearance.BorderSize = 0;
             this.btnRight.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
-            this.btnRight.Location = new System.Drawing.Point(838, 80);
+            this.btnRight.Location = new System.Drawing.Point(836, 231);
             this.btnRight.Size = new System.Drawing.Size(69, 136);
-            this.btnRight.Text = "◀";
             this.btnRight.Click += new System.EventHandler(this.btnRight_Click);
             // 
             // panel6
