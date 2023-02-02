@@ -72,7 +72,8 @@ namespace Cohesion_Project
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            int cnt = 0;
+            string pcode;
+            int cnt = 0, checking = 0;
             decimal oQty = 0, lQty = 0;
             if(dgvOrderList.SelectedRows.Count < 1)
             {
@@ -85,6 +86,7 @@ namespace Cohesion_Project
                 if (MboxUtil.MboxInfo_("현재 재고가 부족합니다.\n해당 제품에 대한 생산지시를 등록하시겠습니까?") == false) return;
                 else
                 {
+                    StringBuilder sb = new StringBuilder();
                     List<Work_Order_MST_DTO> inData = new List<Work_Order_MST_DTO>();
                     Work_Order_MST_DTO dto = null;
                     for (int i = 0; i < dgvBOMStock.Rows.Count; i++)
@@ -103,21 +105,39 @@ namespace Cohesion_Project
                                 CREATE_TIME = DateTime.Now,
                                 CUSTOMER_CODE = dgvOrderList["CUSTOMER_CODE",i].Value.ToString()
                             };
-                            inData.Add(dto);
-                            cnt++;
+                            if (dto.PRODUCT_CODE.Contains("HB_HBD"))
+                            {
+                                pcode = inData[i].PRODUCT_CODE;
+                                checking++;
+                                cnt++;
+                            }
+                            else
+                            {
+                                inData.Add(dto);
+                                cnt++;
+                            }
+                        }
+                        else
+                        {
+
                         }
                     }
-                    if (MboxUtil.MboxInfo_($"총 {cnt}건의 자품목 생산등록이 가능합니다.\n등록하시겠습니까?") == false) return;
+                    if (MboxUtil.MboxInfo_($"총 {cnt}건 중 {cnt - checking}건의 자품목 생산지시등록이 가능합니다.\n등록하시겠습니까?") == false) return;
                     else
                     {
+                        StringBuilder sv = new StringBuilder();
                         for (int j = 0; j < inData.Count; j++)
                         {
                             bool check = work.InsertWorkOrder(inData[j]);
                             if (!check)
                             {
-                                MboxUtil.MboxWarn("등록되지 못했습니다.\n다시 시도해주세요.");
-                                return;
+                                sv.AppendLine($"반제품 - {inData[j]}가 등록되지 못했습니다.\n다시 시도해주세요.");
                             }
+                        }
+                        if(sv.Length > 0)
+                        {
+                            MboxUtil.MboxWarn(sv.ToString());
+                            return;
                         }
                     }
                     MboxUtil.MboxInfo("생산지시 등록이 완료되었습니다.");
