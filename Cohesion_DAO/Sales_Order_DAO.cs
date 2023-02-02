@@ -161,17 +161,48 @@ namespace Cohesion_DAO
             List<Sales_Order_VO> list = default;
             try
             {
+                //string sql = @"SELECT SOM.SALES_ORDER_ID, SOM.CUSTOMER_CODE, SOM.PRODUCT_CODE, PM.PRODUCT_NAME, SOM.ORDER_QTY,
+                //               		  BM.CHILD_PRODUCT_CODE, PMS.PRODUCT_NAME AS CHILD_PRODUCT_NAME, REQUIRE_QTY, 
+                //               		  CAST(ORDER_QTY * REQUIRE_QTY AS DECIMAL) NEED_QTY, PMS1.VENDOR_CODE, 
+                //                      CAST(LS.LOT_QTY AS DECIMAL) LOT_QTY,
+                //               		  CAST(LS.LOT_QTY - (ORDER_QTY * REQUIRE_QTY)AS DECIMAL)LEFT_QTY
+                //               FROM SALES_ORDER_MST SOM INNER JOIN CODE_DATA_MST CDM ON SOM.CUSTOMER_CODE = CDM.KEY_1
+                //                                        INNER JOIN PRODUCT_MST PM ON SOM.PRODUCT_CODE = PM.PRODUCT_CODE
+                //               						    INNER JOIN BOM_MST BM ON SOM.PRODUCT_CODE = BM.PRODUCT_CODE
+                //               						    INNER JOIN PRODUCT_MST PMS ON BM.CHILD_PRODUCT_CODE = PMS.PRODUCT_CODE
+                //               						    INNER JOIN PRODUCT_MST PMS1 ON BM.CHILD_PRODUCT_CODE = PMS1.PRODUCT_CODE AND PMS1.VENDOR_CODE IS NOT NULL
+                //               						    INNER JOIN LOT_STS LS ON PMS.PRODUCT_CODE = LS.PRODUCT_CODE
+                //               WHERE SOM.PRODUCT_CODE = @PRODUCT_CODE AND SOM.SALES_ORDER_ID = @SALES_ORDER_ID
+                //               					   -- AND PMS1.VENDOR_CODE IS NOT NULL
+                //               ORDER BY SALES_ORDER_ID DESC";
+
+                //> 참고 쿼리
+                /*
+                 SELECT PURCHASE_ORDER_ID, PURCHASE_SEQ, SALES_ORDER_ID, ORDER_DATE, VENDOR_CODE,
+		MATERIAL_CODE, ORDER_QTY, STOCK_IN_FLAG, STOCK_IN_STORE_CODE, STOCK_IN_LOT_ID
+FROM PURCHASE_ORDER_MST
+WHERE STOCK_IN_FLAG = 'N'
+                 */
+                /*
+                 * SELECT MATERIAL_CODE, ORDER_QTY, STOCK_IN_FLAG, SUM(ORDER_QTY) OVER() NOT_STOCKED_QTY
+FROM PURCHASE_ORDER_MST
+WHERE MATERIAL_CODE = 'HB_CLP_JVP' AND STOCK_IN_FLAG = 'N'
+                 */
+
+                //> QUERY 수정 필요! : 미입고 수량 
                 string sql = @"SELECT SOM.SALES_ORDER_ID, SOM.CUSTOMER_CODE, SOM.PRODUCT_CODE, PM.PRODUCT_NAME, SOM.ORDER_QTY,
                                		  BM.CHILD_PRODUCT_CODE, PMS.PRODUCT_NAME AS CHILD_PRODUCT_NAME, REQUIRE_QTY, 
-                               		  CAST(ORDER_QTY * REQUIRE_QTY AS DECIMAL) NEED_QTY, PMS1.VENDOR_CODE, 
+                               		  CAST(SOM.ORDER_QTY * REQUIRE_QTY AS DECIMAL) NEED_QTY, PMS1.VENDOR_CODE, 
                                       CAST(LS.LOT_QTY AS DECIMAL) LOT_QTY,
-                               		  CAST(LS.LOT_QTY - (ORDER_QTY * REQUIRE_QTY)AS DECIMAL)LEFT_QTY
+                               		  CAST(LS.LOT_QTY - (SOM.ORDER_QTY * REQUIRE_QTY)AS DECIMAL)LEFT_QTY,
+									  POM.MATERIAL_CODE, POM.ORDER_QTY, STOCK_IN_FLAG, CAST(SUM(POM.ORDER_QTY) OVER() AS DECIMAL) NOT_STOCKED_QTY
                                FROM SALES_ORDER_MST SOM INNER JOIN CODE_DATA_MST CDM ON SOM.CUSTOMER_CODE = CDM.KEY_1
                                                         INNER JOIN PRODUCT_MST PM ON SOM.PRODUCT_CODE = PM.PRODUCT_CODE
                                						    INNER JOIN BOM_MST BM ON SOM.PRODUCT_CODE = BM.PRODUCT_CODE
                                						    INNER JOIN PRODUCT_MST PMS ON BM.CHILD_PRODUCT_CODE = PMS.PRODUCT_CODE
                                						    INNER JOIN PRODUCT_MST PMS1 ON BM.CHILD_PRODUCT_CODE = PMS1.PRODUCT_CODE AND PMS1.VENDOR_CODE IS NOT NULL
                                						    INNER JOIN LOT_STS LS ON PMS.PRODUCT_CODE = LS.PRODUCT_CODE
+														INNER JOIN PURCHASE_ORDER_MST POM ON SOM.SALES_ORDER_ID = POM.SALES_ORDER_ID
                                WHERE SOM.PRODUCT_CODE = @PRODUCT_CODE AND SOM.SALES_ORDER_ID = @SALES_ORDER_ID
                                					   -- AND PMS1.VENDOR_CODE IS NOT NULL
                                ORDER BY SALES_ORDER_ID DESC";
@@ -198,14 +229,20 @@ namespace Cohesion_DAO
         }
         public bool InsertPurchase(List<Sales_Order_VO> list)
         {
-            string sql = @"INSERT INTO PURCHASE_ORDER_MST (PURCHASE_ORDER_ID, SALES_ORDER_ID, ORDER_DATE, 
+            string sql = @"INSERT INTO PURCHASE_ORDER_MST (PURCHASE_ORDER_ID, PURCHASE_SEQ, SALES_ORDER_ID, ORDER_DATE, 
                                                            VENDOR_CODE, MATERIAL_CODE, ORDER_QTY, STOCK_IN_FLAG)
-                           VALUES(@PURCHASE_ORDER_ID, @SALES_ORDER_ID, 
+                           VALUES(@PURCHASE_ORDER_ID, @PURCHASE_SEQ,@SALES_ORDER_ID, 
                                    GETDATE(), @VENDOR_CODE, @MATERIAL_CODE, CAST(@ORDER_QTY AS DECIMAL), 'N') ";
 
+            //string sql = @"INSERT INTO PURCHASE_ORDER_MST (PURCHASE_ORDER_ID, PURCHASE_SEQ, SALES_ORDER_ID, ORDER_DATE, 
+            //                                               VENDOR_CODE, MATERIAL_CODE, ORDER_QTY, STOCK_IN_FLAG)
+            //               VALUES(@PURCHASE_ORDER_ID, RANK() OVER(PARTITION BY SALES_ORDER_ID ORDER BY ORDER_DATE),@SALES_ORDER_ID, 
+            //                       GETDATE(), @VENDOR_CODE, @MATERIAL_CODE, CAST(@ORDER_QTY AS DECIMAL), 'N') ";
+
             SqlCommand cmd = new SqlCommand(sql, conn);
-            string pCode = "PURC" + DateTime.Now.ToString("yyMMddHHmmss");
+            string pCode = "PURC_" + DateTime.Now.ToString("yyMMddHHmmss");
             cmd.Parameters.AddWithValue("@PURCHASE_ORDER_ID", pCode);
+            cmd.Parameters.Add("@PURCHASE_SEQ", SqlDbType.Int);
             cmd.Parameters.Add("@SALES_ORDER_ID", SqlDbType.VarChar);
             cmd.Parameters.Add("@VENDOR_CODE", SqlDbType.VarChar);
             cmd.Parameters.Add("@MATERIAL_CODE", SqlDbType.VarChar);
@@ -214,6 +251,7 @@ namespace Cohesion_DAO
             conn.Open();
             for (int i = 0; i < list.Count; i++)
             {
+                cmd.Parameters["@PURCHASE_SEQ"].Value = i+1;
                 cmd.Parameters["@SALES_ORDER_ID"].Value = list[i].SALES_ORDER_ID;
                 cmd.Parameters["@VENDOR_CODE"].Value = list[i].VENDOR_CODE;
                 cmd.Parameters["@MATERIAL_CODE"].Value = list[i].MATERIAL_CODE;
