@@ -162,6 +162,8 @@ namespace Cohesion_Project
 
         private void btnInsert_Click(object sender, EventArgs e)
         {
+            bool result = default;
+
             var dto = ppg_SalesOrder.SelectedObject as Sales_Order_DTO;
             if (dto.CUSTOMER_CODE == null || dto.PRODUCT_CODE == null || dto.ORDER_QTY == null || dto.PRODUCT_NAME == null)
             {
@@ -182,13 +184,12 @@ namespace Cohesion_Project
                 if (dgv_SalesOrder["PRODUCT_CODE", dgv_SalesOrder.CurrentRow.Index].Value == null)
                 {
                     if (dgv_SalesOrder[1, dgv_SalesOrder.CurrentRow.Index].Value == null)
-                    {
                         return;
-                    }
-                    MessageBox.Show("수정하실 주문 정보를 선택해주세요.");
+
+                    MboxUtil.MboxInfo("수정하실 주문 정보를 선택해주세요.");
                     return;
                 }
-
+                
                 Pop_Sales_Order pop = new Pop_Sales_Order();
                 pop.ProductCode = dgv_SalesOrder["PRODUCT_CODE", dgv_SalesOrder.CurrentRow.Index].Value.ToString();
                 pop.SalesOrderID = dgv_SalesOrder["SALES_ORDER_ID", dgv_SalesOrder.CurrentRow.Index].Value.ToString();
@@ -196,24 +197,22 @@ namespace Cohesion_Project
                 {
                     MboxUtil.MboxInfo("주문 등록이 완료되었습니다.");
 
+                    if (pop.StockAvailable)
+                        MboxUtil.MboxInfo_("주문 확정 처리를 하시겠습니까?");
+
                     dto.UPDATE_USER_ID = "정민영";
                     dto.UPDATE_TIME = DateTime.Now;
-                    bool result = srvSalesOrder.UpdateSalesOrder(dto);
-                    LoadData();
-                    return;
+                    result = srvSalesOrder.UpdateSalesOrder(dto);
                 }
                 else if (pop.StockAvailable)
                 {
-                    MboxUtil.MboxInfo("주문을 확정했습니다.");
+                    MboxUtil.MboxInfo("주문 확정 처리가 되었습니다");
+                    result = srvSalesOrder.UpdateSalesOrder(dto);
                 }
                 else
                     MboxUtil.MboxInfo("다시 시도하여 주십시오.");
             }
-            else
-            {
-                bool result = srvSalesOrder.UpdateSalesOrder(dto);
-                LoadData();
-            }
+            result = srvSalesOrder.UpdateSalesOrder(dto);
             LoadData();
         }
         
