@@ -26,7 +26,11 @@ namespace Cohesion_Project
         private void Frm_Operationg_Inspection_Rel_Load(object sender, EventArgs e)
         {
             InitDgv();
+            LoadData();
+        }
 
+        private void LoadData()
+        {
             var list = svR.SelectOperationInRel(new Operation_Inspection_Rel_DTO());
             int seq = 1;
             dgvOperationList.DataSource = list.Select((i) => new
@@ -63,13 +67,11 @@ namespace Cohesion_Project
             DgvUtil.AddTextCol(dgvAddedInspection, "    NO", "DISPLAY_SEQ", 80, readOnly: true, align: 1, frozen: true);
             DgvUtil.AddTextCol(dgvAddedInspection, "    검사 항목 코드", "INSPECT_ITEM_CODE", 150, readOnly: true, align: 1, frozen: true);
             DgvUtil.AddTextCol(dgvAddedInspection, "    검사 항목명", "INSPECT_ITEM_NAME", 200, readOnly: true);
-            DgvUtil.AddTextCol(dgvAddedInspection, "    검사 유형", "VALUE_TYPE", 200, readOnly: true);
 
             DgvUtil.DgvInit(dgvInspectionList);
             DgvUtil.AddTextCol(dgvInspectionList, "     NO", "DISPLAY_SEQ", 80, readOnly: true, align: 1, frozen: true);
             DgvUtil.AddTextCol(dgvInspectionList, "     검사 항목 코드", "INSPECT_ITEM_CODE", 150, readOnly: true, align: 1, frozen: true);
             DgvUtil.AddTextCol(dgvInspectionList, "     검사 항목명", "INSPECT_ITEM_NAME", 200, readOnly: true);
-            DgvUtil.AddTextCol(dgvInspectionList, "     검사 유형", "VALUE_TYPE", 200, readOnly: true);
 
 
             btnLeft.Enabled = false;
@@ -290,6 +292,7 @@ namespace Cohesion_Project
                     INSPECT_ITEM_NAME = i.INSPECT_ITEM_NAME,
                     DISPLAY_SEQ = seq++
                 }).ToList();
+                btnRefresh.PerformClick();
                 return;
             }
             else
@@ -340,6 +343,7 @@ namespace Cohesion_Project
                     INSPECT_ITEM_NAME = i.INSPECT_ITEM_NAME,
                     DISPLAY_SEQ = seq++
                 }).ToList();
+                btnRefresh.PerformClick();
                 return;
             }
             else
@@ -374,7 +378,24 @@ namespace Cohesion_Project
                     UPDATE_USER_ID = i.UPDATE_USER_ID,
                     DISPLAY_SEQ = seq++
                 }).ToList();
+                ppgSearchCondition.SelectedObject = new Operationg_Inspection_Rel_Search();
+                dgvAddedInspection.DataSource = null;
             }
         }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            ppgSearchCondition.SelectedObject = new Operationg_Inspection_Rel_Search();
+            dgvAddedInspection.DataSource = null;
+            int seq = 1;
+            dgvInspectionList.DataSource = iList.Select((i) => new Inspection_REL_DTO
+            {
+                INSPECT_ITEM_CODE = i.INSPECT_ITEM_CODE,
+                INSPECT_ITEM_NAME = i.INSPECT_ITEM_NAME,
+                DISPLAY_SEQ = seq++
+            }).ToList(); ;
+            LoadData();
+        }
+
     }
 }

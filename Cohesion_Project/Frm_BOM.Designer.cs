@@ -31,9 +31,9 @@ namespace Cohesion_Project
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dgvBOMParent = new System.Windows.Forms.DataGridView();
-            this.dgvBOMChild = new System.Windows.Forms.DataGridView();
             this.ppgSearch = new System.Windows.Forms.PropertyGrid();
             this.ppgBOMAttribute = new System.Windows.Forms.PropertyGrid();
+            this.dgvBOMChild = new System.Windows.Forms.DataGridView();
             this.panel9.SuspendLayout();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
@@ -144,11 +144,13 @@ namespace Cohesion_Project
             // btnAdd
             // 
             this.btnAdd.FlatAppearance.BorderSize = 0;
+            this.btnAdd.Text = "      추  가";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnUpdate
             // 
             this.btnUpdate.FlatAppearance.BorderSize = 0;
+            this.btnUpdate.Text = "      등  록";
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnRefresh
@@ -179,18 +181,6 @@ namespace Cohesion_Project
             this.dgvBOMParent.TabIndex = 6;
             this.dgvBOMParent.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBOMParent_CellClick);
             // 
-            // dgvBOMChild
-            // 
-            this.dgvBOMChild.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgvBOMChild.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBOMChild.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvBOMChild.Location = new System.Drawing.Point(0, 30);
-            this.dgvBOMChild.Name = "dgvBOMChild";
-            this.dgvBOMChild.RowTemplate.Height = 23;
-            this.dgvBOMChild.Size = new System.Drawing.Size(1151, 430);
-            this.dgvBOMChild.TabIndex = 7;
-            this.dgvBOMChild.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBOMChild_CellClick);
-            // 
             // ppgSearch
             // 
             this.ppgSearch.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -209,6 +199,17 @@ namespace Cohesion_Project
             this.ppgBOMAttribute.Size = new System.Drawing.Size(356, 429);
             this.ppgBOMAttribute.TabIndex = 9;
             this.ppgBOMAttribute.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.ppgBOMAttribute_PropertyValueChanged);
+            // 
+            // dgvBOMChild
+            // 
+            this.dgvBOMChild.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgvBOMChild.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvBOMChild.Location = new System.Drawing.Point(86, 67);
+            this.dgvBOMChild.Name = "dgvBOMChild";
+            this.dgvBOMChild.RowTemplate.Height = 23;
+            this.dgvBOMChild.Size = new System.Drawing.Size(987, 332);
+            this.dgvBOMChild.TabIndex = 7;
+            this.dgvBOMChild.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBOMChild_CellClick);
             // 
             // Frm_BOM
             // 
@@ -244,8 +245,8 @@ namespace Cohesion_Project
         #endregion
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridView dgvBOMParent;
-        private System.Windows.Forms.DataGridView dgvBOMChild;
         private System.Windows.Forms.PropertyGrid ppgBOMAttribute;
         private System.Windows.Forms.PropertyGrid ppgSearch;
+        private System.Windows.Forms.DataGridView dgvBOMChild;
     }
 }

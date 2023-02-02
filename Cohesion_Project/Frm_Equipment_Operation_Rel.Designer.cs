@@ -102,6 +102,10 @@ namespace Cohesion_Project
             this.lbl3.Size = new System.Drawing.Size(356, 32);
             this.lbl3.Text = "▶ 조회 조건";
             // 
+            // lbl5
+            // 
+            this.lbl5.Text = "공정별 설비 할당";
+            // 
             // panel7
             // 
             this.panel7.Controls.Add(this.ppgSearchCondition);
@@ -136,6 +140,10 @@ namespace Cohesion_Project
             this.btnSearch.FlatAppearance.BorderSize = 0;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
+            // lbl1
+            // 
+            this.lbl1.Text = "/ 기준 정보 관리 / 공정별 설비 설정";
+            // 
             // btnDelete
             // 
             this.btnDelete.FlatAppearance.BorderSize = 0;
@@ -159,6 +167,7 @@ namespace Cohesion_Project
             // btnRefresh
             // 
             this.btnRefresh.FlatAppearance.BorderSize = 0;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // panel8
             // 
@@ -235,6 +244,7 @@ namespace Cohesion_Project
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.ClientSize = new System.Drawing.Size(1521, 1061);
             this.Name = "Frm_Equipment_Operation_Rel";
+            this.Text = "Frm_Equipment_Operation_Rel";
             this.Load += new System.EventHandler(this.Frm_Equipment_Operation_Rel_Load);
             this.panel3.ResumeLayout(false);
             this.panel6.ResumeLayout(false);

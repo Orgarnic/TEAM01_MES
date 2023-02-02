@@ -25,7 +25,10 @@ namespace Cohesion_Project
         private void Frm_Equipment_Operation_Rel_Load(object sender, EventArgs e)
         {
             InitDgv();
-
+            LoadData();
+        }
+        private void LoadData()
+        {
             var list = svR.SelectOperationInRel(new Operation_Inspection_Rel_DTO());
             int seq = 1;
             dgvOperationList.DataSource = list.Select((i) => new
@@ -282,6 +285,7 @@ namespace Cohesion_Project
                     EQUIPMENT_NAME = i.EQUIPMENT_NAME,
                     DISPLAY_SEQ = seq++
                 }).ToList();
+                btnRefresh.PerformClick();
                 return;
             }
             else
@@ -311,6 +315,7 @@ namespace Cohesion_Project
                     EQUIPMENT_NAME = i.EQUIPMENT_NAME,
                     DISPLAY_SEQ = seq++
                 }).ToList();
+                btnRefresh.PerformClick();
                 return;
             }
             else
@@ -345,7 +350,23 @@ namespace Cohesion_Project
                     UPDATE_USER_ID = i.UPDATE_USER_ID,
                     DISPLAY_SEQ = seq++
                 }).ToList();
+                ppgSearchCondition.SelectedObject = new Operationg_Inspection_Rel_Search();
+                dgvAddedEquipment.DataSource = null;
             }
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            ppgSearchCondition.SelectedObject = new Operationg_Inspection_Rel_Search();
+            dgvAddedEquipment.DataSource = null;
+            int seq = 1;
+            dgvEquipmentList.DataSource = iList.Select((i) => new Equipment_REL_DTO
+            {
+                EQUIPMENT_CODE = i.EQUIPMENT_CODE,
+                EQUIPMENT_NAME = i.EQUIPMENT_NAME,
+                DISPLAY_SEQ = seq++
+            }).ToList(); ;
+            LoadData();
         }
     }
 }
