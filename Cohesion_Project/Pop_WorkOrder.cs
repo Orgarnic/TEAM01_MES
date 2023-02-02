@@ -105,7 +105,7 @@ namespace Cohesion_Project
                                 CREATE_TIME = DateTime.Now,
                                 CUSTOMER_CODE = dgvOrderList["CUSTOMER_CODE",i].Value.ToString()
                             };
-                            if (dto.PRODUCT_CODE.Contains("HB_HBD"))
+                            /*if (dto.PRODUCT_CODE.Contains("HB_HBD"))
                             {
                                 pcode = inData[i].PRODUCT_CODE;
                                 checking++;
@@ -115,14 +115,27 @@ namespace Cohesion_Project
                             {
                                 inData.Add(dto);
                                 cnt++;
-                            }
+                            }*/
+                            inData.Add(dto);
+                            cnt++;
                         }
                         else
                         {
-
+                            dto = new Work_Order_MST_DTO
+                            {
+                                PRODUCT_CODE = dgvBOMStock["CHILD_PRODUCT_CODE", i].Value.ToString(),
+                                ORDER_QTY = tQty,
+                                ORDER_STATUS = "OPEN",
+                                CREATE_USER_ID = "유기현",
+                                CREATE_TIME = DateTime.Now,
+                                CUSTOMER_CODE = dgvOrderList["CUSTOMER_CODE", i].Value.ToString()
+                            };
+                            inData.Add(dto);
+                            cnt++;
                         }
                     }
-                    if (MboxUtil.MboxInfo_($"총 {cnt}건 중 {cnt - checking}건의 자품목 생산지시등록이 가능합니다.\n등록하시겠습니까?") == false) return;
+                    //if (MboxUtil.MboxInfo_($"총 {cnt}건 중 {cnt - checking}건의 자품목 생산지시등록이 가능합니다.\n등록하시겠습니까?") == false) return;
+                    if (MboxUtil.MboxInfo_($"총 {cnt}건의 자품목 생산지시 등록이 가능합니다.\n등록하시겠습니까?") == false) return;
                     else
                     {
                         StringBuilder sv = new StringBuilder();
