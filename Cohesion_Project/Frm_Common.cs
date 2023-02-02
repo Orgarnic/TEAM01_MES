@@ -73,7 +73,7 @@ namespace Cohesion_Project
 
             Pop_CommonTableData pop = new Pop_CommonTableData();
             pop.Owner = this;
-            pop.Location = new Point(200, 250);
+            pop.StartPosition = FormStartPosition.CenterScreen;
             pop.ShowDialog();
         }
 

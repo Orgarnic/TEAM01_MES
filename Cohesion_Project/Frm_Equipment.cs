@@ -35,15 +35,15 @@ namespace Cohesion_Project
         private void DataGridViewBinding()
         {
             DgvUtil.DgvInit(dgv_Equipment);
-            DgvUtil.AddTextCol(dgv_Equipment, "설비코드", "EQUIPMENT_CODE", 200, readOnly: true, align: 0, frozen: true);
-            DgvUtil.AddTextCol(dgv_Equipment, "설비명", "EQUIPMENT_NAME", 150, readOnly: true, align: 0, frozen: true);
-            DgvUtil.AddTextCol(dgv_Equipment, "설비유형", "EQUIPMENT_TYPE", 150, readOnly: true, align: 1, frozen: true);
-            DgvUtil.AddTextCol(dgv_Equipment, "설비상태", "EQUIPMENT_STATUS", 150, readOnly: true, align: 1, frozen: true);
-            DgvUtil.AddTextCol(dgv_Equipment, "최근 다운시간", "LAST_DOWN_TIME", 250, readOnly: true, align: 1);
-            DgvUtil.AddTextCol(dgv_Equipment, "생성 시간", "CREATE_TIME", 250, readOnly: true, align: 1);
-            DgvUtil.AddTextCol(dgv_Equipment, "생성 사용자", "CREATE_USER_ID", 150, readOnly: true, align: 1);
-            DgvUtil.AddTextCol(dgv_Equipment, "변경 시간", "UPDATE_TIME", 250, readOnly: true, align: 1);
-            DgvUtil.AddTextCol(dgv_Equipment, "변경 사용자", "UPDATE_USER_ID", 150, readOnly: true, align: 1);
+            DgvUtil.AddTextCol(dgv_Equipment, "    설비코드", "EQUIPMENT_CODE", 200, readOnly: true, align: 0, frozen: true);
+            DgvUtil.AddTextCol(dgv_Equipment, "    설비명", "EQUIPMENT_NAME", 150, readOnly: true, align: 0, frozen: true);
+            DgvUtil.AddTextCol(dgv_Equipment, "    설비유형", "EQUIPMENT_TYPE", 150, readOnly: true, align: 1, frozen: true);
+            DgvUtil.AddTextCol(dgv_Equipment, "    설비상태", "EQUIPMENT_STATUS", 150, readOnly: true, align: 1, frozen: true);
+            DgvUtil.AddTextCol(dgv_Equipment, "    최근 다운시간", "LAST_DOWN_TIME", 250, readOnly: true, align: 1);
+            DgvUtil.AddTextCol(dgv_Equipment, "    생성 시간", "CREATE_TIME", 250, readOnly: true, align: 1);
+            DgvUtil.AddTextCol(dgv_Equipment, "    생성 사용자", "CREATE_USER_ID", 150, readOnly: true, align: 1);
+            DgvUtil.AddTextCol(dgv_Equipment, "    변경 시간", "UPDATE_TIME", 250, readOnly: true, align: 1);
+            DgvUtil.AddTextCol(dgv_Equipment, "    변경 사용자", "UPDATE_USER_ID", 150, readOnly: true, align: 1);
 
             LoadData();
         }

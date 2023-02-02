@@ -27,16 +27,16 @@ namespace Cohesion_Project
         private void Frm_Inspection_Load(object sender, EventArgs e)
         {
             DgvUtil.DgvInit(dgvInspection);
-            DgvUtil.AddTextCol(dgvInspection, "검사 항목", "INSPECT_ITEM_CODE", 180, readOnly: true, align: 1, frozen: true);
-            DgvUtil.AddTextCol(dgvInspection, "검사 항목명", "INSPECT_ITEM_NAME", 150, readOnly: true, align: 1, frozen: true);
-            DgvUtil.AddTextCol(dgvInspection, "값 유형", "VALUE_TYPE", 100, readOnly: true);
-            DgvUtil.AddTextCol(dgvInspection, "규격 하한", "SPEC_LSL", 100, readOnly: true);
-            DgvUtil.AddTextCol(dgvInspection, "평균 규격", "SPEC_TARGET", 100, readOnly: true);
-            DgvUtil.AddTextCol(dgvInspection, "규격 상한", "SPEC_USL", 120, readOnly: true);
-            DgvUtil.AddTextCol(dgvInspection, "생성 시간", "CREATE_TIME", 140, readOnly: true);
-            DgvUtil.AddTextCol(dgvInspection, "생성자", "CREATE_USER_ID", 120, readOnly: true);
-            DgvUtil.AddTextCol(dgvInspection, "변경 시간", "UPDATE_TIME", 140, readOnly: true);
-            DgvUtil.AddTextCol(dgvInspection, "변경자", "UPDATE_USER_ID", 120, readOnly: true);
+            DgvUtil.AddTextCol(dgvInspection, "    검사 항목", "INSPECT_ITEM_CODE", 180, readOnly: true, align: 1, frozen: true);
+            DgvUtil.AddTextCol(dgvInspection, "    검사 항목명", "INSPECT_ITEM_NAME", 150, readOnly: true, align: 1, frozen: true);
+            DgvUtil.AddTextCol(dgvInspection, "    값 유형", "VALUE_TYPE", 100, readOnly: true);
+            DgvUtil.AddTextCol(dgvInspection, "    규격 하한", "SPEC_LSL", 100, readOnly: true);
+            DgvUtil.AddTextCol(dgvInspection, "    평균 규격", "SPEC_TARGET", 100, readOnly: true);
+            DgvUtil.AddTextCol(dgvInspection, "    규격 상한", "SPEC_USL", 120, readOnly: true);
+            DgvUtil.AddTextCol(dgvInspection, "    생성 시간", "CREATE_TIME", 140, readOnly: true);
+            DgvUtil.AddTextCol(dgvInspection, "    생성자", "CREATE_USER_ID", 120, readOnly: true);
+            DgvUtil.AddTextCol(dgvInspection, "    변경 시간", "UPDATE_TIME", 140, readOnly: true);
+            DgvUtil.AddTextCol(dgvInspection, "    변경자", "UPDATE_USER_ID", 120, readOnly: true);
 
             ppgInspection.PropertySort = PropertySort.Categorized;
             ppgInspection.SelectedObject = iProperty;

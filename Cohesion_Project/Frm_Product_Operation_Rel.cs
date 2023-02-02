@@ -66,12 +66,12 @@ namespace Cohesion_Project
             DgvUtil.DgvInit(dgvOperationList);
             DgvUtil.AddTextCol(dgvOperationList, "    NO", "DISPLAY_SEQ", 80, readOnly: true, align: 1, frozen: true);
             DgvUtil.AddTextCol(dgvOperationList, "    공정 코드", "OPERATION_CODE", 150, readOnly: true, align: 1, frozen: true);
-            DgvUtil.AddTextCol(dgvOperationList, "    공정명", "OPERATION_NAME", 100, readOnly: true);
+            DgvUtil.AddTextCol(dgvOperationList, "    공정명", "OPERATION_NAME", 180, readOnly: true);
 
             DgvUtil.DgvInit(dgvAddOperationList);
             DgvUtil.AddTextCol(dgvAddOperationList, "    NO", "DISPLAY_SEQ", 80, readOnly: true, align: 1, frozen: true);
             DgvUtil.AddTextCol(dgvAddOperationList, "    공정 코드", "OPERATION_CODE", 150, readOnly: true, align: 1, frozen: true);
-            DgvUtil.AddTextCol(dgvAddOperationList, "    공정명", "OPERATION_NAME", 100, readOnly: true);
+            DgvUtil.AddTextCol(dgvAddOperationList, "    공정명", "OPERATION_NAME", 180, readOnly: true);
 
 
             btnLeft.Enabled = false;
