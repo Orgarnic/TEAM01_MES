@@ -56,23 +56,24 @@ namespace Cohesion_Project
             // 
             // btnClose
             // 
+            this.btnClose.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnClose.FlatAppearance.BorderSize = 0;
+            this.btnClose.Location = new System.Drawing.Point(1422, 948);
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // lbl6
             // 
-            this.lbl6.Size = new System.Drawing.Size(826, 32);
             this.lbl6.Text = "▶ 할당 검사 항목 목록";
             // 
             // panel3
             // 
             this.panel3.Controls.Add(this.dgvAddedInspection);
+            this.panel3.Size = new System.Drawing.Size(828, 403);
             this.panel3.Controls.SetChildIndex(this.lbl6, 0);
             this.panel3.Controls.SetChildIndex(this.dgvAddedInspection, 0);
             // 
             // lbl7
             // 
-            this.lbl7.Size = new System.Drawing.Size(604, 32);
             this.lbl7.Text = "▶ 전체 검사 항목 목록";
             // 
             // btnLeft
@@ -80,6 +81,9 @@ namespace Cohesion_Project
             this.btnLeft.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnLeft.FlatAppearance.BorderSize = 0;
             this.btnLeft.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
+            this.btnLeft.Location = new System.Drawing.Point(838, 222);
+            this.btnLeft.Size = new System.Drawing.Size(69, 137);
+            this.btnLeft.Text = "▶";
             this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
             // 
             // btnRight
@@ -87,15 +91,23 @@ namespace Cohesion_Project
             this.btnRight.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnRight.FlatAppearance.BorderSize = 0;
             this.btnRight.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
+            this.btnRight.Location = new System.Drawing.Point(838, 80);
+            this.btnRight.Size = new System.Drawing.Size(69, 136);
+            this.btnRight.Text = "◀";
             this.btnRight.Click += new System.EventHandler(this.btnRight_Click);
             // 
             // panel6
             // 
             this.panel6.Controls.Add(this.dgvInspectionList);
             this.panel6.Controls.Add(this.panel8);
+            this.panel6.Size = new System.Drawing.Size(606, 403);
             this.panel6.Controls.SetChildIndex(this.lbl7, 0);
             this.panel6.Controls.SetChildIndex(this.panel8, 0);
             this.panel6.Controls.SetChildIndex(this.dgvInspectionList, 0);
+            // 
+            // panel1
+            // 
+            this.panel1.Size = new System.Drawing.Size(1521, 409);
             // 
             // lbl5
             // 
@@ -122,7 +134,6 @@ namespace Cohesion_Project
             // 
             // lbl4
             // 
-            this.lbl4.Size = new System.Drawing.Size(1151, 32);
             this.lbl4.Text = "▶ 공정 목록";
             // 
             // btnSearchCondition
@@ -137,31 +148,42 @@ namespace Cohesion_Project
             // 
             // lbl1
             // 
+            this.lbl1.Size = new System.Drawing.Size(399, 23);
             this.lbl1.Text = "/ 기준 정보 관리 / 공정별 검사 설정";
             // 
             // btnDelete
             // 
+            this.btnDelete.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnDelete.FlatAppearance.BorderSize = 0;
+            this.btnDelete.Location = new System.Drawing.Point(3, 948);
             this.btnDelete.Visible = false;
             // 
             // btnInsert
             // 
+            this.btnInsert.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnInsert.FlatAppearance.BorderSize = 0;
+            this.btnInsert.Location = new System.Drawing.Point(1220, 948);
             this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
             // btnAdd
             // 
+            this.btnAdd.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnAdd.FlatAppearance.BorderSize = 0;
+            this.btnAdd.Location = new System.Drawing.Point(1018, 948);
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnUpdate
             // 
+            this.btnUpdate.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnUpdate.FlatAppearance.BorderSize = 0;
+            this.btnUpdate.Location = new System.Drawing.Point(1119, 948);
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnRefresh
             // 
+            this.btnRefresh.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnRefresh.FlatAppearance.BorderSize = 0;
+            this.btnRefresh.Location = new System.Drawing.Point(1321, 948);
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // panel8
@@ -170,18 +192,18 @@ namespace Cohesion_Project
             this.panel8.Controls.Add(this.label1);
             this.panel8.Controls.Add(this.cboValueUnit);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel8.Location = new System.Drawing.Point(0, 32);
+            this.panel8.Location = new System.Drawing.Point(0, 30);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(604, 46);
+            this.panel8.Size = new System.Drawing.Size(604, 43);
             this.panel8.TabIndex = 7;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(184, 14);
+            this.label1.Location = new System.Drawing.Point(184, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 15);
+            this.label1.Size = new System.Drawing.Size(43, 14);
             this.label1.TabIndex = 1;
             this.label1.Text = "값 유형";
             // 
@@ -192,9 +214,9 @@ namespace Cohesion_Project
             "전체",
             "N",
             "C"});
-            this.cboValueUnit.Location = new System.Drawing.Point(274, 10);
+            this.cboValueUnit.Location = new System.Drawing.Point(274, 9);
             this.cboValueUnit.Name = "cboValueUnit";
-            this.cboValueUnit.Size = new System.Drawing.Size(181, 23);
+            this.cboValueUnit.Size = new System.Drawing.Size(181, 22);
             this.cboValueUnit.TabIndex = 0;
             this.cboValueUnit.SelectedIndexChanged += new System.EventHandler(this.cboValueUnit_SelectedIndexChanged);
             // 
@@ -202,30 +224,30 @@ namespace Cohesion_Project
             // 
             this.dgvAddedInspection.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAddedInspection.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvAddedInspection.Location = new System.Drawing.Point(0, 32);
+            this.dgvAddedInspection.Location = new System.Drawing.Point(0, 30);
             this.dgvAddedInspection.Name = "dgvAddedInspection";
             this.dgvAddedInspection.RowTemplate.Height = 23;
-            this.dgvAddedInspection.Size = new System.Drawing.Size(826, 428);
+            this.dgvAddedInspection.Size = new System.Drawing.Size(826, 371);
             this.dgvAddedInspection.TabIndex = 5;
             // 
             // dgvInspectionList
             // 
             this.dgvInspectionList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvInspectionList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvInspectionList.Location = new System.Drawing.Point(0, 78);
+            this.dgvInspectionList.Location = new System.Drawing.Point(0, 73);
             this.dgvInspectionList.Name = "dgvInspectionList";
             this.dgvInspectionList.RowTemplate.Height = 23;
-            this.dgvInspectionList.Size = new System.Drawing.Size(604, 382);
+            this.dgvInspectionList.Size = new System.Drawing.Size(604, 328);
             this.dgvInspectionList.TabIndex = 5;
             // 
             // dgvOperationList
             // 
             this.dgvOperationList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvOperationList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvOperationList.Location = new System.Drawing.Point(0, 32);
+            this.dgvOperationList.Location = new System.Drawing.Point(0, 30);
             this.dgvOperationList.Name = "dgvOperationList";
             this.dgvOperationList.RowTemplate.Height = 23;
-            this.dgvOperationList.Size = new System.Drawing.Size(1151, 339);
+            this.dgvOperationList.Size = new System.Drawing.Size(1151, 341);
             this.dgvOperationList.TabIndex = 5;
             this.dgvOperationList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOperationList_CellClick);
             // 
@@ -239,8 +261,8 @@ namespace Cohesion_Project
             // 
             // Frm_Operation_Inspection_Rel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.ClientSize = new System.Drawing.Size(1521, 1061);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+            this.ClientSize = new System.Drawing.Size(1521, 990);
             this.Name = "Frm_Operation_Inspection_Rel";
             this.Text = "Frm_Operation_Inspection_Rel";
             this.Load += new System.EventHandler(this.Frm_Operationg_Inspection_Rel_Load);
