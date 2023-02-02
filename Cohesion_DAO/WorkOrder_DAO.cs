@@ -59,9 +59,10 @@ namespace Cohesion_DAO
             List<Sales_Order_Work_DTO> list = null;
             try
             {
-                string sql = @"select SALES_ORDER_ID, ORDER_DATE, CUSTOMER_CODE, so.PRODUCT_CODE, ORDER_QTY, sum(ls.LOT_QTY) LOT_QTY
-                               from SALES_ORDER_MST so inner join LOT_STS ls on so.PRODUCT_CODE = ls.PRODUCT_CODE
-							   group by SALES_ORDER_ID, ORDER_DATE, CUSTOMER_CODE, so.PRODUCT_CODE, ORDER_QTY";
+                string sql = @"select SALES_ORDER_ID, so.ORDER_DATE, so.CUSTOMER_CODE, so.PRODUCT_CODE, so.ORDER_QTY
+                               from SALES_ORDER_MST so inner join PRODUCT_MST p on so.PRODUCT_CODE = p.PRODUCT_CODE
+							   where so.CONFIRM_FLAG = 'Y' and so.SHIP_FLAG is null
+							   group by so.SALES_ORDER_ID, so.ORDER_DATE, so.CUSTOMER_CODE, so.PRODUCT_CODE, so.ORDER_QTY";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 conn.Open();
@@ -82,11 +83,11 @@ namespace Cohesion_DAO
             }
         }
 
-        public List<BOM_MST_DTO> GetOrderProductBOM(string ocode, string pcode)
+        public List<BOM_MST_WORKORDER_DTO> GetOrderProductBOM(string ocode, string pcode)
         {
             // LOT 완성되면 쿼리 수정이 필요함.
             // 안전 재고수량, 현 재고수량, order 수량에 필요한 갯수 등등
-            List<BOM_MST_DTO> list = null;
+            List<BOM_MST_WORKORDER_DTO> list = null;
             string sql = @"with BOM as(select b.CHILD_PRODUCT_CODE, pd2.PRODUCT_NAME, REQUIRE_QTY, pd2.PRODUCT_TYPE, so.ORDER_QTY
                                        from SALES_ORDER_MST so inner join PRODUCT_MST pd on so.PRODUCT_CODE = pd.PRODUCT_CODE
 						                                       inner join BOM_MST b on so.PRODUCT_CODE = b.PRODUCT_CODE
@@ -103,7 +104,7 @@ namespace Cohesion_DAO
                 cmd.Parameters.AddWithValue("@PRODUCT_CODE", pcode);
                 conn.Open();
 
-                list = Helper.DataReaderMapToList<BOM_MST_DTO>(cmd.ExecuteReader());
+                list = Helper.DataReaderMapToList<BOM_MST_WORKORDER_DTO>(cmd.ExecuteReader());
 
                 return list;
 
@@ -129,6 +130,7 @@ namespace Cohesion_DAO
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@PRODUCT_CODE", work.PRODUCT_CODE);
+                cmd.Parameters.AddWithValue("@ORDER_DATE", work.ORDER_DATE);
                 cmd.Parameters.AddWithValue("@CUSTOMER_CODE", work.CUSTOMER_CODE);
                 cmd.Parameters.AddWithValue("@ORDER_QTY", work.ORDER_QTY);
                 cmd.Parameters.AddWithValue("@ORDER_STATUS", work.ORDER_STATUS);

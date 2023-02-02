@@ -28,6 +28,10 @@ namespace Cohesion_Project
         private void Frm_Product_Operation_Rel_Load(object sender, EventArgs e)
         {
             InitDgv();
+            LoadData();
+        }
+        private void LoadData()
+        {
             var list = svR.SelectProductInRel();
             int seq = 1;
             dgvProductList.DataSource = list.Select((i) => new
@@ -44,7 +48,6 @@ namespace Cohesion_Project
                 DISPLAY_SEQ = seq++
             }).ToList();
         }
-
         private void InitDgv()
         {
             //데이터 그리드 뷰 초기 설정
@@ -176,7 +179,7 @@ namespace Cohesion_Project
                 List<OPERATION_REL_DTO> addList = new List<OPERATION_REL_DTO>();
                 addList.Add(dto);
                 dgvAddOperationList.DataSource = null;
-                dgvAddOperationList.DataSource = addList.OrderBy((i) => i.OPERATION_CODE).Select((i) => new OPERATION_REL_DTO { OPERATION_CODE = i.OPERATION_CODE, OPERATION_NAME = i.OPERATION_NAME, DISPLAY_SEQ = seq++ }).ToList();
+                dgvAddOperationList.DataSource = addList.Select((i) => new OPERATION_REL_DTO { OPERATION_CODE = i.OPERATION_CODE, OPERATION_NAME = i.OPERATION_NAME, DISPLAY_SEQ = seq++ }).ToList();
                 var l1 = dgvAddOperationList.DataSource;
 
                 List<OPERATION_REL_DTO> list = dgvOperationList.DataSource as List<OPERATION_REL_DTO>;
@@ -201,7 +204,7 @@ namespace Cohesion_Project
                 //{
                     addList.Add(dto);
                     dgvAddOperationList.DataSource = null;
-                    dgvAddOperationList.DataSource = addList.OrderBy((i) => i.OPERATION_CODE).Select((i) => new OPERATION_REL_DTO { OPERATION_CODE = i.OPERATION_CODE, OPERATION_NAME = i.OPERATION_NAME, DISPLAY_SEQ = seq++ }).ToList();
+                    dgvAddOperationList.DataSource = addList.Select((i) => new OPERATION_REL_DTO { OPERATION_CODE = i.OPERATION_CODE, OPERATION_NAME = i.OPERATION_NAME, DISPLAY_SEQ = seq++ }).ToList();
 
                     List<OPERATION_REL_DTO> list = dgvOperationList.DataSource as List<OPERATION_REL_DTO>;
 
@@ -245,7 +248,7 @@ namespace Cohesion_Project
                 var addList = dgvAddOperationList.DataSource as List<OPERATION_REL_DTO>;
                 addList.Remove(dto);
                 dgvAddOperationList.DataSource = null;
-                dgvAddOperationList.DataSource = addList.OrderBy((i) => i.OPERATION_CODE).Select((i) => new OPERATION_REL_DTO { OPERATION_CODE = i.OPERATION_CODE, OPERATION_NAME = i.OPERATION_NAME, DISPLAY_SEQ = seq++ }).ToList();
+                dgvAddOperationList.DataSource = addList.Select((i) => new OPERATION_REL_DTO { OPERATION_CODE = i.OPERATION_CODE, OPERATION_NAME = i.OPERATION_NAME, DISPLAY_SEQ = seq++ }).ToList();
 
                 List<OPERATION_REL_DTO> list = dgvOperationList.DataSource as List<OPERATION_REL_DTO>;
                 if (list.Exists((i)=>i.OPERATION_CODE.Equals(dto.OPERATION_CODE)))
@@ -268,7 +271,7 @@ namespace Cohesion_Project
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            string productCode = dgvProductList[1, dgvOperationList.CurrentRow.Index].Value.ToString();
+            string productCode = dgvProductList[1, dgvProductList.CurrentRow.Index].Value.ToString();
             List<OPERATION_REL_DTO> list = dgvAddOperationList.DataSource as List<OPERATION_REL_DTO>;
 
             if (dgvAddOperationList.Rows.Count == 0)
@@ -289,6 +292,7 @@ namespace Cohesion_Project
                     OPERATION_NAME = i.OPERATION_NAME,
                     DISPLAY_SEQ = seq++
                 }).ToList();
+                btnRefresh.PerformClick();
                 return;
             }
             else
@@ -310,7 +314,7 @@ namespace Cohesion_Project
 
         private void btnInsert_Click(object sender, EventArgs e)
         {
-            string productCode = dgvProductList[1, dgvOperationList.CurrentRow.Index].Value.ToString();
+            string productCode = dgvProductList[1, dgvProductList.CurrentRow.Index].Value.ToString();
             List<OPERATION_REL_DTO> list = dgvAddOperationList.DataSource as List<OPERATION_REL_DTO>;
             var result = svR.UpdateOperWithProduct(productCode, list);
             if (result)
@@ -324,6 +328,7 @@ namespace Cohesion_Project
                     OPERATION_NAME = i.OPERATION_NAME,
                     DISPLAY_SEQ = seq++
                 }).ToList();
+                btnRefresh.PerformClick();
                 return;
             }
             else
@@ -358,7 +363,18 @@ namespace Cohesion_Project
                     UPDATE_USER_ID = i.UPDATE_USER_ID,
                     DISPLAY_SEQ = seq++
                 }).ToList();
+                ppgSearchCondition.SelectedObject = new PRODUCT_OPERATION_Rel_Search();
+                dgvAddOperationList.DataSource = null;
             }
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            ppgSearchCondition.SelectedObject = new PRODUCT_OPERATION_Rel_Search();
+            dgvAddOperationList.DataSource = null;
+            dgvOperationList.DataSource = iList;
+            LoadData();
+
         }
     }
 }

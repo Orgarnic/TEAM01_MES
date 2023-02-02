@@ -32,11 +32,20 @@ namespace Cohesion_Project
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Main));
             this.Flp_Side = new System.Windows.Forms.FlowLayoutPanel();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
+            this.btnProduct = new System.Windows.Forms.Button();
+            this.btnCommon = new System.Windows.Forms.Button();
+            this.btnInspection = new System.Windows.Forms.Button();
+            this.btnOrder = new System.Windows.Forms.Button();
+            this.btnWorkOrder = new System.Windows.Forms.Button();
+            this.btnProductBOM = new System.Windows.Forms.Button();
+            this.btnStore = new System.Windows.Forms.Button();
+            this.btnOperation = new System.Windows.Forms.Button();
+            this.btnProductOperationRel = new System.Windows.Forms.Button();
+            this.btnOperationInspectionRel = new System.Windows.Forms.Button();
+            this.btnFunctionUserGroup = new System.Windows.Forms.Button();
+            this.btnFuction_ = new System.Windows.Forms.Button();
+            this.btnUserGroup = new System.Windows.Forms.Button();
+            this.btnUser = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
@@ -52,10 +61,12 @@ namespace Cohesion_Project
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnFormSize = new System.Windows.Forms.Button();
             this.Btn_Close = new System.Windows.Forms.Button();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.cc_TabControl1 = new Cohesion_Project.Cc_TabControl();
+            this.btnEquipment = new System.Windows.Forms.Button();
+            this.btnEquipmentOperationRel = new System.Windows.Forms.Button();
             this.Flp_Side.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -73,96 +84,279 @@ namespace Cohesion_Project
             this.Flp_Side.BackColor = System.Drawing.Color.Transparent;
             this.Flp_Side.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Flp_Side.CausesValidation = false;
-            this.Flp_Side.Controls.Add(this.button5);
-            this.Flp_Side.Controls.Add(this.button6);
-            this.Flp_Side.Controls.Add(this.button7);
-            this.Flp_Side.Controls.Add(this.button8);
-            this.Flp_Side.Controls.Add(this.button9);
+            this.Flp_Side.Controls.Add(this.btnProduct);
+            this.Flp_Side.Controls.Add(this.btnOrder);
+            this.Flp_Side.Controls.Add(this.btnWorkOrder);
+            this.Flp_Side.Controls.Add(this.btnProductBOM);
+            this.Flp_Side.Controls.Add(this.btnStore);
+            this.Flp_Side.Controls.Add(this.btnOperation);
+            this.Flp_Side.Controls.Add(this.btnEquipment);
+            this.Flp_Side.Controls.Add(this.btnEquipmentOperationRel);
+            this.Flp_Side.Controls.Add(this.btnInspection);
+            this.Flp_Side.Controls.Add(this.btnOperationInspectionRel);
+            this.Flp_Side.Controls.Add(this.btnProductOperationRel);
+            this.Flp_Side.Controls.Add(this.btnCommon);
+            this.Flp_Side.Controls.Add(this.btnUser);
+            this.Flp_Side.Controls.Add(this.btnUserGroup);
+            this.Flp_Side.Controls.Add(this.btnFunctionUserGroup);
+            this.Flp_Side.Controls.Add(this.btnFuction_);
             this.Flp_Side.Location = new System.Drawing.Point(0, 56);
             this.Flp_Side.Margin = new System.Windows.Forms.Padding(0);
             this.Flp_Side.Name = "Flp_Side";
-            this.Flp_Side.Size = new System.Drawing.Size(180, 836);
+            this.Flp_Side.Size = new System.Drawing.Size(180, 942);
             this.Flp_Side.TabIndex = 11;
             // 
-            // button5
+            // btnProduct
             // 
-            this.button5.BackColor = System.Drawing.Color.Transparent;
-            this.button5.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.button5.Location = new System.Drawing.Point(0, 0);
-            this.button5.Margin = new System.Windows.Forms.Padding(0);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(180, 50);
-            this.button5.TabIndex = 2;
-            this.button5.Text = "Base1";
-            this.button5.UseVisualStyleBackColor = false;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.btnProduct.BackColor = System.Drawing.Color.Transparent;
+            this.btnProduct.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnProduct.FlatAppearance.BorderSize = 0;
+            this.btnProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnProduct.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnProduct.Location = new System.Drawing.Point(0, 0);
+            this.btnProduct.Margin = new System.Windows.Forms.Padding(0);
+            this.btnProduct.Name = "btnProduct";
+            this.btnProduct.Size = new System.Drawing.Size(180, 50);
+            this.btnProduct.TabIndex = 2;
+            this.btnProduct.Text = "제품 관리";
+            this.btnProduct.UseVisualStyleBackColor = false;
+            this.btnProduct.Click += new System.EventHandler(this.btnProduct_Click);
+            this.btnProduct.MouseLeave += new System.EventHandler(this.btn_MouseLeave);
+            this.btnProduct.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btn_MouseMove);
             // 
-            // button6
+            // btnCommon
             // 
-            this.button6.BackColor = System.Drawing.Color.Transparent;
-            this.button6.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.button6.FlatAppearance.BorderSize = 0;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.button6.Location = new System.Drawing.Point(0, 50);
-            this.button6.Margin = new System.Windows.Forms.Padding(0);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(180, 50);
-            this.button6.TabIndex = 3;
-            this.button6.Text = "Base2";
-            this.button6.UseVisualStyleBackColor = false;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.btnCommon.BackColor = System.Drawing.Color.Transparent;
+            this.btnCommon.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnCommon.FlatAppearance.BorderSize = 0;
+            this.btnCommon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCommon.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnCommon.Location = new System.Drawing.Point(0, 550);
+            this.btnCommon.Margin = new System.Windows.Forms.Padding(0);
+            this.btnCommon.Name = "btnCommon";
+            this.btnCommon.Size = new System.Drawing.Size(180, 50);
+            this.btnCommon.TabIndex = 3;
+            this.btnCommon.Text = "공통코드 관리";
+            this.btnCommon.UseVisualStyleBackColor = false;
+            this.btnCommon.Click += new System.EventHandler(this.btnCommon_Click);
+            this.btnCommon.MouseLeave += new System.EventHandler(this.btn_MouseLeave);
+            this.btnCommon.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btn_MouseMove);
             // 
-            // button7
+            // btnInspection
             // 
-            this.button7.BackColor = System.Drawing.Color.Transparent;
-            this.button7.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.button7.FlatAppearance.BorderSize = 0;
-            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.button7.Location = new System.Drawing.Point(0, 100);
-            this.button7.Margin = new System.Windows.Forms.Padding(0);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(180, 50);
-            this.button7.TabIndex = 4;
-            this.button7.Text = "Base3";
-            this.button7.UseVisualStyleBackColor = false;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.btnInspection.BackColor = System.Drawing.Color.Transparent;
+            this.btnInspection.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnInspection.FlatAppearance.BorderSize = 0;
+            this.btnInspection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInspection.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnInspection.Location = new System.Drawing.Point(0, 400);
+            this.btnInspection.Margin = new System.Windows.Forms.Padding(0);
+            this.btnInspection.Name = "btnInspection";
+            this.btnInspection.Size = new System.Drawing.Size(180, 50);
+            this.btnInspection.TabIndex = 4;
+            this.btnInspection.Text = "검사항목 관리";
+            this.btnInspection.UseVisualStyleBackColor = false;
+            this.btnInspection.Click += new System.EventHandler(this.btnInspection_Click);
+            this.btnInspection.MouseLeave += new System.EventHandler(this.btn_MouseLeave);
+            this.btnInspection.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btn_MouseMove);
             // 
-            // button8
+            // btnOrder
             // 
-            this.button8.BackColor = System.Drawing.Color.Transparent;
-            this.button8.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.button8.FlatAppearance.BorderSize = 0;
-            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.button8.Location = new System.Drawing.Point(0, 150);
-            this.button8.Margin = new System.Windows.Forms.Padding(0);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(180, 50);
-            this.button8.TabIndex = 5;
-            this.button8.Text = "Base4";
-            this.button8.UseVisualStyleBackColor = false;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
+            this.btnOrder.BackColor = System.Drawing.Color.Transparent;
+            this.btnOrder.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnOrder.FlatAppearance.BorderSize = 0;
+            this.btnOrder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOrder.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnOrder.Location = new System.Drawing.Point(0, 50);
+            this.btnOrder.Margin = new System.Windows.Forms.Padding(0);
+            this.btnOrder.Name = "btnOrder";
+            this.btnOrder.Size = new System.Drawing.Size(180, 50);
+            this.btnOrder.TabIndex = 7;
+            this.btnOrder.Text = "주문 관리";
+            this.btnOrder.UseVisualStyleBackColor = false;
+            this.btnOrder.Click += new System.EventHandler(this.btnOrder_Click);
+            this.btnOrder.MouseLeave += new System.EventHandler(this.btn_MouseLeave);
+            this.btnOrder.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btn_MouseMove);
             // 
-            // button9
+            // btnWorkOrder
             // 
-            this.button9.BackColor = System.Drawing.Color.Transparent;
-            this.button9.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.button9.FlatAppearance.BorderSize = 0;
-            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.button9.Location = new System.Drawing.Point(0, 200);
-            this.button9.Margin = new System.Windows.Forms.Padding(0);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(180, 50);
-            this.button9.TabIndex = 6;
-            this.button9.Text = "Base5";
-            this.button9.UseVisualStyleBackColor = false;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
+            this.btnWorkOrder.BackColor = System.Drawing.Color.Transparent;
+            this.btnWorkOrder.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnWorkOrder.FlatAppearance.BorderSize = 0;
+            this.btnWorkOrder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnWorkOrder.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnWorkOrder.Location = new System.Drawing.Point(0, 100);
+            this.btnWorkOrder.Margin = new System.Windows.Forms.Padding(0);
+            this.btnWorkOrder.Name = "btnWorkOrder";
+            this.btnWorkOrder.Size = new System.Drawing.Size(180, 50);
+            this.btnWorkOrder.TabIndex = 8;
+            this.btnWorkOrder.Text = "생산지시 관리";
+            this.btnWorkOrder.UseVisualStyleBackColor = false;
+            this.btnWorkOrder.Click += new System.EventHandler(this.btnWorkOrder_Click);
+            this.btnWorkOrder.MouseLeave += new System.EventHandler(this.btn_MouseLeave);
+            this.btnWorkOrder.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btn_MouseMove);
+            // 
+            // btnProductBOM
+            // 
+            this.btnProductBOM.BackColor = System.Drawing.Color.Transparent;
+            this.btnProductBOM.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnProductBOM.FlatAppearance.BorderSize = 0;
+            this.btnProductBOM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnProductBOM.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnProductBOM.Location = new System.Drawing.Point(0, 150);
+            this.btnProductBOM.Margin = new System.Windows.Forms.Padding(0);
+            this.btnProductBOM.Name = "btnProductBOM";
+            this.btnProductBOM.Size = new System.Drawing.Size(180, 50);
+            this.btnProductBOM.TabIndex = 10;
+            this.btnProductBOM.Text = "BOM 관리";
+            this.btnProductBOM.UseVisualStyleBackColor = false;
+            this.btnProductBOM.Click += new System.EventHandler(this.btnProductBOM_Click);
+            this.btnProductBOM.MouseLeave += new System.EventHandler(this.btn_MouseLeave);
+            this.btnProductBOM.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btn_MouseMove);
+            // 
+            // btnStore
+            // 
+            this.btnStore.BackColor = System.Drawing.Color.Transparent;
+            this.btnStore.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnStore.FlatAppearance.BorderSize = 0;
+            this.btnStore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStore.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnStore.Location = new System.Drawing.Point(0, 200);
+            this.btnStore.Margin = new System.Windows.Forms.Padding(0);
+            this.btnStore.Name = "btnStore";
+            this.btnStore.Size = new System.Drawing.Size(180, 50);
+            this.btnStore.TabIndex = 11;
+            this.btnStore.Text = "창고 관리";
+            this.btnStore.UseVisualStyleBackColor = false;
+            this.btnStore.Click += new System.EventHandler(this.btnStore_Click);
+            this.btnStore.MouseLeave += new System.EventHandler(this.btn_MouseLeave);
+            this.btnStore.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btn_MouseMove);
+            // 
+            // btnOperation
+            // 
+            this.btnOperation.BackColor = System.Drawing.Color.Transparent;
+            this.btnOperation.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnOperation.FlatAppearance.BorderSize = 0;
+            this.btnOperation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOperation.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnOperation.Location = new System.Drawing.Point(0, 250);
+            this.btnOperation.Margin = new System.Windows.Forms.Padding(0);
+            this.btnOperation.Name = "btnOperation";
+            this.btnOperation.Size = new System.Drawing.Size(180, 50);
+            this.btnOperation.TabIndex = 13;
+            this.btnOperation.Text = "공정 관리";
+            this.btnOperation.UseVisualStyleBackColor = false;
+            this.btnOperation.Click += new System.EventHandler(this.btnOperation_Click);
+            this.btnOperation.MouseLeave += new System.EventHandler(this.btn_MouseLeave);
+            this.btnOperation.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btn_MouseMove);
+            // 
+            // btnProductOperationRel
+            // 
+            this.btnProductOperationRel.BackColor = System.Drawing.Color.Transparent;
+            this.btnProductOperationRel.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnProductOperationRel.FlatAppearance.BorderSize = 0;
+            this.btnProductOperationRel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnProductOperationRel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnProductOperationRel.Location = new System.Drawing.Point(0, 500);
+            this.btnProductOperationRel.Margin = new System.Windows.Forms.Padding(0);
+            this.btnProductOperationRel.Name = "btnProductOperationRel";
+            this.btnProductOperationRel.Size = new System.Drawing.Size(180, 50);
+            this.btnProductOperationRel.TabIndex = 14;
+            this.btnProductOperationRel.Text = "제품 공정 관계 설정";
+            this.btnProductOperationRel.UseVisualStyleBackColor = false;
+            this.btnProductOperationRel.Click += new System.EventHandler(this.btnProductOperationRel_Click);
+            this.btnProductOperationRel.MouseLeave += new System.EventHandler(this.btn_MouseLeave);
+            this.btnProductOperationRel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btn_MouseMove);
+            // 
+            // btnOperationInspectionRel
+            // 
+            this.btnOperationInspectionRel.BackColor = System.Drawing.Color.Transparent;
+            this.btnOperationInspectionRel.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnOperationInspectionRel.FlatAppearance.BorderSize = 0;
+            this.btnOperationInspectionRel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOperationInspectionRel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnOperationInspectionRel.Location = new System.Drawing.Point(0, 450);
+            this.btnOperationInspectionRel.Margin = new System.Windows.Forms.Padding(0);
+            this.btnOperationInspectionRel.Name = "btnOperationInspectionRel";
+            this.btnOperationInspectionRel.Size = new System.Drawing.Size(180, 50);
+            this.btnOperationInspectionRel.TabIndex = 15;
+            this.btnOperationInspectionRel.Text = "공정 검사 관계 설정";
+            this.btnOperationInspectionRel.UseVisualStyleBackColor = false;
+            this.btnOperationInspectionRel.Click += new System.EventHandler(this.btnOperationInspectionRel_Click);
+            this.btnOperationInspectionRel.MouseLeave += new System.EventHandler(this.btn_MouseLeave);
+            this.btnOperationInspectionRel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btn_MouseMove);
+            // 
+            // btnFunctionUserGroup
+            // 
+            this.btnFunctionUserGroup.BackColor = System.Drawing.Color.Transparent;
+            this.btnFunctionUserGroup.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnFunctionUserGroup.FlatAppearance.BorderSize = 0;
+            this.btnFunctionUserGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFunctionUserGroup.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnFunctionUserGroup.Location = new System.Drawing.Point(0, 700);
+            this.btnFunctionUserGroup.Margin = new System.Windows.Forms.Padding(0);
+            this.btnFunctionUserGroup.Name = "btnFunctionUserGroup";
+            this.btnFunctionUserGroup.Size = new System.Drawing.Size(180, 50);
+            this.btnFunctionUserGroup.TabIndex = 16;
+            this.btnFunctionUserGroup.Text = "사용자 권한 관리";
+            this.btnFunctionUserGroup.UseVisualStyleBackColor = false;
+            this.btnFunctionUserGroup.Click += new System.EventHandler(this.btnFunctionUserGroup_Click);
+            this.btnFunctionUserGroup.MouseLeave += new System.EventHandler(this.btn_MouseLeave);
+            this.btnFunctionUserGroup.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btn_MouseMove);
+            // 
+            // btnFuction_
+            // 
+            this.btnFuction_.BackColor = System.Drawing.Color.Transparent;
+            this.btnFuction_.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnFuction_.FlatAppearance.BorderSize = 0;
+            this.btnFuction_.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFuction_.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnFuction_.Location = new System.Drawing.Point(0, 750);
+            this.btnFuction_.Margin = new System.Windows.Forms.Padding(0);
+            this.btnFuction_.Name = "btnFuction_";
+            this.btnFuction_.Size = new System.Drawing.Size(180, 50);
+            this.btnFuction_.TabIndex = 17;
+            this.btnFuction_.Text = "화면 기능 관리";
+            this.btnFuction_.UseVisualStyleBackColor = false;
+            this.btnFuction_.Click += new System.EventHandler(this.btnFuction__Click);
+            this.btnFuction_.MouseLeave += new System.EventHandler(this.btn_MouseLeave);
+            this.btnFuction_.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btn_MouseMove);
+            // 
+            // btnUserGroup
+            // 
+            this.btnUserGroup.BackColor = System.Drawing.Color.Transparent;
+            this.btnUserGroup.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnUserGroup.FlatAppearance.BorderSize = 0;
+            this.btnUserGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUserGroup.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnUserGroup.Location = new System.Drawing.Point(0, 650);
+            this.btnUserGroup.Margin = new System.Windows.Forms.Padding(0);
+            this.btnUserGroup.Name = "btnUserGroup";
+            this.btnUserGroup.Size = new System.Drawing.Size(180, 50);
+            this.btnUserGroup.TabIndex = 18;
+            this.btnUserGroup.Text = "사용자 그룹 관리";
+            this.btnUserGroup.UseVisualStyleBackColor = false;
+            this.btnUserGroup.Click += new System.EventHandler(this.btnUserGroup_Click);
+            this.btnUserGroup.MouseLeave += new System.EventHandler(this.btn_MouseLeave);
+            this.btnUserGroup.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btn_MouseMove);
+            // 
+            // btnUser
+            // 
+            this.btnUser.BackColor = System.Drawing.Color.Transparent;
+            this.btnUser.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnUser.FlatAppearance.BorderSize = 0;
+            this.btnUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnUser.Location = new System.Drawing.Point(0, 600);
+            this.btnUser.Margin = new System.Windows.Forms.Padding(0);
+            this.btnUser.Name = "btnUser";
+            this.btnUser.Size = new System.Drawing.Size(180, 50);
+            this.btnUser.TabIndex = 19;
+            this.btnUser.Text = "사용자 관리";
+            this.btnUser.UseVisualStyleBackColor = false;
+            this.btnUser.Click += new System.EventHandler(this.btnUser_Click);
+            this.btnUser.MouseLeave += new System.EventHandler(this.btn_MouseLeave);
+            this.btnUser.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btn_MouseMove);
             // 
             // panel2
             // 
@@ -174,7 +368,7 @@ namespace Cohesion_Project
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(180, 894);
+            this.panel2.Size = new System.Drawing.Size(180, 1000);
             this.panel2.TabIndex = 16;
             // 
             // panel3
@@ -216,7 +410,7 @@ namespace Cohesion_Project
             this.panel1.BackColor = System.Drawing.SystemColors.Control;
             this.panel1.Controls.Add(this.tableLayoutPanel1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(180, 874);
+            this.panel1.Location = new System.Drawing.Point(180, 980);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1346, 20);
             this.panel1.TabIndex = 18;
@@ -298,7 +492,7 @@ namespace Cohesion_Project
             this.Pnl_Top.Controls.Add(this.label2);
             this.Pnl_Top.Controls.Add(this.label1);
             this.Pnl_Top.Controls.Add(this.button1);
-            this.Pnl_Top.Controls.Add(this.button2);
+            this.Pnl_Top.Controls.Add(this.btnFormSize);
             this.Pnl_Top.Controls.Add(this.Btn_Close);
             this.Pnl_Top.Controls.Add(this.menuStrip2);
             this.Pnl_Top.Dock = System.Windows.Forms.DockStyle.Top;
@@ -348,21 +542,21 @@ namespace Cohesion_Project
             this.button1.Text = "_";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnFormSize
             // 
-            this.button2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(65)))), ((int)(((byte)(81)))));
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.button2.Location = new System.Drawing.Point(1246, 0);
-            this.button2.Margin = new System.Windows.Forms.Padding(0);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(50, 30);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "□";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnFormSize.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnFormSize.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(65)))), ((int)(((byte)(81)))));
+            this.btnFormSize.FlatAppearance.BorderSize = 0;
+            this.btnFormSize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFormSize.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnFormSize.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnFormSize.Location = new System.Drawing.Point(1246, 0);
+            this.btnFormSize.Margin = new System.Windows.Forms.Padding(0);
+            this.btnFormSize.Name = "btnFormSize";
+            this.btnFormSize.Size = new System.Drawing.Size(50, 30);
+            this.btnFormSize.TabIndex = 7;
+            this.btnFormSize.Text = "□";
+            this.btnFormSize.UseVisualStyleBackColor = true;
             // 
             // Btn_Close
             // 
@@ -400,12 +594,48 @@ namespace Cohesion_Project
             this.cc_TabControl1.Size = new System.Drawing.Size(1346, 23);
             this.cc_TabControl1.TabIndex = 24;
             // 
+            // btnEquipment
+            // 
+            this.btnEquipment.BackColor = System.Drawing.Color.Transparent;
+            this.btnEquipment.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnEquipment.FlatAppearance.BorderSize = 0;
+            this.btnEquipment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEquipment.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnEquipment.Location = new System.Drawing.Point(0, 300);
+            this.btnEquipment.Margin = new System.Windows.Forms.Padding(0);
+            this.btnEquipment.Name = "btnEquipment";
+            this.btnEquipment.Size = new System.Drawing.Size(180, 50);
+            this.btnEquipment.TabIndex = 20;
+            this.btnEquipment.Text = "설비 관리";
+            this.btnEquipment.UseVisualStyleBackColor = false;
+            this.btnEquipment.Click += new System.EventHandler(this.btnEquipment_Click);
+            this.btnEquipment.MouseLeave += new System.EventHandler(this.btn_MouseLeave);
+            this.btnEquipment.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btn_MouseMove);
+            // 
+            // btnEquipmentOperationRel
+            // 
+            this.btnEquipmentOperationRel.BackColor = System.Drawing.Color.Transparent;
+            this.btnEquipmentOperationRel.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnEquipmentOperationRel.FlatAppearance.BorderSize = 0;
+            this.btnEquipmentOperationRel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEquipmentOperationRel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnEquipmentOperationRel.Location = new System.Drawing.Point(0, 350);
+            this.btnEquipmentOperationRel.Margin = new System.Windows.Forms.Padding(0);
+            this.btnEquipmentOperationRel.Name = "btnEquipmentOperationRel";
+            this.btnEquipmentOperationRel.Size = new System.Drawing.Size(180, 50);
+            this.btnEquipmentOperationRel.TabIndex = 21;
+            this.btnEquipmentOperationRel.Text = "설비 공정 관계 설정";
+            this.btnEquipmentOperationRel.UseVisualStyleBackColor = false;
+            this.btnEquipmentOperationRel.Click += new System.EventHandler(this.btnEquipmentOperationRel_Click);
+            this.btnEquipmentOperationRel.MouseLeave += new System.EventHandler(this.btn_MouseLeave);
+            this.btnEquipmentOperationRel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btn_MouseMove);
+            // 
             // Frm_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1526, 894);
+            this.ClientSize = new System.Drawing.Size(1526, 1000);
             this.Controls.Add(this.cc_TabControl1);
             this.Controls.Add(this.Pnl_Top);
             this.Controls.Add(this.menuStrip1);
@@ -449,18 +679,29 @@ namespace Cohesion_Project
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnFormSize;
         private System.Windows.Forms.Button Btn_Close;
         private Cc_TabControl cc_TabControl1;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button btnProduct;
+        private System.Windows.Forms.Button btnCommon;
+        private System.Windows.Forms.Button btnInspection;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.MenuStrip menuStrip2;
       private System.Windows.Forms.Panel panel3;
-   }
+        private System.Windows.Forms.Button btnOrder;
+        private System.Windows.Forms.Button btnWorkOrder;
+        private System.Windows.Forms.Button btnProductBOM;
+        private System.Windows.Forms.Button btnStore;
+        private System.Windows.Forms.Button btnOperation;
+        private System.Windows.Forms.Button btnProductOperationRel;
+        private System.Windows.Forms.Button btnOperationInspectionRel;
+        private System.Windows.Forms.Button btnFunctionUserGroup;
+        private System.Windows.Forms.Button btnFuction_;
+        private System.Windows.Forms.Button btnUserGroup;
+        private System.Windows.Forms.Button btnUser;
+        private System.Windows.Forms.Button btnEquipment;
+        private System.Windows.Forms.Button btnEquipmentOperationRel;
+    }
 }
 
