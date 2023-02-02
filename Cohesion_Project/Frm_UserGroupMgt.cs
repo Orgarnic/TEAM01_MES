@@ -130,8 +130,8 @@ namespace Cohesion_Project
             {
                 return;
             }
-            string sTableName = DgvUserGroup["사용자 그룹 코드", e.RowIndex].Value.ToString();
-            var target = UGroupList.Find((s) => s.USER_GROUP_CODE.Equals(DgvUserGroup["사용자 그룹 코드", e.RowIndex].Value));
+            string sTableName = DgvUserGroup["USER_GROUP_CODE", e.RowIndex].Value.ToString();
+            var target = UGroupList.Find((s) => s.USER_GROUP_CODE.Equals(DgvUserGroup["USER_GROUP_CODE", e.RowIndex].Value));
             SelectedRowData(target);
             Ppg_UserGourp.SelectedObject = ugd;
 

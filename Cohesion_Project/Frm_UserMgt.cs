@@ -38,7 +38,7 @@ namespace Cohesion_Project
         { 
 
             DgvUtil.DgvInit(DgvUser);
-            DgvUtil.AddTextCol(DgvUser, "사용자 코드", "USER_ID", 120, true, align: 1);
+            DgvUtil.AddTextCol(DgvUser, "로그인 사용자 ID", "USER_ID", 120, true, align: 1);
             DgvUtil.AddTextCol(DgvUser, "사용자 이름", "USER_NAME", 120, true, align: 1);
             DgvUtil.AddTextCol(DgvUser, "사용자 그룹", "USER_GROUP_CODE", 120, true, align: 1);
             DgvUtil.AddTextCol(DgvUser, "암호 ", "USER_PASSWORD", 120, true, align: 1);
@@ -68,7 +68,7 @@ namespace Cohesion_Project
 
         public class Udate
         {
-            [Category("속성"), Description("USER_ID"), DisplayName("사용자 코드")]
+            [Category("속성"), Description("USER_ID"), DisplayName("로그인 사용자 ID")]
             public string USER_ID { get; set; }
 
             [Category("속성"), Description("USER_NAME"), DisplayName("사용자 이름")]
@@ -100,8 +100,8 @@ namespace Cohesion_Project
             {
                 return;
             }
-            string sTableName = DgvUser["사용자 코드", e.RowIndex].Value.ToString();
-            var target = UserList.Find((s) => s.USER_ID.Equals(DgvUser["사용자 코드", e.RowIndex].Value));
+            string sTableName = DgvUser["USER_ID", e.RowIndex].Value.ToString();
+            var target = UserList.Find((s) => s.USER_ID.Equals(DgvUser["USER_ID", e.RowIndex].Value));
             SelectedRowData(target);
             Ppg_User.SelectedObject = ud;
         }
