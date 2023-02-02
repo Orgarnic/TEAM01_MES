@@ -267,6 +267,7 @@ namespace Cohesion_Project
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Pop_WorkOrder";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "작업 지시 등록";
             this.Load += new System.EventHandler(this.Pop_WorkOrder_Load);
             this.panel1.ResumeLayout(false);

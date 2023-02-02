@@ -19,10 +19,11 @@ namespace Cohesion_Project
         Work_Order_MST_DTO initWork = null;
         Srv_WorkOrder work = new Srv_WorkOrder();
         List<PRODUCT_OPERATION_REL_DTO> operations = null;
+        List<PRODUCT_MST_DTO> product = new List<PRODUCT_MST_DTO>();
 
         string userID, oCode, pCode;
         int totQty = 0;
-        decimal orderQty = 0, lotQty = 0;
+        decimal orderQty, lotQty;
         public Pop_WorkOrder()
         {
             InitializeComponent();
@@ -38,6 +39,7 @@ namespace Cohesion_Project
             GetAllOrderData();
             InitoOrderList();
             operations = work.GetOperationRel();
+            product = work.GetAllProduct();
         }
 
         private void GetAllOrderData()
@@ -52,7 +54,8 @@ namespace Cohesion_Project
             DgvUtil.DgvInit(dgvBOMStock);
             DgvUtil.AddTextCol(dgvBOMStock, "제품 코드", "CHILD_PRODUCT_CODE", width: 140, readOnly: true, frozen: true);
             DgvUtil.AddTextCol(dgvBOMStock, "제품명",    "PRODUCT_NAME", width: 140, readOnly: true, frozen: true);
-            DgvUtil.AddTextCol(dgvBOMStock, "제품 유형", "PRODUCT_TYPE", width: 140, readOnly: true, frozen: true);
+            DgvUtil.AddTextCol(dgvBOMStock, "제품 유형", "PRODUCT_TYPE", width: 100, readOnly: true, frozen: true);
+            DgvUtil.AddTextCol(dgvBOMStock, "매입처",    "VENDOR_CODE", width: 140, readOnly: true, frozen: true);
             DgvUtil.AddTextCol(dgvBOMStock, "단위 수량", "REQUIRE_QTY", width: 140, readOnly: true, frozen: true);
             DgvUtil.AddTextCol(dgvBOMStock, "제작 수량", "ORDER_QTY", width: 140, readOnly: true, frozen: true);
             DgvUtil.AddTextCol(dgvBOMStock, "재고 수량", "LOT_QTY", width: 140, readOnly: true, frozen: true);
@@ -80,58 +83,67 @@ namespace Cohesion_Project
                 MboxUtil.MboxWarn("작업지시를 등록하실 주문내역을 선택해주세요.");
                 return;
             }
+
+            //var list = product.Find((p) => p.PRODUCT_CODE.Equals(dgvOrderList["PRODUCT_CODE", dgvOrderList.Rows[3].Index].Value.ToString()));
+            
             if(orderQty > lotQty)
             {
                 totQty = Convert.ToInt32(orderQty - lotQty);
+                StringBuilder sb = new StringBuilder();
+                List<Work_Order_MST_DTO> inData = new List<Work_Order_MST_DTO>();
+                Work_Order_MST_DTO dto = null;
                 if (MboxUtil.MboxInfo_("현재 재고가 부족합니다.\n해당 제품에 대한 생산지시를 등록하시겠습니까?") == false) return;
                 else
                 {
-                    StringBuilder sb = new StringBuilder();
-                    List<Work_Order_MST_DTO> inData = new List<Work_Order_MST_DTO>();
-                    Work_Order_MST_DTO dto = null;
                     for (int i = 0; i < dgvBOMStock.Rows.Count; i++)
                     {
                         oQty = Convert.ToDecimal(dgvBOMStock["ORDER_QTY", i].Value);
                         lQty = Convert.ToDecimal(dgvBOMStock["LOT_QTY", i].Value);
                         int tQty = Convert.ToInt32(oQty - lQty);
-                        if (oQty > lQty && operations.Find((p) => p.PRODUCT_CODE.Equals(dgvBOMStock[0, i].Value.ToString())) != null)
+
+                        if (dgvBOMStock["VENDOR_CODE", i].Value == null)    // 매입처가 있는 제품들만 가져오기.
                         {
-                            dto = new Work_Order_MST_DTO
+                            #region 전 코딩
+                            /*if (oQty > lQty && operations.Find((p) => p.PRODUCT_CODE.Equals(dgvBOMStock["CHILD_PRODUCT_CODE", i].Value.ToString())) != null)
                             {
-                                PRODUCT_CODE = dgvBOMStock["CHILD_PRODUCT_CODE", i].Value.ToString(),
-                                ORDER_QTY = tQty,
-                                ORDER_STATUS = "OPEN",
-                                CREATE_USER_ID = "유기현",
-                                CREATE_TIME = DateTime.Now,
-                                CUSTOMER_CODE = dgvOrderList["CUSTOMER_CODE",i].Value.ToString()
-                            };
-                            /*if (dto.PRODUCT_CODE.Contains("HB_HBD"))
-                            {
-                                pcode = inData[i].PRODUCT_CODE;
-                                checking++;
+                                dto = new Work_Order_MST_DTO
+                                {
+                                    PRODUCT_CODE = dgvBOMStock["CHILD_PRODUCT_CODE", i].Value.ToString(),
+                                    ORDER_QTY = tQty,
+                                    ORDER_STATUS = "OPEN",
+                                    CREATE_USER_ID = "유기현",
+                                    CREATE_TIME = DateTime.Now,
+                                    CUSTOMER_CODE = dgvOrderList["CUSTOMER_CODE", i].Value.ToString()
+                                };
+                                *//*if (dto.PRODUCT_CODE.Contains("HB_HBD"))
+                                {
+                                    pcode = inData[i].PRODUCT_CODE;
+                                    checking++;
+                                    cnt++;
+                                }
+                                else
+                                {
+                                    inData.Add(dto);
+                                    cnt++;
+                                }*//*
+                                inData.Add(dto);
                                 cnt++;
                             }
                             else
-                            {
+                            {*/
+                            #endregion
+                            dto = new Work_Order_MST_DTO
+                                {
+                                    PRODUCT_CODE = dgvBOMStock["CHILD_PRODUCT_CODE", i].Value.ToString(),
+                                    ORDER_QTY = tQty,
+                                    ORDER_STATUS = "OPEN",
+                                    CREATE_USER_ID = "유기현",
+                                    CREATE_TIME = DateTime.Now,
+                                    CUSTOMER_CODE = dgvOrderList["CUSTOMER_CODE", i].Value.ToString()
+                                };
                                 inData.Add(dto);
                                 cnt++;
-                            }*/
-                            inData.Add(dto);
-                            cnt++;
-                        }
-                        else
-                        {
-                            dto = new Work_Order_MST_DTO
-                            {
-                                PRODUCT_CODE = dgvBOMStock["CHILD_PRODUCT_CODE", i].Value.ToString(),
-                                ORDER_QTY = tQty,
-                                ORDER_STATUS = "OPEN",
-                                CREATE_USER_ID = "유기현",
-                                CREATE_TIME = DateTime.Now,
-                                CUSTOMER_CODE = dgvOrderList["CUSTOMER_CODE", i].Value.ToString()
-                            };
-                            inData.Add(dto);
-                            cnt++;
+                            //}
                         }
                     }
                     //if (MboxUtil.MboxInfo_($"총 {cnt}건 중 {cnt - checking}건의 자품목 생산지시등록이 가능합니다.\n등록하시겠습니까?") == false) return;
@@ -144,7 +156,7 @@ namespace Cohesion_Project
                             bool check = work.InsertWorkOrder(inData[j]);
                             if (!check)
                             {
-                                sv.AppendLine($"반제품 - {inData[j]}가 등록되지 못했습니다.\n다시 시도해주세요.");
+                                sv.AppendLine($"{inData[j]}제품이 등록되지 못했습니다.");
                             }
                         }
                         if(sv.Length > 0)
@@ -181,6 +193,11 @@ namespace Cohesion_Project
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            if(string.IsNullOrWhiteSpace(txtSearch.Text))
+            {
+                InitoOrderList();
+                return;
+            }
             var list = order.FindAll((p) => p.PRODUCT_CODE.Contains(txtSearch.Text.ToUpper()));
             dgvOrderList.DataSource = list;
         }

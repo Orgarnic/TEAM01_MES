@@ -73,5 +73,14 @@ namespace Cohesion_Project.Service
 
             return list;
         }
+
+        public List<PRODUCT_MST_DTO> GetAllProduct()
+        {
+            WorkOrder_DAO db = new WorkOrder_DAO();
+            List<PRODUCT_MST_DTO> list = db.GetAllProduct();
+            db.Dispose();
+
+            return list;
+        }
     }
 }
