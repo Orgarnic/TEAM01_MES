@@ -52,13 +52,11 @@ namespace Cohesion_Project
             // 
             // btnClose
             // 
-            this.btnClose.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.Location = new System.Drawing.Point(1422, 948);
             // 
             // panel3
             // 
-            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
             this.panel3.Controls.Add(this.DgvF1);
             this.panel3.Size = new System.Drawing.Size(828, 403);
             this.panel3.Controls.SetChildIndex(this.lbl6, 0);
@@ -76,16 +74,17 @@ namespace Cohesion_Project
             // 
             // btnRight
             // 
+            this.btnRight.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.btnRight.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnRight.FlatAppearance.BorderSize = 0;
             this.btnRight.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
-            this.btnRight.Location = new System.Drawing.Point(838, 213);
+            this.btnRight.Location = new System.Drawing.Point(838, 222);
             this.btnRight.Size = new System.Drawing.Size(69, 136);
             this.btnRight.Click += new System.EventHandler(this.btnRight_Click);
             // 
             // panel6
             // 
-            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
             this.panel6.Controls.Add(this.DgvF2);
             this.panel6.Size = new System.Drawing.Size(606, 403);
             this.panel6.Controls.SetChildIndex(this.lbl7, 0);
@@ -93,17 +92,11 @@ namespace Cohesion_Project
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.Size = new System.Drawing.Size(1521, 409);
             // 
             // lbl3
             // 
             this.lbl3.Size = new System.Drawing.Size(357, 30);
-            // 
-            // lbl5
-            // 
-            this.lbl5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
             // 
             // panel7
             // 
@@ -114,10 +107,6 @@ namespace Cohesion_Project
             this.panel7.Size = new System.Drawing.Size(359, 443);
             this.panel7.Controls.SetChildIndex(this.lbl3, 0);
             this.panel7.Controls.SetChildIndex(this.PpgFUG, 0);
-            // 
-            // panel5
-            // 
-            this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
             // 
             // splitContainer1
             // 
@@ -153,6 +142,7 @@ namespace Cohesion_Project
             // 
             this.txtSearch.Location = new System.Drawing.Point(10, 38);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtSearch.Size = new System.Drawing.Size(987, 21);
             // 
             // btnSearch
             // 
@@ -165,31 +155,26 @@ namespace Cohesion_Project
             // 
             // btnDelete
             // 
-            this.btnDelete.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnDelete.FlatAppearance.BorderSize = 0;
             this.btnDelete.Location = new System.Drawing.Point(3, 948);
             // 
             // btnInsert
             // 
-            this.btnInsert.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnInsert.FlatAppearance.BorderSize = 0;
             this.btnInsert.Location = new System.Drawing.Point(1220, 948);
             // 
             // btnAdd
             // 
-            this.btnAdd.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnAdd.FlatAppearance.BorderSize = 0;
             this.btnAdd.Location = new System.Drawing.Point(1018, 948);
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnUpdate.FlatAppearance.BorderSize = 0;
             this.btnUpdate.Location = new System.Drawing.Point(1119, 948);
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnRefresh.FlatAppearance.BorderSize = 0;
             this.btnRefresh.Location = new System.Drawing.Point(1321, 948);
             // 

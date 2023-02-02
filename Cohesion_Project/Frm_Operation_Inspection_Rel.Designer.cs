@@ -56,7 +56,6 @@ namespace Cohesion_Project
             // 
             // btnClose
             // 
-            this.btnClose.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.Location = new System.Drawing.Point(1422, 948);
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -78,19 +77,22 @@ namespace Cohesion_Project
             // 
             // btnLeft
             // 
+            this.btnLeft.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
             this.btnLeft.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnLeft.FlatAppearance.BorderSize = 0;
             this.btnLeft.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
-            this.btnLeft.Location = new System.Drawing.Point(836, 77);
+            this.btnLeft.Location = new System.Drawing.Point(838, 80);
             this.btnLeft.Size = new System.Drawing.Size(69, 137);
             this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
             // 
             // btnRight
             // 
+            this.btnRight.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.btnRight.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnRight.FlatAppearance.BorderSize = 0;
             this.btnRight.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
-            this.btnRight.Location = new System.Drawing.Point(836, 231);
+            this.btnRight.Location = new System.Drawing.Point(838, 222);
             this.btnRight.Size = new System.Drawing.Size(69, 136);
             this.btnRight.Click += new System.EventHandler(this.btnRight_Click);
             // 
@@ -151,35 +153,30 @@ namespace Cohesion_Project
             // 
             // btnDelete
             // 
-            this.btnDelete.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnDelete.FlatAppearance.BorderSize = 0;
             this.btnDelete.Location = new System.Drawing.Point(3, 948);
             this.btnDelete.Visible = false;
             // 
             // btnInsert
             // 
-            this.btnInsert.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnInsert.FlatAppearance.BorderSize = 0;
             this.btnInsert.Location = new System.Drawing.Point(1220, 948);
             this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
             // btnAdd
             // 
-            this.btnAdd.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnAdd.FlatAppearance.BorderSize = 0;
             this.btnAdd.Location = new System.Drawing.Point(1018, 948);
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnUpdate.FlatAppearance.BorderSize = 0;
             this.btnUpdate.Location = new System.Drawing.Point(1119, 948);
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnRefresh.FlatAppearance.BorderSize = 0;
             this.btnRefresh.Location = new System.Drawing.Point(1321, 948);
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);

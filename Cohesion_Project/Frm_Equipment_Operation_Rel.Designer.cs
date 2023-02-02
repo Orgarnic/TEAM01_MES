@@ -87,6 +87,8 @@ namespace Cohesion_Project
             // 
             // btnRight
             // 
+            this.btnRight.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.btnRight.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnRight.FlatAppearance.BorderSize = 0;
             this.btnRight.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
