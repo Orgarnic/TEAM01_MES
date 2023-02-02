@@ -62,7 +62,7 @@ namespace Cohesion_Project
 
             //> ============================================================================
             //DgvUtil.AddTextCol(dgvList, "순번", "PURCHASE_SEQ", 130, readOnly: true, align: 2);
-            DgvUtil.AddTextCol(dgvList, "미입고 주문 수량", "", 130, readOnly: true, align: 2);
+            DgvUtil.AddTextCol(dgvList, "미입고 주문 수량", "NOT_STOCKED_QTY", 130, readOnly: true, align: 2);
             DgvUtil.AddTextCol(dgvList, "주문 수량", "PURCHASE_QTY", 120, readOnly: false, align: 2);
 
 
@@ -80,41 +80,37 @@ namespace Cohesion_Project
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            if (MboxUtil.MboxInfo_("주문을 등록하시겠습니까?"))
-            {
-                return;
-            }
-            var list = dgvList.DataSource as List<Sales_Order_VO>;
+            //if (MboxUtil.MboxInfo_("주문을 등록하시겠습니까?"))
+            //    return;
 
+            List<Sales_Order_VO> list = new List<Sales_Order_VO>();
             int cnt = 0;
 
             Sales_Order_VO purchase = new Sales_Order_VO();
+            if (dgvList.Rows.Count==0)
+            {
+                return;
+            }
             foreach (DataGridViewRow row in dgvList.Rows)
             {
-                if (row.Cells.Count > 0)
+                purchase = new Sales_Order_VO
                 {
-                    purchase = new Sales_Order_VO
-                    {
-                        CHILD_PRODUCT_NAME = row.Cells["CHILD_PRODUCT_NAME"].Value.ToString(),
-                        SALES_ORDER_ID = row.Cells["SALES_ORDER_ID"].Value.ToString(),
-                        VENDOR_CODE = row.Cells["VENDOR_CODE"].Value.ToString(),
-                        MATERIAL_CODE = row.Cells["CHILD_PRODUCT_CODE"].Value.ToString(),
-                        ORDER_QTY = row.Cells["PURCHASE_QTY"].Value.ToString()
-                    };
-                    //row.Cells["PURCHASE_SEQ"].Value = ;
-                    list.Add(purchase);
-                    cnt++;
-                }
-                else
-                {
-                    return;
-                }
-
+                    CHILD_PRODUCT_NAME = row.Cells["CHILD_PRODUCT_NAME"].Value.ToString(),
+                    SALES_ORDER_ID = row.Cells["SALES_ORDER_ID"].Value.ToString(),
+                    VENDOR_CODE = row.Cells["VENDOR_CODE"].Value.ToString(),
+                    MATERIAL_CODE = row.Cells["CHILD_PRODUCT_CODE"].Value.ToString(),
+                    ORDER_QTY = row.Cells["PURCHASE_QTY"].Value.ToString()
+                };
+                cnt++;
+                list.Add(purchase);
+                
             }
             var result = svr.InsertPurchase(list);
 
             if (result)
-                MboxUtil.MboxInfo("주문서 등록을 완료했습니다.");
+            {
+                MboxUtil.MboxInfo_("주문서 등록을 완료했습니다.");
+            }
             else
                 MboxUtil.MboxWarn("주문 등록 중중 오류가 발생했습니다. 다시 시도해주세요.");
 

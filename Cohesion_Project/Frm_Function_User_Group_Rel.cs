@@ -25,7 +25,7 @@ namespace Cohesion_Project
 
             DgvInit();
             DataGridViewFill();
-            DataGridViewFill1();
+            DataGridViewFill2();
             PpgInit();
         }
 
@@ -41,11 +41,13 @@ namespace Cohesion_Project
             DgvUtil.AddTextCol(DgvFUG, "변경 사용자", "UPDATE_USER_ID", 120, true, align: 2);
 
             DgvUtil.DgvInit(DgvF1);
+            DgvUtil.AddTextCol(DgvF1, "순번", "DISPLAY_SEQ", 180, readOnly: true, align: 1, frozen: true);
             DgvUtil.AddTextCol(DgvF1, "화면 기능 코드", "FUNCTION_NAME", 150, true, align: 1);
             DgvUtil.AddTextCol(DgvF1, "화면 기능명", "FUNCTION_CODE", 120, true, align: 1);
 
 
             DgvUtil.DgvInit(DgvF2);
+            DgvUtil.AddTextCol(DgvF2, "순번", "DISPLAY_SEQ", 180, readOnly: true, align: 1, frozen: true);
             DgvUtil.AddTextCol(DgvF2, "화면 기능 코드", "FUNCTION_NAME", 150, true, align: 1);
             DgvUtil.AddTextCol(DgvF2, "화면 기능명", "FUNCTION_CODE", 120, true, align: 1);
         }
@@ -62,61 +64,121 @@ namespace Cohesion_Project
             FList = SrvFUG.SelectFUG();
             DgvFUG.DataSource = FList;
 
+            //FList = SrvFUG.SelectFUG1();
+            //DgvF2.DataSource = FList;
+        }
+
+        private void DataGridViewFill2()
+        {
+
+
             FList = SrvFUG.SelectFUG1();
             DgvF2.DataSource = FList;
         }
 
-        private void DataGridViewFill1()
-        {
-
-
-            FList = SrvFUG.SelectFUG1();
-            DgvF1.DataSource = FList;
-        }
-
         private void btnRight_Click(object sender, EventArgs e)
         {
-            if (DgvFUG.Rows.Count == 0)
+            if (DgvF1.Rows.Count == 0)
             {
                 return;
             }
             int seq = 1;
             int seqI = 1;
-            int idx = DgvFUG.CurrentRow.Index;
+            int idx = DgvF1.CurrentRow.Index;
 
             if (idx < 0)
             {
                 MboxUtil.MboxError("검사 항목을 선택해주세요.");
                 return;
             }
-            if (DgvFUG.Rows.Count == 0)
+            if (DgvF1.Rows.Count == 0)
             {
                 MboxUtil.MboxError("검사 항목이 존재하지 않습니다.");
                 return;
             }
             else
             {
-                var dto = DgvFUG.Rows[idx].DataBoundItem as Inspection_REL_DTO;
-                var addList = DgvFUG.DataSource as List<Inspection_REL_DTO>;
+                var dto = DgvF1.Rows[idx].DataBoundItem as FUNCTION_USER_GROUP_REL_DTO;
+                var addList = DgvF1.DataSource as List<FUNCTION_USER_GROUP_REL_DTO>;
                 addList.Remove(dto);
-                DgvFUG.DataSource = null;
-                DgvFUG.DataSource = addList.OrderBy((i) => i.INSPECT_ITEM_CODE).Select((i) => new Inspection_REL_DTO { INSPECT_ITEM_CODE = i.INSPECT_ITEM_CODE, INSPECT_ITEM_NAME = i.INSPECT_ITEM_NAME, DISPLAY_SEQ = seq++ }).ToList();
+                DgvF1.DataSource = null;
+                DgvF1.DataSource = addList.OrderBy((i) => i.FUNCTION_CODE).Select((i) => new FUNCTION_USER_GROUP_REL_DTO { FUNCTION_CODE = i.FUNCTION_CODE, FUNCTION_NAME = i.FUNCTION_NAME, DISPLAY_SEQ = seq++ }).ToList();
 
-                List<Inspection_REL_DTO> list = DgvF1.DataSource as List<Inspection_REL_DTO>;
-                if (list.Exists((i) => i.INSPECT_ITEM_CODE.Equals(dto.INSPECT_ITEM_CODE)))
+                List<FUNCTION_USER_GROUP_REL_DTO> list = DgvF2.DataSource as List<FUNCTION_USER_GROUP_REL_DTO>;
+                if (list.Exists((i) => i.FUNCTION_CODE.Equals(dto.FUNCTION_CODE)))
                 {
                     return;
                 }
                 else
                 {
                     list.Add(dto);
-                    DgvF1.DataSource = list.Select((i) => new Inspection_REL_DTO
+                    DgvF2.DataSource = list.Select((i) => new FUNCTION_USER_GROUP_REL_DTO
                     {
-                        INSPECT_ITEM_CODE = i.INSPECT_ITEM_CODE,
-                        INSPECT_ITEM_NAME = i.INSPECT_ITEM_NAME,
+                        FUNCTION_CODE = i.FUNCTION_CODE,
+                        FUNCTION_NAME = i.FUNCTION_NAME,
                         DISPLAY_SEQ = seqI++
                     }).ToList();
                 }
+            }
+        }
+
+        private void btnLeft_Click(object sender, EventArgs e)
+        {
+            if (DgvF2.Rows.Count == 0)
+            {
+                return;
+            }
+            int seq = 1;
+            int seqI = 1;
+            int idx = DgvF2.CurrentRow.Index;
+            if (idx < 0)
+            {
+                MboxUtil.MboxError("검사 항목을 선택해주세요.");
+                return;
+            }
+
+
+            FUNCTION_USER_GROUP_REL_DTO dto = new FUNCTION_USER_GROUP_REL_DTO
+            {
+                FUNCTION_CODE = DgvF2.Rows[idx].Cells[0].Value.ToString()
+               ,
+                FUNCTION_NAME = DgvF2.Rows[idx].Cells[1].Value.ToString()
+            };
+
+            if (DgvF1.Rows.Count == 0)
+            {
+                List<FUNCTION_USER_GROUP_REL_DTO> addList = new List<FUNCTION_USER_GROUP_REL_DTO>();
+                addList.Add(dto);
+                DgvF1.DataSource = null;
+                DgvF1.DataSource = addList.OrderBy((i) => i.FUNCTION_CODE).Select((i) => new FUNCTION_USER_GROUP_REL_DTO { FUNCTION_CODE = i.FUNCTION_CODE, FUNCTION_NAME = i.FUNCTION_NAME, DISPLAY_SEQ = seq++ }).ToList();
+                var l1 = DgvF1.DataSource;
+
+                List<FUNCTION_USER_GROUP_REL_DTO> list = DgvF2.DataSource as List<FUNCTION_USER_GROUP_REL_DTO>;
+                list.RemoveAt(list.FindIndex((i) => i.FUNCTION_CODE.Equals(dto.FUNCTION_CODE, StringComparison.OrdinalIgnoreCase)));
+
+                DgvF2.DataSource = list.Select((i) => new FUNCTION_USER_GROUP_REL_DTO
+                {
+                    FUNCTION_CODE = i.FUNCTION_CODE,
+                    FUNCTION_NAME = i.FUNCTION_NAME,
+                    DISPLAY_SEQ = seqI++
+                }).ToList();
+            }
+            else
+            {
+                var addList = DgvF1.DataSource as List<FUNCTION_USER_GROUP_REL_DTO>;
+                addList.Add(dto);
+                DgvF1.DataSource = null;
+                DgvF1.DataSource = addList.OrderBy((i) => i.FUNCTION_CODE).Select((i) => new FUNCTION_USER_GROUP_REL_DTO { FUNCTION_CODE = i.FUNCTION_CODE, FUNCTION_NAME = i.FUNCTION_NAME, DISPLAY_SEQ = seq++ }).ToList();
+
+                List<FUNCTION_USER_GROUP_REL_DTO> list = DgvF2.DataSource as List<FUNCTION_USER_GROUP_REL_DTO>;
+                list.Remove(list.Find((i) => i.FUNCTION_CODE.Equals(dto.FUNCTION_CODE, StringComparison.OrdinalIgnoreCase)));
+
+                DgvF2.DataSource = list.Select((i) => new FUNCTION_USER_GROUP_REL_DTO
+                {
+                    FUNCTION_CODE = i.FUNCTION_CODE,
+                    FUNCTION_NAME = i.FUNCTION_NAME,
+                    DISPLAY_SEQ = seqI++
+                }).ToList();
             }
         }
     }

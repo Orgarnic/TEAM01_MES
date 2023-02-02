@@ -15,7 +15,7 @@ namespace Cohesion_Project
     public partial class Pop_WorkOrder : Form
     {
         List<Sales_Order_Work_DTO> order = null;
-        List<BOM_MST_DTO> bom = null;
+        List<BOM_MST_WORKORDER_DTO> bom = null;
         Work_Order_MST_DTO initWork = null;
         Srv_WorkOrder work = new Srv_WorkOrder();
         List<PRODUCT_OPERATION_REL_DTO> operations = null;
@@ -47,12 +47,11 @@ namespace Cohesion_Project
             DgvUtil.AddTextCol(dgvOrderList, "주문 일자", "ORDER_DATE", width: 140, readOnly: true, frozen: true);
             DgvUtil.AddTextCol(dgvOrderList, "고객 코드", "CUSTOMER_CODE", width: 140, readOnly: true, frozen: true);
             DgvUtil.AddTextCol(dgvOrderList, "제품 코드", "PRODUCT_CODE", width: 140, readOnly: true, frozen: true);
-            DgvUtil.AddTextCol(dgvOrderList, "주문 수량", "ORDER_QTY", width: 140, readOnly: true, frozen: true); 
-            DgvUtil.AddTextCol(dgvOrderList, "재고 수량", "LOT_QTY", width: 140, readOnly: true, frozen: true);
+            DgvUtil.AddTextCol(dgvOrderList, "주문 수량", "ORDER_QTY", width: 140, readOnly: true, frozen: true);
 
             DgvUtil.DgvInit(dgvBOMStock);
             DgvUtil.AddTextCol(dgvBOMStock, "제품 코드", "CHILD_PRODUCT_CODE", width: 140, readOnly: true, frozen: true);
-            DgvUtil.AddTextCol(dgvBOMStock, "제품명", "PRODUCT_NAME", width: 140, readOnly: true, frozen: true);
+            DgvUtil.AddTextCol(dgvBOMStock, "제품명",    "PRODUCT_NAME", width: 140, readOnly: true, frozen: true);
             DgvUtil.AddTextCol(dgvBOMStock, "제품 유형", "PRODUCT_TYPE", width: 140, readOnly: true, frozen: true);
             DgvUtil.AddTextCol(dgvBOMStock, "단위 수량", "REQUIRE_QTY", width: 140, readOnly: true, frozen: true);
             DgvUtil.AddTextCol(dgvBOMStock, "제작 수량", "ORDER_QTY", width: 140, readOnly: true, frozen: true);
@@ -73,7 +72,8 @@ namespace Cohesion_Project
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            int cnt = 0;
+            string pcode;
+            int cnt = 0, checking = 0;
             decimal oQty = 0, lQty = 0;
             if(dgvOrderList.SelectedRows.Count < 1)
             {
@@ -86,6 +86,7 @@ namespace Cohesion_Project
                 if (MboxUtil.MboxInfo_("현재 재고가 부족합니다.\n해당 제품에 대한 생산지시를 등록하시겠습니까?") == false) return;
                 else
                 {
+                    StringBuilder sb = new StringBuilder();
                     List<Work_Order_MST_DTO> inData = new List<Work_Order_MST_DTO>();
                     Work_Order_MST_DTO dto = null;
                     for (int i = 0; i < dgvBOMStock.Rows.Count; i++)
@@ -104,21 +105,39 @@ namespace Cohesion_Project
                                 CREATE_TIME = DateTime.Now,
                                 CUSTOMER_CODE = dgvOrderList["CUSTOMER_CODE",i].Value.ToString()
                             };
-                            inData.Add(dto);
-                            cnt++;
+                            if (dto.PRODUCT_CODE.Contains("HB_HBD"))
+                            {
+                                pcode = inData[i].PRODUCT_CODE;
+                                checking++;
+                                cnt++;
+                            }
+                            else
+                            {
+                                inData.Add(dto);
+                                cnt++;
+                            }
+                        }
+                        else
+                        {
+
                         }
                     }
-                    if (MboxUtil.MboxInfo_($"총 {cnt}건의 자품목 생산등록이 가능합니다.\n등록하시겠습니까?") == false) return;
+                    if (MboxUtil.MboxInfo_($"총 {cnt}건 중 {cnt - checking}건의 자품목 생산지시등록이 가능합니다.\n등록하시겠습니까?") == false) return;
                     else
                     {
+                        StringBuilder sv = new StringBuilder();
                         for (int j = 0; j < inData.Count; j++)
                         {
                             bool check = work.InsertWorkOrder(inData[j]);
                             if (!check)
                             {
-                                MboxUtil.MboxWarn("등록되지 못했습니다.\n다시 시도해주세요.");
-                                return;
+                                sv.AppendLine($"반제품 - {inData[j]}가 등록되지 못했습니다.\n다시 시도해주세요.");
                             }
+                        }
+                        if(sv.Length > 0)
+                        {
+                            MboxUtil.MboxWarn(sv.ToString());
+                            return;
                         }
                     }
                     MboxUtil.MboxInfo("생산지시 등록이 완료되었습니다.");
@@ -158,7 +177,6 @@ namespace Cohesion_Project
             dgvBOMStock.ClearSelection();
             if (e.RowIndex < 0) return;
             orderQty = Convert.ToDecimal(dgvOrderList[4, e.RowIndex].Value.ToString());
-            lotQty = Convert.ToDecimal(dgvOrderList[5, e.RowIndex].Value.ToString());
             oCode = dgvOrderList[0, e.RowIndex].Value.ToString();
             pCode = dgvOrderList[3, e.RowIndex].Value.ToString();
             bom = work.GetOrderProductBOM(oCode, pCode);
@@ -167,6 +185,7 @@ namespace Cohesion_Project
             {
                 CUSTOMER_CODE = dgvOrderList[2, e.RowIndex].Value.ToString().Trim(),
                 PRODUCT_CODE = dgvOrderList[3, e.RowIndex].Value.ToString().Trim(),
+                ORDER_DATE = Convert.ToDateTime(dgvOrderList["ORDER_DATE", e.RowIndex].Value.ToString()),
                 ORDER_QTY = orderQty,
                 ORDER_STATUS = "OPEN",
                 
