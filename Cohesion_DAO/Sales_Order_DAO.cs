@@ -28,17 +28,11 @@ namespace Cohesion_DAO
         
         public List<Sales_Order_DTO> SelectSalesList()
         {
-            string sql = @"SELECT SOM.SALES_ORDER_ID, SOM.ORDER_DATE, SOM.CUSTOMER_CODE, DATA_1 AS CUSTOMER_NAME, SOM.PRODUCT_CODE, PRODUCT_NAME, SOM.ORDER_QTY, 
+            string sql = @"SELECT SOM.SALES_ORDER_ID, SOM.ORDER_DATE, SOM.CUSTOMER_CODE, DATA_1 AS CUSTOMER_NAME, SOM.PRODUCT_CODE, PRODUCT_NAME, CAST(SOM.ORDER_QTY AS NVARCHAR) ORDER_QTY, 
                                   SOM.CONFIRM_FLAG, SOM.SHIP_FLAG, SOM.CREATE_TIME, SOM.CREATE_USER_ID, SOM.UPDATE_TIME, SOM.UPDATE_USER_ID
                            FROM SALES_ORDER_MST SOM INNER JOIN CODE_DATA_MST CDM ON SOM.CUSTOMER_CODE = CDM.KEY_1
                                                     INNER JOIN PRODUCT_MST PM ON SOM.PRODUCT_CODE = PM.PRODUCT_CODE
                            ORDER BY SALES_ORDER_ID DESC";
-
-            //string sql = @"SELECT SOM.SALES_ORDER_ID, SOM.ORDER_DATE, SOM.CUSTOMER_CODE, DATA_1 AS CUSTOMER_NAME, SOM.PRODUCT_CODE,  SOM.ORDER_QTY, --PM.PRODUCT_NAME,
-            //                      SOM.CONFIRM_FLAG, SOM.SHIP_FLAG, SOM.CREATE_TIME, SOM.CREATE_USER_ID, SOM.UPDATE_TIME, SOM.UPDATE_USER_ID
-            //               FROM SALES_ORDER_MST SOM INNER JOIN CODE_DATA_MST CDM ON SOM.CUSTOMER_CODE = CDM.KEY_1
-            //               	   --,SALES_ORDER_MST SOM2 INNER JOIN PRODUCT_MST PM ON SOM2.PRODUCT_CODE = PM.PRODUCT_CODE
-            //               ORDER BY SALES_ORDER_ID DESC ";
 
             SqlCommand cmd = new SqlCommand(sql, conn);
             conn.Open();
@@ -59,7 +53,7 @@ namespace Cohesion_DAO
 
             cmd.Parameters.AddWithValue("@CUSTOMER_CODE", string.IsNullOrEmpty(dto.CUSTOMER_CODE) ? (object)DBNull.Value : dto.CUSTOMER_CODE);
             cmd.Parameters.AddWithValue("@PRODUCT_CODE", string.IsNullOrEmpty(dto.PRODUCT_CODE) ? (object)DBNull.Value : dto.PRODUCT_CODE);
-            cmd.Parameters.AddWithValue("@ORDER_QTY", string.IsNullOrEmpty(dto.ORDER_QTY) ? (object)DBNull.Value : dto.ORDER_QTY);
+            cmd.Parameters.AddWithValue("@ORDER_QTY", dto.ORDER_QTY);
             cmd.Parameters.AddWithValue("@CONFIRM_FLAG", string.IsNullOrEmpty(dto.CONFIRM_FLAG) ? (object)DBNull.Value : dto.CONFIRM_FLAG);
             cmd.Parameters.AddWithValue("@SHIP_FLAG", string.IsNullOrEmpty(dto.SHIP_FLAG) ? (object)DBNull.Value : dto.SHIP_FLAG);
             cmd.Parameters.AddWithValue("@CREATE_USER_ID", string.IsNullOrEmpty(dto.CREATE_USER_ID) ? (object)DBNull.Value : dto.CREATE_USER_ID);
@@ -83,7 +77,7 @@ namespace Cohesion_DAO
 
             cmd.Parameters.AddWithValue("@SALES_ORDER_ID", string.IsNullOrEmpty(dto.SALES_ORDER_ID) ? (object)DBNull.Value : dto.SALES_ORDER_ID);
             cmd.Parameters.AddWithValue("@PRODUCT_CODE", string.IsNullOrEmpty(dto.PRODUCT_CODE) ? (object)DBNull.Value : dto.PRODUCT_CODE);
-            cmd.Parameters.AddWithValue("@ORDER_QTY", string.IsNullOrEmpty(dto.ORDER_QTY) ? (object)DBNull.Value : dto.ORDER_QTY);
+            cmd.Parameters.AddWithValue("@ORDER_QTY", dto.ORDER_QTY);
             cmd.Parameters.AddWithValue("@CONFIRM_FLAG", string.IsNullOrEmpty(dto.CONFIRM_FLAG) ? (object)DBNull.Value : dto.CONFIRM_FLAG);
             cmd.Parameters.AddWithValue("@SHIP_FLAG", string.IsNullOrEmpty(dto.SHIP_FLAG) ? (object)DBNull.Value : dto.SHIP_FLAG);
             cmd.Parameters.AddWithValue("@UPDATE_USER_ID", string.IsNullOrEmpty(dto.UPDATE_USER_ID) ? (object)DBNull.Value : dto.UPDATE_USER_ID);
@@ -161,51 +155,34 @@ namespace Cohesion_DAO
             List<Sales_Order_VO> list = default;
             try
             {
-                //string sql = @"SELECT SOM.SALES_ORDER_ID, SOM.CUSTOMER_CODE, SOM.PRODUCT_CODE, PM.PRODUCT_NAME, SOM.ORDER_QTY,
-                //               		  BM.CHILD_PRODUCT_CODE, PMS.PRODUCT_NAME AS CHILD_PRODUCT_NAME, REQUIRE_QTY, 
-                //               		  CAST(ORDER_QTY * REQUIRE_QTY AS DECIMAL) NEED_QTY, PMS1.VENDOR_CODE, 
-                //                      CAST(LS.LOT_QTY AS DECIMAL) LOT_QTY,
-                //               		  CAST(LS.LOT_QTY - (ORDER_QTY * REQUIRE_QTY)AS DECIMAL)LEFT_QTY
-                //               FROM SALES_ORDER_MST SOM INNER JOIN CODE_DATA_MST CDM ON SOM.CUSTOMER_CODE = CDM.KEY_1
-                //                                        INNER JOIN PRODUCT_MST PM ON SOM.PRODUCT_CODE = PM.PRODUCT_CODE
-                //               						    INNER JOIN BOM_MST BM ON SOM.PRODUCT_CODE = BM.PRODUCT_CODE
-                //               						    INNER JOIN PRODUCT_MST PMS ON BM.CHILD_PRODUCT_CODE = PMS.PRODUCT_CODE
-                //               						    INNER JOIN PRODUCT_MST PMS1 ON BM.CHILD_PRODUCT_CODE = PMS1.PRODUCT_CODE AND PMS1.VENDOR_CODE IS NOT NULL
-                //               						    INNER JOIN LOT_STS LS ON PMS.PRODUCT_CODE = LS.PRODUCT_CODE
-                //               WHERE SOM.PRODUCT_CODE = @PRODUCT_CODE AND SOM.SALES_ORDER_ID = @SALES_ORDER_ID
-                //               					   -- AND PMS1.VENDOR_CODE IS NOT NULL
-                //               ORDER BY SALES_ORDER_ID DESC";
-
-                //> 참고 쿼리
-                /*
-                 SELECT PURCHASE_ORDER_ID, PURCHASE_SEQ, SALES_ORDER_ID, ORDER_DATE, VENDOR_CODE,
-		MATERIAL_CODE, ORDER_QTY, STOCK_IN_FLAG, STOCK_IN_STORE_CODE, STOCK_IN_LOT_ID
-FROM PURCHASE_ORDER_MST
-WHERE STOCK_IN_FLAG = 'N'
-                 */
-                /*
-                 * SELECT MATERIAL_CODE, ORDER_QTY, STOCK_IN_FLAG, SUM(ORDER_QTY) OVER() NOT_STOCKED_QTY
-FROM PURCHASE_ORDER_MST
-WHERE MATERIAL_CODE = 'HB_CLP_JVP' AND STOCK_IN_FLAG = 'N'
-                 */
-
-                //> QUERY 수정 필요! : 미입고 수량 
-                string sql = @"SELECT SOM.SALES_ORDER_ID, SOM.CUSTOMER_CODE, SOM.PRODUCT_CODE, PM.PRODUCT_NAME, SOM.ORDER_QTY,
-                               		  BM.CHILD_PRODUCT_CODE, PMS.PRODUCT_NAME AS CHILD_PRODUCT_NAME, REQUIRE_QTY, 
-                               		  CAST(SOM.ORDER_QTY * REQUIRE_QTY AS DECIMAL) NEED_QTY, PMS1.VENDOR_CODE, 
-                                      CAST(LS.LOT_QTY AS DECIMAL) LOT_QTY,
-                               		  CAST(LS.LOT_QTY - (SOM.ORDER_QTY * REQUIRE_QTY)AS DECIMAL)LEFT_QTY,
-									  POM.MATERIAL_CODE, POM.ORDER_QTY, STOCK_IN_FLAG, CAST(SUM(POM.ORDER_QTY) OVER() AS DECIMAL) NOT_STOCKED_QTY
-                               FROM SALES_ORDER_MST SOM INNER JOIN CODE_DATA_MST CDM ON SOM.CUSTOMER_CODE = CDM.KEY_1
-                                                        INNER JOIN PRODUCT_MST PM ON SOM.PRODUCT_CODE = PM.PRODUCT_CODE
-                               						    INNER JOIN BOM_MST BM ON SOM.PRODUCT_CODE = BM.PRODUCT_CODE
-                               						    INNER JOIN PRODUCT_MST PMS ON BM.CHILD_PRODUCT_CODE = PMS.PRODUCT_CODE
-                               						    INNER JOIN PRODUCT_MST PMS1 ON BM.CHILD_PRODUCT_CODE = PMS1.PRODUCT_CODE AND PMS1.VENDOR_CODE IS NOT NULL
-                               						    INNER JOIN LOT_STS LS ON PMS.PRODUCT_CODE = LS.PRODUCT_CODE
-														INNER JOIN PURCHASE_ORDER_MST POM ON SOM.SALES_ORDER_ID = POM.SALES_ORDER_ID
-                               WHERE SOM.PRODUCT_CODE = @PRODUCT_CODE AND SOM.SALES_ORDER_ID = @SALES_ORDER_ID
-                               					   -- AND PMS1.VENDOR_CODE IS NOT NULL
-                               ORDER BY SALES_ORDER_ID DESC";
+                string sql = @"SELECT  SOM.SALES_ORDER_ID
+                                	 , SOM.CUSTOMER_CODE
+                                	 , SOM.PRODUCT_CODE
+                                	 , PM.PRODUCT_NAME
+                                	 , CAST(SOM.ORDER_QTY AS NVARCHAR) ORDER_QTY
+                                	 , PMS.VENDOR_CODE
+                                	 , BM.CHILD_PRODUCT_CODE
+                                	 , REQUIRE_QTY
+                                	 , LS.LOT_QTY
+                                	 , SOM.ORDER_QTY  NEED_QTY
+									 , CASE WHEN ((ORDER_QTY * REQUIRE_QTY) - CAST(LS.LOT_QTY AS numeric(10,3)))>0
+											THEN CAST((ORDER_QTY * REQUIRE_QTY - LS.LOT_QTY) AS nvarchar)
+											ELSE CAST(0 AS nvarchar) END PURCHASE_QTY
+                                     FROM SALES_ORDER_MST SOM 
+                                       INNER JOIN PRODUCT_MST PM 
+                                	 		ON SOM.PRODUCT_CODE = PM.PRODUCT_CODE
+                                       INNER JOIN BOM_MST BM 
+                                	 		ON SOM.PRODUCT_CODE = BM.PRODUCT_CODE
+                                       INNER JOIN PRODUCT_MST PMS 
+                                	 		ON BM.CHILD_PRODUCT_CODE = PMS.PRODUCT_CODE
+                                       INNER JOIN (
+                                	  	SELECT PRODUCT_CODE, SUM(LOT_QTY) LOT_QTY
+                                	  	FROM LOT_STS
+                                	  	GROUP BY PRODUCT_CODE
+                                	   ) LS 
+                                	 		ON PMS.PRODUCT_CODE = LS.PRODUCT_CODE
+                                     WHERE SOM.PRODUCT_CODE = @PRODUCT_CODE AND PMS.VENDOR_CODE IS NOT NULL AND SALES_ORDER_ID = @SALES_ORDER_ID
+                                     ORDER BY SALES_ORDER_ID, CHILD_PRODUCT_CODE";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@PRODUCT_CODE", productCode);
@@ -234,11 +211,6 @@ WHERE MATERIAL_CODE = 'HB_CLP_JVP' AND STOCK_IN_FLAG = 'N'
                            VALUES(@PURCHASE_ORDER_ID, @PURCHASE_SEQ,@SALES_ORDER_ID, 
                                    GETDATE(), @VENDOR_CODE, @MATERIAL_CODE, CAST(@ORDER_QTY AS DECIMAL), 'N') ";
 
-            //string sql = @"INSERT INTO PURCHASE_ORDER_MST (PURCHASE_ORDER_ID, PURCHASE_SEQ, SALES_ORDER_ID, ORDER_DATE, 
-            //                                               VENDOR_CODE, MATERIAL_CODE, ORDER_QTY, STOCK_IN_FLAG)
-            //               VALUES(@PURCHASE_ORDER_ID, RANK() OVER(PARTITION BY SALES_ORDER_ID ORDER BY ORDER_DATE),@SALES_ORDER_ID, 
-            //                       GETDATE(), @VENDOR_CODE, @MATERIAL_CODE, CAST(@ORDER_QTY AS DECIMAL), 'N') ";
-
             SqlCommand cmd = new SqlCommand(sql, conn);
             string pCode = "PURC_" + DateTime.Now.ToString("yyMMddHHmmss");
             cmd.Parameters.AddWithValue("@PURCHASE_ORDER_ID", pCode);
@@ -255,7 +227,7 @@ WHERE MATERIAL_CODE = 'HB_CLP_JVP' AND STOCK_IN_FLAG = 'N'
                 cmd.Parameters["@SALES_ORDER_ID"].Value = list[i].SALES_ORDER_ID;
                 cmd.Parameters["@VENDOR_CODE"].Value = list[i].VENDOR_CODE;
                 cmd.Parameters["@MATERIAL_CODE"].Value = list[i].MATERIAL_CODE;
-                cmd.Parameters["@ORDER_QTY"].Value = Convert.ToDecimal(list[i].ORDER_QTY);
+                cmd.Parameters["@ORDER_QTY"].Value = Convert.ToDecimal(list[i].ORDERING_QTY);
                 cmd.ExecuteNonQuery();
             }
 
