@@ -10,7 +10,7 @@ namespace Cohesion_Project
 {
     public class Srv_Function_User_Group_Rel
     {
-        public List<FUNCTION_USER_GROUP_REL_DTO> SelectFUG()
+        public List<FUNCTION_USER_GROUP_REL_DTO> SelectFUG( )
         {
             Function_User_Group_Rel_DAO dao = new Function_User_Group_Rel_DAO();
             List<FUNCTION_USER_GROUP_REL_DTO> list = dao.SelectFUG();
@@ -36,6 +36,9 @@ namespace Cohesion_Project
 
             return result;
         }
+
+
+
         //public bool InsertFUG(FUNCTION_USER_GROUP_REL_DTO dto)
         //{
         //    Function_User_Group_Rel_DAO dao = new Function_User_Group_Rel_DAO();
@@ -61,6 +64,12 @@ namespace Cohesion_Project
 
         //    return list;
         //}
-
+        public List<FUNCTION_USER_GROUP_REL_DTO> SelectFUGR(string condition)
+        {
+            Function_User_Group_Rel_DAO dao = new Function_User_Group_Rel_DAO();
+            List<FUNCTION_USER_GROUP_REL_DTO> list = dao.SelectFUGR(condition);
+            dao.Dispose();
+            return list;
+        }
     }
 }
