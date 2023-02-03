@@ -99,7 +99,6 @@ namespace Cohesion_Project
                     {
                         oQty = Convert.ToDecimal(dgvBOMStock["ORDER_QTY", i].Value);
                         lQty = Convert.ToDecimal(dgvBOMStock["LOT_QTY", i].Value);
-                        int tQty = Convert.ToInt32(oQty - lQty);
 
                         if (dgvBOMStock["VENDOR_CODE", i].Value == null)    // 매입처가 있는 제품들만 가져오기.
                         {
@@ -135,7 +134,7 @@ namespace Cohesion_Project
                             dto = new Work_Order_MST_DTO
                                 {
                                     PRODUCT_CODE = dgvBOMStock["CHILD_PRODUCT_CODE", i].Value.ToString(),
-                                    ORDER_QTY = tQty,
+                                    ORDER_QTY = (oQty - lQty),
                                     ORDER_STATUS = "OPEN",
                                     CREATE_USER_ID = "유기현",
                                     CREATE_TIME = DateTime.Now,

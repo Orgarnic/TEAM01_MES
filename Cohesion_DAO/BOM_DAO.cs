@@ -100,7 +100,7 @@ namespace Cohesion_DAO
 
             try
             {
-                string sql = $@"select b.PRODUCT_CODE, CHILD_PRODUCT_CODE, p2.PRODUCT_NAME, REQUIRE_QTY, ALTER_PRODUCT_CODE, b.CREATE_TIME, b.CREATE_USER_ID, b.UPDATE_TIME, b.UPDATE_USER_ID, p2.PRODUCT_TYPE
+                string sql = $@"select b.PRODUCT_CODE, CHILD_PRODUCT_CODE, p2.PRODUCT_NAME, REQUIRE_QTY, ALTER_PRODUCT_CODE, b.OPERATION_CODE, b.CREATE_TIME, b.CREATE_USER_ID, b.UPDATE_TIME, b.UPDATE_USER_ID, p2.PRODUCT_TYPE
                                 from BOM_MST b inner join PRODUCT_MST p on b.PRODUCT_CODE = p.PRODUCT_CODE
 			                                   inner join PRODUCT_MST p2 on b.CHILD_PRODUCT_CODE = p2.PRODUCT_CODE
                                 where p.PRODUCT_CODE = '" + $"{code}" + "' ";

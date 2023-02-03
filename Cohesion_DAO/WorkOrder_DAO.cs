@@ -59,7 +59,7 @@ namespace Cohesion_DAO
             List<Sales_Order_Work_DTO> list = null;
             try
             {
-                string sql = @"select so.SALES_ORDER_ID, so.ORDER_DATE, so.CUSTOMER_CODE, so.PRODUCT_CODE, so.ORDER_QTY
+                string sql = @"select so.SALES_ORDER_ID, so.ORDER_DATE, so.CUSTOMER_CODE, so.PRODUCT_CODE, CAST(so.ORDER_QTY as int) ORDER_QTY
                                from SALES_ORDER_MST so inner join PRODUCT_MST p on so.PRODUCT_CODE = p.PRODUCT_CODE
 							   where so.CONFIRM_FLAG = 'Y' and so.SHIP_FLAG is null
 							   group by so.SALES_ORDER_ID, so.ORDER_DATE, so.CUSTOMER_CODE, so.PRODUCT_CODE, so.ORDER_QTY";

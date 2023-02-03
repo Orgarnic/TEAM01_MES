@@ -98,7 +98,7 @@ namespace Cohesion_DTO
         public string PRODUCT_NAME { get; set; }
 
         [Category("속성"), Description("ORDER_QTY"), DisplayName("주문수량")]
-        public string ORDER_QTY { get; set; }
+        public decimal ORDER_QTY { get; set; }
 
         [Category("속성"), Description("CM_ANSWER"), DisplayName("확정여부"), TypeConverter(typeof(ComboStringConverter))]
         public string CONFIRM_FLAG { get; set; }

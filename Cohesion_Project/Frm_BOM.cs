@@ -15,10 +15,12 @@ namespace Cohesion_Project
     {
         Srv_BOM srv = new Srv_BOM();
         Srv_Product srv2 = new Srv_Product();
+        Srv_Operation srv3 = new Srv_Operation();
         List<PRODUCT_MST_DTO> product = null;
         List<BOM_MST_DTO> bom = new List<BOM_MST_DTO>();
         List<PRODUCT_MST_DTO> temp = null;
         Util.ComboUtil comboUtil = new Util.ComboUtil();
+        List<OPERATION_MST_DTO> oper = null;
         bool check = true;
         string prodID;
 
@@ -35,8 +37,12 @@ namespace Cohesion_Project
             dgvBOMParent.ClearSelection();
             ppgBOMAttribute.SelectedObject = new BOM_MST_DTO();
             temp = srv2.SelectProduts(new PRODUCT_MST_DTO_Condition());
-            Cohesion_DTO.ComboUtil.ProductCode = (from t in temp
-                                                 select t.PRODUCT_CODE).ToList();
+            oper = srv3.SelectOperation(new OPERATION_MST_DTO_Condition());
+
+            ComboUtil.ProductCode = (from t in temp
+                                     select t.PRODUCT_CODE).ToList();
+            ComboUtil.OperationCode = (from o in oper
+                                       select o.OPERATION_CODE).ToList();
         }
 
         private void GetComboData()
@@ -75,6 +81,7 @@ namespace Cohesion_Project
             DgvUtil.AddTextCol(dgvBOMChild, "변경 사용자", "PRODUCT_TYPE", 150, true, 1, frozen: true);
             DgvUtil.AddTextCol(dgvBOMChild, "단위 수량", "REQUIRE_QTY", 150, true, 1);
             DgvUtil.AddTextCol(dgvBOMChild, "대체 품번", "ALTER_PRODUCT_CODE", 150, true, 1);
+            DgvUtil.AddTextCol(dgvBOMChild, "공정 코드", "OPERATION_CODE", 150, true, 1);
             DgvUtil.AddTextCol(dgvBOMChild, "생성 시간", "CREATE_TIME", 150, true, 1);
             DgvUtil.AddTextCol(dgvBOMChild, "생성 사용자", "CREATE_USER_ID", 150, true, 1);
             DgvUtil.AddTextCol(dgvBOMChild, "변경 시간", "UPDATE_TIME", 150, true, 1);
@@ -86,7 +93,7 @@ namespace Cohesion_Project
         {
             // 셀클릭시, 클릭된 완제품의 BOM을 Child에 뿌려줌.
             if (e.RowIndex < 0) return;
-            prodID = dgvBOMParent[0, e.RowIndex].Value.ToString();
+            prodID = dgvBOMParent["PRODUCT_CODE", e.RowIndex].Value.ToString();
             bom = srv.SelectBOMList(prodID);
             dgvBOMChild.DataSource = null;
             dgvBOMChild.DataSource = bom;
