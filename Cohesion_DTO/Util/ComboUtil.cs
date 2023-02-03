@@ -16,6 +16,8 @@ namespace Cohesion_DTO
         public static List<char> InspectUnit = new List<char> { 'N', 'C' };
 
         public static List<string> ProductCode = new List<string> { };
+
+        public static List<string> OperationCode = new List<string> { };
     }
 
     public class ComboStringConverter : StringConverter
@@ -69,6 +71,20 @@ namespace Cohesion_DTO
         public override TypeConverter.StandardValuesCollection GetStandardValues(ITypeDescriptorContext context)
         {
             return new StandardValuesCollection(ComboUtil.InspectUnit);
+        }
+    }
+
+    // 공정 목록을 등록에 필요 - 김재형 추가
+    public class ComboOperationConverter : StringConverter
+    {
+        public override bool GetStandardValuesSupported(ITypeDescriptorContext context)
+        {
+            return true;
+        }
+
+        public override TypeConverter.StandardValuesCollection GetStandardValues(ITypeDescriptorContext context)
+        {
+            return new StandardValuesCollection(ComboUtil.OperationCode);
         }
     }
 }
