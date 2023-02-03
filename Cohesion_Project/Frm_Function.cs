@@ -32,14 +32,14 @@ namespace Cohesion_Project
         private void DgvInit()
         {
             DgvUtil.DgvInit(DgvFunction);
-            DgvUtil.AddTextCol(DgvFunction, "화면 기능 코드", "FUNCTION_CODE", 150, true, align: 1);
-            DgvUtil.AddTextCol(DgvFunction, "화면 기능명", "FUNCTION_NAME", 120, true, align: 1);
-            DgvUtil.AddTextCol(DgvFunction, "단축키", "SHORT_CUT_KEY", 120, true, align: 1);
-            DgvUtil.AddTextCol(DgvFunction, "아이콘 인덱스 ", "ICON_INDEX", 120, true, align: 1);
-            DgvUtil.AddTextCol(DgvFunction, "생성 사용자 ", "CREATE_USER_ID", 120, true, align: 1);
-            DgvUtil.AddTextCol(DgvFunction, "생성 시간 ", "CREATE_TIME", 120, true, align: 2);
-            DgvUtil.AddTextCol(DgvFunction, "수정 사용자", "UPDATE_TIME", 120, true, align: 1);
-            DgvUtil.AddTextCol(DgvFunction, "수정 시간", "UPDATE_USER_ID", 120, true, align: 1);
+            DgvUtil.AddTextCol(DgvFunction, "    화면 기능 코드", "FUNCTION_CODE", 150, true, align: 1);
+            DgvUtil.AddTextCol(DgvFunction, "    화면 기능명", "FUNCTION_NAME", 120, true, align: 1);
+            DgvUtil.AddTextCol(DgvFunction, "    단축키", "SHORT_CUT_KEY", 120, true, align: 1);
+            DgvUtil.AddTextCol(DgvFunction, "    아이콘 인덱스 ", "ICON_INDEX", 140, true, align: 1);
+            DgvUtil.AddTextCol(DgvFunction, "    생성 사용자 ", "CREATE_USER_ID", 120, true, align: 1);
+            DgvUtil.AddTextCol(DgvFunction, "    생성 시간 ", "CREATE_TIME", 150, true, align: 2);
+            DgvUtil.AddTextCol(DgvFunction, "    수정 사용자", "UPDATE_TIME", 120, true, align: 1);
+            DgvUtil.AddTextCol(DgvFunction, "    수정 시간", "UPDATE_USER_ID", 150, true, align: 1);
 
             //프로퍼티 그리드 초기 설정
             PpgFunction.PropertySort = PropertySort.Categorized;

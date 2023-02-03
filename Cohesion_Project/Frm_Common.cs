@@ -33,8 +33,8 @@ namespace Cohesion_Project
         {
             //데이터 그리드 뷰 초기 설정
             DgvUtil.DgvInit(Dgv_CommonTable);
-            DgvUtil.AddTextCol(Dgv_CommonTable, "      테이블명", "CODE_TABLE_NAME", 180, readOnly: true, align: 1, frozen: true);
-            DgvUtil.AddTextCol(Dgv_CommonTable, "      테이블 설명", "CODE_TABLE_DESC", 150, readOnly: true, align: 1, frozen: true);
+            DgvUtil.AddTextCol(Dgv_CommonTable, "      테이블명", "CODE_TABLE_NAME", 180, readOnly: true, align:0, frozen: true);
+            DgvUtil.AddTextCol(Dgv_CommonTable, "      테이블 설명", "CODE_TABLE_DESC", 150, readOnly: true, align: 0, frozen: true);
             DgvUtil.AddTextCol(Dgv_CommonTable, "      키1 이름", "KEY_1_NAME", 110, readOnly: true);
             DgvUtil.AddTextCol(Dgv_CommonTable, "      키2 이름", "KEY_2_NAME", 110, readOnly: true);
             DgvUtil.AddTextCol(Dgv_CommonTable, "      키3 이름", "KEY_3_NAME", 110, readOnly: true);
@@ -73,7 +73,7 @@ namespace Cohesion_Project
 
             Pop_CommonTableData pop = new Pop_CommonTableData();
             pop.Owner = this;
-            pop.Location = new Point(200, 250);
+            pop.StartPosition = FormStartPosition.CenterScreen;
             pop.ShowDialog();
         }
 

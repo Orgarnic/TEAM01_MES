@@ -28,7 +28,6 @@ namespace Cohesion_DAO
             StringBuilder sql = new StringBuilder(@"select OPERATION_CODE, OPERATION_NAME, CHECK_DEFECT_FLAG,
                                                            CHECK_INSPECT_FLAG, CHECK_MATERIAL_FLAG, CREATE_TIME, 
                                                            CREATE_USER_ID, UPDATE_TIME, UPDATE_USER_ID
-                                                           ,Rank() OVER(order by OPERATION_CODE ASC) DISPLAY_SEQ
                                                     from OPERATION_MST where 1 = 1");
             foreach (var prop in condition.GetType().GetProperties())
             {
@@ -64,7 +63,6 @@ namespace Cohesion_DAO
                if (reader["UPDATE_TIME"] != DBNull.Value)
                   dto.UPDATE_TIME = Convert.ToDateTime(reader["UPDATE_TIME"]);
                dto.UPDATE_USER_ID = reader["UPDATE_USER_ID"].ToString();
-                    dto.DISPLAY_SEQ = Convert.ToInt32(reader["DISPLAY_SEQ"]);
                list.Add(dto);
             }
             conn.Close();
