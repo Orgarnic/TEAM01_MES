@@ -53,7 +53,66 @@ namespace Cohesion_DAO
             }
         }
 
-        public List<FUNCTION_USER_GROUP_REL_DTO> SelectFUG()
+
+
+        public List<FUNCTION_USER_GROUP_REL_DTO> SelectFUGR(string condition)
+        {
+            List<FUNCTION_USER_GROUP_REL_DTO> list = new List<FUNCTION_USER_GROUP_REL_DTO>();
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                StringBuilder sql = new StringBuilder(@"select FUNCTION_NAME,FUNCTION_CODE, Rank() OVER(order by FUNCTION_CODE ASC) DISPLAY_SEQ
+                                                        from FUNCTION_MST where 1=1");
+                foreach (var prop in condition.GetType().GetProperties())
+                {
+                    if (prop.PropertyType == typeof(string) && !string.IsNullOrWhiteSpace((string)prop.GetValue(condition)))
+                    {
+                        sql.Append($" and {prop.Name} like @{prop.Name}");
+                        cmd.Parameters.AddWithValue($"@{prop.Name}", "%" + prop.GetValue(condition).ToString() + "%");
+                    }
+                    else if (prop.PropertyType == typeof(char) && (char)prop.GetValue(condition) != '\0')
+                    {
+                        sql.Append($" and {prop.Name} = @{prop.Name}");
+                        cmd.Parameters.AddWithValue($"@{prop.Name}", prop.GetValue(condition).ToString());
+                    }
+                }
+
+                cmd.CommandText = sql.ToString();
+                cmd.Connection = conn;
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    FUNCTION_USER_GROUP_REL_DTO dto = new FUNCTION_USER_GROUP_REL_DTO();
+                    dto.FUNCTION_NAME = reader["FUNCTION_NAME"].ToString();
+                    dto.FUNCTION_CODE = reader["FUNCTION_CODE"].ToString();
+        
+                    if (reader["CREATE_TIME"] != DBNull.Value)
+                        dto.CREATE_TIME = Convert.ToDateTime(reader["CREATE_TIME"]);
+                    dto.CREATE_USER_ID = reader["CREATE_USER_ID"].ToString();
+                    if (reader["UPDATE_TIME"] != DBNull.Value)
+                        dto.UPDATE_TIME = Convert.ToDateTime(reader["UPDATE_TIME"]);
+                    dto.UPDATE_USER_ID = reader["UPDATE_USER_ID"].ToString();
+                    list.Add(dto);
+                }
+                conn.Close();
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.StackTrace);
+                Debug.WriteLine(err.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return list;
+        }
+
+
+
+
+        public List<FUNCTION_USER_GROUP_REL_DTO> SelectFUG() //근본 셀렉
         {
             List<FUNCTION_USER_GROUP_REL_DTO> list = null;
             try

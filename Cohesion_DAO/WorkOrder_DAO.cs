@@ -59,10 +59,17 @@ namespace Cohesion_DAO
             List<Sales_Order_Work_DTO> list = null;
             try
             {
-                string sql = @"select SALES_ORDER_ID, so.ORDER_DATE, so.CUSTOMER_CODE, so.PRODUCT_CODE, so.ORDER_QTY
+                string sql = @"select so.SALES_ORDER_ID, so.ORDER_DATE, so.CUSTOMER_CODE, so.PRODUCT_CODE, CAST(so.ORDER_QTY as int) ORDER_QTY
                                from SALES_ORDER_MST so inner join PRODUCT_MST p on so.PRODUCT_CODE = p.PRODUCT_CODE
 							   where so.CONFIRM_FLAG = 'Y' and so.SHIP_FLAG is null
 							   group by so.SALES_ORDER_ID, so.ORDER_DATE, so.CUSTOMER_CODE, so.PRODUCT_CODE, so.ORDER_QTY";
+
+                // 완제품 LOT 수량을 가져와서 비교 - LOT_SYS에 완제품이 다 들어가 있어야한다.
+                /*string sql = @"select SALES_ORDER_ID, so.ORDER_DATE, so.CUSTOMER_CODE, so.PRODUCT_CODE, so.ORDER_QTY, sum(l.LOT_QTY) LOT_QTY
+                               from SALES_ORDER_MST so inner join PRODUCT_MST p on so.PRODUCT_CODE = p.PRODUCT_CODE
+													   inner join LOT_STS l on so.PRODUCT_CODE = l.PRODUCT_CODE
+							   where so.CONFIRM_FLAG = 'Y' and so.SHIP_FLAG is null
+							   group by SALES_ORDER_ID, so.ORDER_DATE, so.CUSTOMER_CODE, so.PRODUCT_CODE, so.ORDER_QTY";*/
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 conn.Open();
@@ -88,13 +95,13 @@ namespace Cohesion_DAO
             // LOT 완성되면 쿼리 수정이 필요함.
             // 안전 재고수량, 현 재고수량, order 수량에 필요한 갯수 등등
             List<BOM_MST_WORKORDER_DTO> list = null;
-            string sql = @"with BOM as(select b.CHILD_PRODUCT_CODE, pd2.PRODUCT_NAME, REQUIRE_QTY, pd2.PRODUCT_TYPE, so.ORDER_QTY
+            string sql = @"with BOM as(select b.CHILD_PRODUCT_CODE, pd2.PRODUCT_NAME, REQUIRE_QTY, pd2.PRODUCT_TYPE, so.ORDER_QTY, pd2.VENDOR_CODE
                                        from SALES_ORDER_MST so inner join PRODUCT_MST pd on so.PRODUCT_CODE = pd.PRODUCT_CODE
 						                                       inner join BOM_MST b on so.PRODUCT_CODE = b.PRODUCT_CODE
 						                                       inner join PRODUCT_MST pd2 on b.CHILD_PRODUCT_CODE = pd2.PRODUCT_CODE
                                        where 1 = 1 and SALES_ORDER_ID = @SALES_ORDER_ID and so.PRODUCT_CODE = @PRODUCT_CODE
-						               group by b.CHILD_PRODUCT_CODE, pd2.PRODUCT_NAME, REQUIRE_QTY, pd2.PRODUCT_TYPE, so.ORDER_QTY)
-						               select CHILD_PRODUCT_CODE, PRODUCT_NAME, REQUIRE_QTY, PRODUCT_TYPE, ORDER_QTY, ls.LOT_QTY
+						               group by b.CHILD_PRODUCT_CODE, pd2.PRODUCT_NAME, pd2.VENDOR_CODE, REQUIRE_QTY, pd2.PRODUCT_TYPE, so.ORDER_QTY)
+						               select CHILD_PRODUCT_CODE, PRODUCT_NAME, REQUIRE_QTY, PRODUCT_TYPE, ORDER_QTY, ls.LOT_QTY, VENDOR_CODE
 						               from BOM m inner join LOT_STS ls on m.CHILD_PRODUCT_CODE = ls.PRODUCT_CODE";
 
             try
@@ -246,6 +253,36 @@ namespace Cohesion_DAO
                 conn.Open();
 
                 list = Helper.DataReaderMapToList<PRODUCT_OPERATION_REL_DTO>(cmd.ExecuteReader());
+
+                return list;
+
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                Debug.WriteLine(err.StackTrace);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public List<PRODUCT_MST_DTO> GetAllProduct()
+        {
+            // LOT 완성되면 쿼리 수정이 필요함.
+            // 안전 재고수량, 현 재고수량, order 수량에 필요한 갯수 등등
+            List<PRODUCT_MST_DTO> list = null;
+            string sql = @"select PRODUCT_CODE, PRODUCT_NAME, PRODUCT_TYPE, CUSTOMER_CODE, VENDOR_CODE, CREATE_TIME, CREATE_USER_ID, UPDATE_TIME, UPDATE_USER_ID
+                           from PRODUCT_MST";
+
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                conn.Open();
+
+                list = Helper.DataReaderMapToList<PRODUCT_MST_DTO>(cmd.ExecuteReader());
 
                 return list;
 

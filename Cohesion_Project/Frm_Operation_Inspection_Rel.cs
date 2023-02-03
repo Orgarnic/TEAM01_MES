@@ -53,8 +53,8 @@ namespace Cohesion_Project
             //데이터 그리드 뷰 초기 설정
             DgvUtil.DgvInit(dgvOperationList);
             DgvUtil.AddTextCol(dgvOperationList, "    NO", "DISPLAY_SEQ", 80, readOnly: true, align: 1, frozen: true);
-            DgvUtil.AddTextCol(dgvOperationList, "  공정 코드", "OPERATION_CODE", 150, readOnly: true, align: 1, frozen: true);
-            DgvUtil.AddTextCol(dgvOperationList, "  공정명", "OPERATION_NAME", 150, readOnly: true);
+            DgvUtil.AddTextCol(dgvOperationList, "  공정 코드", "OPERATION_CODE", 150, readOnly: true, align: 0, frozen: true);
+            DgvUtil.AddTextCol(dgvOperationList, "  공정명", "OPERATION_NAME", 150, readOnly: true, align: 0);
             DgvUtil.AddTextCol(dgvOperationList, "    불량 입력", "CHECK_DEFECT_FLAG", 150, readOnly: true);
             DgvUtil.AddTextCol(dgvOperationList, "    검사 데이터 입력", "CHECK_INSPECT_FLAG", 150, readOnly: true);
             DgvUtil.AddTextCol(dgvOperationList, "    자재 사용", "CHECK_MATERIAL_FLAG", 150, readOnly: true);
@@ -65,13 +65,13 @@ namespace Cohesion_Project
 
             DgvUtil.DgvInit(dgvAddedInspection);
             DgvUtil.AddTextCol(dgvAddedInspection, "    NO", "DISPLAY_SEQ", 80, readOnly: true, align: 1, frozen: true);
-            DgvUtil.AddTextCol(dgvAddedInspection, "    검사 항목 코드", "INSPECT_ITEM_CODE", 150, readOnly: true, align: 1, frozen: true);
-            DgvUtil.AddTextCol(dgvAddedInspection, "    검사 항목명", "INSPECT_ITEM_NAME", 200, readOnly: true);
+            DgvUtil.AddTextCol(dgvAddedInspection, "    검사 항목 코드", "INSPECT_ITEM_CODE", 150, readOnly: true, align: 0, frozen: true);
+            DgvUtil.AddTextCol(dgvAddedInspection, "    검사 항목명", "INSPECT_ITEM_NAME", 200, readOnly: true, align: 0);
 
             DgvUtil.DgvInit(dgvInspectionList);
             DgvUtil.AddTextCol(dgvInspectionList, "     NO", "DISPLAY_SEQ", 80, readOnly: true, align: 1, frozen: true);
-            DgvUtil.AddTextCol(dgvInspectionList, "     검사 항목 코드", "INSPECT_ITEM_CODE", 150, readOnly: true, align: 1, frozen: true);
-            DgvUtil.AddTextCol(dgvInspectionList, "     검사 항목명", "INSPECT_ITEM_NAME", 200, readOnly: true);
+            DgvUtil.AddTextCol(dgvInspectionList, "     검사 항목 코드", "INSPECT_ITEM_CODE", 150, readOnly: true, align: 0, frozen: true);
+            DgvUtil.AddTextCol(dgvInspectionList, "     검사 항목명", "INSPECT_ITEM_NAME", 200, readOnly: true, align: 0);
 
 
             btnLeft.Enabled = false;
