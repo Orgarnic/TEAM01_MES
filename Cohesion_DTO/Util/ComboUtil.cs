@@ -18,6 +18,8 @@ namespace Cohesion_DTO
         public static List<string> ProductCode = new List<string> { };
 
         public static List<string> OperationCode = new List<string> { };
+
+        public static List<string> WorkOrder = new List<string> { };
     }
 
     public class ComboStringConverter : StringConverter
@@ -85,6 +87,20 @@ namespace Cohesion_DTO
         public override TypeConverter.StandardValuesCollection GetStandardValues(ITypeDescriptorContext context)
         {
             return new StandardValuesCollection(ComboUtil.OperationCode);
+        }
+    }
+
+    // 생산 지시 검색 목록에 필요 - 김재형 추가
+    public class ComboWorkOrderConverter : StringConverter
+    {
+        public override bool GetStandardValuesSupported(ITypeDescriptorContext context)
+        {
+            return true;
+        }
+
+        public override TypeConverter.StandardValuesCollection GetStandardValues(ITypeDescriptorContext context)
+        {
+            return new StandardValuesCollection(ComboUtil.WorkOrder);
         }
     }
 }

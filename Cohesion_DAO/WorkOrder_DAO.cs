@@ -13,6 +13,7 @@ namespace Cohesion_DAO
 {
     public class WorkOrder_DAO : IDisposable
     {
+        int oNum, pNum, dNum;
         SqlConnection conn = null;
         string connstr = ConfigurationManager.ConnectionStrings["DB"].ConnectionString;
 
@@ -25,6 +26,40 @@ namespace Cohesion_DAO
         {
             if (conn.State == ConnectionState.Open)
                 conn.Close();
+        }
+
+        public List<Work_Order_MST_DTO> SelectWorkOrders(Work_Order_SEARCH_DTO search)
+        {
+            List<Work_Order_MST_DTO> list = null;
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                StringBuilder sql = new StringBuilder(@"select WORK_ORDER_ID, ORDER_DATE, PRODUCT_CODE, CUSTOMER_CODE, ORDER_QTY, ORDER_STATUS, PRODUCT_QTY, DEFECT_QTY, WORK_START_TIME, WORK_CLOSE_TIME, WORK_CLOSE_USER_ID, CREATE_TIME, CREATE_USER_ID, UPDATE_TIME, UPDATE_USER_ID, convert(nvarchar(16),ORDER_DATE,120) WORK_CODE
+                                                        from WORK_ORDER_MST
+                                                        where 1 = 1");
+                foreach (var prop in search.GetType().GetProperties())
+                {
+                    if (!string.IsNullOrWhiteSpace((string)prop.GetValue(search)))
+                    {
+                        sql.Append($" and {prop.Name} = @{prop.Name}");
+                        cmd.Parameters.AddWithValue($"@{prop.Name}", prop.GetValue(search).ToString());
+                    }
+                }
+                cmd.CommandText = sql.ToString();
+                cmd.Connection = conn;
+                conn.Open();
+                list = Helper.DataReaderMapToList<Work_Order_MST_DTO>(cmd.ExecuteReader());
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.StackTrace);
+                Debug.WriteLine(err.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return list;
         }
 
         public List<Work_Order_MST_DTO> GetAllWorkOrderList()
@@ -59,7 +94,7 @@ namespace Cohesion_DAO
             List<Sales_Order_Work_DTO> list = null;
             try
             {
-                string sql = @"select so.SALES_ORDER_ID, so.ORDER_DATE, so.CUSTOMER_CODE, so.PRODUCT_CODE, CAST(so.ORDER_QTY as int) ORDER_QTY
+                string sql = @"select so.SALES_ORDER_ID, so.ORDER_DATE, so.CUSTOMER_CODE, so.PRODUCT_CODE, so.ORDER_QTY
                                from SALES_ORDER_MST so inner join PRODUCT_MST p on so.PRODUCT_CODE = p.PRODUCT_CODE
 							   where so.CONFIRM_FLAG = 'Y' and so.SHIP_FLAG is null
 							   group by so.SALES_ORDER_ID, so.ORDER_DATE, so.CUSTOMER_CODE, so.PRODUCT_CODE, so.ORDER_QTY";
@@ -130,6 +165,8 @@ namespace Cohesion_DAO
 
         public bool InsertWorkOrder(Work_Order_MST_DTO work)
         {
+            pNum = Convert.ToInt32(work.PRODUCT_QTY);
+            dNum = Convert.ToInt32(work.DEFECT_QTY);
             try
             {
                 SqlCommand cmd = new SqlCommand("SP_InsertWorkOrderCode", conn);
@@ -141,8 +178,8 @@ namespace Cohesion_DAO
                 cmd.Parameters.AddWithValue("@CUSTOMER_CODE", work.CUSTOMER_CODE);
                 cmd.Parameters.AddWithValue("@ORDER_QTY", work.ORDER_QTY);
                 cmd.Parameters.AddWithValue("@ORDER_STATUS", work.ORDER_STATUS);
-                cmd.Parameters.AddWithValue("@PRODUCT_QTY", work.PRODUCT_QTY > 0 ? work.PRODUCT_QTY : 0);
-                cmd.Parameters.AddWithValue("@DEFECT_QTY", work.PRODUCT_QTY > 0 ? work.PRODUCT_QTY : 0);
+                cmd.Parameters.AddWithValue("@PRODUCT_QTY", pNum > 0 ? pNum : 0);
+                cmd.Parameters.AddWithValue("@DEFECT_QTY", dNum > 0 ? dNum : 0);
                 cmd.Parameters.AddWithValue("@WORK_START_TIME", DBNull.Value);
                 cmd.Parameters.AddWithValue("@WORK_CLOSE_TIME", DBNull.Value);
                 cmd.Parameters.AddWithValue("@WORK_CLOSE_USER_ID", DBNull.Value);
@@ -169,6 +206,8 @@ namespace Cohesion_DAO
 
         public bool UpdateWorkOrder(Work_Order_MST_DTO work, string uid)
         {
+            pNum = Convert.ToInt32(work.PRODUCT_QTY);
+            dNum = Convert.ToInt32(work.DEFECT_QTY);
             try
             {
                 string sql = @"update WORK_ORDER_MST
@@ -186,10 +225,10 @@ namespace Cohesion_DAO
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@PRODUCT_CODE", work.PRODUCT_CODE != null ? work.PRODUCT_CODE : DBNull.Value.ToString());
-                cmd.Parameters.AddWithValue("@ORDER_QTY", work.ORDER_QTY > 0 ? work.ORDER_QTY : 0);
+                cmd.Parameters.AddWithValue("@ORDER_QTY", oNum > 0 ? oNum : 0);
                 cmd.Parameters.AddWithValue("@ORDER_STATUS", work.ORDER_STATUS);
-                cmd.Parameters.AddWithValue("@PRODUCT_QTY", work.PRODUCT_QTY > 0 ? work.PRODUCT_QTY : 0);
-                cmd.Parameters.AddWithValue("@DEFECT_QTY", work.DEFECT_QTY > 0 ? work.DEFECT_QTY : 0);
+                cmd.Parameters.AddWithValue("@PRODUCT_QTY", pNum > 0 ? pNum : 0);
+                cmd.Parameters.AddWithValue("@DEFECT_QTY", dNum > 0 ? dNum : 0);
                 cmd.Parameters.AddWithValue("@WORK_START_TIME", work.WORK_START_TIME);
                 cmd.Parameters.AddWithValue("@WORK_CLOSE_TIME", work.WORK_CLOSE_TIME);
                 cmd.Parameters.AddWithValue("@WORK_CLOSE_USER_ID", work.WORK_CLOSE_USER_ID != null ? work.WORK_CLOSE_USER_ID : DBNull.Value.ToString());

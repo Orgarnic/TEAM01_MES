@@ -10,6 +10,14 @@ namespace Cohesion_Project.Service
 {
     public class Srv_WorkOrder
     {
+        public List<Work_Order_MST_DTO> SelectWorkOrders(Work_Order_SEARCH_DTO search)
+        {
+            WorkOrder_DAO db = new WorkOrder_DAO();
+            List<Work_Order_MST_DTO> list = db.SelectWorkOrders(search);
+            db.Dispose();
+
+            return list;
+        }
         public List<Work_Order_MST_DTO> GetAllWorkOrderList()
         {
             WorkOrder_DAO db = new WorkOrder_DAO();

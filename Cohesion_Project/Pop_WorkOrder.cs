@@ -134,7 +134,7 @@ namespace Cohesion_Project
                             dto = new Work_Order_MST_DTO
                                 {
                                     PRODUCT_CODE = dgvBOMStock["CHILD_PRODUCT_CODE", i].Value.ToString(),
-                                    ORDER_QTY = (oQty - lQty),
+                                    ORDER_QTY = oQty - lQty,
                                     ORDER_STATUS = "OPEN",
                                     CREATE_USER_ID = "유기현",
                                     CREATE_TIME = DateTime.Now,

@@ -15,6 +15,7 @@ namespace Cohesion_Project
     {
         Srv_WorkOrder srv = new Srv_WorkOrder();
         Work_Order_MST_DTO wOrder = null;
+        List<Work_Order_MST_DTO> temp = null;
         string Uid, wCode, Status;
         public Frm_WorkOrder()
         {
@@ -28,6 +29,9 @@ namespace Cohesion_Project
 
         private void Frm_WorkOrder_Load(object sender, EventArgs e)
         {
+            temp = srv.SelectWorkOrders(new Work_Order_SEARCH_DTO());
+            ComboUtil.WorkOrder = (from t in temp
+                                   select t.WORK_ORDER_ID).ToList();
             GetWorkOrderList();
             DataGridClean();
         }
@@ -74,15 +78,21 @@ namespace Cohesion_Project
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            List<Work_Order_MST_DTO> list = (List<Work_Order_MST_DTO>)dgvWorkOrderList.DataSource;
-            if(string.IsNullOrWhiteSpace(txtSearch.Text))
+            Work_Order_SEARCH_DTO list = (Work_Order_SEARCH_DTO)ppgWorkOrderSearch.SelectedObject;
+            if (string.IsNullOrWhiteSpace(txtSearch.Text) &&
+                list.WORK_ORDER_ID == null &&
+                list.CUSTOMER_CODE == null &&
+                list.CREATE_USER_ID == null &&
+                list.PRODUCT_CODE == null &&
+                list.ORDER_STATUS == null)
             {
-                MboxUtil.MboxWarn("조회하실 내용을 입력해주세요.");
+                MboxUtil.MboxWarn("검색조건을 입력해주세요.");
                 return;
             }
-
-            List<Work_Order_MST_DTO> result = list.FindAll((s) => s.PRODUCT_CODE.Contains(txtSearch.Text));
-            dgvWorkOrderList.DataSource = result;
+            else
+            {
+                dgvWorkOrderList.DataSource = srv.SelectWorkOrders(list);
+            }
         }
 
         private void dgvWorkOrderList_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -135,7 +145,7 @@ namespace Cohesion_Project
                 btnSearch.Enabled = true;
                 dgvWorkOrderList.ClearSelection();
                 ppgWorkOrderSearch.Enabled = true;
-                ppgWorkOrderSearch.SelectedObject = new Work_Order_MST_DTO();
+                ppgWorkOrderSearch.SelectedObject = new Work_Order_SEARCH_DTO();
                 lbl3.Text = "▶ 검색 상세 조건";
             }
             else
@@ -150,6 +160,18 @@ namespace Cohesion_Project
 
         private void ppgWorkOrderSearch_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
         {
+            if (e.ChangedItem.PropertyDescriptor.Description.Equals("WORK_ORDER_ID"))
+            {
+                var list = temp.Find((c) => c.WORK_ORDER_ID.Equals(e.ChangedItem.Value.ToString()));
+                if (list != null)
+                {
+                    Work_Order_SEARCH_DTO wwork = (Work_Order_SEARCH_DTO)ppgWorkOrderSearch.SelectedObject;
+                    wwork.PRODUCT_CODE = list.PRODUCT_CODE;
+                    wwork.CUSTOMER_CODE = list.CUSTOMER_CODE;
+                    wwork.ORDER_STATUS = list.ORDER_STATUS;
+                    wwork.CREATE_USER_ID = list.CREATE_USER_ID;
+                }
+            }
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
