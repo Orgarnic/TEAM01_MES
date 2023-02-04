@@ -178,6 +178,12 @@ namespace Cohesion_Project
             //    return;
             //}
             //>  ======================================================================
+            if (dto.CONFIRM_FLAG == null || dto.CONFIRM_FLAG == "N")
+            {
+                if(dto.SHIP_FLAG == "Y")
+                    MboxUtil.MboxInfo("주문 확정이 되지 않은 주문은 배송여부를 변경할 수 없습니다.");
+                
+            }
 
             if (dto.CONFIRM_FLAG == "Y")
             {
@@ -189,6 +195,14 @@ namespace Cohesion_Project
                     MboxUtil.MboxInfo("수정하실 주문 정보를 선택해주세요.");
                     return;
                 }
+                if (dto.SHIP_FLAG == "Y")
+                {
+                    MboxUtil.MboxInfo("배송처리가 완료되었습니다.");
+
+                    result = srvSalesOrder.UpdateSalesOrder(dto);
+                    LoadData();
+                    return;
+                }
                 
                 Pop_Sales_Order pop = new Pop_Sales_Order();
                 pop.ProductCode = dgv_SalesOrder["PRODUCT_CODE", dgv_SalesOrder.CurrentRow.Index].Value.ToString();
@@ -197,23 +211,25 @@ namespace Cohesion_Project
                 {
                     MboxUtil.MboxInfo("주문 등록이 완료되었습니다.");
 
-                    if (pop.StockAvailable)
-                        MboxUtil.MboxInfo_("주문 확정 처리를 하시겠습니까?");
+                    //if (pop.StockAvailable)
+                    //    MboxUtil.MboxInfo_("주문 확정 처리를 하시겠습니까?");
 
                     dto.UPDATE_USER_ID = "정민영";
                     dto.UPDATE_TIME = DateTime.Now;
                     result = srvSalesOrder.UpdateSalesOrder(dto);
+                    LoadData();
                 }
                 else if (pop.StockAvailable)
                 {
                     MboxUtil.MboxInfo("주문 확정 처리가 되었습니다");
                     result = srvSalesOrder.UpdateSalesOrder(dto);
+                    LoadData();
                 }
                 else
-                    MboxUtil.MboxInfo("다시 시도하여 주십시오.");
+                    MboxUtil.MboxInfo("다시 시도하여 주십시오."); return;
+            
             }
-            result = srvSalesOrder.UpdateSalesOrder(dto);
-            LoadData();
+            
         }
         
 

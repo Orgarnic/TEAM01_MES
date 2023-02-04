@@ -15,6 +15,7 @@ namespace Cohesion_Project
     {
         Srv_Function_User_Group_Rel SrvFUG = new Srv_Function_User_Group_Rel();
         List<FUNCTION_USER_GROUP_REL_DTO> FList;
+      
         public Frm_Function_User_Group_Rel()
         {
             InitializeComponent();
@@ -27,7 +28,30 @@ namespace Cohesion_Project
             DataGridViewFill();
             DataGridViewFill2();
             PpgInit();
+
+
+
+
+
         }
+
+        //private void LoadData() // 2
+        //{
+        //    var list = SrvFUG.SelectFUGR(new FUNCTION_USER_GROUP_REL_DTO());
+        //    int seq = 1;
+        //    DgvF1.DataSource = list.Select((i) => new
+        //    {
+        //        USER_GROUP_CODE = i.USER_GROUP_CODE,
+        //        USER_GROUP_NAME = i.USER_GROUP_NAME,
+        //        USER_GROUP_TYPE = i.USER_GROUP_TYPE,
+        //        CREATE_TIME = i.CREATE_TIME,
+        //        CREATE_USER_ID = i.CREATE_USER_ID,
+        //        UPDATE_TIME = i.UPDATE_TIME,
+        //        UPDATE_USER_ID = i.UPDATE_USER_ID,
+
+        //        DISPLAY_SEQ = seq++
+        //    }).ToList();
+        //}
 
         private void DgvInit()
         {
@@ -50,6 +74,9 @@ namespace Cohesion_Project
             DgvUtil.AddTextCol(DgvF2, "순번", "DISPLAY_SEQ", 180, readOnly: true, align: 1, frozen: true);
             DgvUtil.AddTextCol(DgvF2, "화면 기능 코드", "FUNCTION_NAME", 150, true, align: 1);
             DgvUtil.AddTextCol(DgvF2, "화면 기능명", "FUNCTION_CODE", 120, true, align: 1);
+
+   
+
         }
 
 
@@ -179,6 +206,50 @@ namespace Cohesion_Project
                     FUNCTION_NAME = i.FUNCTION_NAME,
                     DISPLAY_SEQ = seqI++
                 }).ToList();
+            }
+        }
+
+        private void DgvFUG_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+            {
+                return;
+            }
+
+            string operationCode = DgvFUG[1, e.RowIndex].Value.ToString();
+            var list = SrvFUG.SelectFUGR(operationCode);
+            int seq = 1;
+            int seqI = 1;
+            DgvF1.DataSource = list.Select((i) => new FUNCTION_USER_GROUP_REL_DTO
+            {
+                FUNCTION_CODE = i.FUNCTION_CODE,
+                FUNCTION_NAME = i.FUNCTION_NAME,
+                DISPLAY_SEQ = seq++
+            }).ToList();
+
+
+            DgvF2.DataSource = FList.Where((i) => !list.Any((o) => i.FUNCTION_CODE == o.FUNCTION_CODE)).Select((i) => new FUNCTION_USER_GROUP_REL_DTO
+            {
+                FUNCTION_CODE = i.FUNCTION_CODE,
+                FUNCTION_NAME = i.FUNCTION_NAME,
+                DISPLAY_SEQ = seqI++
+            }).ToList();
+
+
+            if (DgvF1.Rows.Count != 0)
+            {
+                btnAdd.Enabled = false;
+                btnLeft.Enabled = false;
+                btnRight.Enabled = false;
+                btnUpdate.Enabled = true;
+                btnInsert.Enabled = true;
+            }
+            else
+            {
+                btnAdd.Enabled = true;
+                btnUpdate.PerformClick();
+                btnUpdate.Enabled = false;
+                btnInsert.Enabled = false;
             }
         }
     }

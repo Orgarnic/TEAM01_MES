@@ -48,30 +48,22 @@ namespace Cohesion_Project
         {
             DgvUtil.DgvInit(dgvList);
             DgvUtil.AddTextCol(dgvList, "주문코드", "SALES_ORDER_ID", 150, readOnly: true, align: 0, visible:false);
-            //DgvUtil.AddTextCol(dgvList, "고객코드", "CUSTOMER_CODE", 200, readOnly: true, align: 1);
             DgvUtil.AddTextCol(dgvList, "제품코드", "PRODUCT_CODE", 150, readOnly: true, align: 0);
             DgvUtil.AddTextCol(dgvList, "제품명", "PRODUCT_NAME", 120, readOnly: true, align: 0);
             DgvUtil.AddTextCol(dgvList, "주문수량", "ORDER_QTY", 120, readOnly: true, align: 0);
             DgvUtil.AddTextCol(dgvList, "자재품번", "CHILD_PRODUCT_CODE", 120, readOnly: true, align: 0);
-            DgvUtil.AddTextCol(dgvList, "자재품명", "CHILD_PRODUCT_NAME", 120, readOnly: true, align: 0);
+            //DgvUtil.AddTextCol(dgvList, "자재품명", "CHILD_PRODUCT_NAME", 120, readOnly: true, align: 0);
             DgvUtil.AddTextCol(dgvList, "소요수량", "REQUIRE_QTY", 120, readOnly: true, align: 2);
             DgvUtil.AddTextCol(dgvList, "총 소요수량", "NEED_QTY", 120, readOnly: true, align: 2);
             DgvUtil.AddTextCol(dgvList, "거래처", "VENDOR_CODE", 150, readOnly: true, align: 0);
             DgvUtil.AddTextCol(dgvList, "현재 로트 수량", "LOT_QTY", 120, readOnly: true, align: 2);
-            DgvUtil.AddTextCol(dgvList, "잔여 로트 수량", "LEFT_QTY", 120, readOnly: true, align: 2);
-
-            //> ============================================================================
-            //DgvUtil.AddTextCol(dgvList, "순번", "PURCHASE_SEQ", 130, readOnly: true, align: 2);
-            DgvUtil.AddTextCol(dgvList, "미입고 주문 수량", "NOT_STOCKED_QTY", 130, readOnly: true, align: 2);
-            DgvUtil.AddTextCol(dgvList, "주문 수량", "PURCHASE_QTY", 120, readOnly: false, align: 2);
-
-
+            DgvUtil.AddTextCol(dgvList, "주문 필요 수량", "PURCHASE_QTY", 130, readOnly: true, align: 2);
+            DgvUtil.AddTextCol(dgvList, "주문 요청 수량", "ORDERING_QTY", 120, readOnly: false, align: 2);
         }
         private void FormCondition()
         {
             productList = svr.SelectSalesOrderState(ProductCode, SalesOrderID);
-            dgvList.DataSource = productList.Where((C) => C.LEFT_QTY < 0).ToList();
-            //dgvList.DataSource = productList.FindAll((p) => p.PRODUCT_CODE == ProductCode);
+            dgvList.DataSource = productList.Where((C) => C.PURCHASE_QTY != "0" ).ToList();
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -89,17 +81,18 @@ namespace Cohesion_Project
             Sales_Order_VO purchase = new Sales_Order_VO();
             if (dgvList.Rows.Count==0)
             {
+                stockAvailable = true;
                 return;
             }
             foreach (DataGridViewRow row in dgvList.Rows)
             {
                 purchase = new Sales_Order_VO
                 {
-                    CHILD_PRODUCT_NAME = row.Cells["CHILD_PRODUCT_NAME"].Value.ToString(),
+                    CHILD_PRODUCT_CODE = row.Cells["CHILD_PRODUCT_CODE"].Value.ToString(),
                     SALES_ORDER_ID = row.Cells["SALES_ORDER_ID"].Value.ToString(),
                     VENDOR_CODE = row.Cells["VENDOR_CODE"].Value.ToString(),
                     MATERIAL_CODE = row.Cells["CHILD_PRODUCT_CODE"].Value.ToString(),
-                    ORDER_QTY = row.Cells["PURCHASE_QTY"].Value.ToString()
+                    ORDERING_QTY = Convert.ToInt32(row.Cells["ORDERING_QTY"].Value)
                 };
                 cnt++;
                 list.Add(purchase);

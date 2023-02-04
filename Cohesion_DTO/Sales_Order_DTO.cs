@@ -147,7 +147,7 @@ namespace Cohesion_DTO
         public string STOCK_IN_FLAG { get; set; }
         public string MATERIAL_CODE { get; set; }
         public int    PURCHASE_SEQ { get; set; }
-        public decimal NOT_STOCKED_QTY { get; set; }
+        public decimal ORDERING_QTY { get; set; }
     }
 
     public class Purchase_DTO
