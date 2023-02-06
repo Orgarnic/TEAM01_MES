@@ -124,7 +124,7 @@ namespace Cohesion_Project
                 }
                 else
                 {
-                    if (MboxUtil.MboxInfo_("작업지시 내역을 변경하시겠습니까?") == false) return;
+                    if (!MboxUtil.MboxInfo_("작업지시 내역을 변경하시겠습니까?")) return;
                     else
                     {
                         srv.UpdateWorkOrder(wOrder, Uid);
@@ -220,7 +220,7 @@ namespace Cohesion_Project
                 }
                 else
                 {
-                    if (MboxUtil.MboxInfo_("정말 삭제하시겠습니까?") == false) return;
+                    if (!MboxUtil.MboxInfo_("정말 삭제하시겠습니까?")) return;
                     else
                     {
                         srv.DeleteWorkOrder(wCode);
