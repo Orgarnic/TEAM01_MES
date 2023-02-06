@@ -211,7 +211,6 @@ namespace Cohesion_Project
                     UPDATE_USER_ID = i.UPDATE_USER_ID,
 
                 }).ToList();
-                ppg_Store.SelectedObject = new Store_DTO_Search();
             }
         }
         

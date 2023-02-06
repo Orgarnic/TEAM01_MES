@@ -306,7 +306,6 @@ namespace Cohesion_Project
                         UPDATE_TIME = i.UPDATE_TIME,
                         UPDATE_USER_ID = i.UPDATE_USER_ID
                     }).ToList();
-                    ppg_SalesOrder.SelectedObject = new Sales_Order_DTO_Search();
                 }
             }
         }
