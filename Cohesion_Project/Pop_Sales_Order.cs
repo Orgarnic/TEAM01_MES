@@ -102,12 +102,21 @@ namespace Cohesion_Project
 
             if (result)
             {
-                MboxUtil.MboxInfo_("주문서 등록을 완료했습니다.");
+                var mboxResult = MessageBox.Show("주문을 등록하시겠습니까?", "알림", MessageBoxButtons.YesNo);
+                //MboxUtil.MboxInfo_("주문을 등록하시겠습니까?");
+                if (mboxResult == DialogResult.Yes)
+                {
+                    this.DialogResult = DialogResult.OK;
+                }
+                else
+                {
+                    this.DialogResult = DialogResult.Cancel;
+                    this.Close();
+                }
             }
-            else
+            else    
                 MboxUtil.MboxWarn("주문 등록 중중 오류가 발생했습니다. 다시 시도해주세요.");
 
-            this.DialogResult = DialogResult.OK;
             this.Close();
         }
     }

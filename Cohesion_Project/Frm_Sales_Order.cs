@@ -44,8 +44,8 @@ namespace Cohesion_Project
             DgvUtil.AddTextCol(dgv_SalesOrder, "제품코드",    "PRODUCT_CODE",     120, readOnly: true, align: 0, frozen: true);
             DgvUtil.AddTextCol(dgv_SalesOrder, "제품명",      "PRODUCT_NAME",     150, readOnly: true, align: 0, frozen: true); //> btnAdd_Click -> public List<Sales_Order_DTO> SelectSalesList()
             DgvUtil.AddTextCol(dgv_SalesOrder, "주문수량",    "ORDER_QTY",        100, readOnly: true, align: 2);
-            DgvUtil.AddTextCol(dgv_SalesOrder, "확정여부",    "CONFIRM_FLAG",     90, readOnly: true, align: 1);
-            DgvUtil.AddTextCol(dgv_SalesOrder, "배송여부",    "SHIP_FLAG",        90, readOnly: true, align: 1);
+            DgvUtil.AddTextCol(dgv_SalesOrder, "확정여부",    "CONFIRM_FLAG",      90, readOnly: true, align: 1);
+            DgvUtil.AddTextCol(dgv_SalesOrder, "배송여부",    "SHIP_FLAG",         90, readOnly: true, align: 1);
             DgvUtil.AddTextCol(dgv_SalesOrder, "생성시간",    "CREATE_TIME",      200, readOnly: true, align: 1);
             DgvUtil.AddTextCol(dgv_SalesOrder, "생성 사용자", "CREATE_USER_ID",   130, readOnly: true, align: 0);
             DgvUtil.AddTextCol(dgv_SalesOrder, "변경시간",    "UPDATE_TIME",      200, readOnly: true, align: 1);
@@ -170,19 +170,10 @@ namespace Cohesion_Project
                 MboxUtil.MboxWarn("변경할 주문 정보를 선택해주세요.");
                 return;
             }
-
-            //>  =============== 주문확정 & 배송 확정 "Y"일 경우 수정 불가 ===============
-            //if (dto.CONFIRM_FLAG.Equals("Y") || dto.SHIP_FLAG.Equals("Y"))
-            //{
-            //    MboxUtil.MboxWarn("주문 또는 배송 확정된 주문은 변경하실 수 없습니다.");
-            //    return;
-            //}
-            //>  ======================================================================
             if (dto.CONFIRM_FLAG == null || dto.CONFIRM_FLAG == "N")
             {
                 if(dto.SHIP_FLAG == "Y")
-                    MboxUtil.MboxInfo("주문 확정이 되지 않은 주문은 배송여부를 변경할 수 없습니다.");
-                
+                    MboxUtil.MboxInfo("주문 확정이 되지 않은 주문은 배송확정이 불가능합니다.");
             }
 
             if (dto.CONFIRM_FLAG == "Y")
@@ -211,9 +202,6 @@ namespace Cohesion_Project
                 {
                     MboxUtil.MboxInfo("주문 등록이 완료되었습니다.");
 
-                    //if (pop.StockAvailable)
-                    //    MboxUtil.MboxInfo_("주문 확정 처리를 하시겠습니까?");
-
                     dto.UPDATE_USER_ID = "정민영";
                     dto.UPDATE_TIME = DateTime.Now;
                     result = srvSalesOrder.UpdateSalesOrder(dto);
@@ -225,13 +213,9 @@ namespace Cohesion_Project
                     result = srvSalesOrder.UpdateSalesOrder(dto);
                     LoadData();
                 }
-                else
-                    MboxUtil.MboxInfo("다시 시도하여 주십시오."); return;
-            
             }
-            
+            LoadData();
         }
-        
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
@@ -280,22 +264,50 @@ namespace Cohesion_Project
         
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            //if (isCondition)
-            //{
-            //    MboxUtil.MboxError("검색 조건을 입력해주십시오.");
-            //    return;
-            //}
-            orders = srvSalesOrder.SelectOrderWithCondition(sProperty);
-            dgv_SalesOrder.DataSource = orders;
-            if (ppg_SalesOrder.SelectedObject is Sales_Order_DTO_Search)
+            if (!ppg_SalesOrder.Enabled)
             {
-                var condition = ppg_SalesOrder.SelectedObject as Sales_Order_DTO_Search;
-                var list = srvSalesOrder.SelectOrderWithCondition(condition);
-                dgv_SalesOrder.DataSource = list;
+                MboxUtil.MboxError("검색조건을 활성화 시켜주세요.");
+                return;
             }
             else
             {
-                MboxUtil.MboxError("검색 조건을 입력하세요.");
+                var t = ppg_SalesOrder.SelectedObject as Sales_Order_DTO_Search;
+                if (t == null)
+                {
+                    MboxUtil.MboxError("검색조건을 입력해십시오.");
+                    return;
+                }
+                else
+                {
+                    Sales_Order_VO dto = new Sales_Order_VO
+                    {
+                        FROM_DATE = t.FROM_DATE,
+                        TO_DATE = t.TO_DATE,
+                        SALES_ORDER_ID = t.SALES_ORDER_ID,
+                        CUSTOMER_NAME = t.CUSTOMER_NAME,
+                        PRODUCT_CODE = t.PRODUCT_CODE,
+                        CONFIRM_FLAG = t.CONFIRM_FLAG,
+                        SHIP_FLAG = t.SHIP_FLAG
+                    };
+                    var list = srvSalesOrder.SelectOrderWithCondition(dto);
+                    dgv_SalesOrder.DataSource = list.Select((i) => new
+                    {
+                        SALES_ORDER_ID = i.SALES_ORDER_ID,
+                        ORDER_DATE = i.ORDER_DATE,
+                        CUSTOMER_CODE = i.CUSTOMER_CODE,
+                        CUSTOMER_NAME = i.CUSTOMER_NAME,
+                        PRODUCT_CODE = i.PRODUCT_CODE,
+                        PRODUCT_NAME = i.PRODUCT_NAME,
+                        ORDER_QTY = i.ORDER_QTY,
+                        CONFIRM_FLAG = i.CONFIRM_FLAG,
+                        SHIP_FLAG = i.SHIP_FLAG,
+                        CREATE_TIME = i.CREATE_TIME,
+                        CREATE_USER_ID = i.CREATE_USER_ID,
+                        UPDATE_TIME = i.UPDATE_TIME,
+                        UPDATE_USER_ID = i.UPDATE_USER_ID
+                    }).ToList();
+                    ppg_SalesOrder.SelectedObject = new Sales_Order_DTO_Search();
+                }
             }
         }
     }

@@ -29,49 +29,18 @@ namespace Cohesion_Project
         /// </summary>
         private void InitializeComponent()
         {
-            this.dgvCart = new System.Windows.Forms.DataGridView();
-            this.panel4 = new System.Windows.Forms.Panel();
             this.dgvList = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.panel6 = new System.Windows.Forms.Panel();
             this.btnCreate = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCart)).BeginInit();
-            this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvList)).BeginInit();
             this.panel3.SuspendLayout();
-            this.panel6.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // dgvCart
-            // 
-            this.dgvCart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvCart.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgvCart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCart.Location = new System.Drawing.Point(0, 1);
-            this.dgvCart.Name = "dgvCart";
-            this.dgvCart.RowTemplate.Height = 23;
-            this.dgvCart.Size = new System.Drawing.Size(1442, 274);
-            this.dgvCart.TabIndex = 10;
-            // 
-            // panel4
-            // 
-            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel4.Controls.Add(this.dgvCart);
-            this.panel4.Location = new System.Drawing.Point(9, 377);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1442, 276);
-            this.panel4.TabIndex = 15;
             // 
             // dgvList
             // 
@@ -83,7 +52,7 @@ namespace Cohesion_Project
             this.dgvList.Location = new System.Drawing.Point(0, 1);
             this.dgvList.Name = "dgvList";
             this.dgvList.RowTemplate.Height = 23;
-            this.dgvList.Size = new System.Drawing.Size(1442, 274);
+            this.dgvList.Size = new System.Drawing.Size(1313, 274);
             this.dgvList.TabIndex = 10;
             // 
             // panel3
@@ -94,32 +63,8 @@ namespace Cohesion_Project
             this.panel3.Controls.Add(this.dgvList);
             this.panel3.Location = new System.Drawing.Point(9, 46);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1442, 276);
+            this.panel3.Size = new System.Drawing.Size(1313, 276);
             this.panel3.TabIndex = 14;
-            // 
-            // label2
-            // 
-            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(42)))), ((int)(((byte)(66)))));
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label2.Location = new System.Drawing.Point(0, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(1461, 35);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "제품 BOM 재고 목록";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel6
-            // 
-            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel6.Controls.Add(this.label2);
-            this.panel6.Location = new System.Drawing.Point(0, 332);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1461, 35);
-            this.panel6.TabIndex = 13;
             // 
             // btnCreate
             // 
@@ -131,7 +76,7 @@ namespace Cohesion_Project
             this.btnCreate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnCreate.Image = global::Cohesion_Project.Properties.Resources.tabs;
             this.btnCreate.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnCreate.Location = new System.Drawing.Point(1260, 10);
+            this.btnCreate.Location = new System.Drawing.Point(1131, 10);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.btnCreate.Size = new System.Drawing.Size(90, 30);
@@ -150,7 +95,7 @@ namespace Cohesion_Project
             this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnClose.Image = global::Cohesion_Project.Properties.Resources.cancel;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(1361, 10);
+            this.btnClose.Location = new System.Drawing.Point(1232, 10);
             this.btnClose.Name = "btnClose";
             this.btnClose.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.btnClose.Size = new System.Drawing.Size(90, 30);
@@ -167,10 +112,10 @@ namespace Cohesion_Project
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(217)))), ((int)(((byte)(226)))));
             this.panel2.Controls.Add(this.btnCreate);
             this.panel2.Controls.Add(this.btnClose);
-            this.panel2.Location = new System.Drawing.Point(0, 661);
+            this.panel2.Location = new System.Drawing.Point(0, 326);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1461, 50);
+            this.panel2.Size = new System.Drawing.Size(1332, 50);
             this.panel2.TabIndex = 12;
             // 
             // label1
@@ -181,7 +126,7 @@ namespace Cohesion_Project
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1461, 35);
+            this.label1.Size = new System.Drawing.Size(1332, 35);
             this.label1.TabIndex = 0;
             this.label1.Text = "작업지시 등록 목록";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -194,28 +139,26 @@ namespace Cohesion_Project
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1461, 36);
+            this.panel1.Size = new System.Drawing.Size(1332, 36);
             this.panel1.TabIndex = 11;
             // 
             // Pop_Sales_Order
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
-            this.ClientSize = new System.Drawing.Size(1461, 711);
-            this.Controls.Add(this.panel4);
+            this.ClientSize = new System.Drawing.Size(1332, 376);
             this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Pop_Sales_Order";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "주문 납품서";
             this.Load += new System.EventHandler(this.Pop_Sales_Order_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCart)).EndInit();
-            this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvList)).EndInit();
             this.panel3.ResumeLayout(false);
-            this.panel6.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -223,13 +166,8 @@ namespace Cohesion_Project
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView dgvCart;
-        private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.DataGridView dgvList;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Button btnCreate;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Panel panel2;

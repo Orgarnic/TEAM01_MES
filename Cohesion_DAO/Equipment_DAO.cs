@@ -39,6 +39,52 @@ namespace Cohesion_DAO
 
             return list;
         }
+        public List<Equipment_DTO_Search_Data> SelectEquipmentSearchList(Equipment_DTO_Search_Data condtion)
+        {
+            List<Equipment_DTO_Search_Data> list = null;
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                StringBuilder sql = new StringBuilder(
+                    @"SELECT EQUIPMENT_CODE, EQUIPMENT_NAME, EQUIPMENT_TYPE, EQUIPMENT_STATUS, LAST_DOWN_TIME, CREATE_TIME, CREATE_USER_ID, UPDATE_TIME, UPDATE_USER_ID
+                           FROM EQUIPMENT_MST
+                      where 1 = 1 ");
+                if (!string.IsNullOrWhiteSpace(condtion.EQUIPMENT_CODE))
+                {
+                    sql.Append(" and EQUIPMENT_CODE = @EQUIPMENT_CODE ");
+                    cmd.Parameters.AddWithValue("@EQUIPMENT_CODE", condtion.EQUIPMENT_CODE);
+                }
+                if (!string.IsNullOrWhiteSpace(condtion.EQUIPMENT_NAME))
+                {
+                    sql.Append(" and EQUIPMENT_NAME = @EQUIPMENT_NAME ");
+                    cmd.Parameters.AddWithValue("@EQUIPMENT_NAME", condtion.EQUIPMENT_NAME);
+                }
+                if (!string.IsNullOrWhiteSpace(condtion.EQUIPMENT_TYPE))
+                {
+                    sql.Append(" and EQUIPMENT_TYPE = @EQUIPMENT_TYPE ");
+                    cmd.Parameters.AddWithValue("@EQUIPMENT_TYPE", condtion.EQUIPMENT_TYPE);
+                }
+                if (!string.IsNullOrWhiteSpace(condtion.EQUIPMENT_STATUS))
+                {
+                    sql.Append(" and EQUIPMENT_STATUS = @EQUIPMENT_STATUS ");
+                    cmd.Parameters.AddWithValue("@EQUIPMENT_STATUS", condtion.EQUIPMENT_STATUS);
+                }
+                cmd.CommandText = sql.ToString();
+                cmd.Connection = conn;
+                conn.Open();
+                list = Helper.DataReaderMapToList<Equipment_DTO_Search_Data>(cmd.ExecuteReader());
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.StackTrace);
+                Debug.WriteLine(err.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return list;
+        }
         public bool InsertEquipment(Equipment_DTO dto)
         {
             string sql = @"INSERT INTO EQUIPMENT_MST(EQUIPMENT_CODE, EQUIPMENT_NAME, EQUIPMENT_TYPE, EQUIPMENT_STATUS, CREATE_TIME, CREATE_USER_ID)

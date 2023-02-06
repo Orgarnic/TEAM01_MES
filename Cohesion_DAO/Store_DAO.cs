@@ -62,7 +62,7 @@ namespace Cohesion_DAO
             string sql = @"UPDATE STORE_MST 
                            SET  STORE_NAME = @STORE_NAME
                            	   ,STORE_TYPE = @STORE_TYPE
-                           	   ,UPDATE_TIME = GETDATE()
+                           	   ,UPDATE_TIME = @UPDATE_TIME
                            	   ,UPDATE_USER_ID = @UPDATE_USER_ID
                            WHERE STORE_CODE = @STORE_CODE ";
             
@@ -71,6 +71,7 @@ namespace Cohesion_DAO
             cmd.Parameters.AddWithValue("@STORE_CODE", string.IsNullOrEmpty(dto.STORE_CODE) ? (object)DBNull.Value : dto.STORE_CODE);
             cmd.Parameters.AddWithValue("@STORE_NAME", string.IsNullOrEmpty(dto.STORE_NAME) ? (object)DBNull.Value : dto.STORE_NAME);
             cmd.Parameters.AddWithValue("@STORE_TYPE", string.IsNullOrEmpty(dto.STORE_TYPE) ? (object)DBNull.Value : dto.STORE_TYPE);
+            cmd.Parameters.AddWithValue("@UPDATE_TIME", dto.UPDATE_TIME);
             cmd.Parameters.AddWithValue("@UPDATE_USER_ID", string.IsNullOrEmpty(dto.UPDATE_USER_ID) ? (object)DBNull.Value : dto.UPDATE_USER_ID);
 
             conn.Open();
@@ -78,9 +79,9 @@ namespace Cohesion_DAO
             return true;
         }
 
-        public List<Store_DTO> SelectStore(Store_DTO condtion)
+        public List<Store_DTO_Search_Data> SelectStore(Store_DTO_Search_Data condtion)
         {
-            List<Store_DTO> list = null;
+            List<Store_DTO_Search_Data> list = null;
             try
             {
                 SqlCommand cmd = new SqlCommand();
@@ -106,7 +107,7 @@ namespace Cohesion_DAO
                 cmd.CommandText = sql.ToString();
                 cmd.Connection = conn;
                 conn.Open();
-                list = Helper.DataReaderMapToList<Store_DTO>(cmd.ExecuteReader());
+                list = Helper.DataReaderMapToList<Store_DTO_Search_Data>(cmd.ExecuteReader());
             }
             catch (Exception err)
             {

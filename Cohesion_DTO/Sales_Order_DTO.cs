@@ -31,7 +31,7 @@ namespace Cohesion_DTO
         public string PRODUCT_NAME { get; set; }
 
         [Category("속성"), Description("ORDER_QTY"), DisplayName("주문수량")]
-        public string ORDER_QTY { get; set; }
+        public decimal ORDER_QTY { get; set; }
 
         [Category("속성"), Description("CM_ANSWER"), DisplayName("확정여부"), TypeConverter(typeof(ComboStringConverter))]
         public string CONFIRM_FLAG { get; set; }
@@ -55,10 +55,10 @@ namespace Cohesion_DTO
     public class Sales_Order_DTO_Search
     {
         [Category("검색조건"), Description("SEARCH_START_DATE"), DisplayName("조회 시작 일자")]
-        public DateTime SEARCH_START_DATE { get; set; }
+        public DateTime FROM_DATE { get; set; }
 
         [Category("검색조건"), Description("SEARCH_END_DATE"), DisplayName("조회 종료 일자")]
-        public DateTime SEARCH_END_DATE { get; set; }
+        public DateTime TO_DATE { get; set; }
 
         [Category("검색조건"), Description("SALES_ORDER_ID"), DisplayName("주문서코드")]
         public string SALES_ORDER_ID { get; set; }
@@ -73,6 +73,8 @@ namespace Cohesion_DTO
 
         [Category("검색조건"), Description("CM_ANSWER"), DisplayName("확정여부"), TypeConverter(typeof(ComboStringConverter))]
         public string CONFIRM_FLAG { get; set; }
+        [Category("검색조건"), Description("CM_ANSWER"), DisplayName("확정여부"), TypeConverter(typeof(ComboStringConverter))]
+        public string SHIP_FLAG { get; set; }
     }
 
     // 김재형 추가
@@ -123,31 +125,33 @@ namespace Cohesion_DTO
     }
     public class Sales_Order_VO
     {
-        public string SALES_ORDER_ID { get; set; }
-        public DateTime ORDER_DATE { get; set; }
-        public string CUSTOMER_CODE { get; set; }
-        public string CUSTOMER_NAME { get; set; }
-        public string PRODUCT_CODE { get; set; }
-        public string PRODUCT_NAME { get; set; }
-        public string ORDER_QTY { get; set; }
-        public string PURCHASE_QTY { get; set; }
-        public string CONFIRM_FLAG { get; set; }
-        public string SHIP_FLAG { get; set; }
-        public DateTime CREATE_TIME { get; set; }
-        public string CREATE_USER_ID { get; set; }
-        public DateTime UPDATE_TIME { get; set; }
-        public string UPDATE_USER_ID { get; set; }
-        public string CHILD_PRODUCT_CODE { get; set; }
-        public string CHILD_PRODUCT_NAME { get; set; }
-        public decimal REQUIRE_QTY { get; set; }
-        public decimal NEED_QTY { get; set; }
-        public string VENDOR_CODE { get; set; }
-        public decimal LOT_QTY { get; set; }
-        public decimal LEFT_QTY { get; set; }
-        public string STOCK_IN_FLAG { get; set; }
-        public string MATERIAL_CODE { get; set; }
-        public int    PURCHASE_SEQ { get; set; }
-        public decimal ORDERING_QTY { get; set; }
+        public string       SALES_ORDER_ID          { get; set; }
+        public DateTime ORDER_DATE              { get; set; }
+        public DateTime FROM_DATE               { get; set; }
+        public DateTime TO_DATE                 { get; set; }
+        public string       CUSTOMER_CODE           { get; set; }
+        public string       CUSTOMER_NAME           { get; set; }
+        public string       PRODUCT_CODE            { get; set; }
+        public string       PRODUCT_NAME            { get; set; }
+        public decimal       ORDER_QTY               { get; set; }
+        public string       PURCHASE_QTY            { get; set; }
+        public string       CONFIRM_FLAG            { get; set; }
+        public string       SHIP_FLAG               { get; set; }
+        public DateTime     CREATE_TIME             { get; set; }
+        public string       CREATE_USER_ID          { get; set; }
+        public DateTime     UPDATE_TIME             { get; set; }
+        public string       UPDATE_USER_ID          { get; set; }
+        public string       CHILD_PRODUCT_CODE      { get; set; }
+        public string       CHILD_PRODUCT_NAME      { get; set; }
+        public decimal      REQUIRE_QTY             { get; set; }
+        public decimal      NEED_QTY                { get; set; }
+        public string       VENDOR_CODE             { get; set; }
+        public decimal      LOT_QTY                 { get; set; }
+        public decimal      LEFT_QTY                { get; set; }
+        public string       STOCK_IN_FLAG           { get; set; }
+        public string       MATERIAL_CODE           { get; set; }
+        public int          PURCHASE_SEQ            { get; set; }
+        public decimal      ORDERING_QTY            { get; set; }
     }
 
     public class Purchase_DTO
@@ -160,5 +164,22 @@ namespace Cohesion_DTO
         public string MATERIAL_CODE { get; set; }
         public decimal ORDER_QTY { get; set; }
         public string STOCK_IN_FLAG { get; set; }
+    }
+
+    public class Sales_Order_DTO_Data
+    {
+        public string SALES_ORDER_ID { get; set; }
+        public DateTime ORDER_DATE { get; set; }
+        public string CUSTOMER_CODE { get; set; }
+        public string CUSTOMER_NAME { get; set; }
+        public string PRODUCT_CODE { get; set; }
+        public string PRODUCT_NAME { get; set; }
+        public string ORDER_QTY { get; set; }
+        public string CONFIRM_FLAG { get; set; }
+        public string SHIP_FLAG { get; set; }
+        public DateTime CREATE_TIME { get; set; }
+        public string CREATE_USER_ID { get; set; }
+        public DateTime UPDATE_TIME { get; set; }
+        public string UPDATE_USER_ID { get; set; }
     }
 }

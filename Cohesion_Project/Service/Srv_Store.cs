@@ -37,10 +37,10 @@ namespace Cohesion_Project
             return result;
         }
 
-        public List<Store_DTO> SelectStore(Store_DTO condtion)
+        public List<Store_DTO_Search_Data> SelectStore(Store_DTO_Search_Data condtion)
         {
             Store_DAO dao = new Store_DAO();
-            List<Store_DTO> list = dao.SelectStore(condtion);
+            List<Store_DTO_Search_Data> list = dao.SelectStore(condtion);
             dao.Dispose();
 
             return list;
