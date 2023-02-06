@@ -19,10 +19,10 @@ namespace Cohesion_Project
             return list;
         }
 
-        public List<FUNCTION_USER_GROUP_REL_DTO> SelectFUG1()
+        public List<FUNCTION_USER_GROUP_REL_DTO> SelectFUG1(FUNCTION_USER_GROUP_REL_DTO dto)
         {
             Function_User_Group_Rel_DAO dao = new Function_User_Group_Rel_DAO();
-            List<FUNCTION_USER_GROUP_REL_DTO> list = dao.SelectFUG1();
+            List<FUNCTION_USER_GROUP_REL_DTO> list = dao.SelectFUG1(dto);
             dao.Dispose();
 
             return list;
@@ -39,13 +39,13 @@ namespace Cohesion_Project
 
 
 
-        //public bool InsertFUG(FUNCTION_USER_GROUP_REL_DTO dto)
-        //{
-        //    Function_User_Group_Rel_DAO dao = new Function_User_Group_Rel_DAO();
-        //    bool result = dao.InsertFUG(dto);
-        //    dao.Dispose();
-        //    return result;
-        //}
+        public bool InsertFUG(string functiocode, List<FUNCTION_USER_GROUP_REL_DTO> list)
+        {
+            Function_User_Group_Rel_DAO dao = new Function_User_Group_Rel_DAO();
+            bool result = dao.InsertFUG(functiocode, list);
+            dao.Dispose();
+            return result;
+        }
 
         public bool UpdateFUG(FUNCTION_USER_GROUP_REL_DTO dto)
         {
@@ -55,19 +55,26 @@ namespace Cohesion_Project
             return result;
         }
 
-        //public List<FUNCTION_USER_GROUP_REL_DTO> SelectFUG2(FUNCTION_USER_GROUP_REL_Condition_DTO condtion)
-        //{
+        public List<FUNCTION_USER_GROUP_REL_DTO> SelectFUG2( )
+        {
 
-        //    Function_User_Group_Rel_DAO dao = new Function_User_Group_Rel_DAO();
-        //    List<FUNCTION_USER_GROUP_REL_DTO> list = dao.SelectFUG2(condtion);
-        //    dao.Dispose();
+            Function_User_Group_Rel_DAO dao = new Function_User_Group_Rel_DAO();
+            List<FUNCTION_USER_GROUP_REL_DTO> list = dao.SelectFUG2();
+            dao.Dispose();
 
-        //    return list;
-        //}
-        public List<FUNCTION_USER_GROUP_REL_DTO> SelectFUGR(string condition)
+            return list;
+        }
+        public List<FUNCTION_USER_GROUP_REL_DTO> SelectFUGR(string user_GROUP_CODE)
         {
             Function_User_Group_Rel_DAO dao = new Function_User_Group_Rel_DAO();
-            List<FUNCTION_USER_GROUP_REL_DTO> list = dao.SelectFUGR(condition);
+            List<FUNCTION_USER_GROUP_REL_DTO> list = dao.SelectFUGR(user_GROUP_CODE);
+            dao.Dispose();
+            return list;
+        }
+        public List<UserGroup_DTO> SelectF(UserGoupCondition_DTO condition)
+        {
+            Function_User_Group_Rel_DAO dao = new Function_User_Group_Rel_DAO();
+            List<UserGroup_DTO> list = dao.SelectF(condition);
             dao.Dispose();
             return list;
         }

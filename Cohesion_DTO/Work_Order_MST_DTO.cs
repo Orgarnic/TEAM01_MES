@@ -9,7 +9,7 @@ namespace Cohesion_DTO
 {
     public class Work_Order_MST_DTO
     {
-		[Category("속성"), Description("WORK_ORDER_ID"), DisplayName("생산 작업지시 코드"), ReadOnly(true)]
+		[Category("속성"), Description("WORK_ORDER_ID"), DisplayName("생산 작업지시 코드"), TypeConverter(typeof(ComboWorkOrderConverter))]
 		public string WORK_ORDER_ID { get; set; }       //생산 작업지시 코드
 		[Category("속성"), Description("ORDER_DATE"), DisplayName("작업 일자")]
 		public DateTime ORDER_DATE { get; set; }        //작업 일자
@@ -43,4 +43,18 @@ namespace Cohesion_DTO
 		[Browsable(false)]
         public string OrderDate { get; set; }
     }
+
+	public class Work_Order_SEARCH_DTO
+    {
+		[Category("검색조건"), Description("WORK_ORDER_ID"), DisplayName("생산 작업지시 코드"), TypeConverter(typeof(ComboWorkOrderConverter))]
+		public string WORK_ORDER_ID { get; set; }       //생산 작업지시 코드
+		[Category("검색조건"), Description("PRODUCT_CODE"), DisplayName("생산 제품 코드")]
+		public string PRODUCT_CODE { get; set; }        //생산 제품코드, 품번
+		[Category("검색조건"), Description("CUSTOMER_CODE"), DisplayName("고객사 코드")]
+		public string CUSTOMER_CODE { get; set; }       //고객사 코드
+		[Category("검색조건"), Description("ORDER_STATUS"), DisplayName("지시 상태")]
+		public string ORDER_STATUS { get; set; }        //지시 상태. 최초 : OPEN, 생산 중 : PROC, 마감 : CLOSE
+		[Category("검색조건"), Description("CREATE_USER_ID"), DisplayName("작업지시 생성 사용자")]
+		public string CREATE_USER_ID { get; set; }      //작업지시 생성 사용자
+	}
 }

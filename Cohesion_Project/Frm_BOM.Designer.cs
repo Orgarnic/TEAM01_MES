@@ -189,6 +189,7 @@ namespace Cohesion_Project
             this.ppgSearch.Name = "ppgSearch";
             this.ppgSearch.Size = new System.Drawing.Size(356, 412);
             this.ppgSearch.TabIndex = 8;
+            this.ppgSearch.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.ppgSearch_PropertyValueChanged);
             // 
             // ppgBOMAttribute
             // 

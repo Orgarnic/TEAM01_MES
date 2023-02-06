@@ -39,9 +39,9 @@ namespace Cohesion_Project
             temp = srv2.SelectProduts(new PRODUCT_MST_DTO_Condition());
             oper = srv3.SelectOperation(new OPERATION_MST_DTO_Condition());
 
-            ComboUtil.ProductCode = (from t in temp
+            Cohesion_DTO.ComboUtil.ProductCode = (from t in temp
                                      select t.PRODUCT_CODE).ToList();
-            ComboUtil.OperationCode = (from o in oper
+            Cohesion_DTO.ComboUtil.OperationCode = (from o in oper
                                        select o.OPERATION_CODE).ToList();
         }
 
@@ -76,9 +76,9 @@ namespace Cohesion_Project
 
             DgvUtil.DgvInit(dgvBOMChild);
             DgvUtil.AddCheckBoxCol(dgvBOMChild, "Check", "Check", 150, frozen: true);
-            DgvUtil.AddTextCol(dgvBOMChild, "구성 제품 코드", "CHILD_PRODUCT_CODE", 150, true, 1, frozen:true);
-            DgvUtil.AddTextCol(dgvBOMChild, "구성 제품명", "PRODUCT_NAME", 150, true, 1, frozen:true);
-            DgvUtil.AddTextCol(dgvBOMChild, "변경 사용자", "PRODUCT_TYPE", 150, true, 1, frozen: true);
+            DgvUtil.AddTextCol(dgvBOMChild, "제품 코드", "CHILD_PRODUCT_CODE", 150, true, 1, frozen:true);
+            DgvUtil.AddTextCol(dgvBOMChild, "제품명", "PRODUCT_NAME", 150, true, 1, frozen:true);
+            DgvUtil.AddTextCol(dgvBOMChild, "제품 유형", "PRODUCT_TYPE", 150, true, 1, frozen: true);
             DgvUtil.AddTextCol(dgvBOMChild, "단위 수량", "REQUIRE_QTY", 150, true, 1);
             DgvUtil.AddTextCol(dgvBOMChild, "대체 품번", "ALTER_PRODUCT_CODE", 150, true, 1);
             DgvUtil.AddTextCol(dgvBOMChild, "공정 코드", "OPERATION_CODE", 150, true, 1);
@@ -281,6 +281,21 @@ namespace Cohesion_Project
             MboxUtil.MboxInfo("삭제되었습니다.");
             dgvBOMChild.DataSource = null;
             dgvBOMChild.DataSource = bom;
+        }
+
+        private void ppgSearch_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
+        {
+            if (e.ChangedItem.PropertyDescriptor.Description.Equals("PRODUCT_CODE"))
+            {
+                var list = temp.Find((c) => c.PRODUCT_CODE.Equals(e.ChangedItem.Value.ToString()));
+                if (list != null)
+                {
+                    BOM_PRODUCT_SEARCH bbom = (BOM_PRODUCT_SEARCH)ppgSearch.SelectedObject;
+                    bbom.PRODUCT_NAME = list.PRODUCT_NAME;
+                    bbom.PRODUCT_TYPE = list.PRODUCT_TYPE;
+                    bbom.CREATE_USER_ID = list.CREATE_USER_ID;
+                }
+            }
         }
     }
 }
