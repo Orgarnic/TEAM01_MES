@@ -76,9 +76,9 @@ namespace Cohesion_Project
 
             DgvUtil.DgvInit(dgvBOMChild);
             DgvUtil.AddCheckBoxCol(dgvBOMChild, "Check", "Check", 150, frozen: true);
-            DgvUtil.AddTextCol(dgvBOMChild, "구성 제품 코드", "CHILD_PRODUCT_CODE", 150, true, 1, frozen:true);
-            DgvUtil.AddTextCol(dgvBOMChild, "구성 제품명", "PRODUCT_NAME", 150, true, 1, frozen:true);
-            DgvUtil.AddTextCol(dgvBOMChild, "변경 사용자", "PRODUCT_TYPE", 150, true, 1, frozen: true);
+            DgvUtil.AddTextCol(dgvBOMChild, "제품 코드", "CHILD_PRODUCT_CODE", 150, true, 1, frozen:true);
+            DgvUtil.AddTextCol(dgvBOMChild, "제품명", "PRODUCT_NAME", 150, true, 1, frozen:true);
+            DgvUtil.AddTextCol(dgvBOMChild, "제품 유형", "PRODUCT_TYPE", 150, true, 1, frozen: true);
             DgvUtil.AddTextCol(dgvBOMChild, "단위 수량", "REQUIRE_QTY", 150, true, 1);
             DgvUtil.AddTextCol(dgvBOMChild, "대체 품번", "ALTER_PRODUCT_CODE", 150, true, 1);
             DgvUtil.AddTextCol(dgvBOMChild, "공정 코드", "OPERATION_CODE", 150, true, 1);
