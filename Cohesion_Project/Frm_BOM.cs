@@ -75,7 +75,7 @@ namespace Cohesion_Project
             dgvBOMChild.DataSource = null;
 
             DgvUtil.DgvInit(dgvBOMChild);
-            DgvUtil.AddCheckBoxCol(dgvBOMChild, "Check", "Check", 150, frozen: true);
+            DgvUtil.AddCheckBoxCol(dgvBOMChild, "Check", "Check", 50, frozen: true);
             DgvUtil.AddTextCol(dgvBOMChild, "제품 코드", "CHILD_PRODUCT_CODE", 150, true, 1, frozen:true);
             DgvUtil.AddTextCol(dgvBOMChild, "제품명", "PRODUCT_NAME", 150, true, 1, frozen:true);
             DgvUtil.AddTextCol(dgvBOMChild, "제품 유형", "PRODUCT_TYPE", 150, true, 1, frozen: true);
@@ -133,7 +133,6 @@ namespace Cohesion_Project
         {
             if (e.RowIndex < 0) return;
             BOM_MST_DTO product = BOM_MST_DTO.DeepCopy(DgvUtil.DgvToDto<BOM_MST_DTO>(dgvBOMChild));
-            //BOM_MST_DTO product = DgvUtil.DgvToDto<BOM_MST_DTO>(dgvBOMChild);
             ppgBOMAttribute.SelectedObject = product;
         }
 
