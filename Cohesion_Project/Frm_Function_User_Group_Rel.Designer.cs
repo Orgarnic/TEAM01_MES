@@ -53,13 +53,13 @@ namespace Cohesion_Project
             // btnClose
             // 
             this.btnClose.FlatAppearance.BorderSize = 0;
-            this.btnClose.Location = new System.Drawing.Point(1422, 1016);
+            this.btnClose.Location = new System.Drawing.Point(1422, 948);
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // panel3
             // 
             this.panel3.Controls.Add(this.DgvF1);
-            this.panel3.Size = new System.Drawing.Size(828, 432);
+            this.panel3.Size = new System.Drawing.Size(828, 403);
             this.panel3.Controls.SetChildIndex(this.lbl6, 0);
             this.panel3.Controls.SetChildIndex(this.DgvF1, 0);
             // 
@@ -69,8 +69,8 @@ namespace Cohesion_Project
             this.btnLeft.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnLeft.FlatAppearance.BorderSize = 0;
             this.btnLeft.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
-            this.btnLeft.Location = new System.Drawing.Point(838, 86);
-            this.btnLeft.Size = new System.Drawing.Size(69, 146);
+            this.btnLeft.Location = new System.Drawing.Point(838, 80);
+            this.btnLeft.Size = new System.Drawing.Size(69, 136);
             this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
             // 
             // btnRight
@@ -80,24 +80,24 @@ namespace Cohesion_Project
             this.btnRight.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnRight.FlatAppearance.BorderSize = 0;
             this.btnRight.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
-            this.btnRight.Location = new System.Drawing.Point(838, 238);
-            this.btnRight.Size = new System.Drawing.Size(69, 146);
+            this.btnRight.Location = new System.Drawing.Point(838, 222);
+            this.btnRight.Size = new System.Drawing.Size(69, 136);
             this.btnRight.Click += new System.EventHandler(this.btnRight_Click);
             // 
             // panel6
             // 
             this.panel6.Controls.Add(this.DgvF2);
-            this.panel6.Size = new System.Drawing.Size(606, 432);
+            this.panel6.Size = new System.Drawing.Size(606, 403);
             this.panel6.Controls.SetChildIndex(this.lbl7, 0);
             this.panel6.Controls.SetChildIndex(this.DgvF2, 0);
             // 
             // panel1
             // 
-            this.panel1.Size = new System.Drawing.Size(1521, 438);
+            this.panel1.Size = new System.Drawing.Size(1521, 409);
             // 
             // lbl3
             // 
-            this.lbl3.Size = new System.Drawing.Size(357, 32);
+            this.lbl3.Size = new System.Drawing.Size(286, 30);
             // 
             // panel7
             // 
@@ -105,7 +105,7 @@ namespace Cohesion_Project
             this.panel7.Controls.Add(this.PpgFUG);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel7.Location = new System.Drawing.Point(0, 4);
-            this.panel7.Size = new System.Drawing.Size(359, 443);
+            this.panel7.Size = new System.Drawing.Size(288, 443);
             this.panel7.Controls.SetChildIndex(this.lbl3, 0);
             this.panel7.Controls.SetChildIndex(this.PpgFUG, 0);
             // 
@@ -119,79 +119,83 @@ namespace Cohesion_Project
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(0, 4, 3, 4);
-            this.splitContainer1.SplitterDistance = 1155;
+            this.splitContainer1.SplitterDistance = 1226;
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.DgvFUG);
-            this.panel2.Size = new System.Drawing.Size(1153, 367);
+            this.panel2.Size = new System.Drawing.Size(1224, 373);
             this.panel2.Controls.SetChildIndex(this.lbl4, 0);
             this.panel2.Controls.SetChildIndex(this.DgvFUG, 0);
+            // 
+            // lbl4
+            // 
+            this.lbl4.Size = new System.Drawing.Size(1222, 30);
             // 
             // panel4
             // 
             this.panel4.Location = new System.Drawing.Point(3, 4);
-            this.panel4.Size = new System.Drawing.Size(1152, 77);
+            this.panel4.Size = new System.Drawing.Size(1223, 72);
             // 
             // btnSearchCondition
             // 
             this.btnSearchCondition.FlatAppearance.BorderSize = 0;
-            this.btnSearchCondition.Location = new System.Drawing.Point(1064, 40);
+            this.btnSearchCondition.Location = new System.Drawing.Point(1135, 37);
             this.btnSearchCondition.Click += new System.EventHandler(this.btnSearchCondition_Click);
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(10, 41);
+            this.txtSearch.Location = new System.Drawing.Point(10, 38);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtSearch.Size = new System.Drawing.Size(987, 21);
+            this.txtSearch.Size = new System.Drawing.Size(1058, 21);
             // 
             // btnSearch
             // 
             this.btnSearch.FlatAppearance.BorderSize = 0;
-            this.btnSearch.Location = new System.Drawing.Point(1004, 40);
+            this.btnSearch.Location = new System.Drawing.Point(1075, 37);
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // lbl2
             // 
-            this.lbl2.Size = new System.Drawing.Size(1150, 32);
+            this.lbl2.Size = new System.Drawing.Size(1221, 30);
             // 
             // btnDelete
             // 
             this.btnDelete.FlatAppearance.BorderSize = 0;
-            this.btnDelete.Location = new System.Drawing.Point(3, 1016);
+            this.btnDelete.Location = new System.Drawing.Point(3, 948);
             this.btnDelete.Visible = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnInsert
             // 
             this.btnInsert.FlatAppearance.BorderSize = 0;
-            this.btnInsert.Location = new System.Drawing.Point(1220, 1016);
+            this.btnInsert.Location = new System.Drawing.Point(1220, 948);
             this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
             // btnAdd
             // 
             this.btnAdd.FlatAppearance.BorderSize = 0;
-            this.btnAdd.Location = new System.Drawing.Point(1018, 1016);
+            this.btnAdd.Location = new System.Drawing.Point(1018, 948);
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnUpdate
             // 
             this.btnUpdate.FlatAppearance.BorderSize = 0;
-            this.btnUpdate.Location = new System.Drawing.Point(1119, 1016);
+            this.btnUpdate.Location = new System.Drawing.Point(1119, 948);
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnRefresh
             // 
             this.btnRefresh.FlatAppearance.BorderSize = 0;
-            this.btnRefresh.Location = new System.Drawing.Point(1321, 1016);
+            this.btnRefresh.Location = new System.Drawing.Point(1321, 948);
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // PpgFUG
             // 
             this.PpgFUG.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PpgFUG.Location = new System.Drawing.Point(0, 32);
+            this.PpgFUG.Location = new System.Drawing.Point(0, 30);
             this.PpgFUG.Name = "PpgFUG";
-            this.PpgFUG.Size = new System.Drawing.Size(357, 409);
+            this.PpgFUG.Size = new System.Drawing.Size(286, 411);
             this.PpgFUG.TabIndex = 7;
             // 
             // DgvF1
@@ -201,7 +205,7 @@ namespace Cohesion_Project
             this.DgvF1.Location = new System.Drawing.Point(0, 30);
             this.DgvF1.Name = "DgvF1";
             this.DgvF1.RowTemplate.Height = 23;
-            this.DgvF1.Size = new System.Drawing.Size(826, 400);
+            this.DgvF1.Size = new System.Drawing.Size(826, 371);
             this.DgvF1.TabIndex = 6;
             // 
             // DgvF2
@@ -211,7 +215,7 @@ namespace Cohesion_Project
             this.DgvF2.Location = new System.Drawing.Point(0, 30);
             this.DgvF2.Name = "DgvF2";
             this.DgvF2.RowTemplate.Height = 23;
-            this.DgvF2.Size = new System.Drawing.Size(604, 400);
+            this.DgvF2.Size = new System.Drawing.Size(604, 371);
             this.DgvF2.TabIndex = 7;
             // 
             // DgvFUG
@@ -221,15 +225,15 @@ namespace Cohesion_Project
             this.DgvFUG.Location = new System.Drawing.Point(0, 30);
             this.DgvFUG.Name = "DgvFUG";
             this.DgvFUG.RowTemplate.Height = 23;
-            this.DgvFUG.Size = new System.Drawing.Size(1151, 335);
+            this.DgvFUG.Size = new System.Drawing.Size(1222, 341);
             this.DgvFUG.TabIndex = 6;
             this.DgvFUG.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvFUG_CellClick);
             // 
             // Frm_Function_User_Group_Rel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1521, 1061);
+            this.ClientSize = new System.Drawing.Size(1521, 990);
             this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.Name = "Frm_Function_User_Group_Rel";
             this.Text = "Frm_Function_User_Group_Rel";

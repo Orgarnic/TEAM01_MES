@@ -62,29 +62,35 @@ namespace Cohesion_Project
             // 
             // lbl7
             // 
+            this.lbl7.Size = new System.Drawing.Size(286, 30);
             this.lbl7.Text = "▶ BOM 속성";
             // 
             // panel9
             // 
             this.panel9.Controls.Add(this.ppgBOMAttribute);
+            this.panel9.Size = new System.Drawing.Size(288, 461);
             this.panel9.Controls.SetChildIndex(this.lbl7, 0);
             this.panel9.Controls.SetChildIndex(this.ppgBOMAttribute, 0);
             // 
             // lbl6
             // 
+            this.lbl6.Size = new System.Drawing.Size(1221, 30);
             this.lbl6.Text = "▶ 제품 BOM 구성";
             // 
             // panel6
             // 
             this.panel6.Controls.Add(this.dgvBOMChild);
+            this.panel6.Size = new System.Drawing.Size(1223, 462);
             this.panel6.Controls.SetChildIndex(this.lbl6, 0);
             this.panel6.Controls.SetChildIndex(this.dgvBOMChild, 0);
             // 
             // splitContainer2
             // 
+            this.splitContainer2.SplitterDistance = 1226;
             // 
             // lbl3
             // 
+            this.lbl3.Size = new System.Drawing.Size(286, 30);
             this.lbl3.Text = "▶ 검색 상세 조건";
             // 
             // lbl5
@@ -95,36 +101,50 @@ namespace Cohesion_Project
             // panel7
             // 
             this.panel7.Controls.Add(this.ppgSearch);
+            this.panel7.Size = new System.Drawing.Size(288, 444);
             this.panel7.Controls.SetChildIndex(this.lbl3, 0);
             this.panel7.Controls.SetChildIndex(this.ppgSearch, 0);
             // 
             // splitContainer1
             // 
+            this.splitContainer1.SplitterDistance = 1226;
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.dgvBOMParent);
+            this.panel2.Size = new System.Drawing.Size(1223, 366);
             this.panel2.Controls.SetChildIndex(this.lbl4, 0);
             this.panel2.Controls.SetChildIndex(this.dgvBOMParent, 0);
             // 
             // lbl4
             // 
-            this.lbl4.Size = new System.Drawing.Size(1151, 32);
+            this.lbl4.Size = new System.Drawing.Size(1221, 32);
             this.lbl4.Text = "▶ 제품 목록";
+            // 
+            // panel4
+            // 
+            this.panel4.Size = new System.Drawing.Size(1223, 72);
             // 
             // btnSearchCondition
             // 
             this.btnSearchCondition.FlatAppearance.BorderSize = 0;
+            this.btnSearchCondition.Location = new System.Drawing.Point(1134, 38);
             this.btnSearchCondition.Click += new System.EventHandler(this.btnSearchCondition_Click);
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Size = new System.Drawing.Size(1058, 21);
             // 
             // btnSearch
             // 
             this.btnSearch.Enabled = false;
             this.btnSearch.FlatAppearance.BorderSize = 0;
+            this.btnSearch.Location = new System.Drawing.Point(1074, 38);
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // lbl2
             // 
+            this.lbl2.Size = new System.Drawing.Size(1221, 30);
             this.lbl2.Text = "▶ 제품 목록 검색";
             // 
             // lbl1
@@ -177,7 +197,7 @@ namespace Cohesion_Project
             this.dgvBOMParent.Location = new System.Drawing.Point(0, 32);
             this.dgvBOMParent.Name = "dgvBOMParent";
             this.dgvBOMParent.RowTemplate.Height = 23;
-            this.dgvBOMParent.Size = new System.Drawing.Size(1151, 332);
+            this.dgvBOMParent.Size = new System.Drawing.Size(1221, 332);
             this.dgvBOMParent.TabIndex = 6;
             this.dgvBOMParent.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBOMParent_CellClick);
             // 
@@ -187,7 +207,7 @@ namespace Cohesion_Project
             this.ppgSearch.Enabled = false;
             this.ppgSearch.Location = new System.Drawing.Point(0, 30);
             this.ppgSearch.Name = "ppgSearch";
-            this.ppgSearch.Size = new System.Drawing.Size(356, 412);
+            this.ppgSearch.Size = new System.Drawing.Size(286, 412);
             this.ppgSearch.TabIndex = 8;
             this.ppgSearch.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.ppgSearch_PropertyValueChanged);
             // 
@@ -197,7 +217,7 @@ namespace Cohesion_Project
             this.ppgBOMAttribute.Enabled = false;
             this.ppgBOMAttribute.Location = new System.Drawing.Point(0, 30);
             this.ppgBOMAttribute.Name = "ppgBOMAttribute";
-            this.ppgBOMAttribute.Size = new System.Drawing.Size(356, 429);
+            this.ppgBOMAttribute.Size = new System.Drawing.Size(286, 429);
             this.ppgBOMAttribute.TabIndex = 9;
             this.ppgBOMAttribute.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.ppgBOMAttribute_PropertyValueChanged);
             // 

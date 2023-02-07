@@ -43,41 +43,57 @@ namespace Cohesion_Project
             ((System.ComponentModel.ISupportInitialize)(this.dgvInspection)).BeginInit();
             this.SuspendLayout();
             // 
+            // txtSearch
+            // 
+            this.txtSearch.Size = new System.Drawing.Size(1058, 21);
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.dgvInspection);
+            this.panel2.Size = new System.Drawing.Size(1223, 874);
             this.panel2.Controls.SetChildIndex(this.lbl4, 0);
             this.panel2.Controls.SetChildIndex(this.dgvInspection, 0);
             // 
             // lbl4
             // 
+            this.lbl4.Size = new System.Drawing.Size(1221, 30);
             this.lbl4.Text = "▶ 검사 항목 설정";
             // 
             // btnSearch
             // 
             this.btnSearch.FlatAppearance.BorderSize = 0;
+            this.btnSearch.Location = new System.Drawing.Point(1074, 38);
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // panel4
+            // 
+            this.panel4.Size = new System.Drawing.Size(1223, 72);
             // 
             // btnSearchCondition
             // 
             this.btnSearchCondition.FlatAppearance.BorderSize = 0;
+            this.btnSearchCondition.Location = new System.Drawing.Point(1134, 38);
             this.btnSearchCondition.Click += new System.EventHandler(this.btnSearchCondition_Click);
             // 
             // lbl2
             // 
+            this.lbl2.Size = new System.Drawing.Size(1221, 30);
             this.lbl2.Text = "▶ 검사 항목 검색";
             // 
             // splitContainer1
             // 
+            this.splitContainer1.SplitterDistance = 1226;
             // 
             // panel7
             // 
             this.panel7.Controls.Add(this.ppgInspection);
+            this.panel7.Size = new System.Drawing.Size(288, 952);
             this.panel7.Controls.SetChildIndex(this.lbl3, 0);
             this.panel7.Controls.SetChildIndex(this.ppgInspection, 0);
             // 
             // lbl3
             // 
+            this.lbl3.Size = new System.Drawing.Size(286, 30);
             this.lbl3.Text = "▶ 검사 항목 등록 속성";
             // 
             // btnClose
@@ -116,7 +132,7 @@ namespace Cohesion_Project
             this.dgvInspection.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvInspection.Location = new System.Drawing.Point(0, 30);
             this.dgvInspection.Name = "dgvInspection";
-            this.dgvInspection.Size = new System.Drawing.Size(1151, 842);
+            this.dgvInspection.Size = new System.Drawing.Size(1221, 842);
             this.dgvInspection.TabIndex = 5;
             // 
             // ppgInspection
@@ -124,7 +140,7 @@ namespace Cohesion_Project
             this.ppgInspection.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ppgInspection.Location = new System.Drawing.Point(0, 30);
             this.ppgInspection.Name = "ppgInspection";
-            this.ppgInspection.Size = new System.Drawing.Size(356, 920);
+            this.ppgInspection.Size = new System.Drawing.Size(286, 920);
             this.ppgInspection.TabIndex = 6;
             this.ppgInspection.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.ppgInspection_PropertyValueChanged);
             // 

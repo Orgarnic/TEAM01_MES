@@ -47,46 +47,60 @@ namespace Cohesion_Project
             // 
             this.lbl1.Text = "/ 기준 정보 관리 / 작업지시관리";
             // 
+            // txtSearch
+            // 
+            this.txtSearch.Size = new System.Drawing.Size(1058, 21);
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.dgvWorkOrderList);
-            this.panel2.Size = new System.Drawing.Size(1150, 874);
+            this.panel2.Size = new System.Drawing.Size(1220, 874);
             this.panel2.Controls.SetChildIndex(this.lbl4, 0);
             this.panel2.Controls.SetChildIndex(this.dgvWorkOrderList, 0);
             // 
             // lbl4
             // 
-            this.lbl4.Size = new System.Drawing.Size(1148, 30);
+            this.lbl4.Size = new System.Drawing.Size(1218, 30);
             this.lbl4.Text = "▶ 작업지시 목록";
             // 
             // btnSearch
             // 
             this.btnSearch.Enabled = false;
             this.btnSearch.FlatAppearance.BorderSize = 0;
+            this.btnSearch.Location = new System.Drawing.Point(1074, 38);
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // panel4
+            // 
+            this.panel4.Size = new System.Drawing.Size(1223, 72);
             // 
             // btnSearchCondition
             // 
             this.btnSearchCondition.FlatAppearance.BorderSize = 0;
+            this.btnSearchCondition.Location = new System.Drawing.Point(1134, 38);
             this.btnSearchCondition.Click += new System.EventHandler(this.btnSearchCondition_Click);
             // 
             // lbl2
             // 
+            this.lbl2.Size = new System.Drawing.Size(1221, 30);
             this.lbl2.Text = "▶ 작업지시 조회";
             // 
             // splitContainer1
             // 
+            this.splitContainer1.SplitterDistance = 1226;
             // 
             // panel7
             // 
             this.panel7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
             this.panel7.Controls.Add(this.ppgWorkOrderSearch);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel7.Size = new System.Drawing.Size(288, 952);
             this.panel7.Controls.SetChildIndex(this.lbl3, 0);
             this.panel7.Controls.SetChildIndex(this.ppgWorkOrderSearch, 0);
             // 
             // lbl3
             // 
+            this.lbl3.Size = new System.Drawing.Size(286, 30);
             this.lbl3.Text = "▶ 속성";
             // 
             // btnClose
@@ -135,7 +149,7 @@ namespace Cohesion_Project
             this.ppgWorkOrderSearch.Enabled = false;
             this.ppgWorkOrderSearch.Location = new System.Drawing.Point(0, 30);
             this.ppgWorkOrderSearch.Name = "ppgWorkOrderSearch";
-            this.ppgWorkOrderSearch.Size = new System.Drawing.Size(356, 920);
+            this.ppgWorkOrderSearch.Size = new System.Drawing.Size(286, 920);
             this.ppgWorkOrderSearch.TabIndex = 7;
             this.ppgWorkOrderSearch.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.ppgWorkOrderSearch_PropertyValueChanged);
             // 

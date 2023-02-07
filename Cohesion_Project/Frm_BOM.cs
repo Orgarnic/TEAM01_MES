@@ -54,14 +54,14 @@ namespace Cohesion_Project
         private void DataGirdViewParent()
         {
             DgvUtil.DgvInit(dgvBOMParent);
-            DgvUtil.AddTextCol(dgvBOMParent, "제품 코드", "PRODUCT_CODE", 150, true, 1, frozen:true);
-            DgvUtil.AddTextCol(dgvBOMParent, "제품명", "PRODUCT_NAME", 150, true, 1, frozen: true);
-            DgvUtil.AddTextCol(dgvBOMParent, "제품 유형", "PRODUCT_TYPE", 150, true, 1, frozen: true);
-            DgvUtil.AddTextCol(dgvBOMParent, "대체 품번", "ALTER_PRODUCT_CODE", 150, true, 1);
-            DgvUtil.AddTextCol(dgvBOMParent, "생성 시간", "CREATE_TIME", 150, true, 1);
-            DgvUtil.AddTextCol(dgvBOMParent, "생성 사용자", "CREATE_USER_ID", 150, true, 1);
-            DgvUtil.AddTextCol(dgvBOMParent, "변경 시간", "UPDATE_TIME", 150, true, 1);
-            DgvUtil.AddTextCol(dgvBOMParent, "변경 사용자", "UPDATE_USER_ID", 150, true, 1);
+            DgvUtil.AddTextCol(dgvBOMParent, "    제품 코드", "PRODUCT_CODE", 160, true, align: 0, frozen:true);
+            DgvUtil.AddTextCol(dgvBOMParent, "    제품명", "PRODUCT_NAME", 160, true, align: 0, frozen: true);
+            DgvUtil.AddTextCol(dgvBOMParent, "    제품 유형", "PRODUCT_TYPE", 150, true, frozen: true);
+            DgvUtil.AddTextCol(dgvBOMParent, "    대체 품번", "ALTER_PRODUCT_CODE", 144, true, align: 0);
+            DgvUtil.AddTextCol(dgvBOMParent, "    생성 시간", "CREATE_TIME", 200, true);
+            DgvUtil.AddTextCol(dgvBOMParent, "    생성 사용자", "CREATE_USER_ID", 160, true, align: 0);
+            DgvUtil.AddTextCol(dgvBOMParent, "    변경 시간", "UPDATE_TIME", 200, true);
+            DgvUtil.AddTextCol(dgvBOMParent, "    변경 사용자", "UPDATE_USER_ID", 160, true, align: 0);
             if(product == null)
             {
                 product = srv.SelectProductList();
@@ -76,16 +76,16 @@ namespace Cohesion_Project
 
             DgvUtil.DgvInit(dgvBOMChild);
             DgvUtil.AddCheckBoxCol(dgvBOMChild, "Check", "Check", 50, frozen: true);
-            DgvUtil.AddTextCol(dgvBOMChild, "제품 코드", "CHILD_PRODUCT_CODE", 150, true, 1, frozen:true);
-            DgvUtil.AddTextCol(dgvBOMChild, "제품명", "PRODUCT_NAME", 150, true, 1, frozen:true);
+            DgvUtil.AddTextCol(dgvBOMChild, "제품 코드", "CHILD_PRODUCT_CODE", 160, true, 0, frozen:true);
+            DgvUtil.AddTextCol(dgvBOMChild, "제품명", "PRODUCT_NAME", 160, true, 0, frozen:true);
             DgvUtil.AddTextCol(dgvBOMChild, "제품 유형", "PRODUCT_TYPE", 150, true, 1, frozen: true);
-            DgvUtil.AddTextCol(dgvBOMChild, "단위 수량", "REQUIRE_QTY", 150, true, 1);
-            DgvUtil.AddTextCol(dgvBOMChild, "대체 품번", "ALTER_PRODUCT_CODE", 150, true, 1);
-            DgvUtil.AddTextCol(dgvBOMChild, "공정 코드", "OPERATION_CODE", 150, true, 1);
+            DgvUtil.AddTextCol(dgvBOMChild, "단위 수량", "REQUIRE_QTY", 150, true, 2);
+            DgvUtil.AddTextCol(dgvBOMChild, "대체 품번", "ALTER_PRODUCT_CODE", 150, true, 0);
+            DgvUtil.AddTextCol(dgvBOMChild, "공정 코드", "OPERATION_CODE", 150, true, 0);
             DgvUtil.AddTextCol(dgvBOMChild, "생성 시간", "CREATE_TIME", 150, true, 1);
-            DgvUtil.AddTextCol(dgvBOMChild, "생성 사용자", "CREATE_USER_ID", 150, true, 1);
+            DgvUtil.AddTextCol(dgvBOMChild, "생성 사용자", "CREATE_USER_ID", 150, true, 0);
             DgvUtil.AddTextCol(dgvBOMChild, "변경 시간", "UPDATE_TIME", 150, true, 1);
-            DgvUtil.AddTextCol(dgvBOMChild, "변경 사용자", "UPDATE_USER_ID", 150, true, 1);
+            DgvUtil.AddTextCol(dgvBOMChild, "변경 사용자", "UPDATE_USER_ID", 150, true, 0);
         }
 
         // 부모제품 리스트에서 선택

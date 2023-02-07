@@ -47,31 +47,56 @@ namespace Cohesion_Project
             // 
             this.lbl1.Text = "/ 기준정보관리 / 설비 등록";
             // 
+            // txtSearch
+            // 
+            this.txtSearch.Size = new System.Drawing.Size(1058, 21);
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.dgv_Equipment);
             this.panel2.ForeColor = System.Drawing.Color.Black;
+            this.panel2.Size = new System.Drawing.Size(1223, 874);
             this.panel2.Controls.SetChildIndex(this.lbl4, 0);
             this.panel2.Controls.SetChildIndex(this.dgv_Equipment, 0);
+            // 
+            // lbl4
+            // 
+            this.lbl4.Size = new System.Drawing.Size(1221, 30);
             // 
             // btnSearch
             // 
             this.btnSearch.FlatAppearance.BorderSize = 0;
+            this.btnSearch.Location = new System.Drawing.Point(1074, 38);
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // panel4
+            // 
+            this.panel4.Size = new System.Drawing.Size(1223, 72);
             // 
             // btnSearchCondition
             // 
             this.btnSearchCondition.FlatAppearance.BorderSize = 0;
+            this.btnSearchCondition.Location = new System.Drawing.Point(1134, 38);
             this.btnSearchCondition.Click += new System.EventHandler(this.btnSearchCondition_Click);
+            // 
+            // lbl2
+            // 
+            this.lbl2.Size = new System.Drawing.Size(1221, 30);
             // 
             // splitContainer1
             // 
+            this.splitContainer1.SplitterDistance = 1226;
             // 
             // panel7
             // 
             this.panel7.Controls.Add(this.ppg_Equipment);
+            this.panel7.Size = new System.Drawing.Size(288, 952);
             this.panel7.Controls.SetChildIndex(this.lbl3, 0);
             this.panel7.Controls.SetChildIndex(this.ppg_Equipment, 0);
+            // 
+            // lbl3
+            // 
+            this.lbl3.Size = new System.Drawing.Size(286, 30);
             // 
             // btnClose
             // 
@@ -109,7 +134,7 @@ namespace Cohesion_Project
             this.ppg_Equipment.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold);
             this.ppg_Equipment.Location = new System.Drawing.Point(0, 30);
             this.ppg_Equipment.Name = "ppg_Equipment";
-            this.ppg_Equipment.Size = new System.Drawing.Size(356, 920);
+            this.ppg_Equipment.Size = new System.Drawing.Size(286, 920);
             this.ppg_Equipment.TabIndex = 7;
             // 
             // dgv_Equipment
@@ -119,7 +144,7 @@ namespace Cohesion_Project
             this.dgv_Equipment.Location = new System.Drawing.Point(0, 30);
             this.dgv_Equipment.Name = "dgv_Equipment";
             this.dgv_Equipment.RowTemplate.Height = 23;
-            this.dgv_Equipment.Size = new System.Drawing.Size(1151, 842);
+            this.dgv_Equipment.Size = new System.Drawing.Size(1221, 842);
             this.dgv_Equipment.TabIndex = 6;
             this.dgv_Equipment.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Equipment_CellClick);
             // 

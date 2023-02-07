@@ -9,6 +9,7 @@ namespace Cohesion_DTO
 {
     public class Equipment_DTO
     {
+        //public int DISPLAY_SEQ { get; set; }
         [Category("속성"), Description("설비코드 (FC_xxxx) 입력"), DisplayName("설비코드")]
         public string EQUIPMENT_CODE { get; set; }
 

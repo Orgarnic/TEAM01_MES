@@ -31,15 +31,15 @@ namespace Cohesion_Project
       private void DgvInit()
       {
          DgvUtil.DgvInit(dgvOperation);
-         DgvUtil.AddTextCol(dgvOperation, "공정 코드", "OPERATION_CODE", width: 140, readOnly: true, frozen: true);
-         DgvUtil.AddTextCol(dgvOperation, "공정 명칭", "OPERATION_NAME", width: 140, readOnly: true, frozen: true);
-         DgvUtil.AddTextCol(dgvOperation, "불량 입력", "CHECK_DEFECT_FLAG", width: 140, readOnly: true, frozen: true);
-         DgvUtil.AddTextCol(dgvOperation, "검사 데이터", "CHECK_INSPECT_FLAG", width: 140, readOnly: true);
-         DgvUtil.AddTextCol(dgvOperation, "자재 사용", "CHECK_MATERIAL_FLAG", width: 140, readOnly: true);
-         DgvUtil.AddTextCol(dgvOperation, "생성 시간", "CREATE_TIME", width: 195, readOnly: true);
-         DgvUtil.AddTextCol(dgvOperation, "생성 사용자", "CREATE_USER_ID", width: 150, readOnly: true);
-         DgvUtil.AddTextCol(dgvOperation, "변경 시간", "UPDATE_TIME", width: 195, readOnly: true);
-         DgvUtil.AddTextCol(dgvOperation, "변경 사용자", "UPDATE_USER_ID", width: 150, readOnly: true);
+         DgvUtil.AddTextCol(dgvOperation, "공정 코드", "OPERATION_CODE", width: 150, readOnly: true, frozen: true, align:0);
+         DgvUtil.AddTextCol(dgvOperation, "공정 명칭", "OPERATION_NAME", width: 150, readOnly: true, frozen: true, align: 0);
+         DgvUtil.AddTextCol(dgvOperation, "불량 입력", "CHECK_DEFECT_FLAG", width: 120, readOnly: true, frozen: true);
+         DgvUtil.AddTextCol(dgvOperation, "검사 데이터", "CHECK_INSPECT_FLAG", width: 120, readOnly: true);
+         DgvUtil.AddTextCol(dgvOperation, "자재 사용", "CHECK_MATERIAL_FLAG", width: 120, readOnly: true);
+         DgvUtil.AddTextCol(dgvOperation, "생성 시간", "CREATE_TIME", width: 195, readOnly: true, align: 1);
+         DgvUtil.AddTextCol(dgvOperation, "생성 사용자", "CREATE_USER_ID", width: 150, readOnly: true, align: 0);
+         DgvUtil.AddTextCol(dgvOperation, "변경 시간", "UPDATE_TIME", width: 195, readOnly: true, align: 1);
+         DgvUtil.AddTextCol(dgvOperation, "변경 사용자", "UPDATE_USER_ID", width: 150, readOnly: true, align: 0);
       }
       private void PpgInit()
       {
@@ -178,5 +178,5 @@ namespace Cohesion_Project
          }
          return true;
       }
-   }
+    }
 }

@@ -59,9 +59,9 @@ namespace Cohesion_Project
             DgvUtil.AddTextCol(dgvOperationList, "    검사 데이터 입력", "CHECK_INSPECT_FLAG", 150, readOnly: true);
             DgvUtil.AddTextCol(dgvOperationList, "    자재 사용", "CHECK_MATERIAL_FLAG", 150, readOnly: true);
             DgvUtil.AddTextCol(dgvOperationList, "    생성 시간", "CREATE_TIME", 140, readOnly: true);
-            DgvUtil.AddTextCol(dgvOperationList, "    생성자", "CREATE_USER_ID", 120, readOnly: true);
+            DgvUtil.AddTextCol(dgvOperationList, "    생성자", "CREATE_USER_ID", 120, readOnly: true, align: 0);
             DgvUtil.AddTextCol(dgvOperationList, "    변경 시간", "UPDATE_TIME", 140, readOnly: true);
-            DgvUtil.AddTextCol(dgvOperationList, "    변경자", "UPDATE_USER_ID", 120, readOnly: true);
+            DgvUtil.AddTextCol(dgvOperationList, "    변경자", "UPDATE_USER_ID", 120, readOnly: true, align: 0);
 
             DgvUtil.DgvInit(dgvAddedInspection);
             DgvUtil.AddTextCol(dgvAddedInspection, "    NO", "DISPLAY_SEQ", 80, readOnly: true, align: 1, frozen: true);
