@@ -297,7 +297,6 @@
     <EmbeddedResource Include="Frm_Store.resx">
       <DependentUpon>Frm_Store.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Frm_User.resx" />
     <EmbeddedResource Include="Frm_UserGroupMgt.resx">
       <DependentUpon>Frm_UserGroupMgt.cs</DependentUpon>
     </EmbeddedResource>
