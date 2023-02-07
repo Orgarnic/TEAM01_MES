@@ -64,10 +64,8 @@ namespace Cohesion_Project
         
         private void dgv_Equipment_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0)
-            {
-                return;
-            }
+            if (e.RowIndex < 0) return;
+
             iProperty = dgv_Equipment.Rows[e.RowIndex].DataBoundItem as Equipment_DTO;
             ppg_Equipment.SelectedObject = iProperty;
             ppg_Equipment.Enabled = false;
