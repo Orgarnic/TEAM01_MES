@@ -36,7 +36,7 @@ namespace Cohesion_Project
             return result;
         }
 
-        public bool DeleteUser(int usercode)
+        public bool DeleteUser(string usercode)
         {
             UserMgt_DAO dao = new UserMgt_DAO();
             bool result = dao.DeleteUser(usercode);
