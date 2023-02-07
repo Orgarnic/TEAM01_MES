@@ -49,26 +49,26 @@ namespace Cohesion_Project
         {
             //데이터 그리드 뷰 초기 설정
             DgvUtil.DgvInit(dgvOperationList);
-            DgvUtil.AddTextCol(dgvOperationList, "    NO", "DISPLAY_SEQ", 80, readOnly: true, align: 1, frozen: true);
-            DgvUtil.AddTextCol(dgvOperationList, "  공정 코드", "OPERATION_CODE", 150, readOnly: true, align: 1, frozen: true);
-            DgvUtil.AddTextCol(dgvOperationList, "  공정명", "OPERATION_NAME", 150, readOnly: true);
+            DgvUtil.AddTextCol(dgvOperationList, "    NO", "DISPLAY_SEQ", 80, readOnly: true, frozen: true, align: 1);
+            DgvUtil.AddTextCol(dgvOperationList, "  공정 코드", "OPERATION_CODE", 150, readOnly: true, frozen: true, align: 0);
+            DgvUtil.AddTextCol(dgvOperationList, "  공정명", "OPERATION_NAME", 150, readOnly: true, align: 0);
             DgvUtil.AddTextCol(dgvOperationList, "    불량 입력", "CHECK_DEFECT_FLAG", 150, readOnly: true);
             DgvUtil.AddTextCol(dgvOperationList, "    검사 데이터 입력", "CHECK_INSPECT_FLAG", 150, readOnly: true);
             DgvUtil.AddTextCol(dgvOperationList, "    자재 사용", "CHECK_MATERIAL_FLAG", 150, readOnly: true);
             DgvUtil.AddTextCol(dgvOperationList, "    생성 시간", "CREATE_TIME", 140, readOnly: true);
-            DgvUtil.AddTextCol(dgvOperationList, "    생성자", "CREATE_USER_ID", 120, readOnly: true);
+            DgvUtil.AddTextCol(dgvOperationList, "    생성자", "CREATE_USER_ID", 120, readOnly: true, align: 0);
             DgvUtil.AddTextCol(dgvOperationList, "    변경 시간", "UPDATE_TIME", 140, readOnly: true);
-            DgvUtil.AddTextCol(dgvOperationList, "    변경자", "UPDATE_USER_ID", 120, readOnly: true);
+            DgvUtil.AddTextCol(dgvOperationList, "    변경자", "UPDATE_USER_ID", 120, readOnly: true, align: 0);
 
             DgvUtil.DgvInit(dgvAddedEquipment);
             DgvUtil.AddTextCol(dgvAddedEquipment, "    NO", "DISPLAY_SEQ", 80, readOnly: true, align: 1, frozen: true);
-            DgvUtil.AddTextCol(dgvAddedEquipment, "    설비 코드", "EQUIPMENT_CODE", 150, readOnly: true, align: 1, frozen: true);
-            DgvUtil.AddTextCol(dgvAddedEquipment, "    설비명", "EQUIPMENT_NAME", 150, readOnly: true);
+            DgvUtil.AddTextCol(dgvAddedEquipment, "    설비 코드", "EQUIPMENT_CODE", 150, readOnly: true, align: 0, frozen: true);
+            DgvUtil.AddTextCol(dgvAddedEquipment, "    설비명", "EQUIPMENT_NAME", 150, readOnly: true, align: 0);
 
             DgvUtil.DgvInit(dgvEquipmentList);
             DgvUtil.AddTextCol(dgvEquipmentList, "    NO", "DISPLAY_SEQ", 80, readOnly: true, align: 1, frozen: true);
-            DgvUtil.AddTextCol(dgvEquipmentList, "    설비 코드", "EQUIPMENT_CODE", 150, readOnly: true, align: 1, frozen: true);
-            DgvUtil.AddTextCol(dgvEquipmentList, "    설비명", "EQUIPMENT_NAME", 150, readOnly: true);
+            DgvUtil.AddTextCol(dgvEquipmentList, "    설비 코드", "EQUIPMENT_CODE", 150, readOnly: true, align: 0, frozen: true);
+            DgvUtil.AddTextCol(dgvEquipmentList, "    설비명", "EQUIPMENT_NAME", 150, readOnly: true, align: 0);
 
 
             btnLeft.Enabled = false;

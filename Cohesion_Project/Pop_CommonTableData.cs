@@ -185,11 +185,11 @@ namespace Cohesion_Project
                 var value = target.GetType().GetProperties()[i].GetValue(target);
                 if (value == null || target.GetType().GetProperties()[i].Name.Contains("USER_ID") || target.GetType().GetProperties()[i].Name.Contains("TIME"))
                 {
-                    DgvUtil.AddTextCol(Dgv_DataTable, $"    {value}", $"{target.GetType().GetProperties()[i].Name.Replace("_NAME", "")}", 100, visible: false, align: 1);
+                    DgvUtil.AddTextCol(Dgv_DataTable, $"    {value}", $"{target.GetType().GetProperties()[i].Name.Replace("_NAME", "")}", 100, visible: false, align: 0);
                     wid += 40;
                     continue;
                 }
-                DgvUtil.AddTextCol(Dgv_DataTable, $"    {value}", $"{target.GetType().GetProperties()[i].Name.Replace("_NAME", "")}", 130, readOnly: false, align: 1);
+                DgvUtil.AddTextCol(Dgv_DataTable, $"    {value}", $"{target.GetType().GetProperties()[i].Name.Replace("_NAME", "")}", 130, readOnly: false, align: 0);
                 wid += 50;
             }
 

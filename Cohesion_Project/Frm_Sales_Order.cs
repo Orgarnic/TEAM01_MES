@@ -16,6 +16,7 @@ namespace Cohesion_Project
         private Sales_Order_DTO iProperty = new Sales_Order_DTO();
         private Sales_Order_DTO_Search sProperty = new Sales_Order_DTO_Search();
         private List<Sales_Order_DTO> orders = new List<Sales_Order_DTO>();
+        List<Sales_Order_VO> iList = new List<Sales_Order_VO>();
         Srv_Sales_Order srvSalesOrder = new Srv_Sales_Order();
         Util.ComboUtil comboUtil = new Util.ComboUtil();
         List<Sales_Order_DTO> srcList;
@@ -37,19 +38,30 @@ namespace Cohesion_Project
         private void DataGridViewBinding()
         {
             DgvUtil.DgvInit(dgv_SalesOrder);
-            DgvUtil.AddTextCol(dgv_SalesOrder, "주문코드",    "SALES_ORDER_ID",   150, readOnly: true, align: 0, frozen: true);
-            DgvUtil.AddTextCol(dgv_SalesOrder, "주문일자",    "ORDER_DATE",       200, readOnly: true, align: 1, frozen: true);
-            DgvUtil.AddTextCol(dgv_SalesOrder, "고객사코드",  "CUSTOMER_CODE",    150, readOnly: true, align: 0, frozen: true);
-            DgvUtil.AddTextCol(dgv_SalesOrder, "고객사명",    "CUSTOMER_NAME",    120, readOnly: true, align: 0, frozen: true);
-            DgvUtil.AddTextCol(dgv_SalesOrder, "제품코드",    "PRODUCT_CODE",     120, readOnly: true, align: 0, frozen: true);
-            DgvUtil.AddTextCol(dgv_SalesOrder, "제품명",      "PRODUCT_NAME",     150, readOnly: true, align: 0, frozen: true); //> btnAdd_Click -> public List<Sales_Order_DTO> SelectSalesList()
-            DgvUtil.AddTextCol(dgv_SalesOrder, "주문수량",    "ORDER_QTY",        100, readOnly: true, align: 2);
-            DgvUtil.AddTextCol(dgv_SalesOrder, "확정여부",    "CONFIRM_FLAG",      90, readOnly: true, align: 1);
-            DgvUtil.AddTextCol(dgv_SalesOrder, "배송여부",    "SHIP_FLAG",         90, readOnly: true, align: 1);
-            DgvUtil.AddTextCol(dgv_SalesOrder, "생성시간",    "CREATE_TIME",      200, readOnly: true, align: 1);
-            DgvUtil.AddTextCol(dgv_SalesOrder, "생성 사용자", "CREATE_USER_ID",   130, readOnly: true, align: 0);
-            DgvUtil.AddTextCol(dgv_SalesOrder, "변경시간",    "UPDATE_TIME",      200, readOnly: true, align: 1);
-            DgvUtil.AddTextCol(dgv_SalesOrder, "변경 사용자", "UPDATE_USER_ID",   130, readOnly: true, align: 0);
+            DgvUtil.AddTextCol(dgv_SalesOrder, "     No",         "DISPLAY_SEQ",       80, readOnly: true, align: 1, frozen: true);
+            DgvUtil.AddTextCol(dgv_SalesOrder, "   주문코드",    "SALES_ORDER_ID",   150, readOnly: true, align: 0, frozen: true);
+            DgvUtil.AddTextCol(dgv_SalesOrder, "     주문일자",    "ORDER_DATE",       200, readOnly: true, align: 1, frozen: true);
+            DgvUtil.AddTextCol(dgv_SalesOrder, "     고객사코드",  "CUSTOMER_CODE",    150, readOnly: true, align: 0, frozen: true);
+            DgvUtil.AddTextCol(dgv_SalesOrder, "     고객사명",    "CUSTOMER_NAME",    120, readOnly: true, align: 0, frozen: true);
+            DgvUtil.AddTextCol(dgv_SalesOrder, "    제품코드",    "PRODUCT_CODE",     120, readOnly: true, align: 0, frozen: true);
+            DgvUtil.AddTextCol(dgv_SalesOrder, "     제품명",      "PRODUCT_NAME",     150, readOnly: true, align: 0, frozen: true); //> btnAdd_Click -> public List<Sales_Order_DTO> SelectSalesList()
+            DgvUtil.AddTextCol(dgv_SalesOrder, "    주문수량",    "ORDER_QTY",        100, readOnly: true, align: 2);
+            DgvUtil.AddTextCol(dgv_SalesOrder, "  확정여부",    "CONFIRM_FLAG",      90, readOnly: true, align: 1);
+            DgvUtil.AddTextCol(dgv_SalesOrder, "  배송여부",    "SHIP_FLAG",         90, readOnly: true, align: 1);
+            DgvUtil.AddTextCol(dgv_SalesOrder, "    생성시간",    "CREATE_TIME",      200, readOnly: true, align: 1);
+            DgvUtil.AddTextCol(dgv_SalesOrder, "   생성 사용자", "CREATE_USER_ID",   130, readOnly: true, align: 0);
+            DgvUtil.AddTextCol(dgv_SalesOrder, "    변경시간",    "UPDATE_TIME",      200, readOnly: true, align: 1);
+            DgvUtil.AddTextCol(dgv_SalesOrder, "   변경 사용자", "UPDATE_USER_ID",   130, readOnly: true, align: 0);
+
+            var list = srvSalesOrder.SelectOrderWithCondition(new Sales_Order_VO());
+            int seq = 1;
+            iList = list.Select((i) => new Sales_Order_VO
+            {
+                PRODUCT_CODE = i.PRODUCT_CODE,
+                PRODUCT_NAME = i.PRODUCT_NAME,
+                DISPLAY_SEQ = seq++
+            }).ToList();
+            dgv_SalesOrder.DataSource = iList;
 
             LoadData();
         }
@@ -66,9 +78,25 @@ namespace Cohesion_Project
 
         private void LoadData()
         {
-            srcList = srvSalesOrder.SelectSalesList();
-            dgv_SalesOrder.DataSource = null;
-            dgv_SalesOrder.DataSource = srcList;
+            var list = srvSalesOrder.SelectSalesList();
+            int seq = 1;
+            dgv_SalesOrder.DataSource = list.Select((i) => new
+            {
+                SALES_ORDER_ID = i.SALES_ORDER_ID,
+                ORDER_DATE = i.ORDER_DATE,
+                CUSTOMER_CODE = i.CUSTOMER_CODE,
+                CUSTOMER_NAME = i.CUSTOMER_NAME,
+                PRODUCT_CODE = i.PRODUCT_CODE,
+                PRODUCT_NAME = i.PRODUCT_NAME,
+                ORDER_QTY = i.ORDER_QTY,
+                CONFIRM_FLAG = i.CONFIRM_FLAG,
+                SHIP_FLAG = i.SHIP_FLAG,
+                CREATE_TIME = i.CREATE_TIME,
+                CREATE_USER_ID = i.CREATE_USER_ID,
+                UPDATE_TIME = i.UPDATE_TIME,
+                UPDATE_USER_ID = i.UPDATE_USER_ID,
+                DISPLAY_SEQ = seq++
+            }).ToList();
         }
 
         private void btnSearchCondition_Click(object sender, EventArgs e)
@@ -92,10 +120,32 @@ namespace Cohesion_Project
 
         private void dgv_SalesOrder_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0) return;
+            var list = dgv_SalesOrder.Rows[e.RowIndex].DataBoundItem;
 
-            iProperty = dgv_SalesOrder.Rows[e.RowIndex].DataBoundItem as Sales_Order_DTO;
-            ppg_SalesOrder.SelectedObject = iProperty;
+            Sales_Order_DTO data = default;
+            string upDate=(list.GetType().GetProperty("UPDATE_TIME").GetValue(list)).ToString();
+            data = new Sales_Order_DTO
+            {
+                SALES_ORDER_ID = list.GetType().GetProperty("SALES_ORDER_ID").GetValue(list).ToString(),
+                ORDER_DATE = Convert.ToDateTime(list.GetType().GetProperty("ORDER_DATE").GetValue(list)),
+                CUSTOMER_CODE = list.GetType().GetProperty("CUSTOMER_CODE").GetValue(list).ToString(),
+                CUSTOMER_NAME = list.GetType().GetProperty("CUSTOMER_NAME").GetValue(list).ToString(),
+                PRODUCT_CODE = list.GetType().GetProperty("PRODUCT_CODE").GetValue(list).ToString(),
+                PRODUCT_NAME = list.GetType().GetProperty("PRODUCT_NAME").GetValue(list).ToString(),
+                ORDER_QTY = Convert.ToDecimal(list.GetType().GetProperty("ORDER_QTY").GetValue(list)),
+                CONFIRM_FLAG = (list.GetType().GetProperty("CONFIRM_FLAG").GetValue(list) != null) ? list.GetType().GetProperty("CONFIRM_FLAG").GetValue(list).ToString() : null,
+                SHIP_FLAG = (list.GetType().GetProperty("SHIP_FLAG").GetValue(list) != null) ? list.GetType().GetProperty("SHIP_FLAG").GetValue(list).ToString() : null,
+                CREATE_TIME = Convert.ToDateTime(list.GetType().GetProperty("CREATE_TIME").GetValue(list)),
+                CREATE_USER_ID = list.GetType().GetProperty("CREATE_USER_ID").GetValue(list).ToString(),
+                UPDATE_USER_ID = (list.GetType().GetProperty("UPDATE_USER_ID").GetValue(list) != null) ? list.GetType().GetProperty("UPDATE_USER_ID").GetValue(list).ToString() : null
+            };
+            if (!string.IsNullOrEmpty(upDate))
+            {
+                data.UPDATE_TIME = Convert.ToDateTime(upDate);
+            }
+            ppg_SalesOrder.SelectedObject = data;
+
+
             ppg_SalesOrder.Enabled = false;
             btnAdd.Enabled = false;
             btnInsert.Enabled = true;
@@ -166,7 +216,6 @@ namespace Cohesion_Project
                 btnInsert.Enabled = false;
                 return;
             }
-            
         }
 
         private void btnInsert_Click(object sender, EventArgs e)
@@ -299,6 +348,7 @@ namespace Cohesion_Project
                         CONFIRM_FLAG = t.CONFIRM_FLAG,
                         SHIP_FLAG = t.SHIP_FLAG
                     };
+                    int seq = 1;
                     var list = srvSalesOrder.SelectOrderWithCondition(dto);
                     dgv_SalesOrder.DataSource = list.Select((i) => new
                     {
@@ -314,7 +364,8 @@ namespace Cohesion_Project
                         CREATE_TIME = i.CREATE_TIME,
                         CREATE_USER_ID = i.CREATE_USER_ID,
                         UPDATE_TIME = i.UPDATE_TIME,
-                        UPDATE_USER_ID = i.UPDATE_USER_ID
+                        UPDATE_USER_ID = i.UPDATE_USER_ID,
+                        DISPLAY_SEQ = seq++
                     }).ToList();
                 }
             }

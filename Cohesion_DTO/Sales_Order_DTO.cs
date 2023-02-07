@@ -46,7 +46,7 @@ namespace Cohesion_DTO
         public string CREATE_USER_ID { get; set; }
 
         [Category("추적"), Description("UPDATE_TIME"), DisplayName("변경시간"), ReadOnly(true)]
-        public DateTime UPDATE_TIME { get; set; }
+        public DateTime? UPDATE_TIME { get; set; }
 
         [Category("추적"), Description("UPDATE_USER_ID"), DisplayName("변경 사용자"), ReadOnly(true)]
         public string UPDATE_USER_ID { get; set; }
@@ -73,7 +73,7 @@ namespace Cohesion_DTO
 
         [Category("검색조건"), Description("CM_ANSWER"), DisplayName("확정여부"), TypeConverter(typeof(ComboStringConverter))]
         public string CONFIRM_FLAG { get; set; }
-        [Category("검색조건"), Description("CM_ANSWER"), DisplayName("확정여부"), TypeConverter(typeof(ComboStringConverter))]
+        [Category("검색조건"), Description("CM_ANSWER"), DisplayName("배송여부"), TypeConverter(typeof(ComboStringConverter))]
         public string SHIP_FLAG { get; set; }
     }
 
@@ -125,6 +125,7 @@ namespace Cohesion_DTO
     }
     public class Sales_Order_VO
     {
+        public Int64 DISPLAY_SEQ { get; set; }
         public string       SALES_ORDER_ID          { get; set; }
         public DateTime ORDER_DATE              { get; set; }
         public DateTime FROM_DATE               { get; set; }

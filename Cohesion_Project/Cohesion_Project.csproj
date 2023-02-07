@@ -270,6 +270,9 @@
     <EmbeddedResource Include="Frm_Equipment_Operation_Rel.resx">
       <DependentUpon>Frm_Equipment_Operation_Rel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Function.resx">
+      <DependentUpon>Frm_Function.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frm_Function_User_Group_Rel.resx">
       <DependentUpon>Frm_Function_User_Group_Rel.cs</DependentUpon>
     </EmbeddedResource>

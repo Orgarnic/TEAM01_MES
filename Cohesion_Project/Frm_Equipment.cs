@@ -36,15 +36,16 @@ namespace Cohesion_Project
         private void DataGridViewBinding()
         {
             DgvUtil.DgvInit(dgv_Equipment);
-            DgvUtil.AddTextCol(dgv_Equipment, "설비코드"      , "EQUIPMENT_CODE"   , 200, readOnly: true, align: 0, frozen: true);
-            DgvUtil.AddTextCol(dgv_Equipment, "설비명"        , "EQUIPMENT_NAME"   , 150, readOnly: true, align: 0, frozen: true);
-            DgvUtil.AddTextCol(dgv_Equipment, "설비유형"      , "EQUIPMENT_TYPE"   , 150, readOnly: true, align: 1, frozen: true);
-            DgvUtil.AddTextCol(dgv_Equipment, "설비상태"      , "EQUIPMENT_STATUS" , 150, readOnly: true, align: 1, frozen: true);
-            DgvUtil.AddTextCol(dgv_Equipment, "최근 다운시간" , "LAST_DOWN_TIME"    , 250, readOnly: true, align: 1);
-            DgvUtil.AddTextCol(dgv_Equipment, "생성 시간"     , "CREATE_TIME"      , 250, readOnly: true, align: 1);
-            DgvUtil.AddTextCol(dgv_Equipment, "생성 사용자"   , "CREATE_USER_ID"   , 150, readOnly: true, align: 0);
-            DgvUtil.AddTextCol(dgv_Equipment, "변경 시간"     , "UPDATE_TIME"      , 250, readOnly: true, align: 1);
-            DgvUtil.AddTextCol(dgv_Equipment, "변경 사용자"   , "UPDATE_USER_ID"    , 150, readOnly: true, align: 0);
+            DgvUtil.AddTextCol(dgv_Equipment, "    No", "DISPLAY_SEQ", 80, readOnly: true, align: 1, frozen: true);
+            DgvUtil.AddTextCol(dgv_Equipment, "    설비코드"      , "EQUIPMENT_CODE"   , 200, readOnly: true, align: 0, frozen: true);
+            DgvUtil.AddTextCol(dgv_Equipment, "    설비명", "EQUIPMENT_NAME"   , 180, readOnly: true, align: 0, frozen: true);
+            DgvUtil.AddTextCol(dgv_Equipment, "    설비유형", "EQUIPMENT_TYPE"   , 130, readOnly: true, align: 1, frozen: true);
+            DgvUtil.AddTextCol(dgv_Equipment, "    설비상태", "EQUIPMENT_STATUS" , 130, readOnly: true, align: 1, frozen: true);
+            DgvUtil.AddTextCol(dgv_Equipment, "    최근 다운시간", "LAST_DOWN_TIME"    , 250, readOnly: true, align: 1);
+            DgvUtil.AddTextCol(dgv_Equipment, "    생성 시간", "CREATE_TIME"      , 250, readOnly: true, align: 1);
+            DgvUtil.AddTextCol(dgv_Equipment, "    생성 사용자", "CREATE_USER_ID"   , 150, readOnly: true, align: 0);
+            DgvUtil.AddTextCol(dgv_Equipment, "    변경 시간", "UPDATE_TIME"      , 250, readOnly: true, align: 1);
+            DgvUtil.AddTextCol(dgv_Equipment, "    변경 사용자", "UPDATE_USER_ID"    , 150, readOnly: true, align: 0);
 
             LoadData();
         }
@@ -58,18 +59,59 @@ namespace Cohesion_Project
         }
         private void LoadData()
         {
-            srcList = srvEquipment.SelectEquipmentList();
-            dgv_Equipment.DataSource = srcList;
+            //srcList = srvEquipment.SelectEquipmentList();
+            //dgv_Equipment.DataSource = srcList;
+
+            var list = srvEquipment.SelectEquipmentList();
+            int seq = 1;
+            dgv_Equipment.DataSource = list.Select((i) => new
+            {
+                EQUIPMENT_CODE = i.EQUIPMENT_CODE,
+                EQUIPMENT_NAME = i.EQUIPMENT_NAME,
+                EQUIPMENT_TYPE = i.EQUIPMENT_TYPE,
+                EQUIPMENT_STATUS = i.EQUIPMENT_STATUS,
+                LAST_DOWN_TIME = i.LAST_DOWN_TIME,
+                CREATE_TIME = i.CREATE_TIME,
+                CREATE_USER_ID = i.CREATE_USER_ID,
+                UPDATE_TIME = i.UPDATE_TIME,
+                UPDATE_USER_ID = i.UPDATE_USER_ID,
+                DISPLAY_SEQ = seq++
+            }).ToList();
         }
         
         private void dgv_Equipment_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
 
-            iProperty = dgv_Equipment.Rows[e.RowIndex].DataBoundItem as Equipment_DTO;
-            ppg_Equipment.SelectedObject = iProperty;
+            var list = dgv_Equipment.Rows[e.RowIndex].DataBoundItem;
+
+            Equipment_DTO data = default;
+            string upDate = list.GetType().GetProperty("UPDATE_TIME").GetValue(list).ToString();
+            string lastDown = list.GetType().GetProperty("LAST_DOWN_TIME").GetValue(list).ToString();
+            data = new Equipment_DTO
+            {
+                EQUIPMENT_CODE = list.GetType().GetProperty("EQUIPMENT_CODE").GetValue(list).ToString(),
+                EQUIPMENT_NAME = list.GetType().GetProperty("EQUIPMENT_NAME").GetValue(list).ToString(),
+                EQUIPMENT_TYPE = list.GetType().GetProperty("EQUIPMENT_TYPE").GetValue(list).ToString(),
+                EQUIPMENT_STATUS = list.GetType().GetProperty("EQUIPMENT_STATUS").GetValue(list).ToString(),
+                CREATE_TIME = Convert.ToDateTime(list.GetType().GetProperty("CREATE_TIME").GetValue(list).ToString()),
+                CREATE_USER_ID = list.GetType().GetProperty("CREATE_USER_ID").GetValue(list).ToString(),
+            };
+            if (!string.IsNullOrEmpty(upDate))
+            {
+                data.UPDATE_TIME = Convert.ToDateTime(upDate);
+                data.UPDATE_USER_ID = (list.GetType().GetProperty("UPDATE_USER_ID").GetValue(list) != null) ? list.GetType().GetProperty("UPDATE_USER_ID").GetValue(list).ToString() : null;
+            }
+            if (!string.IsNullOrEmpty(lastDown))
+            {
+                data.LAST_DOWN_TIME = Convert.ToDateTime(lastDown);
+            }
+            ppg_Equipment.SelectedObject = data;
+
             ppg_Equipment.Enabled = false;
             btnAdd.Enabled = false;
+
+
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -210,6 +252,7 @@ namespace Cohesion_Project
                         EQUIPMENT_TYPE = t.EQUIPMENT_TYPE,
                         EQUIPMENT_STATUS = t.EQUIPMENT_STATUS
                     };
+                    int seq = 1;
                     var list = srvEquipment.SelectEquipmentSearchList(dto);
                     dgv_Equipment.DataSource = list.Select((i) => new
                     {
@@ -222,7 +265,7 @@ namespace Cohesion_Project
                         CREATE_USER_ID = i.CREATE_USER_ID,
                         UPDATE_TIME = i.UPDATE_TIME,
                         UPDATE_USER_ID = i.UPDATE_USER_ID,
-
+                        DISPLAY_SEQ = seq++
                     }).ToList();
                 }
             }

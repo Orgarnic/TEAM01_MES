@@ -36,14 +36,14 @@ namespace Cohesion_Project
         private void DataGridViewBinding()
         {
             DgvUtil.DgvInit(dgv_Store);
-            DgvUtil.AddTextCol(dgv_Store, "창고코드", "STORE_CODE", 170, readOnly: true, align: 0, frozen:true);
-            DgvUtil.AddTextCol(dgv_Store, "창고명", "STORE_NAME", 220, readOnly: true, align: 0, frozen: true);
-            DgvUtil.AddTextCol(dgv_Store, "창고유형", "STORE_TYPE", 117, readOnly: true, align: 1, frozen: true);
+            DgvUtil.AddTextCol(dgv_Store, "    창고코드", "STORE_CODE", 180, readOnly: true, align: 0, frozen:true);
+            DgvUtil.AddTextCol(dgv_Store, "    창고명", "STORE_NAME", 230, readOnly: true, align: 0, frozen: true);
+            DgvUtil.AddTextCol(dgv_Store, "    창고유형", "STORE_TYPE", 120, readOnly: true, align: 1, frozen: true);
             //DgvUtil.AddTextCol(dataGridView1, "선입선출 여부", "FIFO_FLAG", 180, readOnly: true, align: 0);
-            DgvUtil.AddTextCol(dgv_Store, "생성시간", "CREATE_TIME", 250, readOnly: true, align: 1);
-            DgvUtil.AddTextCol(dgv_Store, "생성 사용자", "CREATE_USER_ID", 160, readOnly: true, align: 0);
-            DgvUtil.AddTextCol(dgv_Store, "변경시간", "UPDATE_TIME", 250, readOnly: true, align: 1);
-            DgvUtil.AddTextCol(dgv_Store, "변경 사용자", "UPDATE_USER_ID", 160, readOnly: true, align: 0);
+            DgvUtil.AddTextCol(dgv_Store, "    생성시간", "CREATE_TIME", 250, readOnly: true, align: 1);
+            DgvUtil.AddTextCol(dgv_Store, "    생성 사용자", "CREATE_USER_ID", 160, readOnly: true, align: 0);
+            DgvUtil.AddTextCol(dgv_Store, "    변경시간", "UPDATE_TIME", 250, readOnly: true, align: 1);
+            DgvUtil.AddTextCol(dgv_Store, "    변경 사용자", "UPDATE_USER_ID", 160, readOnly: true, align: 0);
 
             LoadData();
         }

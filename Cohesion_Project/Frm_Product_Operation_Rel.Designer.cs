@@ -105,6 +105,7 @@ namespace Cohesion_Project
             // 
             // lbl3
             // 
+            this.lbl3.Size = new System.Drawing.Size(286, 30);
             this.lbl3.Text = "▶ 조회 조건";
             // 
             // lbl5
@@ -114,11 +115,13 @@ namespace Cohesion_Project
             // panel7
             // 
             this.panel7.Controls.Add(this.ppgSearchCondition);
+            this.panel7.Size = new System.Drawing.Size(288, 444);
             this.panel7.Controls.SetChildIndex(this.lbl3, 0);
             this.panel7.Controls.SetChildIndex(this.ppgSearchCondition, 0);
             // 
             // splitContainer1
             // 
+            this.splitContainer1.SplitterDistance = 1226;
             // 
             // panel2
             // 
@@ -126,23 +129,38 @@ namespace Cohesion_Project
             this.panel2.Controls.Add(this.dgvProductList);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 75);
-            this.panel2.Size = new System.Drawing.Size(1153, 373);
+            this.panel2.Size = new System.Drawing.Size(1223, 373);
             this.panel2.Controls.SetChildIndex(this.lbl4, 0);
             this.panel2.Controls.SetChildIndex(this.dgvProductList, 0);
             // 
             // lbl4
             // 
+            this.lbl4.Size = new System.Drawing.Size(1221, 30);
             this.lbl4.Text = "▶ 품번 목록";
+            // 
+            // panel4
+            // 
+            this.panel4.Size = new System.Drawing.Size(1223, 72);
             // 
             // btnSearchCondition
             // 
             this.btnSearchCondition.FlatAppearance.BorderSize = 0;
+            this.btnSearchCondition.Location = new System.Drawing.Point(1134, 38);
             this.btnSearchCondition.Click += new System.EventHandler(this.btnSearchCondition_Click);
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Size = new System.Drawing.Size(1058, 21);
             // 
             // btnSearch
             // 
             this.btnSearch.FlatAppearance.BorderSize = 0;
+            this.btnSearch.Location = new System.Drawing.Point(1074, 38);
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // lbl2
+            // 
+            this.lbl2.Size = new System.Drawing.Size(1221, 30);
             // 
             // lbl1
             // 
@@ -186,7 +204,7 @@ namespace Cohesion_Project
             this.dgvProductList.Location = new System.Drawing.Point(0, 30);
             this.dgvProductList.Name = "dgvProductList";
             this.dgvProductList.RowTemplate.Height = 23;
-            this.dgvProductList.Size = new System.Drawing.Size(1151, 341);
+            this.dgvProductList.Size = new System.Drawing.Size(1221, 341);
             this.dgvProductList.TabIndex = 5;
             this.dgvProductList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductList_CellClick);
             // 
@@ -215,7 +233,7 @@ namespace Cohesion_Project
             this.ppgSearchCondition.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ppgSearchCondition.Location = new System.Drawing.Point(0, 30);
             this.ppgSearchCondition.Name = "ppgSearchCondition";
-            this.ppgSearchCondition.Size = new System.Drawing.Size(356, 412);
+            this.ppgSearchCondition.Size = new System.Drawing.Size(286, 412);
             this.ppgSearchCondition.TabIndex = 7;
             // 
             // Frm_Product_Operation_Rel

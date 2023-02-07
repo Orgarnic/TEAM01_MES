@@ -45,10 +45,11 @@ namespace Cohesion_Project
             // 
             // pnlSearch
             // 
-            this.pnlSearch.Size = new System.Drawing.Size(1240, 35);
+            this.pnlSearch.Size = new System.Drawing.Size(1240, 33);
             // 
             // lbl1
             // 
+            this.lbl1.Size = new System.Drawing.Size(399, 23);
             this.lbl1.Text = "/ 기준정보관리 / 화면 기능 마스터";
             // 
             // txtSearch
@@ -58,114 +59,114 @@ namespace Cohesion_Project
             // panel2
             // 
             this.panel2.Controls.Add(this.DgvFunction);
-            this.panel2.Size = new System.Drawing.Size(937, 470);
+            this.panel2.Size = new System.Drawing.Size(454, 65);
             this.panel2.Controls.SetChildIndex(this.lbl4, 0);
             this.panel2.Controls.SetChildIndex(this.DgvFunction, 0);
             // 
             // lbl4
             // 
-            this.lbl4.Size = new System.Drawing.Size(935, 30);
+            this.lbl4.Size = new System.Drawing.Size(452, 28);
             this.lbl4.Text = "▶ 화면 기능 목록";
             // 
             // btnSearch
             // 
             this.btnSearch.FlatAppearance.BorderSize = 0;
-            this.btnSearch.Location = new System.Drawing.Point(790, 38);
+            this.btnSearch.Location = new System.Drawing.Point(790, 35);
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // panel4
             // 
-            this.panel4.Size = new System.Drawing.Size(939, 72);
+            this.panel4.Size = new System.Drawing.Size(939, 67);
             // 
             // btnSearchCondition
             // 
             this.btnSearchCondition.FlatAppearance.BorderSize = 0;
-            this.btnSearchCondition.Location = new System.Drawing.Point(850, 38);
+            this.btnSearchCondition.Location = new System.Drawing.Point(850, 35);
             this.btnSearchCondition.Click += new System.EventHandler(this.btnSearchCondition_Click);
             // 
             // lbl2
             // 
-            this.lbl2.Size = new System.Drawing.Size(937, 30);
+            this.lbl2.Size = new System.Drawing.Size(937, 28);
             // 
             // panel5
             // 
-            this.panel5.Size = new System.Drawing.Size(1240, 557);
+            this.panel5.Size = new System.Drawing.Size(1240, 520);
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Size = new System.Drawing.Size(1240, 557);
+            this.splitContainer1.Size = new System.Drawing.Size(1240, 520);
             this.splitContainer1.SplitterDistance = 942;
             // 
             // panel7
             // 
             this.panel7.Controls.Add(this.PpgFunction);
-            this.panel7.Size = new System.Drawing.Size(291, 551);
+            this.panel7.Size = new System.Drawing.Size(560, 514);
             this.panel7.Controls.SetChildIndex(this.lbl3, 0);
             this.panel7.Controls.SetChildIndex(this.PpgFunction, 0);
             // 
             // lbl3
             // 
-            this.lbl3.Size = new System.Drawing.Size(289, 30);
+            this.lbl3.Size = new System.Drawing.Size(558, 28);
             // 
             // btnClose
             // 
             this.btnClose.FlatAppearance.BorderSize = 0;
-            this.btnClose.Location = new System.Drawing.Point(1141, 602);
+            this.btnClose.Location = new System.Drawing.Point(1141, 562);
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnDelete
             // 
             this.btnDelete.FlatAppearance.BorderSize = 0;
-            this.btnDelete.Location = new System.Drawing.Point(3, 602);
+            this.btnDelete.Location = new System.Drawing.Point(3, 562);
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnInsert
             // 
             this.btnInsert.FlatAppearance.BorderSize = 0;
-            this.btnInsert.Location = new System.Drawing.Point(939, 602);
+            this.btnInsert.Location = new System.Drawing.Point(939, 562);
             this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
             // btnAdd
             // 
             this.btnAdd.FlatAppearance.BorderSize = 0;
-            this.btnAdd.Location = new System.Drawing.Point(737, 602);
+            this.btnAdd.Location = new System.Drawing.Point(737, 562);
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnUpdate
             // 
             this.btnUpdate.FlatAppearance.BorderSize = 0;
-            this.btnUpdate.Location = new System.Drawing.Point(838, 602);
+            this.btnUpdate.Location = new System.Drawing.Point(838, 562);
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnRefresh
             // 
             this.btnRefresh.FlatAppearance.BorderSize = 0;
-            this.btnRefresh.Location = new System.Drawing.Point(1040, 602);
+            this.btnRefresh.Location = new System.Drawing.Point(1040, 562);
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // PpgFunction
             // 
             this.PpgFunction.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PpgFunction.Location = new System.Drawing.Point(0, 30);
+            this.PpgFunction.Location = new System.Drawing.Point(0, 28);
             this.PpgFunction.Name = "PpgFunction";
-            this.PpgFunction.Size = new System.Drawing.Size(289, 519);
+            this.PpgFunction.Size = new System.Drawing.Size(558, 484);
             this.PpgFunction.TabIndex = 7;
             // 
             // DgvFunction
             // 
             this.DgvFunction.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvFunction.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DgvFunction.Location = new System.Drawing.Point(0, 30);
+            this.DgvFunction.Location = new System.Drawing.Point(0, 28);
             this.DgvFunction.Name = "DgvFunction";
-            this.DgvFunction.Size = new System.Drawing.Size(935, 438);
+            this.DgvFunction.Size = new System.Drawing.Size(452, 35);
             this.DgvFunction.TabIndex = 6;
             this.DgvFunction.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvFunction_CellClick);
             // 
             // Frm_Function
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1240, 640);
+            this.ClientSize = new System.Drawing.Size(1240, 597);
             this.Name = "Frm_Function";
             this.Text = "FUNCTION_MST";
             this.Load += new System.EventHandler(this.Frm_Function_Load);
