@@ -92,14 +92,13 @@ namespace Cohesion_Project
 
         private void dgv_SalesOrder_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0)
-            {
-                return;
-            }
+            if (e.RowIndex < 0) return;
+
             iProperty = dgv_SalesOrder.Rows[e.RowIndex].DataBoundItem as Sales_Order_DTO;
             ppg_SalesOrder.SelectedObject = iProperty;
             ppg_SalesOrder.Enabled = false;
             btnAdd.Enabled = false;
+            btnInsert.Enabled = true;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -158,6 +157,16 @@ namespace Cohesion_Project
         {
             ppg_SalesOrder.Enabled = true;
             btnAdd.Enabled = false;
+
+            var dto = ppg_SalesOrder.SelectedObject as Sales_Order_DTO;
+            if (dto.CONFIRM_FLAG == "Y" && dto.SHIP_FLAG == "Y")
+            {
+                MboxUtil.MboxInfo("배송처리된 주문은 수정이 불가능합니다.");
+                ppg_SalesOrder.Enabled = false;
+                btnInsert.Enabled = false;
+                return;
+            }
+            
         }
 
         private void btnInsert_Click(object sender, EventArgs e)
@@ -170,6 +179,7 @@ namespace Cohesion_Project
                 MboxUtil.MboxWarn("변경할 주문 정보를 선택해주세요.");
                 return;
             }
+            
             if (dto.CONFIRM_FLAG == null || dto.CONFIRM_FLAG == "N")
             {
                 if(dto.SHIP_FLAG == "Y")
