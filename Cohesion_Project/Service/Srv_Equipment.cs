@@ -19,6 +19,14 @@ namespace Cohesion_Project.Service
 
             return list;
         }
+        public List<Equipment_DTO_Search_Data> SelectEquipmentSearchList(Equipment_DTO_Search_Data condtion)
+        {
+            Equipment_DAO db = new Equipment_DAO();
+            List<Equipment_DTO_Search_Data> list = db.SelectEquipmentSearchList(condtion);
+            db.Dispose();
+
+            return list;
+        }
         public bool InsertEquipment(Equipment_DTO dto)
         {
             Equipment_DAO dao = new Equipment_DAO();

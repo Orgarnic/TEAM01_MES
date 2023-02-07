@@ -28,7 +28,7 @@ namespace Cohesion_DAO
         
         public List<Sales_Order_DTO> SelectSalesList()
         {
-            string sql = @"SELECT SOM.SALES_ORDER_ID, SOM.ORDER_DATE, SOM.CUSTOMER_CODE, DATA_1 AS CUSTOMER_NAME, SOM.PRODUCT_CODE, PRODUCT_NAME, CAST(SOM.ORDER_QTY AS NVARCHAR) ORDER_QTY, 
+            string sql = @"SELECT SOM.SALES_ORDER_ID, SOM.ORDER_DATE, SOM.CUSTOMER_CODE, DATA_1 AS CUSTOMER_NAME, SOM.PRODUCT_CODE, PRODUCT_NAME, SOM.ORDER_QTY, 
                                   SOM.CONFIRM_FLAG, SOM.SHIP_FLAG, SOM.CREATE_TIME, SOM.CREATE_USER_ID, SOM.UPDATE_TIME, SOM.UPDATE_USER_ID
                            FROM SALES_ORDER_MST SOM INNER JOIN CODE_DATA_MST CDM ON SOM.CUSTOMER_CODE = CDM.KEY_1
                                                     INNER JOIN PRODUCT_MST PM ON SOM.PRODUCT_CODE = PM.PRODUCT_CODE
@@ -41,7 +41,6 @@ namespace Cohesion_DAO
 
             return list;
         }
-
         public bool InsertSalesOrder(Sales_Order_DTO dto)
         {
             string sql = @"INSERT INTO SALES_ORDER_MST(SALES_ORDER_ID, ORDER_DATE, CUSTOMER_CODE
@@ -77,7 +76,7 @@ namespace Cohesion_DAO
 
             cmd.Parameters.AddWithValue("@SALES_ORDER_ID", string.IsNullOrEmpty(dto.SALES_ORDER_ID) ? (object)DBNull.Value : dto.SALES_ORDER_ID);
             cmd.Parameters.AddWithValue("@PRODUCT_CODE", string.IsNullOrEmpty(dto.PRODUCT_CODE) ? (object)DBNull.Value : dto.PRODUCT_CODE);
-            cmd.Parameters.AddWithValue("@ORDER_QTY", dto.ORDER_QTY);
+            cmd.Parameters.AddWithValue("@ORDER_QTY", string.IsNullOrEmpty(dto.ORDER_QTY.ToString()) ? (object)DBNull.Value : dto.ORDER_QTY.ToString());
             cmd.Parameters.AddWithValue("@CONFIRM_FLAG", string.IsNullOrEmpty(dto.CONFIRM_FLAG) ? (object)DBNull.Value : dto.CONFIRM_FLAG);
             cmd.Parameters.AddWithValue("@SHIP_FLAG", string.IsNullOrEmpty(dto.SHIP_FLAG) ? (object)DBNull.Value : dto.SHIP_FLAG);
             cmd.Parameters.AddWithValue("@UPDATE_USER_ID", string.IsNullOrEmpty(dto.UPDATE_USER_ID) ? (object)DBNull.Value : dto.UPDATE_USER_ID);
@@ -112,31 +111,65 @@ namespace Cohesion_DAO
                 conn.Close();
             }
         }
-        public List<Sales_Order_DTO> SelectOrderWithCondition(Sales_Order_DTO_Search condition)
+        public List<Sales_Order_VO> SelectOrderWithCondition(Sales_Order_VO condition)
         {
-            List<Sales_Order_DTO> list = null;
+            List<Sales_Order_VO> list = null;
             try
             {
                 SqlCommand cmd = new SqlCommand();
-                StringBuilder sql = new StringBuilder(@"SELECT SOM.SALES_ORDER_ID, CONVERT(VARCHAR(30), SOM.ORDER_DATE, 121) ORDER_DATE, SOM.CUSTOMER_CODE, DATA_1 AS CUSTOMER_NAME, SOM.PRODUCT_CODE, PRODUCT_NAME, SOM.ORDER_QTY, 
+                StringBuilder sql = new StringBuilder(
+                    @"SELECT SOM.SALES_ORDER_ID, SOM.ORDER_DATE, SOM.CUSTOMER_CODE, DATA_1 AS CUSTOMER_NAME, SOM.PRODUCT_CODE, PRODUCT_NAME, SOM.ORDER_QTY, 
                                                                SOM.CONFIRM_FLAG, SOM.SHIP_FLAG, SOM.CREATE_TIME, SOM.CREATE_USER_ID, SOM.UPDATE_TIME, SOM.UPDATE_USER_ID
                                                         FROM SALES_ORDER_MST SOM INNER JOIN CODE_DATA_MST CDM ON SOM.CUSTOMER_CODE = CDM.KEY_1
                                                                                  INNER JOIN PRODUCT_MST PM ON SOM.PRODUCT_CODE = PM.PRODUCT_CODE
-                                                        WHERE 1 = 1 ");
+                                                        WHERE 1 = 1 ");     
 
-                foreach (var prop in condition.GetType().GetProperties())
+                if (!string.IsNullOrWhiteSpace(condition.SALES_ORDER_ID))
                 {
-                    if (prop.PropertyType == typeof(string) && !string.IsNullOrWhiteSpace((string)prop.GetValue(condition)))
-                    {
-                        sql.Append($" and {prop.Name} = @{prop.Name}");
-                        cmd.Parameters.AddWithValue($"@{prop.Name}", prop.GetValue(condition).ToString());
-                    }
+                    sql.Append(" and SALES_ORDER_ID = @SALES_ORDER_ID ");
+                    cmd.Parameters.AddWithValue("@SALES_ORDER_ID", condition.SALES_ORDER_ID);
+                }
+                if (condition.FROM_DATE.ToString() != "0001-01-01 오전 12:00:00")
+                {
+                    sql.Append(" AND ORDER_DATE BETWEEN @FROM_DATE AND DATEADD(DAY, 1, @TO_DATE) ");
+                    cmd.Parameters.AddWithValue("@FROM_DATE", condition.FROM_DATE);
+                    cmd.Parameters.AddWithValue("@TO_DATE", condition.TO_DATE);
+                }
+                if (!string.IsNullOrWhiteSpace(condition.CUSTOMER_NAME))
+                {
+                    sql.Append(" AND SOM.CUSTOMER_CODE = @CUSTOMER_CODE ");
+                    cmd.Parameters.AddWithValue("@CUSTOMER_CODE", condition.CUSTOMER_NAME);
+                }
+                if (!string.IsNullOrWhiteSpace(condition.PRODUCT_CODE))
+                {
+                    sql.Append(" AND SOM.PRODUCT_CODE = @PRODUCT_CODE ");
+                    cmd.Parameters.AddWithValue("@PRODUCT_CODE", condition.PRODUCT_CODE);
+                }
+                if (!string.IsNullOrWhiteSpace(condition.PRODUCT_NAME))
+                {
+                    sql.Append(" AND PRODUCT_NAME = @PRODUCT_NAME ");
+                    cmd.Parameters.AddWithValue("@PRODUCT_NAME", condition.PRODUCT_NAME);
+                }
+                if (condition.ORDER_QTY.ToString()!="0")
+                {
+                    sql.Append(" AND ORDER_QTY = @ORDER_QTY ");
+                    cmd.Parameters.AddWithValue("@ORDER_QTY", condition.ORDER_QTY);
+                }
+                if (!string.IsNullOrWhiteSpace(condition.CONFIRM_FLAG))
+                {
+                    sql.Append(" AND CONFIRM_FLAG = @CONFIRM_FLAG ");
+                    cmd.Parameters.AddWithValue("@CONFIRM_FLAG", condition.CONFIRM_FLAG);
+                }
+                if (!string.IsNullOrWhiteSpace(condition.SHIP_FLAG))
+                {
+                    sql.Append(" AND SHIP_FLAG = @SHIP_FLAG ");
+                    cmd.Parameters.AddWithValue("@SHIP_FLAG", condition.SHIP_FLAG);
                 }
                 sql.Append(" ORDER BY SALES_ORDER_ID DESC ");
                 cmd.CommandText = sql.ToString();
                 cmd.Connection = conn;
                 conn.Open();
-                list = Helper.DataReaderMapToList<Sales_Order_DTO>(cmd.ExecuteReader());
+                list = Helper.DataReaderMapToList<Sales_Order_VO>(cmd.ExecuteReader());
             }
             catch (Exception err)
             {
@@ -159,7 +192,7 @@ namespace Cohesion_DAO
                                 	 , SOM.CUSTOMER_CODE
                                 	 , SOM.PRODUCT_CODE
                                 	 , PM.PRODUCT_NAME
-                                	 , CAST(SOM.ORDER_QTY AS NVARCHAR) ORDER_QTY
+                                	 , SOM.ORDER_QTY 
                                 	 , PMS.VENDOR_CODE
                                 	 , BM.CHILD_PRODUCT_CODE
                                 	 , REQUIRE_QTY

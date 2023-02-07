@@ -51,4 +51,14 @@ namespace Cohesion_DTO
         [Category("검색조건"), Description("CM_ST_CODE"), DisplayName("창고유형"), TypeConverter(typeof(ComboStringConverter))]
         public string STORE_TYPE { get; set; }
     }
+    public class Store_DTO_Search_Data
+    {
+        public string STORE_CODE { get; set; }
+        public string STORE_NAME { get; set; }
+        public string STORE_TYPE { get; set; }
+        public DateTime CREATE_TIME { get; set; }
+        public string CREATE_USER_ID { get; set; }
+        public DateTime UPDATE_TIME { get; set; }
+        public string UPDATE_USER_ID { get; set; }
+    }
 }

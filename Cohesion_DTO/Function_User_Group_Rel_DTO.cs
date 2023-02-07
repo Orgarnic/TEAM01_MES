@@ -27,7 +27,7 @@ namespace Cohesion_DTO
         [Category("속성"), Description("USER_GROUP_TYPE"), DisplayName("사용자 그룹 유형")]
         public string USER_GROUP_TYPE { get; set; }  //사용자 그룹 유형
         [Category("속성"), Description("FUNCTION_NAME"), DisplayName("화면 기능명")]
-        public string FUNCTION_NAME { get; set; }  //사용자 그룹 유형
+        public string FUNCTION_NAME { get; set; }  //화면 기능 명
 
         public int DISPLAY_SEQ { get; set; }
 

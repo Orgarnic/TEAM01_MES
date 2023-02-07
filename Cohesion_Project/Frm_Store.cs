@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -35,7 +36,7 @@ namespace Cohesion_Project
         private void DataGridViewBinding()
         {
             DgvUtil.DgvInit(dgv_Store);
-            DgvUtil.AddTextCol(dgv_Store, "창고코드", "STORE_CODE", 170, readOnly: true, align: 1, frozen:true);
+            DgvUtil.AddTextCol(dgv_Store, "창고코드", "STORE_CODE", 170, readOnly: true, align: 0, frozen:true);
             DgvUtil.AddTextCol(dgv_Store, "창고명", "STORE_NAME", 220, readOnly: true, align: 0, frozen: true);
             DgvUtil.AddTextCol(dgv_Store, "창고유형", "STORE_TYPE", 117, readOnly: true, align: 1, frozen: true);
             //DgvUtil.AddTextCol(dataGridView1, "선입선출 여부", "FIFO_FLAG", 180, readOnly: true, align: 0);
@@ -116,6 +117,7 @@ namespace Cohesion_Project
             {
                 return;
             }
+            dto.UPDATE_TIME = DateTime.Now;
             dto.UPDATE_USER_ID = "정민영";
 
             bool result = srvStore.UpdateStore(dto);
@@ -184,60 +186,32 @@ namespace Cohesion_Project
         }
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            Store_DTO_Search condition = ppg_Store.SelectedObject as Store_DTO_Search;
-            string storeCode = condition.STORE_CODE;
-            string valueType = condition.STORE_TYPE;
-            string searchText = txtSearch.Text;
+            if (!ppg_Store.Enabled)
+            {
+                MboxUtil.MboxError("검색조건을 활성화 시켜주세요.");
+                return;
+            }
+            else
+            {
+                var t = ppg_Store.SelectedObject as Store_DTO_Search;
+                Store_DTO_Search_Data dto = new Store_DTO_Search_Data { 
+                    STORE_CODE = t.STORE_CODE, 
+                    STORE_NAME = t.STORE_NAME, 
+                    STORE_TYPE = t.STORE_TYPE
+                };
+                var list = srvStore.SelectStore(dto);
+                dgv_Store.DataSource = list.Select((i) => new
+                {
+                    STORE_CODE = i.STORE_CODE,
+                    STORE_NAME = i.STORE_NAME,
+                    STORE_TYPE = i.STORE_TYPE,
+                    CREATE_TIME = i.CREATE_TIME,
+                    CREATE_USER_ID = i.CREATE_USER_ID,  
+                    UPDATE_TIME = i.UPDATE_TIME,
+                    UPDATE_USER_ID = i.UPDATE_USER_ID,
 
-            //데이터 베이스 안가고 조회조건
-
-            //if (!string.IsNullOrEmpty(storeCode) && valueType.ToString() != "\0")
-            //{
-            //    if (!string.IsNullOrEmpty(searchText))
-            //    {
-            //        dgv_Store.DataSource = srcList.FindAll((c) => c.STORE_CODE == storeCode && c.STORE_TYPE == valueType && c.STORE_CODE.Contains(searchText));
-            //    }
-            //    else
-            //    {
-            //        dgv_Store.DataSource = srcList.FindAll((c) => c.STORE_CODE == storeCode && c.STORE_TYPE == valueType);
-            //    }
-            //}
-
-            //else if (!string.IsNullOrEmpty(storeCode) && valueType.ToString() == "\0")
-            //{
-            //    if (!string.IsNullOrEmpty(searchText))
-            //    {
-            //        dgv_Store.DataSource = srcList.FindAll((c) => c.STORE_CODE == storeCode && c.STORE_CODE.Contains(searchText));
-            //    }
-            //    else
-            //    {
-            //        dgv_Store.DataSource = srcList.FindAll((c) => c.STORE_CODE == storeCode);
-            //    }
-            //}
-
-            //else if (string.IsNullOrEmpty(storeCode) && valueType.ToString() != "\0")
-            //{
-            //    if (!string.IsNullOrEmpty(searchText))
-            //    {
-            //        dgv_Store.DataSource = srcList.FindAll((c) => c.STORE_CODE.Contains(searchText) && c.STORE_TYPE == valueType);
-            //    }
-            //    else
-            //    {
-            //        dgv_Store.DataSource = srcList.FindAll((c) => c.STORE_TYPE == valueType);
-            //    }
-            //}
-
-            //else if (string.IsNullOrEmpty(storeCode) && valueType.ToString() == "\0")
-            //{
-            //    if (!string.IsNullOrEmpty(searchText))
-            //    {
-            //        dgv_Store.DataSource = srcList.FindAll((c) => c.STORE_CODE.Contains(searchText));
-            //    }
-            //    else
-            //    {
-            //        dgv_Store.DataSource = srcList;
-            //    }
-            //}
+                }).ToList();
+            }
         }
         
         private void btnClose_Click(object sender, EventArgs e)

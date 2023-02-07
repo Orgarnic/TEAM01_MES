@@ -57,4 +57,16 @@ namespace Cohesion_DTO
         [Category("검색조건"), Description("CM_EQUIPMENT_CONDITON"), DisplayName("설비상태"), TypeConverter(typeof(ComboStringConverter))]
         public string EQUIPMENT_STATUS { get; set; }
     }
+    public class Equipment_DTO_Search_Data
+    {
+        public string EQUIPMENT_CODE { get; set; }
+        public string EQUIPMENT_NAME { get; set; }
+        public string EQUIPMENT_TYPE { get; set; }
+        public string EQUIPMENT_STATUS { get; set; }
+        public DateTime LAST_DOWN_TIME { get; set; }
+        public DateTime CREATE_TIME { get; set; }
+        public string CREATE_USER_ID { get; set; }
+        public DateTime UPDATE_TIME { get; set; }
+        public string UPDATE_USER_ID { get; set; }
+    }
 }

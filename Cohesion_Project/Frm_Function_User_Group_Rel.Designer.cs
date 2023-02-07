@@ -54,6 +54,7 @@ namespace Cohesion_Project
             // 
             this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.Location = new System.Drawing.Point(1422, 1016);
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // panel3
             // 
@@ -136,6 +137,7 @@ namespace Cohesion_Project
             // 
             this.btnSearchCondition.FlatAppearance.BorderSize = 0;
             this.btnSearchCondition.Location = new System.Drawing.Point(1064, 40);
+            this.btnSearchCondition.Click += new System.EventHandler(this.btnSearchCondition_Click);
             // 
             // txtSearch
             // 
@@ -147,6 +149,7 @@ namespace Cohesion_Project
             // 
             this.btnSearch.FlatAppearance.BorderSize = 0;
             this.btnSearch.Location = new System.Drawing.Point(1004, 40);
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // lbl2
             // 
@@ -156,26 +159,32 @@ namespace Cohesion_Project
             // 
             this.btnDelete.FlatAppearance.BorderSize = 0;
             this.btnDelete.Location = new System.Drawing.Point(3, 1016);
+            this.btnDelete.Visible = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnInsert
             // 
             this.btnInsert.FlatAppearance.BorderSize = 0;
             this.btnInsert.Location = new System.Drawing.Point(1220, 1016);
+            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
             // btnAdd
             // 
             this.btnAdd.FlatAppearance.BorderSize = 0;
             this.btnAdd.Location = new System.Drawing.Point(1018, 1016);
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnUpdate
             // 
             this.btnUpdate.FlatAppearance.BorderSize = 0;
             this.btnUpdate.Location = new System.Drawing.Point(1119, 1016);
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnRefresh
             // 
             this.btnRefresh.FlatAppearance.BorderSize = 0;
             this.btnRefresh.Location = new System.Drawing.Point(1321, 1016);
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // PpgFUG
             // 

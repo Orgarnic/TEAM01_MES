@@ -56,13 +56,13 @@ namespace Cohesion_Project
             return result;
         }
 
-        public List<Sales_Order_DTO> SelectOrderWithCondition(Sales_Order_DTO_Search condition)
+        public List<Sales_Order_VO> SelectOrderWithCondition(Sales_Order_VO condition)
         {
-            Sales_Order_DAO dao = new Sales_Order_DAO();
-            var result = dao.SelectOrderWithCondition(condition);
-            dao.Dispose();
+            Sales_Order_DAO db = new Sales_Order_DAO();
+            List<Sales_Order_VO> list = db.SelectOrderWithCondition(condition);
+            db.Dispose();
 
-            return result;
+            return list;
         }
 
         public bool InsertPurchase(List<Sales_Order_VO> list)
