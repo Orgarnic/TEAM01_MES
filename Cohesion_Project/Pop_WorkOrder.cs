@@ -50,6 +50,7 @@ namespace Cohesion_Project
             DgvUtil.AddTextCol(dgvOrderList, "고객 코드", "CUSTOMER_CODE", width: 140, readOnly: true, frozen: true);
             DgvUtil.AddTextCol(dgvOrderList, "제품 코드", "PRODUCT_CODE", width: 140, readOnly: true, frozen: true);
             DgvUtil.AddTextCol(dgvOrderList, "주문 수량", "ORDER_QTY", width: 140, readOnly: true, frozen: true);
+            DgvUtil.AddTextCol(dgvOrderList, "재고 수량", "LOT_QTY", width: 140, readOnly: true, frozen: true);
 
             DgvUtil.DgvInit(dgvBOMStock);
             DgvUtil.AddTextCol(dgvBOMStock, "제품 코드", "CHILD_PRODUCT_CODE", width: 140, readOnly: true, frozen: true);
