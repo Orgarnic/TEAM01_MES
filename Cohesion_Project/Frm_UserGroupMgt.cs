@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Cohesion_DTO;
 
+
 namespace Cohesion_Project
 {
     public partial class Frm_UserGroup : Frm_Base_2
@@ -22,6 +23,8 @@ namespace Cohesion_Project
         private UGdate ugd = new UGdate();
         private SearchData sd = new SearchData();
         bool isCondition = true;
+        bool stateSearchCondition = true;
+
         public Frm_UserGroup()
         {
             InitializeComponent();
@@ -60,21 +63,7 @@ namespace Cohesion_Project
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            //if (!MboxUtil.MboxInfo_("선택된 테이블 정보를 삭제하시겠습니까 ? "))
-            //{
-            //    return;
-            //}
-            //var dto = DgvUtil.DgvToDto<UserGroup_DTO>(DgvUserGroup);
-            //bool result = srv_UG.DeleteUserGroup(dto);
-            //if (result)
-            //{
-            //    MboxUtil.MboxInfo("테이블 삭제 성공.");
-            //    DataGridViewFill();
-            //}
-            //else
-            //{
-            //    MboxUtil.MboxError("테이블 삭제 실패.");
-            //}
+
             if (DgvUserGroup.SelectedRows.Count < 1)
                 return;
             if (MessageBox.Show($"{DgvUserGroup[1, DgvUserGroup.CurrentRow.Index].Value.ToString()} 사용자구룹을 삭제하시겠습니까 ?", "알림", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel) return;
@@ -90,13 +79,6 @@ namespace Cohesion_Project
             DgvUserGroup.ClearSelection();
 
         }
-
-
-
-
-
-
-
 
         public class UGdate
         {
@@ -134,6 +116,8 @@ namespace Cohesion_Project
             var target = UGroupList.Find((s) => s.USER_GROUP_CODE.Equals(DgvUserGroup["USER_GROUP_CODE", e.RowIndex].Value));
             SelectedRowData(target);
             Ppg_UserGourp.SelectedObject = ugd;
+            Ppg_UserGourp.Enabled = false;
+            btnAdd.Enabled = false;
 
         }
 
@@ -190,19 +174,28 @@ namespace Cohesion_Project
         {
             UGdate data = Ppg_UserGourp.SelectedObject as UGdate;
 
-            var dto = PropertyToDto<UGdate, UserGroup_DTO>(data); dto.CREATE_USER_ID = "123";
+            var dto = PropertyToDto<UGdate, UserGroup_DTO>(data); dto.CREATE_USER_ID = "김민식";
+            if (dto.USER_GROUP_CODE == null || dto.USER_GROUP_NAME == null || dto.USER_GROUP_TYPE == null)
+            {
+                MboxUtil.MboxInfo("등록하실 정보를 입력해주세요.");
+                return;
+
+
+            }
             dto.CREATE_TIME = DateTime.Now;
             bool result = srv_UG.InsertUserGroup(dto);
 
+
             if (result)
             {
-                MessageBox.Show("입력 성공");
+                MessageBox.Show("정보 등록이 완료되었습니다");
                 DataGridViewFill();
             }
             else
             {
-                MessageBox.Show("입력 실패");
+                MessageBox.Show("등록 중 오류가 발생했습니다");
             }
+
         }
 
         private void btnSearchCondition_Click(object sender, EventArgs e)
@@ -222,16 +215,6 @@ namespace Cohesion_Project
                 isCondition = true;
                 Ppg_UserGourp.Enabled = false;
             }
-            //if (state)
-            //{
-            //    Ppg_UserGourp.SelectedObject = ugd;
-            //    state = false;
-            //}
-            //else
-            //{
-            //    Ppg_UserGourp.SelectedObject = sd;
-            //    state = true;
-            //}
         }
 
         public class SearchData
@@ -258,8 +241,18 @@ namespace Cohesion_Project
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            UGdate blankData = new UGdate();
-            Ppg_UserGourp.SelectedObject = blankData;
+            if (!stateSearchCondition)
+            {
+                Ppg_UserGourp.SelectedObject = new UserGroup_DTO();
+                Ppg_UserGourp.Enabled = true;
+                btnAdd.Enabled = true;
+            }
+            else
+            {
+                Ppg_UserGourp.SelectedObject = new UserGoupCondition_DTO();
+                Ppg_UserGourp.Enabled = true;
+                btnAdd.Enabled = true;
+            }
         }
 
         private void btnInsert_Click(object sender, EventArgs e)
@@ -282,8 +275,6 @@ namespace Cohesion_Project
             {
                 MessageBox.Show("수정 실패");
             }
-
-            //   Ppg_UserGourp.Enabled = false; 추적창만 펄스헤야ㅐ되는대 안됨
             btnAdd.Enabled = true;
         }
 
@@ -305,13 +296,10 @@ namespace Cohesion_Project
                 return new StandardValuesCollection(ComboUtil.ProductCode);
             }
         }
-
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
-
         public class ComboStringConverter : StringConverter
         {
             public override bool GetStandardValuesSupported(ITypeDescriptorContext context)
@@ -325,13 +313,11 @@ namespace Cohesion_Project
                 return new StandardValuesCollection(refMyObject.SearchList[context.PropertyDescriptor.Description]);
             }
         }
-
         public static T DgvToDto<T>(DataGridView dgv)
         {
           
                 return (T)dgv.Rows[dgv.CurrentRow.Index].DataBoundItem;
         }
-
         private void btnSearch_Click(object sender, EventArgs e)
         {
             if (Ppg_UserGourp.SelectedObject is UserGoupCondition_DTO)
@@ -344,51 +330,7 @@ namespace Cohesion_Project
             {
                 MboxUtil.MboxError("검색조건을 먼저 눌러주세요");
             }
-
-
         }
-        //private void btnSearchCondition_Click(object sender, EventArgs e)
-        //{
-        //    if (isCondition)
-        //    {
-        //        lbl3.Text = "▶ 검색 조건";
-        //        Ppg_User.Enabled = true;
-        //        Ppg_User.SelectedObject = condition;
-        //        isCondition = false;
-        //    }
-        //    else
-        //    {
-        //        lbl3.Text = "▶ 속성";
-        //        Ppg_User.SelectedObject = ud;
-        //        condition = new User_Condition_DTO();
-        //        isCondition = true;
-        //        Ppg_User.Enabled = false;
-        //    }
-        //}
-
-        //private class SearchCondition
-        //{
-        //    public UserGroup_DTO GetCondition()
-        //    {
-        //        UserGroup_DTO dto = new UserGroup_DTO
-        //        {
-        //            USER_GROUP_CODE = this.USER_GROUP_CODE,
-        //            USER_GROUP_NAME = this.USER_GROUP_NAME,
-        //            USER_GROUP_TYPE = this.USER_GROUP_TYPE,
-
-        //        };
-        //        return dto;
-        //    }
-        //    [Category("속성"), Description("USER_GROUP_CODE")]
-        //    public string USER_GROUP_CODE { get; set; }
-
-        //    [Category("속성"), Description("USER_GROUP_NAME")]
-        //    public string USER_GROUP_NAME { get; set; }
-
-        //    [Category("속성"), Description("USER_GROUP_TYPE"), DisplayName("사용자 그룹 유형"), TypeConverter(typeof(ComboStringConverter))]
-        //    public string USER_GROUP_TYPE { get; set; }
-        //}
-
     }
 
 }

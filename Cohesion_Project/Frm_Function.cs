@@ -18,6 +18,7 @@ namespace Cohesion_Project
         FUNCTION_MST_DTO_Condition condition = new FUNCTION_MST_DTO_Condition();
         FUNCTION_MST_DTO FD = new FUNCTION_MST_DTO();
         bool isCondition = true;
+        bool stateSearchCondition = false;
         public Frm_Function()
         {
             InitializeComponent();
@@ -71,7 +72,7 @@ namespace Cohesion_Project
                 MessageBox.Show("오류가 발생했습니다.", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            MessageBox.Show("권한 저장정보가 삭제되었습니다.", "알람", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("화면기능이 삭제되었습니다.", "알람", MessageBoxButtons.OK, MessageBoxIcon.Information);
             DataGridViewFill();
             DgvFunction.ClearSelection();
         }
@@ -80,18 +81,24 @@ namespace Cohesion_Project
         {
             FUNCTION_MST_DTO data = PpgFunction.SelectedObject as FUNCTION_MST_DTO;
 
-            var dto = PropertyToDto<FUNCTION_MST_DTO, FUNCTION_MST_DTO>(data); dto.CREATE_USER_ID = "123";
+            var dto = PropertyToDto<FUNCTION_MST_DTO, FUNCTION_MST_DTO>(data); dto.CREATE_USER_ID = "김민식";
+
+            if (dto.FUNCTION_CODE == null || dto.FUNCTION_NAME == null)
+            {
+                MboxUtil.MboxInfo("등록하실 기능 정보를 입력해주세요.");
+                return;
+            }
             dto.CREATE_TIME = DateTime.Now;
             bool result = Srv_F.InsertFunction(dto);
 
             if (result)
             {
-                MessageBox.Show("입력 성공");
+                MessageBox.Show("화면 기능 입력 성공");
                 DataGridViewFill();
             }
             else
             {
-                MessageBox.Show("입력 실패");
+                MessageBox.Show("화면 기능 입력 입력 실패");
             }
         }
         private T1 PropertyToDto<T, T1>(T data) where T1 : class, new()
@@ -111,36 +118,7 @@ namespace Cohesion_Project
             }
             return dto;
         }
-        //private void SelectedRowData(FUNCTION_MST_DTO target)
-        //{
-        //    TypeConverter typeConverter = new TypeConverter();
-
-        //    for (int i = 0; i < target.GetType().GetProperties().Length; i++)
-        //    {
-        //        string propertyName = target.GetType().GetProperties()[i].Name;
-        //        Type propertyType = target.GetType().GetProperties()[i].PropertyType;
-        //        for (int j = 0; j < FList.GetType().GetProperties().Length; j++)
-        //        {
-        //            if (target.GetType().GetProperties()[i].GetValue(target) == null)
-        //                continue;
-
-        //            else if (propertyName == FList.GetType().GetProperties()[j].Name)
-        //            {
-        //                if (propertyType != FList.GetType().GetProperties()[j].PropertyType)
-        //                {
-        //                    FList.GetType().GetProperties()[j].SetValue(FList, typeConverter.ConvertTo(target.GetType().GetProperties()[i].GetValue(target), FList.GetType().GetProperties()[j].PropertyType));
-        //                    break;
-        //                }
-
-        //                else
-        //                {
-        //                    FList.GetType().GetProperties()[j].SetValue(FList, target.GetType().GetProperties()[i].GetValue(target));
-        //                    break;
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
+        
 
         private void DgvFunction_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -148,10 +126,11 @@ namespace Cohesion_Project
             {
                 return;
             }
-            /*string sTableName = DgvFunction["화면 기능 코드", e.RowIndex].Value.ToString();
-            var target = FList.Find((s) => s.FUNCTION_CODE.Equals(DgvFunction["화면 기능 코드", e.RowIndex].Value));
-            SelectedRowData(target);*/
+
             PpgFunction.SelectedObject  = DgvUtil.DgvToDto<FUNCTION_MST_DTO>(DgvFunction);
+            PpgFunction.Enabled = false;
+
+            btnAdd.Enabled = false;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -211,8 +190,18 @@ namespace Cohesion_Project
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            FUNCTION_MST_DTO blankData = new FUNCTION_MST_DTO();
-            PpgFunction.SelectedObject = blankData;
+            if (!stateSearchCondition)
+            {
+                PpgFunction.SelectedObject = new User_DTO();
+                PpgFunction.Enabled = true;
+                btnAdd.Enabled = true;
+            }
+            else
+            {
+                PpgFunction.SelectedObject = new User_Condition_DTO();
+                PpgFunction.Enabled = true;
+                btnAdd.Enabled = true;
+            }
         }
 
         private void btnSearch_Click(object sender, EventArgs e)

@@ -9,10 +9,12 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Cohesion_DTO;
 
+
 namespace Cohesion_Project
 {
     public partial class Frm_UserMgt : Frm_Base_2
     {
+
         Srv_User srv_U = new Srv_User();
         Srv_User Srv_User;
         List<User_DTO> UserList;
@@ -20,6 +22,7 @@ namespace Cohesion_Project
         //   private SearchCondition condtion = new SearchCondition();
         private Udate ud = new Udate();
         bool isCondition = true;
+        bool stateSearchCondition = true;
 
         public Frm_UserMgt()
         {
@@ -30,13 +33,10 @@ namespace Cohesion_Project
             Srv_User = new Srv_User();
             DgvInit();
             DataGridViewFill();
-
         }
 
         private void DgvInit()
-
-        { 
-
+        {
             DgvUtil.DgvInit(DgvUser);
             DgvUtil.AddTextCol(DgvUser, "로그인 사용자 ID", "USER_ID", 120, true, align: 1);
             DgvUtil.AddTextCol(DgvUser, "사용자 이름", "USER_NAME", 120, true, align: 1);
@@ -47,9 +47,6 @@ namespace Cohesion_Project
             DgvUtil.AddTextCol(DgvUser, "생성 사용자", "CREATE_USER_ID", 120, true, align: 1);
             DgvUtil.AddTextCol(DgvUser, "수정 시간", "UPDATE_TIME", 120, true, align: 2);
             DgvUtil.AddTextCol(DgvUser, "변경 사용자 ", "UPDATE_USER_ID", 120, true, align: 1);
-      
-
-
 
             //프로퍼티 그리드 초기 설정
             Ppg_User.PropertySort = PropertySort.Categorized;
@@ -64,8 +61,6 @@ namespace Cohesion_Project
 
         }
 
-
-
         public class Udate
         {
             [Category("속성"), Description("USER_ID"), DisplayName("로그인 사용자 ID")]
@@ -74,7 +69,7 @@ namespace Cohesion_Project
             [Category("속성"), Description("USER_NAME"), DisplayName("사용자 이름")]
             public string USER_NAME { get; set; }
 
-            [Category("속성"), Description("USER_GROUP_CODE"), DisplayName("사용자 그룹"),TypeConverter(typeof(ComboStringConverter))]
+            [Category("속성"), Description("USER_GROUP_CODE"), DisplayName("사용자 그룹"), TypeConverter(typeof(ComboStringConverter))]
             public string USER_GROUP_CODE { get; set; }
 
             [Category("추적"), Description("USER_PASSWORD"), DisplayName("암호")]
@@ -83,10 +78,10 @@ namespace Cohesion_Project
             [Category("추적"), Description("USER_DEPARTMENT"), DisplayName("부서")]
             public string USER_DEPARTMENT { get; set; }
 
-            [Category("추적"), Description("CREATE_TIME"), DisplayName("생성 시간"),ReadOnly(true)]
+            [Category("추적"), Description("CREATE_TIME"), DisplayName("생성 시간"), ReadOnly(true)]
             public DateTime CREATE_TIME { get; set; }
 
-            [Category("추적"), Description("CREATE_USER_ID"), DisplayName("생성 사용자"),ReadOnly(true)]
+            [Category("추적"), Description("CREATE_USER_ID"), DisplayName("생성 사용자"), ReadOnly(true)]
             public string CREATE_USER_ID { get; set; }
             [Category("추적"), Description("UPDATE_TIME"), DisplayName("변경 시간"), ReadOnly(true)]
             public DateTime UPDATE_TIME { get; set; }
@@ -104,12 +99,10 @@ namespace Cohesion_Project
             var target = UserList.Find((s) => s.USER_ID.Equals(DgvUser["USER_ID", e.RowIndex].Value));
             SelectedRowData(target);
             Ppg_User.SelectedObject = ud;
+            Ppg_User.Enabled = false;
+  
+            btnAdd.Enabled = false;
         }
-
-
-
-
-
         private void SelectedRowData(User_DTO target)
         {
             TypeConverter typeConverter = new TypeConverter();
@@ -162,17 +155,18 @@ namespace Cohesion_Project
         private void btnAdd_Click(object sender, EventArgs e)
         {
             Udate data = Ppg_User.SelectedObject as Udate;
-
             var dto = PropertyToDto<Udate, User_DTO>(data);
-            dto.CREATE_TIME = DateTime.Now;
-            bool result = srv_U.InsertUser(dto);
-
-            User_DTO Udto = Ppg_User.SelectedObject as User_DTO;
             if (dto.USER_ID == null || dto.USER_NAME == null || dto.USER_PASSWORD == null)
             {
                 MboxUtil.MboxInfo("등록하실 사원 정보를 입력해주세요.");
                 return;
             }
+            bool result = srv_U.InsertUser(dto);
+
+            dto.CREATE_USER_ID = "김민식";
+            dto.CREATE_TIME = DateTime.Now;
+            User_DTO Udto = Ppg_User.SelectedObject as User_DTO;
+ 
 
             var list = DgvUser.DataSource as List<User_DTO>;
             bool codeExist = list.Exists((i) => i.USER_ID.Equals(dto.USER_ID, StringComparison.OrdinalIgnoreCase));
@@ -191,6 +185,7 @@ namespace Cohesion_Project
             {
                 MessageBox.Show("주문 등록 중 오류가 발생했습니다");
             }
+
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -202,7 +197,7 @@ namespace Cohesion_Project
         private void btnInsert_Click(object sender, EventArgs e)
         {
             var data = Ppg_User.SelectedObject as Udate;
-            
+
             if (data.USER_ID == null)
             {
                 MessageBox.Show("변경할 유저ID을 선택해주세요.");
@@ -228,8 +223,19 @@ namespace Cohesion_Project
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            Udate blankData = new Udate();
-            Ppg_User.SelectedObject = blankData;
+            if (!stateSearchCondition)
+            {
+                Ppg_User.SelectedObject = new User_DTO();
+                Ppg_User.Enabled = true;
+                btnAdd.Enabled = true;
+            }
+            else
+            {
+                Ppg_User.SelectedObject = new User_Condition_DTO();
+                Ppg_User.Enabled = true;
+                btnAdd.Enabled = true;
+            }
+
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -242,7 +248,7 @@ namespace Cohesion_Project
             if (DgvUser.SelectedRows.Count < 1)
                 return;
             if (MessageBox.Show($"{DgvUser[0, DgvUser.CurrentRow.Index].Value.ToString()} 사용자구룹을 삭제하시겠습니까 ?", "알림", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel) return;
-            int userCode = Convert.ToInt32(DgvUser[0, DgvUser.CurrentRow.Index].Value);
+            string userCode = Convert.ToString(DgvUser[0, DgvUser.CurrentRow.Index].Value);
             bool result = Srv_User.DeleteUser(userCode);
             if (!result)
             {
@@ -255,8 +261,8 @@ namespace Cohesion_Project
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
-        { 
-            if(Ppg_User.SelectedObject is User_Condition_DTO )
+        {
+            if (Ppg_User.SelectedObject is User_Condition_DTO)
             {
 
                 UserList = Srv_User.SelectUser2(condition);
@@ -281,7 +287,7 @@ namespace Cohesion_Project
             else
             {
                 lbl3.Text = "▶ 속성";
-               Ppg_User.SelectedObject = ud;
+                Ppg_User.SelectedObject = ud;
                 condition = new User_Condition_DTO();
                 isCondition = true;
                 Ppg_User.Enabled = false;

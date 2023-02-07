@@ -107,7 +107,7 @@ namespace Cohesion_DAO
 
         }
 
-        public bool DeleteUser(int USER_ID)
+        public bool DeleteUser(string USER_ID)
         {
             try
             {
