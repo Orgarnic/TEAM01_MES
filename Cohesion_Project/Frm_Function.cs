@@ -129,7 +129,6 @@ namespace Cohesion_Project
 
             PpgFunction.SelectedObject  = DgvUtil.DgvToDto<FUNCTION_MST_DTO>(DgvFunction);
             PpgFunction.Enabled = false;
-
             btnAdd.Enabled = false;
         }
 
@@ -192,13 +191,13 @@ namespace Cohesion_Project
         {
             if (!stateSearchCondition)
             {
-                PpgFunction.SelectedObject = new User_DTO();
+                PpgFunction.SelectedObject = new FUNCTION_MST_DTO();
                 PpgFunction.Enabled = true;
                 btnAdd.Enabled = true;
             }
             else
             {
-                PpgFunction.SelectedObject = new User_Condition_DTO();
+                PpgFunction.SelectedObject = new FUNCTION_MST_DTO_Condition();
                 PpgFunction.Enabled = true;
                 btnAdd.Enabled = true;
             }

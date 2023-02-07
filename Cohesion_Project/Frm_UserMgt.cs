@@ -38,6 +38,8 @@ namespace Cohesion_Project
         private void DgvInit()
         {
             DgvUtil.DgvInit(DgvUser);
+
+            DgvUtil.AddTextCol(DgvUser, "번호 ", "", 150, true, align: 1);
             DgvUtil.AddTextCol(DgvUser, "로그인 사용자 ID", "USER_ID", 150, true, align: 1);
             DgvUtil.AddTextCol(DgvUser, "사용자 이름", "USER_NAME", 120, true, align: 1);
             DgvUtil.AddTextCol(DgvUser, "사용자 그룹", "USER_GROUP_CODE", 120, true, align: 0);
@@ -66,16 +68,16 @@ namespace Cohesion_Project
             [Category("속성"), Description("USER_ID"), DisplayName("로그인 사용자 ID")]
             public string USER_ID { get; set; }
 
-            [Category("속성"), Description("USER_NAME"), DisplayName("사용자 이름")]
+            [Category("속성"), Description("USER_NAME"), DisplayName("사용자 명")]
             public string USER_NAME { get; set; }
 
-            [Category("속성"), Description("USER_GROUP_CODE"), DisplayName("사용자 그룹"), TypeConverter(typeof(ComboStringConverter))]
+            [Category("속성"), Description("USER_GROUP_CODE"), DisplayName("사용자 그룹 코드"), TypeConverter(typeof(ComboStringConverter))]
             public string USER_GROUP_CODE { get; set; }
 
-            [Category("추적"), Description("USER_PASSWORD"), DisplayName("암호")]
+            [Category("속성"), Description("USER_PASSWORD"), DisplayName("사용자 암호")]
             public string USER_PASSWORD { get; set; }
 
-            [Category("추적"), Description("USER_DEPARTMENT"), DisplayName("부서")]
+            [Category("속성"), Description("USER_DEPARTMENT"), DisplayName("사용자 부서")]
             public string USER_DEPARTMENT { get; set; }
 
             [Category("추적"), Description("CREATE_TIME"), DisplayName("생성 시간"), ReadOnly(true)]
@@ -223,7 +225,7 @@ namespace Cohesion_Project
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            if (!stateSearchCondition)
+            if (stateSearchCondition)
             {
                 Ppg_User.SelectedObject = new User_DTO();
                 Ppg_User.Enabled = true;

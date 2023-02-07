@@ -241,17 +241,15 @@ namespace Cohesion_Project
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            if (!stateSearchCondition)
+            if (stateSearchCondition)
             {
-                Ppg_UserGourp.SelectedObject = new UserGroup_DTO();
-                Ppg_UserGourp.Enabled = true;
-                btnAdd.Enabled = true;
+                UserGroup_DTO blankData = new UserGroup_DTO();
+                Ppg_UserGourp.SelectedObject = blankData;
             }
-            else
+            else  
             {
-                Ppg_UserGourp.SelectedObject = new UserGoupCondition_DTO();
-                Ppg_UserGourp.Enabled = true;
-                btnAdd.Enabled = true;
+                UserGoupCondition_DTO blankData = new UserGoupCondition_DTO();
+                Ppg_UserGourp.SelectedObject = blankData;
             }
         }
 

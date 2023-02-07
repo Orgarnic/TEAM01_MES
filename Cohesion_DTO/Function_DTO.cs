@@ -17,13 +17,13 @@ namespace Cohesion_DTO
 		public string SHORT_CUT_KEY { get; set; }   //단축키
 		[Category("속성"), Description("ICON_INDEX"), DisplayName("아이콘 인덱스")]
 		public decimal ICON_INDEX { get; set;}  //아이콘 인덱스
-		[Category("속성"), Description("CREATE_TIME"), DisplayName("생성 시간"), ReadOnly(true)]
+		[Category("추적"), Description("CREATE_TIME"), DisplayName("생성 시간"), ReadOnly(true)]
 		public DateTime CREATE_TIME { get; set;}    //생성 시간
-		[Category("속성"), Description("CREATE_USER_ID"), DisplayName("생성 사용자"), ReadOnly(true)]
+		[Category("추적"), Description("CREATE_USER_ID"), DisplayName("생성 사용자"), ReadOnly(true)]
 		public string CREATE_USER_ID { get; set;}   //생성 사용자
-		[Category("속성"), Description("UPDATE_TIME"), DisplayName("변경 시간"), ReadOnly(true)]
+		[Category("추적"), Description("UPDATE_TIME"), DisplayName("변경 시간"), ReadOnly(true)]
 		public DateTime UPDATE_TIME { get; set;}    //변경 시간
-		[Category("속성"), Description("UPDATE_USER_ID"), DisplayName("변경 사용자"), ReadOnly(true)]
+		[Category("추적"), Description("UPDATE_USER_ID"), DisplayName("변경 사용자"), ReadOnly(true)]
 		public string UPDATE_USER_ID { get; set;}	//변경 사용자
 	}
 
