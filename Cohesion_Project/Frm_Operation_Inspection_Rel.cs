@@ -168,7 +168,7 @@ namespace Cohesion_Project
                 List<Inspection_REL_DTO> addList = new List<Inspection_REL_DTO>();
                 addList.Add(dto);
                 dgvAddedInspection.DataSource = null;
-                dgvAddedInspection.DataSource = addList.OrderBy((i) => i.INSPECT_ITEM_CODE).Select((i) => new Inspection_REL_DTO { INSPECT_ITEM_CODE = i.INSPECT_ITEM_CODE, INSPECT_ITEM_NAME = i.INSPECT_ITEM_NAME, DISPLAY_SEQ = seq++}).ToList();
+                dgvAddedInspection.DataSource = addList.Select((i) => new Inspection_REL_DTO { INSPECT_ITEM_CODE = i.INSPECT_ITEM_CODE, INSPECT_ITEM_NAME = i.INSPECT_ITEM_NAME, DISPLAY_SEQ = seq++}).ToList();
                 var l1 = dgvAddedInspection.DataSource;
 
                 List<Inspection_REL_DTO> list = dgvInspectionList.DataSource as List<Inspection_REL_DTO>;
@@ -186,7 +186,7 @@ namespace Cohesion_Project
                 var addList = dgvAddedInspection.DataSource as List<Inspection_REL_DTO>;
                 addList.Add(dto);
                 dgvAddedInspection.DataSource = null;
-                dgvAddedInspection.DataSource = addList.OrderBy((i) => i.INSPECT_ITEM_CODE).Select((i) => new Inspection_REL_DTO { INSPECT_ITEM_CODE = i.INSPECT_ITEM_CODE, INSPECT_ITEM_NAME = i.INSPECT_ITEM_NAME, DISPLAY_SEQ = seq++ }).ToList();
+                dgvAddedInspection.DataSource = addList.Select((i) => new Inspection_REL_DTO { INSPECT_ITEM_CODE = i.INSPECT_ITEM_CODE, INSPECT_ITEM_NAME = i.INSPECT_ITEM_NAME, DISPLAY_SEQ = seq++ }).ToList();
 
                 List<Inspection_REL_DTO> list = dgvInspectionList.DataSource as List<Inspection_REL_DTO>;
                 list.RemoveAt(list.FindIndex((i) => i.INSPECT_ITEM_CODE.Equals(dto.INSPECT_ITEM_CODE, StringComparison.OrdinalIgnoreCase)));
@@ -226,7 +226,7 @@ namespace Cohesion_Project
                 var addList = dgvAddedInspection.DataSource as List<Inspection_REL_DTO>;
                 addList.Remove(dto);
                 dgvAddedInspection.DataSource = null;
-                dgvAddedInspection.DataSource = addList.OrderBy((i) => i.INSPECT_ITEM_CODE).Select((i) => new Inspection_REL_DTO { INSPECT_ITEM_CODE = i.INSPECT_ITEM_CODE, INSPECT_ITEM_NAME = i.INSPECT_ITEM_NAME, DISPLAY_SEQ = seq++ }).ToList();
+                dgvAddedInspection.DataSource = addList.Select((i) => new Inspection_REL_DTO { INSPECT_ITEM_CODE = i.INSPECT_ITEM_CODE, INSPECT_ITEM_NAME = i.INSPECT_ITEM_NAME, DISPLAY_SEQ = seq++ }).ToList();
                 
                 List<Inspection_REL_DTO> list = dgvInspectionList.DataSource as List<Inspection_REL_DTO>;
                 if (list.Exists((i) => i.INSPECT_ITEM_CODE.Equals(dto.INSPECT_ITEM_CODE)))
