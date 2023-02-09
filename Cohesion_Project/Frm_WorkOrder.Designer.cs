@@ -158,6 +158,7 @@ namespace Cohesion_Project
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.ClientSize = new System.Drawing.Size(1521, 1041);
             this.Name = "Frm_WorkOrder";
+            this.Text = "작업 지시 관리";
             this.Load += new System.EventHandler(this.Frm_WorkOrder_Load);
             this.pnlSearch.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

@@ -38,6 +38,7 @@ namespace Cohesion_Project
             this.Visible = false;
             Frm_Login login = new Frm_Login();
             DialogResult result = login.ShowDialog(this);
+
             if(result == DialogResult.OK)
             {
                 this.Visible = true;
@@ -45,55 +46,12 @@ namespace Cohesion_Project
                 comboUtil = new Util.ComboUtil();
                 list = new List<Srv_UserGroup>();
                 lblUserName.Text = userInfo.USER_NAME + "님";
-                MenuIn();
+                //MenuIn();
             }
         }
-
-        private void MenuIn()
-        {
-            string[] str = {"메뉴관리","주문관리","지시관리","사용자관리","권한관리"};
-            int[] num = { 1,2,3,4,5 };
-            list = new List<Srv_UserGroup>();
-            /*foreach (var item in num)
-            {
-                Button menu = new Button();
-                menu.Size = new Size(180, 50);
-                menu.BackColor = Color.Transparent;
-                menu.Font = new Font("나눔 고딕", 10, FontStyle.Bold);
-                menu.ForeColor = Color.White;
-                menu.FlatStyle = FlatStyle.Flat;
-                menu.FlatAppearance.BorderColor = Color.FromArgb(49, 65, 81);
-                menu.Margin = new Padding(0);
-                menu.Padding = new Padding(0);
-                menu.Text = str[item];
-                //menu.Text = item.Name;
-                menu.FlatAppearance.BorderSize = 1;
-                Flp_Side.Controls.Add(menu);
-            }*/
-
-            for (int i = 0; i < num.Length; i++)
-            {
-                Button menu = new Button();
-                menu.Size = new Size(180, 50);
-                menu.BackColor = Color.Transparent;
-                menu.Font = new Font("나눔 고딕", 10, FontStyle.Bold);
-                menu.ForeColor = Color.White;
-                menu.FlatStyle = FlatStyle.Flat;
-                menu.FlatAppearance.BorderColor = Color.FromArgb(49, 65, 81);
-                menu.Margin = new Padding(0);
-                menu.Padding = new Padding(left: 30,0,0,0);
-                menu.TextAlign = ContentAlignment.MiddleLeft;
-                menu.Text = str[i];
-                //menu.Text = item.Name;
-                menu.FlatAppearance.BorderSize = 1;
-                Flp_Side.Controls.Add(menu);
-                menu.Click += Menu_Click;
-            }
-        }
-
         private void Menu_Click(object sender, EventArgs e)
         {
-            btnClick("","");
+
         }
 
         private void btn_MouseLeave(object sender, EventArgs e)
@@ -110,308 +68,186 @@ namespace Cohesion_Project
             btn.BackColor = Color.FromArgb(224, 224, 224);
         }
 
-        private void btnClick(string menuName, string tag)
+        private void OpenCreateForm<T>(Button btn) where T : Form, new()
         {
-            string appName = Assembly.GetEntryAssembly().GetName().Name;
-            Type tForm = Type.GetType(appName);
-            Form fm = Application.OpenForms[$"{tForm.FullName}.{tag}"];
-            if(fm.ShowDialog() == DialogResult.OK)
+            //열려있는 child 창들중에서 학생관리폼이 있으면, 그 학생관리폼을 앞으로 보여주고
+            //열려있는 child 창들중에 없을때만 학생관리폼을 new 해서 보여준다.
+            foreach (Form form in Application.OpenForms)
             {
-                fm.Activate();
-                fm.BringToFront();
+                if (form.GetType() == typeof(T))
+                {
+                    form.Activate();
+                    form.BringToFront();
+
+                    return;
+                }
+            }
+
+            T frm = new T();
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.Text = btn.Text + "   ";
+            cc_TabControl1.TabPages.Add(frm.Text);
+            frm.Show();
+        }
+        private void frmMain_MdiChildActivate(object sender, EventArgs e)
+        {
+            if (this.ActiveMdiChild == null)
+            {
+                cc_TabControl1.Visible = false;
             }
             else
             {
-                fm.WindowState = FormWindowState.Maximized;
-                fm.Show();
+                this.ActiveMdiChild.WindowState = FormWindowState.Maximized;
+
+                if (this.ActiveMdiChild.Tag == null) //신규로 탭을 생성하는 경우
+                {
+                    TabPage tp = new TabPage(this.ActiveMdiChild.Text + "    ");
+                    cc_TabControl1.TabPages.Add(tp);
+
+                    tp.Tag = this.ActiveMdiChild;
+                    this.ActiveMdiChild.Tag = tp;
+
+                    cc_TabControl1.SelectedTab = tp;
+
+                    //자식폼이 닫힐때 탭페이지도 같이 삭제
+                    this.ActiveMdiChild.FormClosed += ActiveMdiChild_FormClosed;
+                }
+                else //기존에 탭이 있는 경우
+                {
+                    cc_TabControl1.SelectedTab = (TabPage)this.ActiveMdiChild.Tag;
+                }
+
+                if (!cc_TabControl1.Visible)
+                {
+                    cc_TabControl1.Visible = true;
+                }
             }
         }
+        private void ActiveMdiChild_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Form frm = (Form)sender;
+            ((TabPage)frm.Tag).Dispose();
+        }
 
+        private void cc_TabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cc_TabControl1.SelectedTab != null)
+            {
+                Form frm = (Form)cc_TabControl1.SelectedTab.Tag;
+                frm.Select();
+            }
+        }
         private void btnProduct_Click(object sender, EventArgs e)
         {
-            Form fm = Application.OpenForms["Frm_Procuct"];
-            if( fm != null)
-            {
-                fm.Focus();
-                return;
-            }
-            else
-            {
-                Frm_Product frm = new Frm_Product();
-                frm.MdiParent = this;
-                frm.WindowState = FormWindowState.Maximized;
-                frm.Show();
-                frm.Name = "Frm_Procuct";
-            }
+            Button btn = sender as Button;
+            OpenCreateForm<Frm_Product>(btn);
         }
 
         private void btnOrder_Click(object sender, EventArgs e)
         {
-            Form fm = Application.OpenForms["Frm_Order"];
-            if (fm != null)
-            {
-                fm.Focus();
-                return;
-            }
-            else
-            {
-                Frm_Sales_Order frm = new Frm_Sales_Order();
-                frm.MdiParent = this;
-                frm.WindowState = FormWindowState.Maximized;
-                frm.Show();
-                frm.Name = "Frm_Order";
-            }
+            Button btn = sender as Button;
+            OpenCreateForm<Frm_Sales_Order>(btn);
         }
 
         private void btnWorkOrder_Click(object sender, EventArgs e)
         {
-            Form fm = Application.OpenForms["Frm_WorkOrder"];
-            if (fm != null)
-            {
-                fm.Focus();
-                return;
-            }
-            else
-            {
-                Frm_WorkOrder frm = new Frm_WorkOrder();
-                frm.MdiParent = this;
-                frm.WindowState = FormWindowState.Maximized;
-                frm.Show();
-                frm.Name = "Frm_WorkOrder";
-            }
+            Button btn = sender as Button;
+            OpenCreateForm<Frm_WorkOrder>(btn);
         }
 
         private void btnProductBOM_Click(object sender, EventArgs e)
         {
-            Form fm = Application.OpenForms["Frm_ProductBOM"];
-            if (fm != null)
-            {
-                fm.Focus();
-                return;
-            }
-            else
-            {
-                Frm_BOM frm = new Frm_BOM();
-                frm.MdiParent = this;
-                frm.WindowState = FormWindowState.Maximized;
-                frm.Show();
-                frm.Name = "Frm_ProductBOM";
-            }
+            Button btn = sender as Button;
+            OpenCreateForm<Frm_BOM>(btn);
         }
 
         private void btnStore_Click(object sender, EventArgs e)
         {
-            Form fm = Application.OpenForms["Frm_Store"];
-            if (fm != null)
-            {
-                fm.Focus();
-                return;
-            }
-            else
-            {
-                Frm_Store frm = new Frm_Store();
-                frm.MdiParent = this;
-                frm.WindowState = FormWindowState.Maximized;
-                frm.Show();
-                frm.Name = "Frm_Store";
-            }
+            Button btn = sender as Button;
+            OpenCreateForm<Frm_Store>(btn);
         }
 
         private void btnOperation_Click(object sender, EventArgs e)
         {
-            Form fm = Application.OpenForms["Frm_Operation"];
-            if (fm != null)
-            {
-                fm.Focus();
-                return;
-            }
-            else
-            {
-                Frm_Operation frm = new Frm_Operation();
-                frm.MdiParent = this;
-                frm.WindowState = FormWindowState.Maximized;
-                frm.Show();
-                frm.Name = "Frm_Operation";
-            }
+            Button btn = sender as Button;
+            OpenCreateForm<Frm_Operation>(btn);
         }
 
         private void btnEquipment_Click(object sender, EventArgs e)
         {
-            Form fm = Application.OpenForms["Frm_Equipment"];
-            if (fm != null)
-            {
-                fm.Focus();
-                return;
-            }
-            else
-            {
-                Frm_Equipment frm = new Frm_Equipment();
-                frm.MdiParent = this;
-                frm.WindowState = FormWindowState.Maximized;
-                frm.Show();
-                frm.Name = "Frm_Equipment";
-            }
+            Button btn = sender as Button;
+            OpenCreateForm<Frm_Equipment>(btn);
         }
 
         private void btnEquipmentOperationRel_Click(object sender, EventArgs e)
         {
-            Form fm = Application.OpenForms["Frm_Equipment_Operation_Rel"];
-            if (fm != null)
-            {
-                fm.Focus();
-                return;
-            }
-            else
-            {
-                Frm_Equipment_Operation_Rel frm = new Frm_Equipment_Operation_Rel();
-                frm.MdiParent = this;
-                frm.WindowState = FormWindowState.Maximized;
-                frm.Show();
-                frm.Name = "Frm_Equipment_Operation_Rel";
-            }
+            Button btn = sender as Button;
+            OpenCreateForm<Frm_Equipment_Operation_Rel>(btn);
         }
 
         private void btnInspection_Click(object sender, EventArgs e)
         {
-            Form fm = Application.OpenForms["Frm_Inspection"];
-            if (fm != null)
-            {
-                fm.Focus();
-                return;
-            }
-            else
-            {
-                Frm_Inspection frm = new Frm_Inspection();
-                frm.MdiParent = this;
-                frm.WindowState = FormWindowState.Maximized;
-                frm.Show();
-                frm.Name = "Frm_Inspection";
-            }
+            Button btn = sender as Button;
+            OpenCreateForm<Frm_Inspection>(btn);
         }
 
         private void btnOperationInspectionRel_Click(object sender, EventArgs e)
         {
-            Form fm = Application.OpenForms["Frm_Operation_Inspection_Rel"];
-            if (fm != null)
-            {
-                fm.Focus();
-                return;
-            }
-            else
-            {
-                Frm_Operation_Inspection_Rel frm = new Frm_Operation_Inspection_Rel();
-                frm.MdiParent = this;
-                frm.WindowState = FormWindowState.Maximized;
-                frm.Show();
-                frm.Name = "Frm_Operation_Inspection_Rel";
-            }
+            Button btn = sender as Button;
+            OpenCreateForm<Frm_Operation_Inspection_Rel>(btn);
         }
 
         private void btnProductOperationRel_Click(object sender, EventArgs e)
         {
-            Form fm = Application.OpenForms["Frm_Product_Operation_Rel"];
-            if (fm != null)
-            {
-                fm.Focus();
-                return;
-            }
-            else
-            {
-                Frm_Product_Operation_Rel frm = new Frm_Product_Operation_Rel();
-                frm.MdiParent = this;
-                frm.WindowState = FormWindowState.Maximized;
-                frm.Show();
-                frm.Name = "Frm_Product_Operation_Rel";
-            }
+            Button btn = sender as Button;
+            OpenCreateForm<Frm_Product_Operation_Rel>(btn);
         }
 
         private void btnCommon_Click(object sender, EventArgs e)
         {
-            Form fm = Application.OpenForms["Frm_Common"];
-            if (fm != null)
-            {
-                fm.Focus();
-                return;
-            }
-            else
-            {
-                Frm_Common frm = new Frm_Common();
-                frm.MdiParent = this;
-                frm.WindowState = FormWindowState.Maximized;
-                frm.Show();
-                frm.Name = "Frm_Common";
-            }
+            Button btn = sender as Button;
+            OpenCreateForm<Frm_Common>(btn);
         }
 
         private void btnUser_Click(object sender, EventArgs e)
         {
-            Form fm = Application.OpenForms["Frm_UserMgt"];
-            if (fm != null)
-            {
-                fm.Focus();
-                return;
-            }
-            else
-            {
-                Frm_UserMgt frm = new Frm_UserMgt();
-                frm.MdiParent = this;
-                frm.WindowState = FormWindowState.Maximized;
-                frm.Show();
-                frm.Name = "Frm_UserMgt";
-            }
+            Button btn = sender as Button;
+            OpenCreateForm<Frm_UserMgt>(btn);
         }
 
         private void btnUserGroup_Click(object sender, EventArgs e)
         {
-            Form fm = Application.OpenForms["Frm_UserGroup"];
-            if (fm != null)
-            {
-                fm.Focus();
-                return;
-            }
-            else
-            {
-                Frm_UserGroup frm = new Frm_UserGroup();
-                frm.MdiParent = this;
-                frm.WindowState = FormWindowState.Maximized;
-                frm.Show();
-                frm.Name = "Frm_UserGroup";
-            }
+            Button btn = sender as Button;
+            OpenCreateForm<Frm_UserGroup>(btn);
         }
 
         private void btnFunctionUserGroup_Click(object sender, EventArgs e)
         {
-            Form fm = Application.OpenForms["Frm_Function_User_Group_Rel"];
-            if (fm != null)
-            {
-                fm.Focus();
-                return;
-            }
-            else
-            {
-                Frm_Function_User_Group_Rel frm = new Frm_Function_User_Group_Rel();
-                frm.MdiParent = this;
-                frm.WindowState = FormWindowState.Maximized;
-                frm.Show();
-                frm.Name = "Frm_Function_User_Group_Rel";
-            }
+            Button btn = sender as Button;
+            OpenCreateForm<Frm_Function_User_Group_Rel>(btn);
         }
 
         private void btnFuction__Click(object sender, EventArgs e)
         {
-            Form fm = Application.OpenForms["Frm_Function"];
-            if (fm != null)
+            Button btn = sender as Button;
+            OpenCreateForm<Frm_Function>(btn);
+        }
+
+        private void cc_TabControl1_MouseDown(object sender, MouseEventArgs e)
+        {
+            for (int i = 0; i < cc_TabControl1.TabPages.Count; i++)
             {
-                fm.Focus();
-                return;
-            }
-            else
-            {
-                Frm_Function frm = new Frm_Function();
-                frm.MdiParent = this;
-                frm.WindowState = FormWindowState.Maximized;
-                frm.Show();
-                frm.Name = "Frm_Function";
+                var r = cc_TabControl1.GetTabRect(i);
+                var closeImage = Properties.Resources.close_grey;
+                var closeRect = new Rectangle((r.Right - closeImage.Width), r.Top + (r.Height - closeImage.Height) / 2,
+                    closeImage.Width, closeImage.Height);
+
+                if (closeRect.Contains(e.Location))
+                {
+                    this.ActiveMdiChild.Close();
+                    break;
+                }
             }
         }
     }

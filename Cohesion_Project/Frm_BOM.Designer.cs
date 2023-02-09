@@ -237,7 +237,7 @@ namespace Cohesion_Project
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.ClientSize = new System.Drawing.Size(1521, 1041);
             this.Name = "Frm_BOM";
-            this.Text = "BOM 등록";
+            this.Text = "BOM 관리";
             this.Load += new System.EventHandler(this.Frm_BOM_Load);
             this.panel9.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
