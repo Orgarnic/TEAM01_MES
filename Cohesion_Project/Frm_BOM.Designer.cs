@@ -137,7 +137,6 @@ namespace Cohesion_Project
             // 
             // btnSearch
             // 
-            this.btnSearch.Enabled = false;
             this.btnSearch.FlatAppearance.BorderSize = 0;
             this.btnSearch.Location = new System.Drawing.Point(1074, 38);
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
@@ -163,6 +162,7 @@ namespace Cohesion_Project
             // 
             // btnAdd
             // 
+            this.btnAdd.Enabled = false;
             this.btnAdd.FlatAppearance.BorderSize = 0;
             this.btnAdd.Text = "      추  가";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);

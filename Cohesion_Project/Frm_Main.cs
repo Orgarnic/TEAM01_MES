@@ -4,19 +4,28 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Cohesion_DTO;
 
 namespace Cohesion_Project
 {
     public partial class Frm_Main : Form
     {
+        User_DTO userInfo = new User_DTO();
+        List<Srv_UserGroup> list = null;
         private Util.ComboUtil comboUtil;
-        //public Util.ComboUtil ComboUtil { get { return comboUtil; } }
+
         public Frm_Main()
         {
             InitializeComponent();
+        }
+        public Frm_Main(User_DTO user)
+        {
+            InitializeComponent();
+            userInfo = user;
         }
 
         private void Btn_Close_Click(object sender, EventArgs e)
@@ -26,7 +35,65 @@ namespace Cohesion_Project
 
         private void Frm_Main_Load(object sender, EventArgs e)
         {
-            comboUtil = new Util.ComboUtil();
+            this.Visible = false;
+            Frm_Login login = new Frm_Login();
+            DialogResult result = login.ShowDialog(this);
+            if(result == DialogResult.OK)
+            {
+                this.Visible = true;
+                userInfo = login.user;
+                comboUtil = new Util.ComboUtil();
+                list = new List<Srv_UserGroup>();
+                lblUserName.Text = userInfo.USER_NAME + "님";
+                MenuIn();
+            }
+        }
+
+        private void MenuIn()
+        {
+            string[] str = {"메뉴관리","주문관리","지시관리","사용자관리","권한관리"};
+            int[] num = { 1,2,3,4,5 };
+            list = new List<Srv_UserGroup>();
+            /*foreach (var item in num)
+            {
+                Button menu = new Button();
+                menu.Size = new Size(180, 50);
+                menu.BackColor = Color.Transparent;
+                menu.Font = new Font("나눔 고딕", 10, FontStyle.Bold);
+                menu.ForeColor = Color.White;
+                menu.FlatStyle = FlatStyle.Flat;
+                menu.FlatAppearance.BorderColor = Color.FromArgb(49, 65, 81);
+                menu.Margin = new Padding(0);
+                menu.Padding = new Padding(0);
+                menu.Text = str[item];
+                //menu.Text = item.Name;
+                menu.FlatAppearance.BorderSize = 1;
+                Flp_Side.Controls.Add(menu);
+            }*/
+
+            for (int i = 0; i < num.Length; i++)
+            {
+                Button menu = new Button();
+                menu.Size = new Size(180, 50);
+                menu.BackColor = Color.Transparent;
+                menu.Font = new Font("나눔 고딕", 10, FontStyle.Bold);
+                menu.ForeColor = Color.White;
+                menu.FlatStyle = FlatStyle.Flat;
+                menu.FlatAppearance.BorderColor = Color.FromArgb(49, 65, 81);
+                menu.Margin = new Padding(0);
+                menu.Padding = new Padding(left: 30,0,0,0);
+                menu.TextAlign = ContentAlignment.MiddleLeft;
+                menu.Text = str[i];
+                //menu.Text = item.Name;
+                menu.FlatAppearance.BorderSize = 1;
+                Flp_Side.Controls.Add(menu);
+                menu.Click += Menu_Click;
+            }
+        }
+
+        private void Menu_Click(object sender, EventArgs e)
+        {
+            btnClick("","");
         }
 
         private void btn_MouseLeave(object sender, EventArgs e)
@@ -41,6 +108,23 @@ namespace Cohesion_Project
             Button btn = sender as Button;
             btn.ForeColor = Color.FromArgb(26, 29, 33);
             btn.BackColor = Color.FromArgb(224, 224, 224);
+        }
+
+        private void btnClick(string menuName, string tag)
+        {
+            string appName = Assembly.GetEntryAssembly().GetName().Name;
+            Type tForm = Type.GetType(appName);
+            Form fm = Application.OpenForms[$"{tForm.FullName}.{tag}"];
+            if(fm.ShowDialog() == DialogResult.OK)
+            {
+                fm.Activate();
+                fm.BringToFront();
+            }
+            else
+            {
+                fm.WindowState = FormWindowState.Maximized;
+                fm.Show();
+            }
         }
 
         private void btnProduct_Click(object sender, EventArgs e)

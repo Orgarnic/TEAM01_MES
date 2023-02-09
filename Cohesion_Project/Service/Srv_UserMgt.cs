@@ -53,5 +53,14 @@ namespace Cohesion_Project
 
             return list;
         }
+
+        public User_DTO GetAdmin(string uid, string pwd)
+        {
+            UserMgt_DAO dao = new UserMgt_DAO();
+            User_DTO dto = dao.GetAdmin(uid, pwd);
+            dao.Dispose();
+
+            return dto;
+        }
     }
 }

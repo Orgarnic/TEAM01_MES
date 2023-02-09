@@ -166,5 +166,36 @@ namespace Cohesion_DAO
             return list;
 
         }
+
+        public User_DTO GetAdmin(string uid, string pwd)
+        {
+            User_DTO dto = new User_DTO();
+            try
+            {
+                string sql = @"select USER_ID, USER_NAME, USER_GROUP_CODE, USER_PASSWORD, USER_DEPARTMENT, CREATE_TIME, CREATE_USER_ID, UPDATE_TIME, UPDATE_USER_ID
+                               from USER_MST
+                               where USER_ID = @USER_ID and USER_PASSWORD = @USER_PASSWORD";
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@USER_ID", uid);
+                cmd.Parameters.AddWithValue("@USER_PASSWORD", pwd);
+
+                conn.Open();
+                dto = Helper.DataReaderMapToDTO<User_DTO>(cmd.ExecuteReader());
+
+                return dto;
+
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                Debug.WriteLine(err.StackTrace);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     } 
 }

@@ -60,10 +60,7 @@ namespace Cohesion_Project
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.Pnl_Top = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btnFormSize = new System.Windows.Forms.Button();
+            this.lblUserName = new System.Windows.Forms.Label();
             this.Btn_Close = new System.Windows.Forms.Button();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.cc_TabControl1 = new Cohesion_Project.Cc_TabControl();
@@ -557,10 +554,7 @@ namespace Cohesion_Project
             // Pnl_Top
             // 
             this.Pnl_Top.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
-            this.Pnl_Top.Controls.Add(this.label2);
-            this.Pnl_Top.Controls.Add(this.label1);
-            this.Pnl_Top.Controls.Add(this.button1);
-            this.Pnl_Top.Controls.Add(this.btnFormSize);
+            this.Pnl_Top.Controls.Add(this.lblUserName);
             this.Pnl_Top.Controls.Add(this.Btn_Close);
             this.Pnl_Top.Controls.Add(this.menuStrip2);
             this.Pnl_Top.Dock = System.Windows.Forms.DockStyle.Top;
@@ -570,61 +564,17 @@ namespace Cohesion_Project
             this.Pnl_Top.Size = new System.Drawing.Size(1346, 30);
             this.Pnl_Top.TabIndex = 23;
             // 
-            // label2
+            // lblUserName
             // 
-            this.label2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label2.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label2.Location = new System.Drawing.Point(1099, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(80, 30);
-            this.label2.TabIndex = 17;
-            this.label2.Text = "관리자";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label1
-            // 
-            this.label1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label1.Font = new System.Drawing.Font("나눔고딕", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(1179, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(17, 30);
-            this.label1.TabIndex = 16;
-            this.label1.Text = "▼";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // button1
-            // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(65)))), ((int)(((byte)(81)))));
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.button1.Location = new System.Drawing.Point(1196, 0);
-            this.button1.Margin = new System.Windows.Forms.Padding(0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(50, 30);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "_";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // btnFormSize
-            // 
-            this.btnFormSize.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnFormSize.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(65)))), ((int)(((byte)(81)))));
-            this.btnFormSize.FlatAppearance.BorderSize = 0;
-            this.btnFormSize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFormSize.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnFormSize.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnFormSize.Location = new System.Drawing.Point(1246, 0);
-            this.btnFormSize.Margin = new System.Windows.Forms.Padding(0);
-            this.btnFormSize.Name = "btnFormSize";
-            this.btnFormSize.Size = new System.Drawing.Size(50, 30);
-            this.btnFormSize.TabIndex = 7;
-            this.btnFormSize.Text = "□";
-            this.btnFormSize.UseVisualStyleBackColor = true;
+            this.lblUserName.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lblUserName.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblUserName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.lblUserName.Location = new System.Drawing.Point(1216, 0);
+            this.lblUserName.Name = "lblUserName";
+            this.lblUserName.Size = new System.Drawing.Size(80, 30);
+            this.lblUserName.TabIndex = 17;
+            this.lblUserName.Text = "관리자";
+            this.lblUserName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // Btn_Close
             // 
@@ -708,10 +658,7 @@ namespace Cohesion_Project
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.Panel Pnl_Top;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button btnFormSize;
+        private System.Windows.Forms.Label lblUserName;
         private System.Windows.Forms.Button Btn_Close;
         private Cc_TabControl cc_TabControl1;
         private System.Windows.Forms.Button btnProduct;
