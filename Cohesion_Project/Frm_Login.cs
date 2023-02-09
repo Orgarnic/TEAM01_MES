@@ -30,8 +30,18 @@ namespace Cohesion_Project
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            if(string.IsNullOrWhiteSpace(txtUserID.Text)||string.IsNullOrWhiteSpace(txtUserPwd.Text))
+            {
+                MboxUtil.MboxWarn("회원 아이디/비밀번호를 제대로 입력해주세요.");
+                return;
+            }
             user = srv.GetAdmin(txtUserID.Text, txtUserPwd.Text);
-            if (!txtUserID.Text.Equals(user.USER_ID) || !txtUserPwd.Text.Equals(user.USER_PASSWORD))
+            if(user == null || user.USER_ID == null)
+            {
+                MboxUtil.MboxWarn("다시 시도해주세요.");
+                return;
+            }
+            if (!txtUserID.Text.Equals(user.USER_ID) && !txtUserPwd.Text.Equals(user.USER_PASSWORD))
             {
                 MboxUtil.MboxWarn("다시 시도해주세요.");
                 return;
@@ -41,7 +51,6 @@ namespace Cohesion_Project
                 MboxUtil.MboxInfo($"{user.USER_NAME}님 반갑습니다.");
                 this.DialogResult = DialogResult.OK;
                 this.Close();
-                //this.Close();
             }
         }
 
