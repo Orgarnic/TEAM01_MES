@@ -606,6 +606,7 @@ namespace Cohesion_Project
             // 
             this.cc_TabControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.cc_TabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.cc_TabControl1.Font = new System.Drawing.Font("나눔고딕", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cc_TabControl1.Location = new System.Drawing.Point(180, 30);
             this.cc_TabControl1.Name = "cc_TabControl1";
             this.cc_TabControl1.SelectedIndex = 0;
