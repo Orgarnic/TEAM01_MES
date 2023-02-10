@@ -17,7 +17,7 @@ namespace Cohesion_Project
         User_DTO userInfo = new User_DTO();
         List<Srv_UserGroup> list = null;
         private Util.ComboUtil comboUtil;
-        int cnt = 0;
+
         public Frm_Main()
         {
             InitializeComponent();
@@ -80,7 +80,7 @@ namespace Cohesion_Project
                     return;
                 }
             }
-            cnt++;
+
             T frm = new T();
             frm.MdiParent = this;
             frm.WindowState = FormWindowState.Maximized;

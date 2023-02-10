@@ -93,10 +93,18 @@ namespace Cohesion_Project
         {
             // 셀클릭시, 클릭된 완제품의 BOM을 Child에 뿌려줌.
             if (e.RowIndex < 0) return;
+
             prodID = dgvBOMParent["PRODUCT_CODE", e.RowIndex].Value.ToString();
             bom = srv.SelectBOMList(prodID);
-            dgvBOMChild.DataSource = null;
-            dgvBOMChild.DataSource = bom;
+            if (bom.Count > 0)
+            {
+                dgvBOMChild.DataSource = null;
+                dgvBOMChild.DataSource = bom;
+            }
+            else
+            {
+                dgvBOMChild.DataSource = null;
+            }
             ppgBOMAttribute.SelectedObject = new BOM_MST_DTO();
         }
 
@@ -276,6 +284,8 @@ namespace Cohesion_Project
         // 부모제품의 BOM 목록에서 자녀제품 삭제(제품 목록에서 삭제는 X)
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            if (dgvBOMChild.Rows.Count < 1) return;
+
             int cnt = 0;
             for (int i = dgvBOMChild.Rows.Count - 1; i >= 0; i--)
             {

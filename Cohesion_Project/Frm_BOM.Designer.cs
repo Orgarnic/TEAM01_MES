@@ -223,13 +223,12 @@ namespace Cohesion_Project
             // 
             // dgvBOMChild
             // 
-            this.dgvBOMChild.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dgvBOMChild.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBOMChild.Location = new System.Drawing.Point(86, 67);
+            this.dgvBOMChild.Location = new System.Drawing.Point(539, 173);
             this.dgvBOMChild.Name = "dgvBOMChild";
             this.dgvBOMChild.RowTemplate.Height = 23;
-            this.dgvBOMChild.Size = new System.Drawing.Size(987, 332);
-            this.dgvBOMChild.TabIndex = 7;
+            this.dgvBOMChild.Size = new System.Drawing.Size(240, 150);
+            this.dgvBOMChild.TabIndex = 5;
             this.dgvBOMChild.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBOMChild_CellClick);
             // 
             // Frm_BOM
