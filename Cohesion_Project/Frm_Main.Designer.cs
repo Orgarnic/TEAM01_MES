@@ -635,6 +635,7 @@ namespace Cohesion_Project
             this.Text = "Form1";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Frm_Main_Load);
+            this.MdiChildActivate += new System.EventHandler(this.Frm_Main_MdiChildActivate);
             this.Flp_Side.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);

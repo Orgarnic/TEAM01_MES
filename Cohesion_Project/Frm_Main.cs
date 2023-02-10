@@ -17,7 +17,7 @@ namespace Cohesion_Project
         User_DTO userInfo = new User_DTO();
         List<Srv_UserGroup> list = null;
         private Util.ComboUtil comboUtil;
-
+        int cnt = 0;
         public Frm_Main()
         {
             InitializeComponent();
@@ -49,10 +49,6 @@ namespace Cohesion_Project
                 //MenuIn();
             }
         }
-        private void Menu_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void btn_MouseLeave(object sender, EventArgs e)
         {
@@ -80,58 +76,15 @@ namespace Cohesion_Project
                     return;
                 }
             }
-
+            cnt++;
             T frm = new T();
             frm.MdiParent = this;
             frm.WindowState = FormWindowState.Maximized;
             frm.Text = btn.Text + "   ";
-            cc_TabControl1.TabPages.Add(frm.Text);
+            cc_TabControl1.TabIndex = cnt;
             frm.Show();
         }
 
-        private void CheckedForm(Form form, string check)
-        {
-            form = Application.OpenForms[check];
-            if(form == null)
-            {
-
-            }
-        }
-
-        private void frmMain_MdiChildActivate(object sender, EventArgs e)
-        {
-            if (this.ActiveMdiChild == null)
-            {
-                cc_TabControl1.Visible = false;
-            }
-            else
-            {
-                this.ActiveMdiChild.WindowState = FormWindowState.Maximized;
-
-                if (this.ActiveMdiChild.Tag == null) //신규로 탭을 생성하는 경우
-                {
-                    TabPage tp = new TabPage(this.ActiveMdiChild.Text + "    ");
-                    cc_TabControl1.TabPages.Add(tp);
-
-                    tp.Tag = this.ActiveMdiChild;
-                    this.ActiveMdiChild.Tag = tp;
-
-                    cc_TabControl1.SelectedTab = tp;
-
-                    //자식폼이 닫힐때 탭페이지도 같이 삭제
-                    this.ActiveMdiChild.FormClosed += ActiveMdiChild_FormClosed;
-                }
-                else //기존에 탭이 있는 경우
-                {
-                    cc_TabControl1.SelectedTab = (TabPage)this.ActiveMdiChild.Tag;
-                }
-
-                if (!cc_TabControl1.Visible)
-                {
-                    cc_TabControl1.Visible = true;
-                }
-            }
-        }
         private void ActiveMdiChild_FormClosed(object sender, FormClosedEventArgs e)
         {
             Form frm = (Form)sender;
@@ -255,6 +208,41 @@ namespace Cohesion_Project
                 {
                     this.ActiveMdiChild.Close();
                     break;
+                }
+            }
+        }
+
+        private void Frm_Main_MdiChildActivate(object sender, EventArgs e)
+        {
+            if (this.ActiveMdiChild == null)
+            {
+                cc_TabControl1.Visible = false;
+            }
+            else
+            {
+                this.ActiveMdiChild.WindowState = FormWindowState.Maximized;
+
+                if (this.ActiveMdiChild.Tag == null) //신규로 탭을 생성하는 경우
+                {
+                    TabPage tp = new TabPage(this.ActiveMdiChild.Text + "    ");
+                    cc_TabControl1.TabPages.Add(tp);
+
+                    tp.Tag = this.ActiveMdiChild;
+                    this.ActiveMdiChild.Tag = tp;
+
+                    cc_TabControl1.SelectedTab = tp;
+
+                    //자식폼이 닫힐때 탭페이지도 같이 삭제
+                    this.ActiveMdiChild.FormClosed += ActiveMdiChild_FormClosed;
+                }
+                else //기존에 탭이 있는 경우
+                {
+                    cc_TabControl1.SelectedTab = (TabPage)this.ActiveMdiChild.Tag;
+                }
+
+                if (!cc_TabControl1.Visible)
+                {
+                    cc_TabControl1.Visible = true;
                 }
             }
         }
