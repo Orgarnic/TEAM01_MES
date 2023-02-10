@@ -17,7 +17,7 @@ namespace Cohesion_Project
         User_DTO userInfo = new User_DTO();
         List<Srv_UserGroup> list = null;
         private Util.ComboUtil comboUtil;
-
+        int cnt = 0;
         public Frm_Main()
         {
             InitializeComponent();
@@ -70,8 +70,6 @@ namespace Cohesion_Project
 
         private void OpenCreateForm<T>(Button btn) where T : Form, new()
         {
-            //열려있는 child 창들중에서 학생관리폼이 있으면, 그 학생관리폼을 앞으로 보여주고
-            //열려있는 child 창들중에 없을때만 학생관리폼을 new 해서 보여준다.
             foreach (Form form in Application.OpenForms)
             {
                 if (form.GetType() == typeof(T))
@@ -82,7 +80,7 @@ namespace Cohesion_Project
                     return;
                 }
             }
-
+            cnt++;
             T frm = new T();
             frm.MdiParent = this;
             frm.WindowState = FormWindowState.Maximized;
@@ -90,6 +88,16 @@ namespace Cohesion_Project
             cc_TabControl1.TabPages.Add(frm.Text);
             frm.Show();
         }
+
+        private void CheckedForm(Form form, string check)
+        {
+            form = Application.OpenForms[check];
+            if(form == null)
+            {
+
+            }
+        }
+
         private void frmMain_MdiChildActivate(object sender, EventArgs e)
         {
             if (this.ActiveMdiChild == null)

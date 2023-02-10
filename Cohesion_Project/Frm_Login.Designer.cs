@@ -32,6 +32,9 @@ namespace Cohesion_Project
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Login));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.txtUserID = new System.Windows.Forms.TextBox();
+            this.txtUserPwd = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -39,12 +42,9 @@ namespace Cohesion_Project
             this.btnLogin = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtUserPwd = new System.Windows.Forms.TextBox();
-            this.txtUserID = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -87,6 +87,40 @@ namespace Cohesion_Project
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(383, 310);
             this.panel2.TabIndex = 0;
+            // 
+            // txtUserID
+            // 
+            this.txtUserID.BackColor = System.Drawing.Color.AliceBlue;
+            this.txtUserID.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtUserID.Font = new System.Drawing.Font("나눔고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txtUserID.Location = new System.Drawing.Point(156, 107);
+            this.txtUserID.Name = "txtUserID";
+            this.txtUserID.Size = new System.Drawing.Size(198, 19);
+            this.txtUserID.TabIndex = 26;
+            this.txtUserID.Text = "admin";
+            this.txtUserID.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // txtUserPwd
+            // 
+            this.txtUserPwd.BackColor = System.Drawing.Color.AliceBlue;
+            this.txtUserPwd.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtUserPwd.Font = new System.Drawing.Font("나눔고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txtUserPwd.Location = new System.Drawing.Point(156, 173);
+            this.txtUserPwd.Name = "txtUserPwd";
+            this.txtUserPwd.PasswordChar = '*';
+            this.txtUserPwd.Size = new System.Drawing.Size(198, 19);
+            this.txtUserPwd.TabIndex = 27;
+            this.txtUserPwd.Text = "1234";
+            this.txtUserPwd.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label6
+            // 
+            this.label6.BackColor = System.Drawing.Color.AliceBlue;
+            this.label6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label6.Location = new System.Drawing.Point(154, 170);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(200, 26);
+            this.label6.TabIndex = 35;
             // 
             // pictureBox3
             // 
@@ -166,29 +200,6 @@ namespace Cohesion_Project
             this.label4.TabIndex = 28;
             this.label4.Text = "아이디";
             // 
-            // txtUserPwd
-            // 
-            this.txtUserPwd.BackColor = System.Drawing.Color.AliceBlue;
-            this.txtUserPwd.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtUserPwd.Font = new System.Drawing.Font("나눔고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.txtUserPwd.Location = new System.Drawing.Point(156, 173);
-            this.txtUserPwd.Name = "txtUserPwd";
-            this.txtUserPwd.PasswordChar = '*';
-            this.txtUserPwd.Size = new System.Drawing.Size(198, 19);
-            this.txtUserPwd.TabIndex = 27;
-            this.txtUserPwd.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // txtUserID
-            // 
-            this.txtUserID.BackColor = System.Drawing.Color.AliceBlue;
-            this.txtUserID.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtUserID.Font = new System.Drawing.Font("나눔고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.txtUserID.Location = new System.Drawing.Point(156, 107);
-            this.txtUserID.Name = "txtUserID";
-            this.txtUserID.Size = new System.Drawing.Size(198, 19);
-            this.txtUserID.TabIndex = 26;
-            this.txtUserID.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
             // label1
             // 
             this.label1.BackColor = System.Drawing.Color.LightSteelBlue;
@@ -220,15 +231,6 @@ namespace Cohesion_Project
             this.label3.TabIndex = 13;
             this.label3.Text = "Cohesion Sharp";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label6
-            // 
-            this.label6.BackColor = System.Drawing.Color.AliceBlue;
-            this.label6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label6.Location = new System.Drawing.Point(154, 170);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(200, 26);
-            this.label6.TabIndex = 35;
             // 
             // label7
             // 
