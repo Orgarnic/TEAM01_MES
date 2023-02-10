@@ -20,6 +20,8 @@ namespace Cohesion_DTO
         public static List<string> OperationCode = new List<string> { };
 
         public static List<string> WorkOrder = new List<string> { };
+
+      public static List<string> FunctionCode = new List<string> { "Frm_BOM", "Frm_Common", "Frm_Equipment", "Frm_Equipment_Operation_Rel", "Frm_Function", "Frm_Function_User_Group_Rel", "Frm_Inspection", "Frm_Operation", "Frm_Operation_Inspection_Rel", "Frm_Product", "Frm_Product_Operation_Rel", "Frm_Sales_Order", "Frm_Store" , "Frm_UserGroupMgt", "Frm_UserMgt", "Frm_WorkOrder" };
     }
 
     public class ComboStringConverter : StringConverter
@@ -32,24 +34,37 @@ namespace Cohesion_DTO
         public override TypeConverter.StandardValuesCollection GetStandardValues(ITypeDescriptorContext context)
         {
             return new StandardValuesCollection(ComboUtil.searchDic[context.PropertyDescriptor.Description]);
-        }
-    }
+      }
+   }
 
-    public class ComboProductConverter : StringConverter
-    {
-        public override bool GetStandardValuesSupported(ITypeDescriptorContext context)
-        {
-            return true;
-        }
+   public class ComboProductConverter : StringConverter
+   {
+      public override bool GetStandardValuesSupported(ITypeDescriptorContext context)
+      {
+         return true;
+      }
 
-        public override TypeConverter.StandardValuesCollection GetStandardValues(ITypeDescriptorContext context)
-        {
-            return new StandardValuesCollection(ComboUtil.ProductCode);
-        }
-    }
+      public override TypeConverter.StandardValuesCollection GetStandardValues(ITypeDescriptorContext context)
+      {
+         return new StandardValuesCollection(ComboUtil.ProductCode);
+      }
+   }
 
-    // 검사 데이터 같은 char 타입은 바인딩이 안되서 유기현이 추가함
-    public class ComboCharConverter : CharConverter
+   public class ComboFunctionConverter : StringConverter
+   {
+      public override bool GetStandardValuesSupported(ITypeDescriptorContext context)
+      {
+         return true;
+      }
+
+      public override TypeConverter.StandardValuesCollection GetStandardValues(ITypeDescriptorContext context)
+      {
+         return new StandardValuesCollection(ComboUtil.FunctionCode);
+      }
+   }
+
+   // 검사 데이터 같은 char 타입은 바인딩이 안되서 유기현이 추가함
+   public class ComboCharConverter : CharConverter
    {
       public override bool GetStandardValuesSupported(ITypeDescriptorContext context)
       {
