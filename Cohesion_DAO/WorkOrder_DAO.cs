@@ -136,8 +136,9 @@ namespace Cohesion_DAO
 						                                       inner join PRODUCT_MST pd2 on b.CHILD_PRODUCT_CODE = pd2.PRODUCT_CODE
                                        where 1 = 1 and SALES_ORDER_ID = @SALES_ORDER_ID and so.PRODUCT_CODE = @PRODUCT_CODE
 						               group by b.CHILD_PRODUCT_CODE, pd2.PRODUCT_NAME, pd2.VENDOR_CODE, REQUIRE_QTY, pd2.PRODUCT_TYPE, so.ORDER_QTY)
-						               select CHILD_PRODUCT_CODE, PRODUCT_NAME, REQUIRE_QTY, PRODUCT_TYPE, ORDER_QTY, ls.LOT_QTY, VENDOR_CODE
-						               from BOM m inner join LOT_STS ls on m.CHILD_PRODUCT_CODE = ls.PRODUCT_CODE";
+						               select CHILD_PRODUCT_CODE, PRODUCT_NAME, REQUIRE_QTY, PRODUCT_TYPE, ORDER_QTY, isnull(sum(ls.LOT_QTY), 0) LOT_QTY, VENDOR_CODE
+						               from BOM m left join LOT_STS ls on m.CHILD_PRODUCT_CODE = ls.PRODUCT_CODE
+									   group by CHILD_PRODUCT_CODE, PRODUCT_NAME, REQUIRE_QTY, PRODUCT_TYPE, ORDER_QTY, VENDOR_CODE, LOT_QTY";
 
             try
             {
