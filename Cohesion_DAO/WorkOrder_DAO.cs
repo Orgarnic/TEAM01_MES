@@ -224,14 +224,14 @@ namespace Cohesion_DAO
                                where WORK_ORDER_ID = @WORK_ORDER_ID";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@PRODUCT_CODE", work.PRODUCT_CODE != null ? work.PRODUCT_CODE : DBNull.Value.ToString());
+                cmd.Parameters.AddWithValue("@PRODUCT_CODE", work.PRODUCT_CODE != null ? work.PRODUCT_CODE : (object)DBNull.Value.ToString());
                 cmd.Parameters.AddWithValue("@ORDER_QTY", oNum > 0 ? oNum : 0);
                 cmd.Parameters.AddWithValue("@ORDER_STATUS", work.ORDER_STATUS);
                 cmd.Parameters.AddWithValue("@PRODUCT_QTY", pNum > 0 ? pNum : 0);
                 cmd.Parameters.AddWithValue("@DEFECT_QTY", dNum > 0 ? dNum : 0);
                 cmd.Parameters.AddWithValue("@WORK_START_TIME", work.WORK_START_TIME);
                 cmd.Parameters.AddWithValue("@WORK_CLOSE_TIME", work.WORK_CLOSE_TIME);
-                cmd.Parameters.AddWithValue("@WORK_CLOSE_USER_ID", work.WORK_CLOSE_USER_ID != null ? work.WORK_CLOSE_USER_ID : DBNull.Value.ToString());
+                cmd.Parameters.AddWithValue("@WORK_CLOSE_USER_ID", work.WORK_CLOSE_USER_ID != null ? work.WORK_CLOSE_USER_ID : (object)DBNull.Value.ToString());
                 cmd.Parameters.AddWithValue("@UPDATE_TIME", DateTime.Now);
                 cmd.Parameters.AddWithValue("@UPDATE_USER_ID", uid);
 
