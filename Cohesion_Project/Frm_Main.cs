@@ -28,7 +28,6 @@ namespace Cohesion_Project
       {
          Application.Exit();
       }
-
       private void Frm_Main_Load(object sender, EventArgs e)
       {
          this.Visible = false;
@@ -45,7 +44,6 @@ namespace Cohesion_Project
             MenuInit();
          }
       }
-
       private void MenuInit()
       {
          var sales = menus.FindAll((m) => m.ICON_INDEX.Equals(1)).ToList();
@@ -91,7 +89,6 @@ namespace Cohesion_Project
                flpSide.Controls.Add(CreateBtn(menu.FUNCTION_NAME, menu.FUNCTION_CODE));
          }
       }
-
       private Button CreateBtn(string text, string program)
       {
          Button btn = new Button();
@@ -111,14 +108,12 @@ namespace Cohesion_Project
          };
          return btn;
       }
-
       private void btn_MouseLeave(object sender, EventArgs e)
       {
         Button btn = sender as Button;
          btn.ForeColor = Color.FromArgb(224, 224, 224);
          btn.BackColor = Color.FromArgb(26, 29, 33);
       }
-
       private void btn_MouseMove(object sender, MouseEventArgs e)
       {
          Button btn = sender as Button;
@@ -154,7 +149,6 @@ namespace Cohesion_Project
          Form frm = (Form)sender;
          ((TabPage)frm.Tag).Dispose();
       }
-
       private void cc_TabControl1_SelectedIndexChanged(object sender, EventArgs e)
       {
          if (cc_TabControl1.SelectedTab != null)
@@ -163,7 +157,6 @@ namespace Cohesion_Project
             frm.Select();
          }
       }
-
       private void cc_TabControl1_MouseDown(object sender, MouseEventArgs e)
       {
          for (int i = 0; i < cc_TabControl1.TabPages.Count; i++)
@@ -180,7 +173,6 @@ namespace Cohesion_Project
             }
          }
       }
-
       private void Frm_Main_MdiChildActivate(object sender, EventArgs e)
       {
          if (this.ActiveMdiChild == null)
@@ -215,7 +207,6 @@ namespace Cohesion_Project
             }
          }
       }
-
       private void btnSmall_Click(object sender, EventArgs e)
       {
          this.WindowState = FormWindowState.Minimized;
