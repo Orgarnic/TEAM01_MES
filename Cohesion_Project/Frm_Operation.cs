@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using System.Linq;
 using System.Windows.Forms;
 using Cohesion_DTO;
 
@@ -31,15 +32,16 @@ namespace Cohesion_Project
       private void DgvInit()
       {
          DgvUtil.DgvInit(dgvOperation);
-         DgvUtil.AddTextCol(dgvOperation, "공정 코드", "OPERATION_CODE", width: 150, readOnly: true, frozen: true, align:0);
-         DgvUtil.AddTextCol(dgvOperation, "공정 명칭", "OPERATION_NAME", width: 150, readOnly: true, frozen: true, align: 0);
-         DgvUtil.AddTextCol(dgvOperation, "불량 입력", "CHECK_DEFECT_FLAG", width: 120, readOnly: true, frozen: true);
-         DgvUtil.AddTextCol(dgvOperation, "검사 데이터", "CHECK_INSPECT_FLAG", width: 120, readOnly: true);
-         DgvUtil.AddTextCol(dgvOperation, "자재 사용", "CHECK_MATERIAL_FLAG", width: 120, readOnly: true);
-         DgvUtil.AddTextCol(dgvOperation, "생성 시간", "CREATE_TIME", width: 195, readOnly: true, align: 1);
-         DgvUtil.AddTextCol(dgvOperation, "생성 사용자", "CREATE_USER_ID", width: 150, readOnly: true, align: 0);
-         DgvUtil.AddTextCol(dgvOperation, "변경 시간", "UPDATE_TIME", width: 195, readOnly: true, align: 1);
-         DgvUtil.AddTextCol(dgvOperation, "변경 사용자", "UPDATE_USER_ID", width: 150, readOnly: true, align: 0);
+         DgvUtil.AddTextCol(dgvOperation, "  순번", "IDX", width: 60, readOnly: true, frozen: true, align: 1);
+         DgvUtil.AddTextCol(dgvOperation, "  공정 코드", "OPERATION_CODE", width: 150, readOnly: true, frozen: true, align:0);
+         DgvUtil.AddTextCol(dgvOperation, "  공정 명칭", "OPERATION_NAME", width: 150, readOnly: true, frozen: true, align: 0);
+         DgvUtil.AddTextCol(dgvOperation, "  불량 입력", "CHECK_DEFECT_FLAG", width: 120, readOnly: true, frozen: true);
+         DgvUtil.AddTextCol(dgvOperation, "   검사 데이터", "CHECK_INSPECT_FLAG", width: 120, readOnly: true);
+         DgvUtil.AddTextCol(dgvOperation, "  자재 사용", "CHECK_MATERIAL_FLAG", width: 120, readOnly: true);
+         DgvUtil.AddTextCol(dgvOperation, "  생성 시간", "CREATE_TIME", width: 195, readOnly: true, align: 1);
+         DgvUtil.AddTextCol(dgvOperation, "   생성 사용자", "CREATE_USER_ID", width: 150, readOnly: true, align: 0);
+         DgvUtil.AddTextCol(dgvOperation, "  변경 시간", "UPDATE_TIME", width: 195, readOnly: true, align: 1);
+         DgvUtil.AddTextCol(dgvOperation, "   변경 사용자", "UPDATE_USER_ID", width: 150, readOnly: true, align: 0);
       }
       private void PpgInit()
       {
@@ -50,13 +52,38 @@ namespace Cohesion_Project
       {
          //btnSearch.PerformClick();
          operations = srvOperation.SelectOperation(condition);
-         dgvOperation.DataSource = operations;
+         int seq = 1;
+         dgvOperation.DataSource = operations.Select((o) =>
+         new
+         {
+            IDX = seq++,
+            OPERATION_CODE = o.OPERATION_CODE,
+            OPERATION_NAME = o.OPERATION_NAME,
+            CHECK_DEFECT_FLAG = o.CHECK_DEFECT_FLAG,
+            CHECK_INSPECT_FLAG = o.CHECK_INSPECT_FLAG,
+            CHECK_MATERIAL_FLAG = o.CHECK_MATERIAL_FLAG,
+            CREATE_TIME = o.CREATE_TIME,
+            CREATE_USER_ID = o.CREATE_USER_ID,
+            UPDATE_TIME = o.UPDATE_TIME,
+            UPDATE_USER_ID = o.UPDATE_USER_ID
+         }).ToList();
       }
       private void dgvProduct_CellClick(object sender, DataGridViewCellEventArgs e)
       {
          int row = e.RowIndex;
          if (row < 0) return;
-         operation = DgvUtil.DgvToDto<OPERATION_MST_DTO>(dgvOperation);
+         operation = new OPERATION_MST_DTO
+         {
+            OPERATION_CODE = (string)dgvOperation["OPERATION_CODE", row].Value,
+            OPERATION_NAME = (string)dgvOperation["OPERATION_NAME", row].Value,
+            CHECK_DEFECT_FLAG = (char)dgvOperation["CHECK_DEFECT_FLAG", row].Value,
+            CHECK_INSPECT_FLAG = (char)dgvOperation["CHECK_INSPECT_FLAG", row].Value,
+            CHECK_MATERIAL_FLAG = (char)dgvOperation["CHECK_MATERIAL_FLAG", row].Value,
+            CREATE_TIME = Convert.ToDateTime(dgvOperation["CREATE_TIME", row].Value),
+            CREATE_USER_ID = (string)dgvOperation["CREATE_USER_ID", row].Value,
+            UPDATE_TIME = Convert.ToDateTime(dgvOperation["UPDATE_TIME", row].Value),
+            UPDATE_USER_ID = (string)dgvOperation["UPDATE_USER_ID", row].Value
+         };
          ppgOperation.SelectedObject = operation;
 
          ppgOperation.Enabled = false;
@@ -125,7 +152,21 @@ namespace Cohesion_Project
             return;
          }
          operations = srvOperation.SelectOperation(condition);
-         dgvOperation.DataSource = operations;
+         int seq = 1;
+         dgvOperation.DataSource = operations.Select((o) =>
+         new
+         {
+            IDX = seq++,
+            OPERATION_CODE = o.OPERATION_CODE,
+            OPERATION_NAME = o.OPERATION_NAME,
+            CHECK_DEFECT_FLAG = o.CHECK_DEFECT_FLAG,
+            CHECK_INSPECT_FLAG = o.CHECK_INSPECT_FLAG,
+            CHECK_MATERIAL_FLAG = o.CHECK_MATERIAL_FLAG,
+            CREATE_TIME = o.CREATE_TIME,
+            CREATE_USER_ID = o.CREATE_USER_ID,
+            UPDATE_TIME = o.UPDATE_TIME,
+            UPDATE_USER_ID = o.UPDATE_USER_ID
+         }).ToList();
       }
       private void btnClose_Click(object sender, EventArgs e)
       {
@@ -135,7 +176,19 @@ namespace Cohesion_Project
       {
          if (dgvOperation.SelectedRows.Count < 1) return;
          if (!MboxUtil.MboxInfo_("선택된 공정을 삭제하시겠습니까 ? ")) return;
-         OPERATION_MST_DTO dto = DgvUtil.DgvToDto<OPERATION_MST_DTO>(dgvOperation);
+         int row = dgvOperation.CurrentRow.Index;
+         OPERATION_MST_DTO dto = new OPERATION_MST_DTO
+         {
+            OPERATION_CODE = (string)dgvOperation["OPERATION_CODE", row].Value,
+            OPERATION_NAME = (string)dgvOperation["OPERATION_NAME", row].Value,
+            CHECK_DEFECT_FLAG = (char)dgvOperation["CHECK_DEFECT_FLAG", row].Value,
+            CHECK_INSPECT_FLAG = (char)dgvOperation["CHECK_INSPECT_FLAG", row].Value,
+            CHECK_MATERIAL_FLAG = (char)dgvOperation["CHECK_MATERIAL_FLAG", row].Value,
+            CREATE_TIME = Convert.ToDateTime(dgvOperation["CREATE_TIME", row].Value),
+            CREATE_USER_ID = (string)dgvOperation["CREATE_USER_ID", row].Value,
+            UPDATE_TIME = Convert.ToDateTime(dgvOperation["UPDATE_TIME", row].Value),
+            UPDATE_USER_ID = (string)dgvOperation["UPDATE_USER_ID", row].Value
+         };
          bool result = srvOperation.DeleteOperation(dto);
          if (result)
          {

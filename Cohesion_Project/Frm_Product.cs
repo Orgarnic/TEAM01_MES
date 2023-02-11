@@ -33,6 +33,7 @@ namespace Cohesion_Project
       private void DgvInit()
       {
          DgvUtil.DgvInit(dgvProduct);
+         DgvUtil.AddTextCol(dgvProduct, "  순번", "IDX", width: 60, readOnly: true, frozen: true, align: 1);
          DgvUtil.AddTextCol(dgvProduct, "    품번 코드", "PRODUCT_CODE",align:0 ,width: 140, readOnly: true, frozen: true);
          DgvUtil.AddTextCol(dgvProduct, "    품번 명칭", "PRODUCT_NAME", align: 0, width: 140, readOnly: true, frozen: true);
          DgvUtil.AddTextCol(dgvProduct, "    품번 유형", "PRODUCT_TYPE", align: 1, width: 140, readOnly: true, frozen: true);
@@ -47,13 +48,38 @@ namespace Cohesion_Project
       {
          //btnSearch.PerformClick();
          products = srvProduct.SelectProduts(condition);
-         dgvProduct.DataSource = products;
+         int seq = 1;
+         dgvProduct.DataSource = products.Select((o) =>
+         new
+         {
+            IDX = seq++,
+            PRODUCT_CODE = o.PRODUCT_CODE,
+            PRODUCT_NAME = o.PRODUCT_NAME,
+            PRODUCT_TYPE = o.PRODUCT_TYPE,
+            CUSTOMER_CODE = o.CUSTOMER_CODE,
+            VENDOR_CODE = o.VENDOR_CODE,
+            CREATE_TIME = o.CREATE_TIME,
+            CREATE_USER_ID = o.CREATE_USER_ID,
+            UPDATE_TIME = o.UPDATE_TIME,
+            UPDATE_USER_ID = o.UPDATE_USER_ID
+         }).ToList();
       }
       private void dgvProduct_CellClick(object sender, DataGridViewCellEventArgs e)
       {
          int row = e.RowIndex;
          if (row < 0) return;
-         product = DgvUtil.DgvToDto<PRODUCT_MST_DTO>(dgvProduct);
+         product = new PRODUCT_MST_DTO
+         {
+            PRODUCT_CODE = (string)dgvProduct["PRODUCT_CODE", row].Value,
+            PRODUCT_NAME = (string)dgvProduct["PRODUCT_NAME", row].Value,
+            PRODUCT_TYPE = (string)dgvProduct["PRODUCT_TYPE", row].Value,
+            CUSTOMER_CODE = (string)dgvProduct["CUSTOMER_CODE", row].Value,
+            VENDOR_CODE = (string)dgvProduct["VENDOR_CODE", row].Value,
+            CREATE_TIME = Convert.ToDateTime(dgvProduct["CREATE_TIME", row].Value),
+            CREATE_USER_ID = (string)dgvProduct["CREATE_USER_ID", row].Value,
+            UPDATE_TIME = Convert.ToDateTime(dgvProduct["UPDATE_TIME", row].Value),
+            UPDATE_USER_ID = (string)dgvProduct["UPDATE_USER_ID", row].Value
+         };
          ppgProduct.SelectedObject = product;
 
          ppgProduct.Enabled = false;
@@ -145,7 +171,21 @@ namespace Cohesion_Project
             return;
          }
          products = srvProduct.SelectProduts(condition);
-         dgvProduct.DataSource = products;
+         int seq = 1;
+         dgvProduct.DataSource = products.Select((o) =>
+         new
+         {
+            IDX = seq++,
+            PRODUCT_CODE = o.PRODUCT_CODE,
+            PRODUCT_NAME = o.PRODUCT_NAME,
+            PRODUCT_TYPE = o.PRODUCT_TYPE,
+            CUSTOMER_CODE = o.CUSTOMER_CODE,
+            VENDOR_CODE = o.VENDOR_CODE,
+            CREATE_TIME = o.CREATE_TIME,
+            CREATE_USER_ID = o.CREATE_USER_ID,
+            UPDATE_TIME = o.UPDATE_TIME,
+            UPDATE_USER_ID = o.UPDATE_USER_ID
+         }).ToList();
       }
       private void btnClose_Click(object sender, EventArgs e)
       {
@@ -154,8 +194,20 @@ namespace Cohesion_Project
       private void btnDelete_Click(object sender, EventArgs e)
       {
          if (dgvProduct.SelectedRows.Count < 1) return;
+         int row = dgvProduct.CurrentRow.Index;
          if (!MboxUtil.MboxInfo_("선택된 품번을 삭제하시겠습니까 ? ")) return;
-         PRODUCT_MST_DTO dto = DgvUtil.DgvToDto<PRODUCT_MST_DTO>(dgvProduct);
+         PRODUCT_MST_DTO dto = new PRODUCT_MST_DTO
+         {
+            PRODUCT_CODE = (string)dgvProduct["PRODUCT_CODE", row].Value,
+            PRODUCT_NAME = (string)dgvProduct["PRODUCT_NAME", row].Value,
+            PRODUCT_TYPE = (string)dgvProduct["PRODUCT_TYPE", row].Value,
+            CUSTOMER_CODE = (string)dgvProduct["CUSTOMER_CODE", row].Value,
+            VENDOR_CODE = (string)dgvProduct["VENDOR_CODE", row].Value,
+            CREATE_TIME = Convert.ToDateTime(dgvProduct["CREATE_TIME", row].Value),
+            CREATE_USER_ID = (string)dgvProduct["CREATE_USER_ID", row].Value,
+            UPDATE_TIME = Convert.ToDateTime(dgvProduct["UPDATE_TIME", row].Value),
+            UPDATE_USER_ID = (string)dgvProduct["UPDATE_USER_ID", row].Value
+         };
          bool result = srvProduct.DeleteProduct(dto);
          if (result)
          {
