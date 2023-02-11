@@ -76,13 +76,18 @@ namespace Cohesion_DAO
         // 화면기능 업뎃
         public bool UpdateFunction(FUNCTION_MST_DTO dto)
         {
+            //@"UPDATE  FUNCTION_MST
+            //string sql = @"UPDATE  FUNCTION_MST
+            //                SET  FUNCTION_NAME = @FUNCTION_NAME, SHORT_CUT_KEY = @SHORT_CUT_KEY, ICON_INDEX = @ICON_INDEX,
+		          //                UPDATE_TIME = @UPDATE_TIME, UPDATE_USER_ID = @UPDATE_USER_ID
+            //                WHERE FUNCTION_CODE = @FUNCTION_CODE";
             try
             {
                 conn.Open();
                 //SqlTransaction trans = conn.BeginTransaction();
                 int iRowAffect = default;
                 string sql = @"UPDATE  FUNCTION_MST
-                            SET  FUNCTION_NAME = @FUNCTION_NAME, SHORT_CUT_KEY = @SHORT_CUT_KEY, ICON_INDEX = @ICON_INDEX,
+                            SET  FUNCTION_NAME = @FUNCTION_NAME, 
 		                          UPDATE_TIME = @UPDATE_TIME, UPDATE_USER_ID = @UPDATE_USER_ID
                             WHERE FUNCTION_CODE = @FUNCTION_CODE";
                 SqlCommand CMD = Helper.UpsertCmdValue<FUNCTION_MST_DTO>(dto, sql, conn);

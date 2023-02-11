@@ -9,9 +9,9 @@ namespace Cohesion_DTO
 {
 	public class FUNCTION_MST_DTO
 	{
-		[Category("속성"), Description("FUNCTION_CODE"), DisplayName("화면 기능 코드")]
+		[Category("속성"), Description("FUNCTION_CODE"), DisplayName("화면 기능 코드"), TypeConverter(typeof(ComboFunctionConverter))]
 		public string FUNCTION_CODE { get; set;}    //화면 기능 코드
-		[Category("속성"), Description("FUNCTION_NAME"), DisplayName("화면 기능명"),TypeConverter(typeof(ComboFunctionConverter))]
+		[Category("속성"), Description("FUNCTION_NAME"), DisplayName("화면 기능명")]
 		public string FUNCTION_NAME { get; set;}    //화면 기능명
 		[Category("속성"), Description("SHORT_CUT_KEY"), DisplayName("단축키"), Browsable(false)]
 		public string SHORT_CUT_KEY { get; set; }   //단축키
