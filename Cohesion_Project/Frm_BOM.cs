@@ -269,16 +269,15 @@ namespace Cohesion_Project
         // ppgBOMAttribute에 제품 코드에 따라 제품명, 타입을 가져옴.
         private void ppgBOMAttribute_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
         {
+            BOM_MST_DTO bbom = null;
             if (e.ChangedItem.PropertyDescriptor.Description.Equals("CHILD_PRODUCT_CODE"))
-            {
+            {                
                 var list = temp.Find((c) => c.PRODUCT_CODE.Equals(e.ChangedItem.Value.ToString()));
-                var list2 = oper.Find((c) => c.OPERATION_CODE.Equals(e.ChangedItem.Value.ToString()));
-                if (list != null && list2 != null)
+                if (list != null)
                 {
-                    BOM_MST_DTO bbom = (BOM_MST_DTO)ppgBOMAttribute.SelectedObject;
+                    bbom = (BOM_MST_DTO)ppgBOMAttribute.SelectedObject;
                     bbom.PRODUCT_NAME = list.PRODUCT_NAME;
                     bbom.PRODUCT_TYPE = list.PRODUCT_TYPE;
-                    bbom.OPERATION_CODE = list2.OPERATION_CODE;
                 }
             }
         }
