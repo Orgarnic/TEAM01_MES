@@ -427,6 +427,8 @@
     </Content>
     <None Include="Resources\close-grey.png" />
     <None Include="Resources\close-red.png" />
+    <None Include="Resources\maintenance.png" />
+    <None Include="Resources\box.png" />
     <Content Include="Resources\Search2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

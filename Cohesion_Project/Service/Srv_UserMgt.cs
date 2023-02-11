@@ -10,7 +10,6 @@ namespace Cohesion_Project
 {
    public class Srv_User
     {
-
         public List<User_DTO> SelectUser()
         {
             UserMgt_DAO dao = new UserMgt_DAO();
@@ -62,5 +61,12 @@ namespace Cohesion_Project
 
             return dto;
         }
+      public List<FUNCTION_MST_DTO> GetFunc(string uid)
+      {
+         UserMgt_DAO dao = new UserMgt_DAO();
+         List<FUNCTION_MST_DTO> list = dao.GetFunc(uid);
+         dao.Dispose();
+         return list;
+      }
     }
 }
