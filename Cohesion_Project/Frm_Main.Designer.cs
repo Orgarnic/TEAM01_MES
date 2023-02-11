@@ -59,7 +59,6 @@ namespace Cohesion_Project
          this.label5 = new System.Windows.Forms.Label();
          this.pnlCommon = new System.Windows.Forms.Panel();
          this.label6 = new System.Windows.Forms.Label();
-         this.cc_TabControl1 = new Cohesion_Project.Cc_TabControl();
          this.pictureBox2 = new System.Windows.Forms.PictureBox();
          this.pictureBox1 = new System.Windows.Forms.PictureBox();
          this.pictureBox7 = new System.Windows.Forms.PictureBox();
@@ -67,6 +66,9 @@ namespace Cohesion_Project
          this.pictureBox5 = new System.Windows.Forms.PictureBox();
          this.pictureBox4 = new System.Windows.Forms.PictureBox();
          this.pictureBox3 = new System.Windows.Forms.PictureBox();
+         this.cc_TabControl1 = new Cohesion_Project.Cc_TabControl();
+         this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+         this.로그아웃ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
          this.panel2.SuspendLayout();
          this.panel3.SuspendLayout();
          this.panel1.SuspendLayout();
@@ -85,6 +87,7 @@ namespace Cohesion_Project
          ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
          ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
          ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+         this.contextMenuStrip2.SuspendLayout();
          this.SuspendLayout();
          // 
          // flpSide
@@ -233,6 +236,7 @@ namespace Cohesion_Project
          // 
          // lblUserName
          // 
+         this.lblUserName.ContextMenuStrip = this.contextMenuStrip2;
          this.lblUserName.Dock = System.Windows.Forms.DockStyle.Right;
          this.lblUserName.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
          this.lblUserName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -240,7 +244,7 @@ namespace Cohesion_Project
          this.lblUserName.Name = "lblUserName";
          this.lblUserName.Size = new System.Drawing.Size(80, 30);
          this.lblUserName.TabIndex = 20;
-         this.lblUserName.Text = "관리자";
+         this.lblUserName.Text = "관리자 ▼";
          this.lblUserName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
          // 
          // btnSmall
@@ -424,18 +428,6 @@ namespace Cohesion_Project
          this.label6.Text = "공통관리";
          this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
          // 
-         // cc_TabControl1
-         // 
-         this.cc_TabControl1.Dock = System.Windows.Forms.DockStyle.Top;
-         this.cc_TabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
-         this.cc_TabControl1.Location = new System.Drawing.Point(180, 30);
-         this.cc_TabControl1.Name = "cc_TabControl1";
-         this.cc_TabControl1.SelectedIndex = 0;
-         this.cc_TabControl1.Size = new System.Drawing.Size(1346, 26);
-         this.cc_TabControl1.TabIndex = 24;
-         this.cc_TabControl1.SelectedIndexChanged += new System.EventHandler(this.cc_TabControl1_SelectedIndexChanged);
-         this.cc_TabControl1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.cc_TabControl1_MouseDown);
-         // 
          // pictureBox2
          // 
          this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
@@ -520,6 +512,32 @@ namespace Cohesion_Project
          this.pictureBox3.TabIndex = 35;
          this.pictureBox3.TabStop = false;
          // 
+         // cc_TabControl1
+         // 
+         this.cc_TabControl1.Dock = System.Windows.Forms.DockStyle.Top;
+         this.cc_TabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+         this.cc_TabControl1.Location = new System.Drawing.Point(180, 30);
+         this.cc_TabControl1.Name = "cc_TabControl1";
+         this.cc_TabControl1.SelectedIndex = 0;
+         this.cc_TabControl1.Size = new System.Drawing.Size(1346, 26);
+         this.cc_TabControl1.TabIndex = 24;
+         this.cc_TabControl1.SelectedIndexChanged += new System.EventHandler(this.cc_TabControl1_SelectedIndexChanged);
+         this.cc_TabControl1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.cc_TabControl1_MouseDown);
+         // 
+         // contextMenuStrip2
+         // 
+         this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.로그아웃ToolStripMenuItem});
+         this.contextMenuStrip2.Name = "contextMenuStrip2";
+         this.contextMenuStrip2.Size = new System.Drawing.Size(181, 48);
+         // 
+         // 로그아웃ToolStripMenuItem
+         // 
+         this.로그아웃ToolStripMenuItem.Name = "로그아웃ToolStripMenuItem";
+         this.로그아웃ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+         this.로그아웃ToolStripMenuItem.Text = "로그아웃";
+         this.로그아웃ToolStripMenuItem.Click += new System.EventHandler(this.로그아웃ToolStripMenuItem_Click);
+         // 
          // Frm_Main
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -568,6 +586,7 @@ namespace Cohesion_Project
          ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
          ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
          ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+         this.contextMenuStrip2.ResumeLayout(false);
          this.ResumeLayout(false);
          this.PerformLayout();
 
@@ -610,6 +629,8 @@ namespace Cohesion_Project
       private System.Windows.Forms.Panel pnlCommon;
       private System.Windows.Forms.PictureBox pictureBox7;
       private System.Windows.Forms.Label label6;
+      private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
+      private System.Windows.Forms.ToolStripMenuItem 로그아웃ToolStripMenuItem;
    }
 }
 
