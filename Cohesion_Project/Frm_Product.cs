@@ -17,7 +17,7 @@ namespace Cohesion_Project
       private List<PRODUCT_MST_DTO> products = new List<PRODUCT_MST_DTO>();
       private PRODUCT_MST_DTO product = new PRODUCT_MST_DTO();
       private PRODUCT_MST_DTO_Condition condition = new PRODUCT_MST_DTO_Condition();
-      Util.ComboUtil comboUtil = new Util.ComboUtil();
+      private User_DTO userinfo;
       bool isCondition = true;
 
       public Frm_Product()
@@ -29,11 +29,12 @@ namespace Cohesion_Project
          this.DgvInit();
          this.PpgInit();
          this.DgvFill();
+         userinfo = (this.ParentForm as Frm_Main).userInfo;
       }
       private void DgvInit()
       {
          DgvUtil.DgvInit(dgvProduct);
-         DgvUtil.AddTextCol(dgvProduct, "  순번", "IDX", width: 60, readOnly: true, frozen: true, align: 1);
+         DgvUtil.AddTextCol(dgvProduct, "   NO", "IDX", width: 70, readOnly: true, frozen: true, align: 1);
          DgvUtil.AddTextCol(dgvProduct, "    품번 코드", "PRODUCT_CODE",align:0 ,width: 140, readOnly: true, frozen: true);
          DgvUtil.AddTextCol(dgvProduct, "    품번 명칭", "PRODUCT_NAME", align: 0, width: 140, readOnly: true, frozen: true);
          DgvUtil.AddTextCol(dgvProduct, "    품번 유형", "PRODUCT_TYPE", align: 1, width: 140, readOnly: true, frozen: true);
@@ -107,7 +108,7 @@ namespace Cohesion_Project
          PRODUCT_MST_DTO dto = ppgProduct.SelectedObject as PRODUCT_MST_DTO;
          if (dto == null) return;
          if (!Available(dto)) return;
-         dto.CREATE_USER_ID = "TEST";
+         dto.CREATE_USER_ID = userinfo.USER_ID;
          dto.CREATE_TIME = DateTime.Now;
          bool result = srvProduct.InsertProduct(dto);
          if (result)
@@ -124,7 +125,7 @@ namespace Cohesion_Project
             return;
          if (!Available(product)) return;
          product.UPDATE_TIME = DateTime.Now;
-         product.UPDATE_USER_ID = "김재형";
+         product.UPDATE_USER_ID = userinfo.USER_ID;
          bool result = srvProduct.UpdateProduct(product);
          if (result)
          {

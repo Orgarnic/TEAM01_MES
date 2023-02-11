@@ -14,18 +14,13 @@ namespace Cohesion_Project
 {
     public partial class Frm_Main : Form
     {
-        User_DTO userInfo = new User_DTO();
+        public User_DTO userInfo { get; set; }
         List<Srv_UserGroup> list = null;
         private Util.ComboUtil comboUtil;
         int cnt = 0;
         public Frm_Main()
         {
             InitializeComponent();
-        }
-        public Frm_Main(User_DTO user)
-        {
-            InitializeComponent();
-            userInfo = user;
         }
 
         private void Btn_Close_Click(object sender, EventArgs e)

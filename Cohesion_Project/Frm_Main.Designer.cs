@@ -60,11 +60,11 @@ namespace Cohesion_Project
          this.imageList1 = new System.Windows.Forms.ImageList(this.components);
          this.menuStrip1 = new System.Windows.Forms.MenuStrip();
          this.Pnl_Top = new System.Windows.Forms.Panel();
+         this.lblUserName = new System.Windows.Forms.Label();
+         this.btnSmall = new System.Windows.Forms.Button();
          this.Btn_Close = new System.Windows.Forms.Button();
          this.menuStrip2 = new System.Windows.Forms.MenuStrip();
          this.cc_TabControl1 = new Cohesion_Project.Cc_TabControl();
-         this.btnSmall = new System.Windows.Forms.Button();
-         this.lblUserName = new System.Windows.Forms.Label();
          this.Flp_Side.SuspendLayout();
          this.panel2.SuspendLayout();
          this.panel3.SuspendLayout();
@@ -453,7 +453,7 @@ namespace Cohesion_Project
          this.label3.BackColor = System.Drawing.Color.Transparent;
          this.label3.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
          this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-         this.label3.Location = new System.Drawing.Point(74, 17);
+         this.label3.Location = new System.Drawing.Point(65, 17);
          this.label3.Name = "label3";
          this.label3.Size = new System.Drawing.Size(94, 21);
          this.label3.TabIndex = 26;
@@ -466,7 +466,7 @@ namespace Cohesion_Project
          this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
          this.pictureBox2.Location = new System.Drawing.Point(0, 0);
          this.pictureBox2.Name = "pictureBox2";
-         this.pictureBox2.Size = new System.Drawing.Size(100, 55);
+         this.pictureBox2.Size = new System.Drawing.Size(82, 55);
          this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
          this.pictureBox2.TabIndex = 25;
          this.pictureBox2.TabStop = false;
@@ -566,6 +566,35 @@ namespace Cohesion_Project
          this.Pnl_Top.Size = new System.Drawing.Size(1346, 30);
          this.Pnl_Top.TabIndex = 23;
          // 
+         // lblUserName
+         // 
+         this.lblUserName.Dock = System.Windows.Forms.DockStyle.Right;
+         this.lblUserName.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+         this.lblUserName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+         this.lblUserName.Location = new System.Drawing.Point(1166, 0);
+         this.lblUserName.Name = "lblUserName";
+         this.lblUserName.Size = new System.Drawing.Size(80, 30);
+         this.lblUserName.TabIndex = 20;
+         this.lblUserName.Text = "관리자";
+         this.lblUserName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+         // 
+         // btnSmall
+         // 
+         this.btnSmall.Dock = System.Windows.Forms.DockStyle.Right;
+         this.btnSmall.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(65)))), ((int)(((byte)(81)))));
+         this.btnSmall.FlatAppearance.BorderSize = 0;
+         this.btnSmall.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+         this.btnSmall.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+         this.btnSmall.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+         this.btnSmall.Location = new System.Drawing.Point(1246, 0);
+         this.btnSmall.Margin = new System.Windows.Forms.Padding(0);
+         this.btnSmall.Name = "btnSmall";
+         this.btnSmall.Size = new System.Drawing.Size(50, 30);
+         this.btnSmall.TabIndex = 19;
+         this.btnSmall.Text = "_";
+         this.btnSmall.UseVisualStyleBackColor = true;
+         this.btnSmall.Click += new System.EventHandler(this.btnSmall_Click);
+         // 
          // Btn_Close
          // 
          this.Btn_Close.Dock = System.Windows.Forms.DockStyle.Right;
@@ -603,35 +632,6 @@ namespace Cohesion_Project
          this.cc_TabControl1.TabIndex = 24;
          this.cc_TabControl1.SelectedIndexChanged += new System.EventHandler(this.cc_TabControl1_SelectedIndexChanged);
          this.cc_TabControl1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.cc_TabControl1_MouseDown);
-         // 
-         // btnSmall
-         // 
-         this.btnSmall.Dock = System.Windows.Forms.DockStyle.Right;
-         this.btnSmall.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(65)))), ((int)(((byte)(81)))));
-         this.btnSmall.FlatAppearance.BorderSize = 0;
-         this.btnSmall.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-         this.btnSmall.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-         this.btnSmall.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-         this.btnSmall.Location = new System.Drawing.Point(1246, 0);
-         this.btnSmall.Margin = new System.Windows.Forms.Padding(0);
-         this.btnSmall.Name = "btnSmall";
-         this.btnSmall.Size = new System.Drawing.Size(50, 30);
-         this.btnSmall.TabIndex = 19;
-         this.btnSmall.Text = "_";
-         this.btnSmall.UseVisualStyleBackColor = true;
-         this.btnSmall.Click += new System.EventHandler(this.btnSmall_Click);
-         // 
-         // lblUserName
-         // 
-         this.lblUserName.Dock = System.Windows.Forms.DockStyle.Right;
-         this.lblUserName.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-         this.lblUserName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-         this.lblUserName.Location = new System.Drawing.Point(1166, 0);
-         this.lblUserName.Name = "lblUserName";
-         this.lblUserName.Size = new System.Drawing.Size(80, 30);
-         this.lblUserName.TabIndex = 20;
-         this.lblUserName.Text = "관리자";
-         this.lblUserName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
          // 
          // Frm_Main
          // 
