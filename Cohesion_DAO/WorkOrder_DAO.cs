@@ -104,7 +104,7 @@ namespace Cohesion_DAO
                 // 완제품 LOT 수량을 가져와서 비교 - LOT_SYS에 완제품이 다 들어가 있어야한다.
                 string sql = @"select SALES_ORDER_ID, so.ORDER_DATE, so.CUSTOMER_CODE, so.PRODUCT_CODE, so.ORDER_QTY, sum(l.LOT_QTY) LOT_QTY
                                from SALES_ORDER_MST so inner join PRODUCT_MST p on so.PRODUCT_CODE = p.PRODUCT_CODE
-													   inner join LOT_STS l on so.PRODUCT_CODE = l.PRODUCT_CODE
+													   left join LOT_STS l on so.PRODUCT_CODE = l.PRODUCT_CODE
 							   where so.CONFIRM_FLAG = 'Y' and so.SHIP_FLAG is null
 							   group by SALES_ORDER_ID, so.ORDER_DATE, so.CUSTOMER_CODE, so.PRODUCT_CODE, so.ORDER_QTY";
 
