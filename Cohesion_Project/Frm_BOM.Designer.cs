@@ -152,6 +152,7 @@ namespace Cohesion_Project
             // 
             // btnDelete
             // 
+            this.btnDelete.Enabled = false;
             this.btnDelete.FlatAppearance.BorderSize = 0;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
