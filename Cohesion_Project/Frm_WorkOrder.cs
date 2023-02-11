@@ -16,19 +16,18 @@ namespace Cohesion_Project
         Srv_WorkOrder srv = new Srv_WorkOrder();
         Work_Order_MST_DTO wOrder = null;
         List<Work_Order_MST_DTO> temp = null;
-        string Uid, wCode, Status;
+        string wCode, Status;
+        User_DTO user = new User_DTO();
+        bool change = true;
+
         public Frm_WorkOrder()
         {
-            InitializeComponent();
-        }
-        public Frm_WorkOrder(string uid)
-        {
-            Uid = uid;
             InitializeComponent();
         }
 
         private void Frm_WorkOrder_Load(object sender, EventArgs e)
         {
+            user = (this.ParentForm as Frm_Main).userInfo;
             temp = srv.SelectWorkOrders(new Work_Order_SEARCH_DTO());
             ComboUtil.WorkOrder = (from t in temp
                                    select t.WORK_ORDER_ID).ToList();
@@ -68,7 +67,7 @@ namespace Cohesion_Project
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            Pop_WorkOrder frm = new Pop_WorkOrder(Uid);
+            Pop_WorkOrder frm = new Pop_WorkOrder(user);
             frm.ShowDialog();
             if(frm.DialogResult == DialogResult.OK)
             {
@@ -106,6 +105,10 @@ namespace Cohesion_Project
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
+            if(!change)
+            {
+                btnUpdate.PerformClick();
+            }
             DataGridClean();
             txtSearch.Text = "";
             dgvWorkOrderList.ClearSelection();
@@ -114,7 +117,7 @@ namespace Cohesion_Project
         private void btnInsert_Click(object sender, EventArgs e)
         {
             var list = this.ppgWorkOrderSearch.SelectedObject as Work_Order_MST_DTO;
-            if (btnUpdate.Text == "      변  경") return;
+            if (change) return;
             else
             {
                 if (wOrder.Equals(list))
@@ -127,7 +130,7 @@ namespace Cohesion_Project
                     if (!MboxUtil.MboxInfo_("작업지시 내역을 변경하시겠습니까?")) return;
                     else
                     {
-                        srv.UpdateWorkOrder(wOrder, Uid);
+                        srv.UpdateWorkOrder(wOrder, user.USER_NAME);
                     }
                 }
             }
@@ -176,7 +179,7 @@ namespace Cohesion_Project
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            if (btnUpdate.Text == "      변  경")
+            if (change)
             {
                 if(dgvWorkOrderList.SelectedRows.Count < 1)
                 {
@@ -186,20 +189,18 @@ namespace Cohesion_Project
                 wOrder = (Work_Order_MST_DTO)ppgWorkOrderSearch.SelectedObject;
 
                 dgvWorkOrderList.Enabled = false;
-                btnUpdate.Text = "      취  소";
                 ppgWorkOrderSearch.Enabled = true;
                 btnAdd.Enabled = false;
-                btnRefresh.Enabled = false;
                 btnDelete.Enabled = false;
+                change = false;
             }
             else
             {
                 dgvWorkOrderList.Enabled = true;
-                btnUpdate.Text = "      변  경";
                 ppgWorkOrderSearch.Enabled = false;
                 btnAdd.Enabled = true;
-                btnRefresh.Enabled = true;
                 btnDelete.Enabled = true;
+                change = true;
             }
         }
 
