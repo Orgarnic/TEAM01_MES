@@ -50,7 +50,7 @@ namespace Cohesion_Project
          // lbl1
          // 
          this.lbl1.Size = new System.Drawing.Size(399, 23);
-         this.lbl1.Text = "/ 기준정보관리 / 화면 기능 마스터";
+         this.lbl1.Text = "/ 기준 정보 관리 / 화면 기능 관리";
          // 
          // txtSearch
          // 
@@ -59,13 +59,13 @@ namespace Cohesion_Project
          // panel2
          // 
          this.panel2.Controls.Add(this.DgvFunction);
-         this.panel2.Size = new System.Drawing.Size(977, 642);
+         this.panel2.Size = new System.Drawing.Size(801, 410);
          this.panel2.Controls.SetChildIndex(this.lbl4, 0);
          this.panel2.Controls.SetChildIndex(this.DgvFunction, 0);
          // 
          // lbl4
          // 
-         this.lbl4.Size = new System.Drawing.Size(975, 28);
+         this.lbl4.Size = new System.Drawing.Size(799, 28);
          this.lbl4.Text = "▶ 화면 기능 목록";
          // 
          // btnSearch
@@ -158,7 +158,7 @@ namespace Cohesion_Project
          this.DgvFunction.Dock = System.Windows.Forms.DockStyle.Fill;
          this.DgvFunction.Location = new System.Drawing.Point(0, 28);
          this.DgvFunction.Name = "DgvFunction";
-         this.DgvFunction.Size = new System.Drawing.Size(975, 612);
+         this.DgvFunction.Size = new System.Drawing.Size(799, 380);
          this.DgvFunction.TabIndex = 6;
          this.DgvFunction.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvFunction_CellClick);
          // 
