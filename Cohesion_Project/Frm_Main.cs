@@ -211,5 +211,23 @@ namespace Cohesion_Project
       {
          this.WindowState = FormWindowState.Minimized;
       }
+      private void 로그아웃ToolStripMenuItem_Click(object sender, EventArgs e)
+      {
+         flpSide.Controls.Clear();
+         srvUser = null;
+         Frm_Login frm = new Frm_Login();
+         this.Hide();
+         if(srvUser == null)
+            srvUser = new Srv_User();
+         if (frm.ShowDialog(this) == DialogResult.OK)
+         {
+            this.Visible = true;
+            userInfo = frm.user;
+            comboUtil = new Util.ComboUtil();
+            lblUserName.Text = userInfo.USER_NAME + "님";
+            menus = srvUser.GetFunc(userInfo.USER_ID);
+            MenuInit();
+         }
+      }
    }
 }

@@ -56,20 +56,30 @@ namespace Cohesion_Project
         private void DataGirdViewParent()
         {
             DgvUtil.DgvInit(dgvBOMParent);
-            DgvUtil.AddTextCol(dgvBOMParent, "제품 코드", "PRODUCT_CODE", 160, true, align: 0, frozen:true);
-            DgvUtil.AddTextCol(dgvBOMParent, "제품명", "PRODUCT_NAME", 160, true, align: 0, frozen: true);
-            DgvUtil.AddTextCol(dgvBOMParent, "제품 유형", "PRODUCT_TYPE", 150, true, frozen: true);
-            DgvUtil.AddTextCol(dgvBOMParent, "대체 품번", "ALTER_PRODUCT_CODE", 144, true, align: 0);
-            DgvUtil.AddTextCol(dgvBOMParent, "생성 시간", "CREATE_TIME", 200, true);
-            DgvUtil.AddTextCol(dgvBOMParent, "생성 사용자", "CREATE_USER_ID", 160, true, align: 0);
-            DgvUtil.AddTextCol(dgvBOMParent, "변경 시간", "UPDATE_TIME", 200, true);
-            DgvUtil.AddTextCol(dgvBOMParent, "변경 사용자", "UPDATE_USER_ID", 160, true, align: 0);
+            DgvUtil.AddTextCol(dgvBOMParent, "  NO", "IDX", width: 70, readOnly: true, frozen: true, align: 1);
+            DgvUtil.AddTextCol(dgvBOMParent, "   제품 코드", "PRODUCT_CODE", 160, true, align: 0, frozen:true);
+            DgvUtil.AddTextCol(dgvBOMParent, "  제품명", "PRODUCT_NAME", 160, true, align: 0, frozen: true);
+            DgvUtil.AddTextCol(dgvBOMParent, "   제품 유형", "PRODUCT_TYPE", 150, true, frozen: true);
+            DgvUtil.AddTextCol(dgvBOMParent, "   생성 시간", "CREATE_TIME", 200, true);
+            DgvUtil.AddTextCol(dgvBOMParent, "    생성 사용자", "CREATE_USER_ID", 160, true, align: 0);
+            DgvUtil.AddTextCol(dgvBOMParent, "  변경 시간", "UPDATE_TIME", 200, true);
+            DgvUtil.AddTextCol(dgvBOMParent, "   변경 사용자", "UPDATE_USER_ID", 160, true, align: 0);
             if(product == null)
             {
                 product = srv.SelectProductList();
             }
-
-            dgvBOMParent.DataSource = product;
+            int seq = 1;
+            dgvBOMParent.DataSource = product.Select((p) => new
+            {
+               IDX = seq++,
+               PRODUCT_CODE = p.PRODUCT_CODE,
+               PRODUCT_NAME = p.PRODUCT_NAME,
+               PRODUCT_TYPE = p.PRODUCT_TYPE,
+               CREATE_TIME = p.CREATE_TIME,
+               CREATE_USER_ID = p.CREATE_USER_ID,
+               UPDATE_TIME = p.UPDATE_TIME,
+               UPDATE_USER_ID = p.UPDATE_USER_ID
+            }).ToList();
         }
 
         private void DataGirdViewChild()

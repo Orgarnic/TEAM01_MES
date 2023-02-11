@@ -39,6 +39,7 @@ namespace Cohesion_Project
         {// WORK_ORDER_ID, ORDER_DATE, PRODUCT_CODE, CUSTOMER_CODE, ORDER_QTY, ORDER_STATUS, PRODUCT_QTY, DEFECT_QTY, WORK_START_TIME,
          // WORK_CLOSE_TIME, WORK_CLOSE_USER_ID, CREATE_TIME, CREATE_USER_ID, UPDATE_TIME, UPDATE_USER_ID
             DgvUtil.DgvInit(dgvWorkOrderList);
+            DgvUtil.AddTextCol(dgvWorkOrderList, "   NO", "IDX", width: 70, readOnly: true, frozen: true, align: 1);
             DgvUtil.AddTextCol(dgvWorkOrderList, "    생산 작업지시 코드", "WORK_ORDER_ID", align: 0, width: 200, readOnly: true, frozen: true);
             DgvUtil.AddTextCol(dgvWorkOrderList, "    작업 일자", "ORDER_DATE", width: 200, readOnly: true, frozen: true);
             DgvUtil.AddTextCol(dgvWorkOrderList, "    생산 제품 코드", "PRODUCT_CODE", align: 0, width: 140, readOnly: true, frozen: true);
@@ -59,7 +60,27 @@ namespace Cohesion_Project
         private void DataGridClean()
         {
             dgvWorkOrderList.DataSource = null;
-            dgvWorkOrderList.DataSource = srv.GetAllWorkOrderList();
+            var list = srv.GetAllWorkOrderList();
+            int seq = 1;
+            dgvWorkOrderList.DataSource = list.Select((l) =>
+            new {
+               IDX = seq++,
+               WORK_ORDER_ID = l.WORK_ORDER_ID,
+               ORDER_DATE = l.ORDER_DATE,
+               PRODUCT_CODE = l.PRODUCT_CODE,
+               CUSTOMER_CODE = l.CUSTOMER_CODE,
+               ORDER_QTY = l.ORDER_QTY,
+               ORDER_STATUS = l.ORDER_STATUS,
+               CREATE_TIME = l.CREATE_TIME,
+               CREATE_USER_ID = l.CREATE_USER_ID,
+               UPDATE_TIME = l.UPDATE_TIME,  
+               UPDATE_USER_ID = l.UPDATE_USER_ID,
+               PRODUCT_QTY = l.PRODUCT_QTY,
+               DEFECT_QTY = l.DEFECT_QTY,
+               WORK_START_TIME = l.WORK_START_TIME,
+               WORK_CLOSE_TIME = l.WORK_CLOSE_TIME,
+               WORK_CLOSE_USER_ID = l.WORK_CLOSE_USER_ID
+            }).ToList();
             ppgWorkOrderSearch.PropertySort = PropertySort.Categorized;
             ppgWorkOrderSearch.SelectedObject = new Work_Order_MST_DTO();
             dgvWorkOrderList.ClearSelection();
@@ -90,15 +111,53 @@ namespace Cohesion_Project
             }
             else
             {
-                dgvWorkOrderList.DataSource = srv.SelectWorkOrders(list);
+                var temp = srv.SelectWorkOrders(list);
+                int seq = 1;
+                dgvWorkOrderList.DataSource = temp.Select((l) =>
+                new {
+                   IDX = seq++,
+                   WORK_ORDER_ID = l.WORK_ORDER_ID,
+                   ORDER_DATE = l.ORDER_DATE,
+                   PRODUCT_CODE = l.PRODUCT_CODE,
+                   CUSTOMER_CODE = l.CUSTOMER_CODE,
+                   ORDER_QTY = l.ORDER_QTY,
+                   ORDER_STATUS = l.ORDER_STATUS,
+                   CREATE_TIME = l.CREATE_TIME,
+                   CREATE_USER_ID = l.CREATE_USER_ID,
+                   UPDATE_TIME = l.UPDATE_TIME,
+                   UPDATE_USER_ID = l.UPDATE_USER_ID,
+                   PRODUCT_QTY = l.PRODUCT_QTY,
+                   DEFECT_QTY = l.DEFECT_QTY,
+                   WORK_START_TIME = l.WORK_START_TIME,
+                   WORK_CLOSE_TIME = l.WORK_CLOSE_TIME,
+                   WORK_CLOSE_USER_ID = l.WORK_CLOSE_USER_ID
+                }).ToList();
             }
         }
 
         private void dgvWorkOrderList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
+            int row = e.RowIndex;
             ppgWorkOrderSearch.PropertySort = PropertySort.Categorized;
-            ppgWorkOrderSearch.SelectedObject = DgvUtil.DgvToDto<Work_Order_MST_DTO>(dgvWorkOrderList);
+            ppgWorkOrderSearch.SelectedObject = new Work_Order_MST_DTO
+            {
+               WORK_ORDER_ID = (string)dgvWorkOrderList["WORK_ORDER_ID", row].Value,
+               ORDER_DATE = Convert.ToDateTime(dgvWorkOrderList["ORDER_DATE", row].Value),
+               PRODUCT_CODE = (string)dgvWorkOrderList["PRODUCT_CODE", row].Value,
+               CUSTOMER_CODE = (string)dgvWorkOrderList["CUSTOMER_CODE", row].Value,
+               ORDER_QTY = Convert.ToDecimal(dgvWorkOrderList["ORDER_QTY", row].Value),
+               ORDER_STATUS = (string)dgvWorkOrderList["ORDER_STATUS", row].Value,
+               CREATE_TIME = Convert.ToDateTime(dgvWorkOrderList["CREATE_TIME", row].Value),
+               CREATE_USER_ID = (string)dgvWorkOrderList["CREATE_USER_ID", row].Value,
+               UPDATE_TIME = Convert.ToDateTime(dgvWorkOrderList["UPDATE_TIME", row].Value),
+               UPDATE_USER_ID = (string)dgvWorkOrderList["UPDATE_USER_ID", row].Value,
+               PRODUCT_QTY = Convert.ToDecimal(dgvWorkOrderList["PRODUCT_QTY", row].Value),
+               DEFECT_QTY = Convert.ToDecimal(dgvWorkOrderList["DEFECT_QTY", row].Value),
+               WORK_START_TIME = Convert.ToDateTime(dgvWorkOrderList["WORK_START_TIME", row].Value),
+               WORK_CLOSE_TIME = Convert.ToDateTime(dgvWorkOrderList["WORK_CLOSE_TIME", row].Value),
+               WORK_CLOSE_USER_ID = (string)dgvWorkOrderList["WORK_CLOSE_USER_ID", row].Value,
+            };
             Status = dgvWorkOrderList[5, e.RowIndex].Value.ToString();
             wCode = dgvWorkOrderList[0, e.RowIndex].Value.ToString();
         }

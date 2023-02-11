@@ -120,10 +120,11 @@ namespace Cohesion_Project
 
         private void dgv_SalesOrder_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+         if (e.RowIndex < 0) return; 
             var list = dgv_SalesOrder.Rows[e.RowIndex].DataBoundItem;
 
             Sales_Order_DTO data = default;
-            string upDate=(list.GetType().GetProperty("UPDATE_TIME").GetValue(list)).ToString();
+            string upDate=(string)(list.GetType().GetProperty("UPDATE_TIME").GetValue(list));
             data = new Sales_Order_DTO
             {
                 SALES_ORDER_ID = list.GetType().GetProperty("SALES_ORDER_ID").GetValue(list).ToString(),
