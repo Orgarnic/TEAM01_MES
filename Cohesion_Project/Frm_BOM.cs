@@ -21,6 +21,7 @@ namespace Cohesion_Project
         List<PRODUCT_MST_DTO> temp = null;
         Util.ComboUtil comboUtil = new Util.ComboUtil();
         List<OPERATION_MST_DTO> oper = null;
+        User_DTO user = new User_DTO();
         bool check = true;
         string prodID;
 
@@ -191,6 +192,11 @@ namespace Cohesion_Project
             if (string.IsNullOrWhiteSpace(dto.PRODUCT_NAME))
             {
                 MboxUtil.MboxWarn("제품명은 필수 입력입니다.");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(dto.OPERATION_CODE))
+            {
+                MboxUtil.MboxWarn("공정은 필수 입력입니다.");
                 return;
             }
 
