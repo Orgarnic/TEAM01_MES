@@ -46,6 +46,7 @@ namespace Cohesion_Project
         private void GetAllOrderData()
         {
             DgvUtil.DgvInit(dgvOrderList);
+            DgvUtil.AddTextCol(dgvOrderList, "   NO", "IDX", width: 70, readOnly: true, frozen: true, align: 1);
             DgvUtil.AddTextCol(dgvOrderList, "주문 코드", "SALES_ORDER_ID", width: 140, readOnly: true, frozen: true);
             DgvUtil.AddTextCol(dgvOrderList, "주문 일자", "ORDER_DATE", width: 140, readOnly: true, frozen: true);
             DgvUtil.AddTextCol(dgvOrderList, "고객 코드", "CUSTOMER_CODE", width: 140, readOnly: true, frozen: true);
@@ -66,7 +67,18 @@ namespace Cohesion_Project
         private void InitoOrderList()
         {
             order = work.SelectOrderList();
-            dgvOrderList.DataSource = order;
+         int seq = 1;
+            dgvOrderList.DataSource = order.Select((o) => 
+            new
+            {
+               IDX = seq ++,
+               SALES_ORDER_ID = o.SALES_ORDER_ID,
+               ORDER_DATE = o.ORDER_DATE,
+               CUSTOMER_CODE = o.CUSTOMER_CODE,
+               PRODUCT_CODE = o.PRODUCT_CODE,
+               ORDER_QTY = o.ORDER_QTY,
+               LOT_QTY = o.LOT_QTY
+            }).ToList();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -171,15 +183,15 @@ namespace Cohesion_Project
         {
             dgvBOMStock.ClearSelection();
             if (e.RowIndex < 0) return;
-            orderQty = Convert.ToDecimal(dgvOrderList[4, e.RowIndex].Value.ToString());
-            oCode = dgvOrderList[0, e.RowIndex].Value.ToString();
-            pCode = dgvOrderList[3, e.RowIndex].Value.ToString();
+            orderQty = Convert.ToDecimal(dgvOrderList[5, e.RowIndex].Value.ToString());
+            oCode = dgvOrderList[1, e.RowIndex].Value.ToString();
+            pCode = dgvOrderList[4, e.RowIndex].Value.ToString();
             bom = work.GetOrderProductBOM(oCode, pCode);
             dgvBOMStock.DataSource = bom;
             initWork = new Work_Order_MST_DTO
             {
-                CUSTOMER_CODE = dgvOrderList[2, e.RowIndex].Value.ToString().Trim(),
-                PRODUCT_CODE = dgvOrderList[3, e.RowIndex].Value.ToString().Trim(),
+                CUSTOMER_CODE = dgvOrderList[3, e.RowIndex].Value.ToString().Trim(),
+                PRODUCT_CODE = dgvOrderList[4, e.RowIndex].Value.ToString().Trim(),
                 ORDER_DATE = Convert.ToDateTime(dgvOrderList["ORDER_DATE", e.RowIndex].Value.ToString()),
                 ORDER_QTY = orderQty,
                 ORDER_STATUS = "OPEN",

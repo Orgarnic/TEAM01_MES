@@ -1,34 +1,34 @@
 ﻿
 namespace Cohesion_Project
 {
-    partial class Frm_UserGroup
-    {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
+   partial class Frm_UserGroupMgt
+   {
+      /// <summary>
+      /// Required designer variable.
+      /// </summary>
+      private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+      /// <summary>
+      /// Clean up any resources being used.
+      /// </summary>
+      /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+      protected override void Dispose(bool disposing)
+      {
+         if (disposing && (components != null))
+         {
+            components.Dispose();
+         }
+         base.Dispose(disposing);
+      }
 
-        #region Windows Form Designer generated code
+      #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
+      /// <summary>
+      /// Required method for Designer support - do not modify
+      /// the contents of this method with the code editor.
+      /// </summary>
+      private void InitializeComponent()
+      {
          this.DgvUserGroup = new System.Windows.Forms.DataGridView();
          this.Ppg_UserGourp = new System.Windows.Forms.PropertyGrid();
          this.pnlSearch.SuspendLayout();
@@ -185,11 +185,11 @@ namespace Cohesion_Project
          ((System.ComponentModel.ISupportInitialize)(this.DgvUserGroup)).EndInit();
          this.ResumeLayout(false);
 
-        }
+      }
 
-        #endregion
+      #endregion
 
-        private System.Windows.Forms.DataGridView DgvUserGroup;
-        private System.Windows.Forms.PropertyGrid Ppg_UserGourp;
-    }
+      private System.Windows.Forms.DataGridView DgvUserGroup;
+      private System.Windows.Forms.PropertyGrid Ppg_UserGourp;
+   }
 }
