@@ -21,6 +21,7 @@ namespace Cohesion_Project
         List<PRODUCT_MST_DTO> temp = null;
         Util.ComboUtil comboUtil = new Util.ComboUtil();
         List<OPERATION_MST_DTO> oper = null;
+        User_DTO user = new User_DTO();
         bool check = true;
         string prodID;
 
@@ -31,6 +32,7 @@ namespace Cohesion_Project
 
         private void Frm_BOM_Load(object sender, EventArgs e)
         {
+            user = (this.ParentForm as Frm_Main).userInfo;
             DataGirdViewParent();
             DataGirdViewChild();
             GetComboData();
@@ -114,6 +116,7 @@ namespace Cohesion_Project
             if (btnAdd.Enabled|| ppgBOMAttribute.Enabled)
             {
                 btnAdd.Enabled = false;
+                btnDelete.Enabled = false;
                 ppgBOMAttribute.Enabled = false;
             }
             if(ppgSearch.Enabled)
@@ -178,6 +181,8 @@ namespace Cohesion_Project
             
             BOM_MST_DTO dto = BOM_MST_DTO.DeepCopy((BOM_MST_DTO)ppgBOMAttribute.SelectedObject);
             dto.PRODUCT_CODE = prodID;
+            dto.CREATE_USER_ID = user.USER_NAME;
+            dto.UPDATE_USER_ID = user.USER_NAME;
             if (dto.REQUIRE_QTY < 1)
             {
                 MboxUtil.MboxWarn("BOM 단위 수량은 최소 1개 이상 등록되어야합니다.");
@@ -193,6 +198,11 @@ namespace Cohesion_Project
                 MboxUtil.MboxWarn("제품명은 필수 입력입니다.");
                 return;
             }
+            if (string.IsNullOrWhiteSpace(dto.OPERATION_CODE))
+            {
+                MboxUtil.MboxWarn("공정은 필수 입력입니다.");
+                return;
+            }
 
             if (dto != null)
             {
@@ -202,7 +212,8 @@ namespace Cohesion_Project
                     {
                         bom.Find((b) => b.CHILD_PRODUCT_CODE.Equals(dto.CHILD_PRODUCT_CODE)).REQUIRE_QTY = dto.REQUIRE_QTY;
                     }
-                    else bom.Add(dto);
+                    else 
+                        bom.Add(dto);
                 }
                 else
                 {
@@ -237,6 +248,7 @@ namespace Cohesion_Project
                 MboxUtil.MboxWarn("BOM 정보를 변경할 제품을 선택해주세요.");
                 return;
             }
+            btnDelete.Enabled = true;
             btnAdd.Enabled = true;
             ppgBOMAttribute.Enabled = true;
         }
@@ -260,10 +272,9 @@ namespace Cohesion_Project
             }
             MboxUtil.MboxInfo("등록되었습니다.");
             bom = srv.SelectBOMList(prodID);
-            dgvBOMChild.DataSource = null;
-            dgvBOMChild.DataSource = bom;
-            ppgBOMAttribute.Enabled = false;
+            btnRefresh.PerformClick();
             btnAdd.Enabled = false;
+            btnDelete.Enabled = false;
         }
 
         // ppgBOMAttribute에 제품 코드에 따라 제품명, 타입을 가져옴.
