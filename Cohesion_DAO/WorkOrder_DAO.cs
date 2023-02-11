@@ -207,7 +207,43 @@ namespace Cohesion_DAO
             }
         }
 
-        public bool UpdateWorkOrder(Work_Order_MST_DTO work, string uid)
+      public bool EndWorkOrder(Work_Order_MST_DTO order)
+      {
+         try
+         {
+            string sql = @"update WORK_ORDER_MST
+                               set ORDER_STATUS = 'CLOSE'
+                                 , WORK_CLOSE_TIME = @WORK_CLOSE_TIME
+                                 , WORK_CLOSE_USER_ID = @WORK_CLOSE_USER_ID
+                                 , UPDATE_TIME = @UPDATE_TIME
+                                 , UPDATE_USER_ID = @UPDATE_USER_ID
+                               where WORK_ORDER_ID = @WORK_ORDER_ID";
+
+            SqlCommand cmd = new SqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@WORK_CLOSE_TIME", order.CREATE_TIME);
+            cmd.Parameters.AddWithValue("@WORK_CLOSE_USER_ID", order.UPDATE_USER_ID);
+            cmd.Parameters.AddWithValue("@UPDATE_TIME", DateTime.Now);
+            cmd.Parameters.AddWithValue("@UPDATE_USER_ID", order.UPDATE_USER_ID);
+            cmd.Parameters.AddWithValue("@WORK_ORDER_ID", order.WORK_ORDER_ID);
+
+            conn.Open();
+            int iRowAffect = cmd.ExecuteNonQuery();
+
+            return (iRowAffect > 0);
+         }
+         catch (Exception err)
+         {
+            Debug.WriteLine(err.Message);
+            Debug.WriteLine(err.StackTrace);
+            return false;
+         }
+         finally
+         {
+            conn.Close();
+         }
+      }
+
+      public bool UpdateWorkOrder(Work_Order_MST_DTO work, string uid)
         {
             pNum = Convert.ToInt32(work.PRODUCT_QTY);
             dNum = Convert.ToInt32(work.DEFECT_QTY);

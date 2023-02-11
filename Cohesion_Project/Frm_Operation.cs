@@ -107,7 +107,7 @@ namespace Cohesion_Project
          OPERATION_MST_DTO dto = ppgOperation.SelectedObject as OPERATION_MST_DTO;
          if (dto == null) return;
          if (!Available(dto)) return;
-         dto.CREATE_USER_ID = userinfo.USER_ID;
+         dto.CREATE_USER_ID = userinfo.USER_NAME;
          dto.CREATE_TIME = DateTime.Now;
          bool result = srvOperation.InsertOperation(dto);
          if (result)
@@ -129,7 +129,7 @@ namespace Cohesion_Project
             return;
          if (!Available(operation)) return;
          operation.UPDATE_TIME = DateTime.Now;
-         operation.UPDATE_USER_ID = userinfo.USER_ID;
+         operation.UPDATE_USER_ID = userinfo.USER_NAME;
          bool result = srvOperation.UpdateOperation(operation);
          if (result)
          {

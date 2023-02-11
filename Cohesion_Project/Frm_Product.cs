@@ -108,7 +108,7 @@ namespace Cohesion_Project
          PRODUCT_MST_DTO dto = ppgProduct.SelectedObject as PRODUCT_MST_DTO;
          if (dto == null) return;
          if (!Available(dto)) return;
-         dto.CREATE_USER_ID = userinfo.USER_ID;
+         dto.CREATE_USER_ID = userinfo.USER_NAME;
          dto.CREATE_TIME = DateTime.Now;
          bool result = srvProduct.InsertProduct(dto);
          if (result)
@@ -125,7 +125,7 @@ namespace Cohesion_Project
             return;
          if (!Available(product)) return;
          product.UPDATE_TIME = DateTime.Now;
-         product.UPDATE_USER_ID = userinfo.USER_ID;
+         product.UPDATE_USER_ID = userinfo.USER_NAME;
          bool result = srvProduct.UpdateProduct(product);
          if (result)
          {
