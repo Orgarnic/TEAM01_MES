@@ -17,7 +17,7 @@ namespace Cohesion_Project
       private List<OPERATION_MST_DTO> operations = new List<OPERATION_MST_DTO>();
       private OPERATION_MST_DTO operation = new OPERATION_MST_DTO();
       private bool isCondition = true;
-      Util.ComboUtil comboUtil = new Util.ComboUtil();
+      private User_DTO userinfo;
 
       public Frm_Operation()
       {
@@ -28,11 +28,12 @@ namespace Cohesion_Project
          DgvInit();
          PpgInit();
          DgvFill();
+         userinfo = (this.ParentForm as Frm_Main).userInfo;
       }
       private void DgvInit()
       {
          DgvUtil.DgvInit(dgvOperation);
-         DgvUtil.AddTextCol(dgvOperation, "  순번", "IDX", width: 60, readOnly: true, frozen: true, align: 1);
+         DgvUtil.AddTextCol(dgvOperation, "   NO", "IDX", width: 70, readOnly: true, frozen: true, align: 1);
          DgvUtil.AddTextCol(dgvOperation, "  공정 코드", "OPERATION_CODE", width: 150, readOnly: true, frozen: true, align:0);
          DgvUtil.AddTextCol(dgvOperation, "  공정 명칭", "OPERATION_NAME", width: 150, readOnly: true, frozen: true, align: 0);
          DgvUtil.AddTextCol(dgvOperation, "  불량 입력", "CHECK_DEFECT_FLAG", width: 120, readOnly: true, frozen: true);
@@ -106,7 +107,7 @@ namespace Cohesion_Project
          OPERATION_MST_DTO dto = ppgOperation.SelectedObject as OPERATION_MST_DTO;
          if (dto == null) return;
          if (!Available(dto)) return;
-         dto.CREATE_USER_ID = "TEST";
+         dto.CREATE_USER_ID = userinfo.USER_ID;
          dto.CREATE_TIME = DateTime.Now;
          bool result = srvOperation.InsertOperation(dto);
          if (result)
@@ -128,7 +129,7 @@ namespace Cohesion_Project
             return;
          if (!Available(operation)) return;
          operation.UPDATE_TIME = DateTime.Now;
-         operation.UPDATE_USER_ID = "TEST";
+         operation.UPDATE_USER_ID = userinfo.USER_ID;
          bool result = srvOperation.UpdateOperation(operation);
          if (result)
          {

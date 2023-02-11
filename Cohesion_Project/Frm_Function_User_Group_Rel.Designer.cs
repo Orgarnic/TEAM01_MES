@@ -99,6 +99,10 @@ namespace Cohesion_Project
          // 
          this.lbl3.Size = new System.Drawing.Size(286, 30);
          // 
+         // lbl5
+         // 
+         this.lbl5.Text = "권한 설정";
+         // 
          // panel7
          // 
          this.panel7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
