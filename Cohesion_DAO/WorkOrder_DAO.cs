@@ -68,7 +68,8 @@ namespace Cohesion_DAO
             try
             {
                 string sql = @"select WORK_ORDER_ID, ORDER_DATE, PRODUCT_CODE, CUSTOMER_CODE, ORDER_QTY, ORDER_STATUS, PRODUCT_QTY, DEFECT_QTY, WORK_START_TIME, WORK_CLOSE_TIME, WORK_CLOSE_USER_ID, CREATE_TIME, CREATE_USER_ID, UPDATE_TIME, UPDATE_USER_ID, convert(nvarchar(16),ORDER_DATE,120) WORK_CODE
-                               from WORK_ORDER_MST";
+                               from WORK_ORDER_MST
+                               order by ORDER_DATE";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 conn.Open();
@@ -163,7 +164,7 @@ namespace Cohesion_DAO
                 conn.Close();
             }
         }
-
+        //--------------------------------------------- 프로시저 상태 현재 데이터 바인딩용으로 설정되어있음 -----------------------------------------
         public bool InsertWorkOrder(Work_Order_MST_DTO work)
         {
             pNum = Convert.ToInt32(work.PRODUCT_QTY);
@@ -175,7 +176,7 @@ namespace Cohesion_DAO
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@PRODUCT_CODE", work.PRODUCT_CODE);
-                //cmd.Parameters.AddWithValue("@ORDER_DATE", DBNull.Value);
+                cmd.Parameters.AddWithValue("@ORDER_DATE", work.ORDER_DATE);
                 cmd.Parameters.AddWithValue("@CUSTOMER_CODE", work.CUSTOMER_CODE);
                 cmd.Parameters.AddWithValue("@ORDER_QTY", work.ORDER_QTY);
                 cmd.Parameters.AddWithValue("@ORDER_STATUS", work.ORDER_STATUS);

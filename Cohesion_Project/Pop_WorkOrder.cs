@@ -90,7 +90,7 @@ namespace Cohesion_Project
         private void btnCreate_Click(object sender, EventArgs e)
         {
             int cnt = 0;
-            decimal oQty = 0, lQty = 0;
+            decimal oQty = 0, lQty = 0, tot = 0;
             if(dgvOrderList.SelectedRows.Count < 1)
             {
                 MboxUtil.MboxWarn("작업지시를 등록하실 주문내역을 선택해주세요.");
@@ -102,25 +102,28 @@ namespace Cohesion_Project
                 totQty = Convert.ToInt32(orderQty - lotQty);
                 List<Work_Order_MST_DTO> inData = new List<Work_Order_MST_DTO>();
                 Work_Order_MST_DTO dto = null;
-                if (MboxUtil.MboxInfo_("현재 재고가 부족합니다.\n해당 제품에 대한 생산지시를 등록하시겠습니까?") == false) return;
+                if (MboxUtil.MboxInfo_("현재 재고가 부족합니다.\n해당 제품의 자재에 대한 생산지시를 등록하시겠습니까?") == false) return;
                 else
                 {
                     for (int i = 0; i < dgvBOMStock.Rows.Count; i++)
                     {
                         oQty = Convert.ToDecimal(dgvBOMStock["ORDER_QTY", i].Value);
                         lQty = Convert.ToDecimal(dgvBOMStock["LOT_QTY", i].Value);
+                        if (oQty - lQty < 1) tot = oQty;
+                        else tot = oQty - lQty;
 
                         if (dgvBOMStock["VENDOR_CODE", i].Value == null)    // 매입처가 있는 제품들만 가져오기.
                         {
                             dto = new Work_Order_MST_DTO
-                                {
-                                    PRODUCT_CODE = dgvBOMStock["CHILD_PRODUCT_CODE", i].Value.ToString(),
-                                    ORDER_QTY = oQty - lQty,
-                                    ORDER_STATUS = "OPEN",
-                                    CREATE_USER_ID = user.USER_NAME,
-                                    CREATE_TIME = DateTime.Now,
-                                    CUSTOMER_CODE = dgvOrderList["CUSTOMER_CODE", i].Value.ToString()
-                                };
+                            {
+                                PRODUCT_CODE = dgvBOMStock["CHILD_PRODUCT_CODE", i].Value.ToString(),
+                                ORDER_QTY = tot,
+                                ORDER_STATUS = "OPEN",
+                                ORDER_DATE = initWork.ORDER_DATE,
+                                CREATE_USER_ID = user.USER_NAME,
+                                CREATE_TIME = DateTime.Now,
+                                CUSTOMER_CODE = dgvOrderList["CUSTOMER_CODE", i].Value.ToString()
+                            };
                             inData.Add(dto);
                             cnt++;
                         }
@@ -142,9 +145,18 @@ namespace Cohesion_Project
                             return;
                         }
                     }
-                    MboxUtil.MboxInfo("생산지시 등록이 완료되었습니다.");
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
+                    bool result = work.InsertWorkOrder(initWork);
+                    if (!result)
+                    {
+                        MboxUtil.MboxError("등록되지 못했습니다.\n다시 시도해주세요.");
+                        return;
+                    }
+                    else
+                    {
+                        MboxUtil.MboxInfo("생산지시 등록이 완료되었습니다.");
+                        this.DialogResult = DialogResult.OK;
+                        this.Close();
+                    }
                 }
             }
             else
