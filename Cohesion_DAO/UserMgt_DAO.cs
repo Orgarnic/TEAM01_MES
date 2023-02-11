@@ -197,5 +197,45 @@ namespace Cohesion_DAO
                 conn.Close();
             }
         }
-    } 
+
+      public List<FUNCTION_MST_DTO> GetFunc(string uid)
+      {
+         List<FUNCTION_MST_DTO> list = new List<FUNCTION_MST_DTO>();
+         try
+         {
+            string sql = @"SELECT 
+                           F.FUNCTION_CODE, 
+                           F.FUNCTION_NAME, 
+                           F.SHORT_CUT_KEY, 
+                           F.ICON_INDEX, 
+                           F.CREATE_TIME, 
+                           F.CREATE_USER_ID, 
+                           F.UPDATE_TIME, 
+                           F.UPDATE_USER_ID
+                           FROM FUNCTION_MST F INNER JOIN FUNCTION_USER_GROUP_REL FU ON F.FUNCTION_CODE = FU.FUNCTION_CODE
+                           					INNER JOIN USER_GROUP_MST UG ON UG.USER_GROUP_CODE = FU.USER_GROUP_CODE
+                           				    INNER JOIN USER_MST UM ON UM.USER_GROUP_CODE = UG.USER_GROUP_CODE
+                           WHERE UM.USER_ID = @USER_ID";
+
+            SqlCommand cmd = new SqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@USER_ID", uid);
+
+            conn.Open();
+            list = Helper.DataReaderMapToList<FUNCTION_MST_DTO>(cmd.ExecuteReader());
+
+            return list;
+
+         }
+         catch (Exception err)
+         {
+            Debug.WriteLine(err.Message);
+            Debug.WriteLine(err.StackTrace);
+            return null;
+         }
+         finally
+         {
+            conn.Close();
+         }
+      }
+   } 
 }
