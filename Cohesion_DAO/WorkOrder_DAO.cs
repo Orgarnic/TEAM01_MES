@@ -67,8 +67,9 @@ namespace Cohesion_DAO
             List<Work_Order_MST_DTO> list = null;
             try
             {
-                string sql = @"select WORK_ORDER_ID, ORDER_DATE, PRODUCT_CODE, CUSTOMER_CODE, ORDER_QTY, ORDER_STATUS, PRODUCT_QTY, DEFECT_QTY, WORK_START_TIME, WORK_CLOSE_TIME, WORK_CLOSE_USER_ID, CREATE_TIME, CREATE_USER_ID, UPDATE_TIME, UPDATE_USER_ID, convert(nvarchar(16),ORDER_DATE,120) WORK_CODE
-                               from WORK_ORDER_MST
+                string sql = @"select WORK_ORDER_ID, ORDER_DATE, PRODUCT_NAME PRODUCT_CODE, c.DATA_1 CUSTOMER_CODE, ORDER_QTY, ORDER_STATUS, PRODUCT_QTY, DEFECT_QTY, WORK_START_TIME, WORK_CLOSE_TIME, WORK_CLOSE_USER_ID, wo.CREATE_TIME, wo.CREATE_USER_ID, wo.UPDATE_TIME, wo.UPDATE_USER_ID, convert(nvarchar(16),ORDER_DATE,120) WORK_CODE
+                               from WORK_ORDER_MST wo inner join PRODUCT_MST p on wo.PRODUCT_CODE = p.PRODUCT_CODE
+													  inner join CODE_DATA_MST c on wo.CUSTOMER_CODE = c.KEY_1
                                order by ORDER_DATE";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
@@ -95,17 +96,17 @@ namespace Cohesion_DAO
             List<Sales_Order_Work_DTO> list = null;
             try
             {
-                string sql = @"select so.SALES_ORDER_ID, so.ORDER_DATE, so.CUSTOMER_CODE, so.PRODUCT_CODE, so.ORDER_QTY
+                /*string sql = @"select so.SALES_ORDER_ID, so.ORDER_DATE, so.CUSTOMER_CODE, so.PRODUCT_CODE, so.ORDER_QTY
                                from SALES_ORDER_MST so inner join PRODUCT_MST p on so.PRODUCT_CODE = p.PRODUCT_CODE
 							   where so.CONFIRM_FLAG = 'Y' and so.SHIP_FLAG is null
 							   group by so.SALES_ORDER_ID, so.ORDER_DATE, so.CUSTOMER_CODE, so.PRODUCT_CODE, so.ORDER_QTY";
-
+*/
                 // 완제품 LOT 수량을 가져와서 비교 - LOT_SYS에 완제품이 다 들어가 있어야한다.
-                /*string sql = @"select SALES_ORDER_ID, so.ORDER_DATE, so.CUSTOMER_CODE, so.PRODUCT_CODE, so.ORDER_QTY, sum(l.LOT_QTY) LOT_QTY
+                string sql = @"select SALES_ORDER_ID, so.ORDER_DATE, so.CUSTOMER_CODE, so.PRODUCT_CODE, so.ORDER_QTY, sum(l.LOT_QTY) LOT_QTY
                                from SALES_ORDER_MST so inner join PRODUCT_MST p on so.PRODUCT_CODE = p.PRODUCT_CODE
 													   inner join LOT_STS l on so.PRODUCT_CODE = l.PRODUCT_CODE
 							   where so.CONFIRM_FLAG = 'Y' and so.SHIP_FLAG is null
-							   group by SALES_ORDER_ID, so.ORDER_DATE, so.CUSTOMER_CODE, so.PRODUCT_CODE, so.ORDER_QTY";*/
+							   group by SALES_ORDER_ID, so.ORDER_DATE, so.CUSTOMER_CODE, so.PRODUCT_CODE, so.ORDER_QTY";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 conn.Open();
@@ -218,7 +219,7 @@ namespace Cohesion_DAO
                                  , ORDER_STATUS = @ORDER_STATUS
                                  , PRODUCT_QTY = @PRODUCT_QTY
                                  , DEFECT_QTY = @DEFECT_QTY
-                                 , WORK_START_TIME = @WORK_START_TIME
+                                 , WORK_START_TIME = @WORK_START_TIME5
                                  , WORK_CLOSE_TIME = @WORK_CLOSE_TIME
                                  , WORK_CLOSE_USER_ID = @WORK_CLOSE_USER_ID
                                  , UPDATE_TIME = @UPDATE_TIME

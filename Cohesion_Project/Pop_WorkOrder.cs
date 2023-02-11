@@ -195,15 +195,16 @@ namespace Cohesion_Project
         {
             dgvBOMStock.ClearSelection();
             if (e.RowIndex < 0) return;
-            orderQty = Convert.ToDecimal(dgvOrderList[5, e.RowIndex].Value.ToString());
-            oCode = dgvOrderList[1, e.RowIndex].Value.ToString();
-            pCode = dgvOrderList[4, e.RowIndex].Value.ToString();
+            lotQty = Convert.ToDecimal(dgvOrderList["LOT_QTY", e.RowIndex].Value.ToString());
+            orderQty = Convert.ToDecimal(dgvOrderList["ORDER_QTY", e.RowIndex].Value.ToString());
+            oCode = dgvOrderList["SALES_ORDER_ID", e.RowIndex].Value.ToString();
+            pCode = dgvOrderList["PRODUCT_CODE", e.RowIndex].Value.ToString();
             bom = work.GetOrderProductBOM(oCode, pCode);
             dgvBOMStock.DataSource = bom;
             initWork = new Work_Order_MST_DTO
             {
-                CUSTOMER_CODE = dgvOrderList[3, e.RowIndex].Value.ToString().Trim(),
-                PRODUCT_CODE = dgvOrderList[4, e.RowIndex].Value.ToString().Trim(),
+                CUSTOMER_CODE = dgvOrderList["CUSTOMER_CODE", e.RowIndex].Value.ToString().Trim(),
+                PRODUCT_CODE = dgvOrderList["PRODUCT_CODE", e.RowIndex].Value.ToString().Trim(),
                 ORDER_DATE = Convert.ToDateTime(dgvOrderList["ORDER_DATE", e.RowIndex].Value.ToString()),
                 ORDER_QTY = orderQty,
                 ORDER_STATUS = "OPEN",

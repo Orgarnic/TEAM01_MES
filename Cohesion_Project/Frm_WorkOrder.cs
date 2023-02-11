@@ -42,8 +42,8 @@ namespace Cohesion_Project
             DgvUtil.AddTextCol(dgvWorkOrderList, "   NO", "IDX", width: 70, readOnly: true, frozen: true, align: 1);
             DgvUtil.AddTextCol(dgvWorkOrderList, "    생산 작업지시 코드", "WORK_ORDER_ID", align: 0, width: 200, readOnly: true, frozen: true);
             DgvUtil.AddTextCol(dgvWorkOrderList, "    작업 일자", "ORDER_DATE", width: 200, readOnly: true, frozen: true);
-            DgvUtil.AddTextCol(dgvWorkOrderList, "    생산 제품 코드", "PRODUCT_CODE", align: 0, width: 140, readOnly: true, frozen: true);
-            DgvUtil.AddTextCol(dgvWorkOrderList, "    고객사 코드", "CUSTOMER_CODE", align: 0, width: 140, readOnly: true);
+            DgvUtil.AddTextCol(dgvWorkOrderList, "    생산 제품명", "PRODUCT_CODE", align: 0, width: 140, readOnly: true, frozen: true);
+            DgvUtil.AddTextCol(dgvWorkOrderList, "    고객사명", "CUSTOMER_CODE", align: 0, width: 140, readOnly: true);
             DgvUtil.AddTextCol(dgvWorkOrderList, "    계획 수량", "ORDER_QTY", align: 2, width: 140, readOnly: true);
             DgvUtil.AddTextCol(dgvWorkOrderList, "    지시 상태", "ORDER_STATUS", width: 140, readOnly: true);    // 최초 : OPEN, 생산 중 : PROC, 마감 : CLOSE
             DgvUtil.AddTextCol(dgvWorkOrderList, "    생성 시간", "CREATE_TIME", width: 200, readOnly: true);
