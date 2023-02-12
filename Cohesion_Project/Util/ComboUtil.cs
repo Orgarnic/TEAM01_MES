@@ -11,12 +11,13 @@ namespace Cohesion_Project.Util
     public class ComboUtil
     {
         public static Dictionary<string, List<string>> searchDic = new Dictionary<string, List<string>>();
-        public ComboUtil()
+        public static List<string> userGroup = new List<string> { "DE_FACILITY", "DE_MANAGEMENT", "DE_MATERIAL", "DE_PRODUCTION", "DE_QUALITY", "DE_SALES" };
+      public ComboUtil()
         {
             List<CommonTable_DTO> tableList = new Service.Srv_CommonData().SelectCommonTable();
             List<CommonData_DTO> dataList = new Service.Srv_CommonData().SelectAllCommonTableData();
-
-            for (int i = 0; i < tableList.Count; i++)
+          
+         for (int i = 0; i < tableList.Count; i++)
             {
                 List<string> l1 = new List<string>();
                 string tableName = tableList[i].CODE_TABLE_NAME;
@@ -39,4 +40,16 @@ namespace Cohesion_Project.Util
             return new StandardValuesCollection( ComboUtil.searchDic[context.PropertyDescriptor.Description]);
         }
     }
+   public class ComboString2Converter : StringConverter
+   {
+      public override bool GetStandardValuesSupported(ITypeDescriptorContext context)
+      {
+         return true;
+      }
+
+      public override TypeConverter.StandardValuesCollection GetStandardValues(ITypeDescriptorContext context)
+      {
+         return new StandardValuesCollection(ComboUtil.userGroup);
+      }
+   }
 }
