@@ -38,8 +38,8 @@ namespace Cohesion_Project
         private void DgvInit()
         {
             DgvUtil.DgvInit(DgvUser);
-
-            DgvUtil.AddTextCol(DgvUser, "번호 ", "", 150, true, align: 1);
+            DgvUtil.AddTextCol(DgvUser, "   NO", "IDX", width: 70, readOnly: true, frozen: true, align: 1);
+           // DgvUtil.AddTextCol(DgvUser, "번호 ", "", 150, true, align: 1);
             DgvUtil.AddTextCol(DgvUser, "로그인 사용자 ID", "USER_ID", 150, true, align: 1);
             DgvUtil.AddTextCol(DgvUser, "사용자 이름", "USER_NAME", 120, true, align: 1);
             DgvUtil.AddTextCol(DgvUser, "사용자 그룹", "USER_GROUP_CODE", 120, true, align: 0);
@@ -60,7 +60,21 @@ namespace Cohesion_Project
         {
             UserList = Srv_User.SelectUser();
             DgvUser.DataSource = UserList;
-
+            int seq = 1;
+            DgvUser.DataSource = UserList.Select((o) =>
+            new
+            {
+                IDX = seq++,
+                USER_ID = o.USER_ID,
+                USER_NAME = o.USER_NAME,
+                USER_GROUP_CODE = o.USER_GROUP_CODE,
+                USER_PASSWORD = o.USER_PASSWORD,
+                USER_DEPARTMENT = o.USER_DEPARTMENT,
+                CREATE_TIME = o.CREATE_TIME,
+                CREATE_USER_ID = o.CREATE_USER_ID,
+                UPDATE_TIME = o.UPDATE_TIME,
+                UPDATE_USER_ID = o.UPDATE_USER_ID
+            }).ToList();
         }
 
         public class Udate
