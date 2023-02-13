@@ -231,7 +231,7 @@ from USER_GROUP_MST where 1=1");
             try
             {
                 string sql = @"select f.FUNCTION_CODE, f.FUNCTION_NAME
-  from  FUNCTION_MST f  left join FUNCTION_USER_GROUP_REL U  ON U.FUNCTION_CODE  = F.FUNCTION_CODE";
+  from  FUNCTION_MST f  ";
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 conn.Open();
                 list = Helper.DataReaderMapToList<FUNCTION_USER_GROUP_REL_DTO>(cmd.ExecuteReader());
