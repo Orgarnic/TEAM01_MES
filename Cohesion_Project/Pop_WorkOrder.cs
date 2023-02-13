@@ -149,17 +149,20 @@ namespace Cohesion_Project
                             }
                         }
                     }
-                    bool result = work.InsertWorkOrder(initWork);
-                    if (!result)
-                    {
-                        MboxUtil.MboxError("등록되지 못했습니다.\n다시 시도해주세요.");
-                        return;
-                    }
                     else
                     {
-                        MboxUtil.MboxInfo("생산지시 등록이 완료되었습니다.");
-                        this.DialogResult = DialogResult.OK;
-                        this.Close();
+                        bool result = work.InsertWorkOrder(initWork);
+                        if (!result)
+                        {
+                            MboxUtil.MboxError("등록되지 못했습니다.\n다시 시도해주세요.");
+                            return;
+                        }
+                        else
+                        {
+                            MboxUtil.MboxInfo("생산지시 등록이 완료되었습니다.");
+                            this.DialogResult = DialogResult.OK;
+                            this.Close();
+                        }
                     }
                 }
             }
