@@ -58,25 +58,25 @@ namespace Cohesion_Project
         private void DgvInit()
         {
             DgvUtil.DgvInit(DgvFUG);
-            DgvUtil.AddTextCol(DgvFUG, "순번", "DISPLAY_SEQ", 80, readOnly: true, align: 0, frozen: true);
-            DgvUtil.AddTextCol(DgvFUG, "사용자 그룹 코드", "USER_GROUP_CODE", 150, true, align: 0);
+            DgvUtil.AddTextCol(DgvFUG, "순번", "DISPLAY_SEQ", 80, readOnly: true, align: 1, frozen: true );
+            DgvUtil.AddTextCol(DgvFUG, "사용자 그룹 코드", "USER_GROUP_CODE", 200, true, align: 0);
             DgvUtil.AddTextCol(DgvFUG, "사용자 그룹 명", "USER_GROUP_NAME", 120, true, align: 0);
             DgvUtil.AddTextCol(DgvFUG, "사용자 그룹 유형", "USER_GROUP_TYPE", 120, true, align: 0);
             DgvUtil.AddTextCol(DgvFUG, "생성 시간", "CREATE_TIME", 120, true, align: 1);
             DgvUtil.AddTextCol(DgvFUG, "생성 사용자", "CREATE_USER_ID", 120, true, align: 1);
-            DgvUtil.AddTextCol(DgvFUG, "변경 시간", "UPDATE_TIME", 120, true, align: 2);
+            DgvUtil.AddTextCol(DgvFUG, "변경 시간", "UPDATE_TIME", 120, true, align: 1);
             DgvUtil.AddTextCol(DgvFUG, "변경 사용자", "UPDATE_USER_ID", 120, true, align: 1);
 
             DgvUtil.DgvInit(DgvF1);
-            DgvUtil.AddTextCol(DgvF1, "순번", "DISPLAY_SEQ", 80, readOnly: true, align: 0, frozen: true);
-            DgvUtil.AddTextCol(DgvF1, "화면 기능명", "FUNCTION_CODE", 120, true, align: 0);
-            DgvUtil.AddTextCol(DgvF1, "화면 기능 코드", "FUNCTION_NAME", 150, true, align: 0);
+            DgvUtil.AddTextCol(DgvF1, "순번", "DISPLAY_SEQ", 80, readOnly: true, align: 1, frozen: true);
+            DgvUtil.AddTextCol(DgvF1, "화면 기능 코드", "FUNCTION_CODE", 200, true, align: 0);
+            DgvUtil.AddTextCol(DgvF1, "화면 기능명", "FUNCTION_NAME", 150, true, align: 0);
 
 
             DgvUtil.DgvInit(DgvF2);
-            DgvUtil.AddTextCol(DgvF2, "순번", "DISPLAY_SEQ", 80, readOnly: true, align: 0, frozen: true);
-            DgvUtil.AddTextCol(DgvF2, "화면 기능명", "FUNCTION_CODE", 120, true, align: 0);
-            DgvUtil.AddTextCol(DgvF2, "화면 기능 코드", "FUNCTION_NAME", 150, true, align: 0);
+            DgvUtil.AddTextCol(DgvF2, "순번", "DISPLAY_SEQ", 80, readOnly: true, align: 1, frozen: true);
+            DgvUtil.AddTextCol(DgvF2, "화면 기능 코드", "FUNCTION_CODE", 200, true, align: 0);
+            DgvUtil.AddTextCol(DgvF2, "화면 기능명", "FUNCTION_NAME", 150, true, align: 0);
 
            // FList = SrvFUG.SelectFUG2();
             DgvF2.DataSource = FList;

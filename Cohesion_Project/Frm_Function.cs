@@ -34,14 +34,14 @@ namespace Cohesion_Project
         {
             DgvUtil.DgvInit(DgvFunction);
             DgvUtil.AddTextCol(DgvFunction, "   NO", "IDX", width: 70, readOnly: true, frozen: true, align: 1);
-            DgvUtil.AddTextCol(DgvFunction, "    화면 기능 코드", "FUNCTION_CODE", 150, true, align: 0);
-            DgvUtil.AddTextCol(DgvFunction, "    화면 기능명", "FUNCTION_NAME", 120, true, align: 0);
-            DgvUtil.AddTextCol(DgvFunction, "    단축키", "SHORT_CUT_KEY", 120, true, align: 0);
-            DgvUtil.AddTextCol(DgvFunction, "    아이콘 인덱스 ", "ICON_INDEX", 140, true, align: 0);
-            DgvUtil.AddTextCol(DgvFunction, "    생성 사용자 ", "CREATE_USER_ID", 150, true, align: 1);
-            DgvUtil.AddTextCol(DgvFunction, "    생성 시간 ", "CREATE_TIME", 150, true, align: 2);
+            DgvUtil.AddTextCol(DgvFunction, "    화면 기능 코드", "FUNCTION_CODE", 200, true, align: 0);
+            DgvUtil.AddTextCol(DgvFunction, "    화면 기능명", "FUNCTION_NAME", 150, true, align: 0);
+     //       DgvUtil.AddTextCol(DgvFunction, "    단축키", "SHORT_CUT_KEY", 120, true, align: 0);
+     //       DgvUtil.AddTextCol(DgvFunction, "    아이콘 인덱스 ", "ICON_INDEX", 140, true, align: 0);
+            DgvUtil.AddTextCol(DgvFunction, "    생성 사용자 ", "CREATE_USER_ID", 120, true, align: 1);
+            DgvUtil.AddTextCol(DgvFunction, "    생성 시간 ", "CREATE_TIME", 180, true, align: 1);
             DgvUtil.AddTextCol(DgvFunction, "    수정 사용자", "UPDATE_USER_ID", 120, true, align: 1);
-            DgvUtil.AddTextCol(DgvFunction, "    수정 시간", "UPDATE_TIME", 150, true, align: 2);
+            DgvUtil.AddTextCol(DgvFunction, "    수정 시간", "UPDATE_TIME", 180, true, align: 1);
 
             //프로퍼티 그리드 초기 설정
             PpgFunction.PropertySort = PropertySort.Categorized;
@@ -145,10 +145,45 @@ namespace Cohesion_Project
             {
                 return;
             }
-
-            PpgFunction.SelectedObject  = DgvUtil.DgvToDto<FUNCTION_MST_DTO>(DgvFunction);
+            string sTableName = DgvFunction["FUNCTION_CODE", e.RowIndex].Value.ToString();
+            var target = FList.Find((s) => s.FUNCTION_CODE.Equals(DgvFunction["FUNCTION_CODE", e.RowIndex].Value));
+            SelectedRowData(target);
+            PpgFunction.SelectedObject = FD;
             PpgFunction.Enabled = false;
             btnAdd.Enabled = false;
+            //PpgFunction.SelectedObject  = DgvUtil.DgvToDto<FUNCTION_MST_DTO>(DgvFunction);
+            //PpgFunction.Enabled = false;
+            //btnAdd.Enabled = false;
+        }
+        private void SelectedRowData(FUNCTION_MST_DTO target)
+        {
+            TypeConverter typeConverter = new TypeConverter();
+
+            for (int i = 0; i < target.GetType().GetProperties().Length; i++)
+            {
+                string propertyName = target.GetType().GetProperties()[i].Name;
+                Type propertyType = target.GetType().GetProperties()[i].PropertyType;
+                for (int j = 0; j < FD.GetType().GetProperties().Length; j++)
+                {
+                    if (target.GetType().GetProperties()[i].GetValue(target) == null)
+                        continue;
+
+                    else if (propertyName == FD.GetType().GetProperties()[j].Name)
+                    {
+                        if (propertyType != FD.GetType().GetProperties()[j].PropertyType)
+                        {
+                            condition.GetType().GetProperties()[j].SetValue(FD, typeConverter.ConvertTo(target.GetType().GetProperties()[i].GetValue(target), FD.GetType().GetProperties()[j].PropertyType));
+                            break;
+                        }
+
+                        else
+                        {
+                            FD.GetType().GetProperties()[j].SetValue(FD, target.GetType().GetProperties()[i].GetValue(target));
+                            break;
+                        }
+                    }
+                }
+            }
         }
 
         private void btnClose_Click(object sender, EventArgs e)

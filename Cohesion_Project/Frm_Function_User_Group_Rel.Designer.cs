@@ -56,12 +56,20 @@ namespace Cohesion_Project
             this.btnClose.Location = new System.Drawing.Point(1422, 1016);
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // lbl6
+            // 
+            this.lbl6.Text = "▶ 사용자 그룹 권한";
+            // 
             // panel3
             // 
             this.panel3.Controls.Add(this.DgvF1);
             this.panel3.Size = new System.Drawing.Size(828, 432);
             this.panel3.Controls.SetChildIndex(this.lbl6, 0);
             this.panel3.Controls.SetChildIndex(this.DgvF1, 0);
+            // 
+            // lbl7
+            // 
+            this.lbl7.Text = "▶ 프로그램 전체 권한";
             // 
             // btnLeft
             // 
@@ -135,6 +143,7 @@ namespace Cohesion_Project
             // lbl4
             // 
             this.lbl4.Size = new System.Drawing.Size(1222, 32);
+            this.lbl4.Text = "▶ 사용자 그룹 조회";
             // 
             // panel4
             // 
@@ -191,6 +200,7 @@ namespace Cohesion_Project
             // 
             this.btnUpdate.FlatAppearance.BorderSize = 0;
             this.btnUpdate.Location = new System.Drawing.Point(1119, 1016);
+            this.btnUpdate.Visible = false;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnRefresh

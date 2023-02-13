@@ -44,9 +44,9 @@ namespace Cohesion_Project
             DgvUtil.AddTextCol(DgvUserGroup, "사용자 그룹 코드", "USER_GROUP_CODE", 150, true, align: 0);
             DgvUtil.AddTextCol(DgvUserGroup, "사용자 그룹 명", "USER_GROUP_NAME", 120, true, align: 0);
             DgvUtil.AddTextCol(DgvUserGroup, "사용자 그룹 유형", "USER_GROUP_TYPE", 150, true, align: 0);
-            DgvUtil.AddTextCol(DgvUserGroup, "생선 시간 ", "CREATE_TIME", 150, true, align: 2);
+            DgvUtil.AddTextCol(DgvUserGroup, "생선 시간 ", "CREATE_TIME", 150, true, align: 1);
             DgvUtil.AddTextCol(DgvUserGroup, "생성 사용자 ", "CREATE_USER_ID", 120, true, align: 1);
-            DgvUtil.AddTextCol(DgvUserGroup, "수정 시간 ", "UPDATE_TIME", 150, true, align: 2);
+            DgvUtil.AddTextCol(DgvUserGroup, "수정 시간 ", "UPDATE_TIME", 150, true, align: 1);
             DgvUtil.AddTextCol(DgvUserGroup, "수정 사용자", "UPDATE_USER_ID", 120, true, align: 1);
 
             //프로퍼티 그리드 초기 설정
