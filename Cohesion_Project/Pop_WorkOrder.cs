@@ -127,22 +127,26 @@ namespace Cohesion_Project
                             inData.Add(dto);
                             cnt++;
                         }
-                    }if (MboxUtil.MboxInfo_($"총 {cnt}건의 자품목 생산지시 등록이 가능합니다.\n등록하시겠습니까?") == false) return;
-                    else
+                    }
+                    if (oQty > lQty)
                     {
-                        StringBuilder sv = new StringBuilder();
-                        for (int j = 0; j < inData.Count; j++)
+                        if (MboxUtil.MboxInfo_($"총 {cnt}건의 자품목 생산지시 등록이 가능합니다.\n등록하시겠습니까?") == false) return;
+                        else
                         {
-                            bool check = work.InsertWorkOrder(inData[j]);
-                            if (!check)
+                            StringBuilder sv = new StringBuilder();
+                            for (int j = 0; j < inData.Count; j++)
                             {
-                                sv.AppendLine($"{inData[j]}제품이 등록되지 못했습니다.");
+                                bool check = work.InsertWorkOrder(inData[j]);
+                                if (!check)
+                                {
+                                    sv.AppendLine($"{inData[j]}제품이 등록되지 못했습니다.");
+                                }
                             }
-                        }
-                        if(sv.Length > 0)
-                        {
-                            MboxUtil.MboxWarn(sv.ToString());
-                            return;
+                            if (sv.Length > 0)
+                            {
+                                MboxUtil.MboxWarn(sv.ToString());
+                                return;
+                            }
                         }
                     }
                     bool result = work.InsertWorkOrder(initWork);
