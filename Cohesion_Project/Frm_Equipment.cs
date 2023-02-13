@@ -15,6 +15,7 @@ namespace Cohesion_Project
 {
     public partial class Frm_Equipment : Cohesion_Project.Frm_Base_2
     {
+        public User_DTO userInfo { get; set; }
         private Equipment_DTO iProperty = new Equipment_DTO();
         private Equipment_DTO_Search sProperty = new Equipment_DTO_Search();
         Srv_Equipment srvEquipment = new Srv_Equipment();

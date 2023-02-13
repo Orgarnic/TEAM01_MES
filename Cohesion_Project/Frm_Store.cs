@@ -15,6 +15,7 @@ namespace Cohesion_Project
 {
     public partial class Frm_Store : Cohesion_Project.Frm_Base_2
     {
+        public User_DTO userInfo { get; set; }
         private Store_DTO iProperty = new Store_DTO();
         private Store_DTO_Search sProperty = new Store_DTO_Search();
         Srv_Store srvStore = new Srv_Store();
@@ -87,7 +88,7 @@ namespace Cohesion_Project
                 MboxUtil.MboxInfo("동일한 코드의 창고가 존재합니다.");
                 return;
             }
-            dto.CREATE_USER_ID = "정민영";
+            dto.CREATE_USER_ID = ((Frm_Main)this.MdiParent).userInfo.USER_ID.ToString();
             dto.CREATE_TIME = DateTime.Now;
            
             bool result = srvStore.InsertStore(dto);
@@ -118,7 +119,7 @@ namespace Cohesion_Project
                 return;
             }
             dto.UPDATE_TIME = DateTime.Now;
-            dto.UPDATE_USER_ID = "정민영";
+            dto.UPDATE_USER_ID = ((Frm_Main)this.MdiParent).userInfo.USER_ID.ToString();
 
             bool result = srvStore.UpdateStore(dto);
             if (result)
@@ -197,7 +198,7 @@ namespace Cohesion_Project
                 Store_DTO_Search_Data dto = new Store_DTO_Search_Data { 
                     STORE_CODE = t.STORE_CODE, 
                     STORE_NAME = t.STORE_NAME, 
-                    STORE_TYPE = t.STORE_TYPE
+                    //STORE_TYPE = t.STORE_TYPE
                 };
                 var list = srvStore.SelectStore(dto);
                 dgv_Store.DataSource = list.Select((i) => new

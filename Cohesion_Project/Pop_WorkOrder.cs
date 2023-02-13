@@ -23,7 +23,7 @@ namespace Cohesion_Project
         User_DTO user = new User_DTO();
 
         string oCode, pCode;
-        int totQty = 0;
+        int totQty = 0, row = 0;
         decimal orderQty, lotQty;
         public Pop_WorkOrder()
         {
@@ -114,6 +114,7 @@ namespace Cohesion_Project
 
                         if (dgvBOMStock["VENDOR_CODE", i].Value == null)    // 매입처가 있는 제품들만 가져오기.
                         {
+
                             dto = new Work_Order_MST_DTO
                             {
                                 PRODUCT_CODE = dgvBOMStock["CHILD_PRODUCT_CODE", i].Value.ToString(),
@@ -122,40 +123,47 @@ namespace Cohesion_Project
                                 ORDER_DATE = initWork.ORDER_DATE,
                                 CREATE_USER_ID = user.USER_NAME,
                                 CREATE_TIME = DateTime.Now,
-                                CUSTOMER_CODE = dgvOrderList["CUSTOMER_CODE", i].Value.ToString()
+                                CUSTOMER_CODE = (string)dgvOrderList["CUSTOMER_CODE", row].Value
                             };
                             inData.Add(dto);
                             cnt++;
                         }
-                    }if (MboxUtil.MboxInfo_($"총 {cnt}건의 자품목 생산지시 등록이 가능합니다.\n등록하시겠습니까?") == false) return;
-                    else
+                    }
+                    if (oQty > lQty)
                     {
-                        StringBuilder sv = new StringBuilder();
-                        for (int j = 0; j < inData.Count; j++)
+                        if (MboxUtil.MboxInfo_($"총 {cnt}건의 품목 생산지시 등록이 가능합니다.\n등록하시겠습니까?") == false) return;
+                        else
                         {
-                            bool check = work.InsertWorkOrder(inData[j]);
-                            if (!check)
+                            StringBuilder sv = new StringBuilder();
+                            for (int j = 0; j < inData.Count; j++)
                             {
-                                sv.AppendLine($"{inData[j]}제품이 등록되지 못했습니다.");
+                                bool check = work.InsertWorkOrder(inData[j]);
+                                if (!check)
+                                {
+                                    sv.AppendLine($"{inData[j]}제품이 등록되지 못했습니다.");
+                                }
+                            }
+                            if (sv.Length > 0)
+                            {
+                                MboxUtil.MboxWarn(sv.ToString());
+                                return;
                             }
                         }
-                        if(sv.Length > 0)
-                        {
-                            MboxUtil.MboxWarn(sv.ToString());
-                            return;
-                        }
-                    }
-                    bool result = work.InsertWorkOrder(initWork);
-                    if (!result)
-                    {
-                        MboxUtil.MboxError("등록되지 못했습니다.\n다시 시도해주세요.");
-                        return;
                     }
                     else
                     {
-                        MboxUtil.MboxInfo("생산지시 등록이 완료되었습니다.");
-                        this.DialogResult = DialogResult.OK;
-                        this.Close();
+                        bool result = work.InsertWorkOrder(initWork), result2 = work.UpdateOrderShip(oCode);
+                        if (!result || !result2)
+                        {
+                            MboxUtil.MboxError("등록되지 못했습니다.\n다시 시도해주세요.");
+                            return;
+                        }
+                        else
+                        {
+                            MboxUtil.MboxInfo("생산지시 등록이 완료되었습니다.");
+                            this.DialogResult = DialogResult.OK;
+                            this.Close();
+                        }
                     }
                 }
             }
@@ -164,8 +172,8 @@ namespace Cohesion_Project
                 if (MboxUtil.MboxInfo_("해당 주문내역으로 작업지시를 등록하시겠습니까?") == false) return;
                 else
                 {
-                    bool result = work.InsertWorkOrder(initWork);
-                    if(!result)
+                    bool result = work.InsertWorkOrder(initWork), result2 = work.UpdateOrderShip(oCode);
+                    if(!result || !result2)
                     {
                         MboxUtil.MboxError("등록되지 못했습니다.\n다시 시도해주세요.");
                         return;
@@ -197,6 +205,7 @@ namespace Cohesion_Project
             if (e.RowIndex < 0) return;
             lotQty = Convert.ToDecimal(dgvOrderList["LOT_QTY", e.RowIndex].Value.ToString());
             orderQty = Convert.ToDecimal(dgvOrderList["ORDER_QTY", e.RowIndex].Value.ToString());
+            row = dgvOrderList.CurrentRow.Index;
             oCode = dgvOrderList["SALES_ORDER_ID", e.RowIndex].Value.ToString();
             pCode = dgvOrderList["PRODUCT_CODE", e.RowIndex].Value.ToString();
             bom = work.GetOrderProductBOM(oCode, pCode);
