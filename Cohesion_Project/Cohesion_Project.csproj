@@ -287,6 +287,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_Login.resx">
       <DependentUpon>Frm_Login.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_Main.resx">
       <DependentUpon>Frm_Main.cs</DependentUpon>
@@ -429,6 +430,9 @@
     <None Include="Resources\close-red.png" />
     <None Include="Resources\maintenance.png" />
     <None Include="Resources\box.png" />
+    <None Include="Resources\backimg.png" />
+    <None Include="Resources\backimg1.png" />
+    <None Include="Resources\letter-c %284%29.png" />
     <Content Include="Resources\Search2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

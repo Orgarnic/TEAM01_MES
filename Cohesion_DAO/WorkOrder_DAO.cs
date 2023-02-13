@@ -376,5 +376,33 @@ namespace Cohesion_DAO
                 conn.Close();
             }
         }
+
+        public bool UpdateOrderShip(string order)
+        {
+            try
+            {
+                string sql = @"update SALES_ORDER_MST
+                               set SHIP_FLAG = 'N'
+                               where SALES_ORDER_ID = @SALES_ORDER_ID";
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@SALES_ORDER_ID", order);
+
+                conn.Open();
+                int iRowAffect = cmd.ExecuteNonQuery();
+
+                return (iRowAffect > 0);
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                Debug.WriteLine(err.StackTrace);
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     }
 }
