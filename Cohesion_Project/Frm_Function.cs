@@ -129,7 +129,6 @@ namespace Cohesion_Project
 
             PpgFunction.SelectedObject  = DgvUtil.DgvToDto<FUNCTION_MST_DTO>(DgvFunction);
             PpgFunction.Enabled = false;
-
             btnAdd.Enabled = false;
         }
 
@@ -171,7 +170,7 @@ namespace Cohesion_Project
                 MessageBox.Show("변경할 테이블을 선택해주세요.");
                 return;
             }
-            var dto = PropertyToDto<FUNCTION_MST_DTO, FUNCTION_MST_DTO>(data); dto.UPDATE_USER_ID = "123";
+            var dto = PropertyToDto<FUNCTION_MST_DTO, FUNCTION_MST_DTO>(data); dto.UPDATE_USER_ID = "김민식";
             dto.UPDATE_TIME = DateTime.Now;
             bool result = Srv_F.UpdateFunction(dto);
             if (result)
@@ -192,13 +191,13 @@ namespace Cohesion_Project
         {
             if (!stateSearchCondition)
             {
-                PpgFunction.SelectedObject = new User_DTO();
+                PpgFunction.SelectedObject = new FUNCTION_MST_DTO();
                 PpgFunction.Enabled = true;
                 btnAdd.Enabled = true;
             }
             else
             {
-                PpgFunction.SelectedObject = new User_Condition_DTO();
+                PpgFunction.SelectedObject = new FUNCTION_MST_DTO_Condition();
                 PpgFunction.Enabled = true;
                 btnAdd.Enabled = true;
             }

@@ -21,6 +21,7 @@ namespace Cohesion_Project
         List<PRODUCT_MST_DTO> temp = null;
         Util.ComboUtil comboUtil = new Util.ComboUtil();
         List<OPERATION_MST_DTO> oper = null;
+        User_DTO user = new User_DTO();
         bool check = true;
         string prodID;
 
@@ -31,6 +32,7 @@ namespace Cohesion_Project
 
         private void Frm_BOM_Load(object sender, EventArgs e)
         {
+            user = (this.ParentForm as Frm_Main).userInfo;
             DataGirdViewParent();
             DataGirdViewChild();
             GetComboData();
@@ -54,20 +56,30 @@ namespace Cohesion_Project
         private void DataGirdViewParent()
         {
             DgvUtil.DgvInit(dgvBOMParent);
-            DgvUtil.AddTextCol(dgvBOMParent, "    제품 코드", "PRODUCT_CODE", 160, true, align: 0, frozen:true);
-            DgvUtil.AddTextCol(dgvBOMParent, "    제품명", "PRODUCT_NAME", 160, true, align: 0, frozen: true);
-            DgvUtil.AddTextCol(dgvBOMParent, "    제품 유형", "PRODUCT_TYPE", 150, true, frozen: true);
-            DgvUtil.AddTextCol(dgvBOMParent, "    대체 품번", "ALTER_PRODUCT_CODE", 144, true, align: 0);
-            DgvUtil.AddTextCol(dgvBOMParent, "    생성 시간", "CREATE_TIME", 200, true);
+            DgvUtil.AddTextCol(dgvBOMParent, "  NO", "IDX", width: 70, readOnly: true, frozen: true, align: 1);
+            DgvUtil.AddTextCol(dgvBOMParent, "   제품 코드", "PRODUCT_CODE", 160, true, align: 0, frozen:true);
+            DgvUtil.AddTextCol(dgvBOMParent, "  제품명", "PRODUCT_NAME", 160, true, align: 0, frozen: true);
+            DgvUtil.AddTextCol(dgvBOMParent, "   제품 유형", "PRODUCT_TYPE", 150, true, frozen: true);
+            DgvUtil.AddTextCol(dgvBOMParent, "   생성 시간", "CREATE_TIME", 200, true);
             DgvUtil.AddTextCol(dgvBOMParent, "    생성 사용자", "CREATE_USER_ID", 160, true, align: 0);
-            DgvUtil.AddTextCol(dgvBOMParent, "    변경 시간", "UPDATE_TIME", 200, true);
-            DgvUtil.AddTextCol(dgvBOMParent, "    변경 사용자", "UPDATE_USER_ID", 160, true, align: 0);
+            DgvUtil.AddTextCol(dgvBOMParent, "  변경 시간", "UPDATE_TIME", 200, true);
+            DgvUtil.AddTextCol(dgvBOMParent, "   변경 사용자", "UPDATE_USER_ID", 160, true, align: 0);
             if(product == null)
             {
                 product = srv.SelectProductList();
             }
-
-            dgvBOMParent.DataSource = product;
+            int seq = 1;
+            dgvBOMParent.DataSource = product.Select((p) => new
+            {
+               IDX = seq++,
+               PRODUCT_CODE = p.PRODUCT_CODE,
+               PRODUCT_NAME = p.PRODUCT_NAME,
+               PRODUCT_TYPE = p.PRODUCT_TYPE,
+               CREATE_TIME = p.CREATE_TIME,
+               CREATE_USER_ID = p.CREATE_USER_ID,
+               UPDATE_TIME = p.UPDATE_TIME,
+               UPDATE_USER_ID = p.UPDATE_USER_ID
+            }).ToList();
         }
 
         private void DataGirdViewChild()
@@ -93,24 +105,51 @@ namespace Cohesion_Project
         {
             // 셀클릭시, 클릭된 완제품의 BOM을 Child에 뿌려줌.
             if (e.RowIndex < 0) return;
+
             prodID = dgvBOMParent["PRODUCT_CODE", e.RowIndex].Value.ToString();
             bom = srv.SelectBOMList(prodID);
-            dgvBOMChild.DataSource = null;
-            dgvBOMChild.DataSource = bom;
+            if (bom.Count > 0)
+            {
+                dgvBOMChild.DataSource = null;
+                dgvBOMChild.DataSource = bom;
+            }
+            else
+            {
+                dgvBOMChild.DataSource = null;
+            }
             ppgBOMAttribute.SelectedObject = new BOM_MST_DTO();
         }
 
         // 전체 초기화
         private void btnRefresh_Click(object sender, EventArgs e)
         {
+            if (btnAdd.Enabled|| ppgBOMAttribute.Enabled)
+            {
+                btnAdd.Enabled = false;
+                btnDelete.Enabled = false;
+                ppgBOMAttribute.Enabled = false;
+            }
+            if(ppgSearch.Enabled)
+            {
+                ppgSearch.Enabled = false;
+                check = true;
+            }
             ppgBOMAttribute.SelectedObject = new BOM_MST_DTO();
-            dgvBOMChild.DataSource = bom;
+            dgvBOMChild.DataSource = null;
             ppgBOMAttribute.Enabled = false;
+            dgvBOMParent.DataSource = null;
+            dgvBOMParent.DataSource = product;
+            dgvBOMParent.ClearSelection();
         }
 
         // 조건 검색
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            if(check)
+            {
+                MboxUtil.MboxWarn("검색조건을 입력해주세요.");
+                return;
+            }
             BOM_PRODUCT_SEARCH ppgdata = (BOM_PRODUCT_SEARCH)ppgSearch.SelectedObject;
 
             if (string.IsNullOrWhiteSpace(txtSearch.Text) &&
@@ -152,6 +191,8 @@ namespace Cohesion_Project
             
             BOM_MST_DTO dto = BOM_MST_DTO.DeepCopy((BOM_MST_DTO)ppgBOMAttribute.SelectedObject);
             dto.PRODUCT_CODE = prodID;
+            dto.CREATE_USER_ID = user.USER_NAME;
+            dto.UPDATE_USER_ID = user.USER_NAME;
             if (dto.REQUIRE_QTY < 1)
             {
                 MboxUtil.MboxWarn("BOM 단위 수량은 최소 1개 이상 등록되어야합니다.");
@@ -167,6 +208,11 @@ namespace Cohesion_Project
                 MboxUtil.MboxWarn("제품명은 필수 입력입니다.");
                 return;
             }
+            if (string.IsNullOrWhiteSpace(dto.OPERATION_CODE))
+            {
+                MboxUtil.MboxWarn("공정은 필수 입력입니다.");
+                return;
+            }
 
             if (dto != null)
             {
@@ -176,7 +222,8 @@ namespace Cohesion_Project
                     {
                         bom.Find((b) => b.CHILD_PRODUCT_CODE.Equals(dto.CHILD_PRODUCT_CODE)).REQUIRE_QTY = dto.REQUIRE_QTY;
                     }
-                    else bom.Add(dto);
+                    else 
+                        bom.Add(dto);
                 }
                 else
                 {
@@ -192,15 +239,11 @@ namespace Cohesion_Project
         {
             if(check)
             {
-                btnSearchCondition.Text = "취소";
-                btnSearch.Enabled = true;
                 ppgSearch.Enabled = true;
                 check = false;
             }
             else
             {
-                btnSearchCondition.Text = "검색조건";
-                btnSearch.Enabled = false;
                 ppgSearch.Enabled = false;
                 ppgSearch.SelectedObject =  new BOM_PRODUCT_SEARCH();
                 check = true;
@@ -215,6 +258,8 @@ namespace Cohesion_Project
                 MboxUtil.MboxWarn("BOM 정보를 변경할 제품을 선택해주세요.");
                 return;
             }
+            btnDelete.Enabled = true;
+            btnAdd.Enabled = true;
             ppgBOMAttribute.Enabled = true;
         }
 
@@ -237,20 +282,21 @@ namespace Cohesion_Project
             }
             MboxUtil.MboxInfo("등록되었습니다.");
             bom = srv.SelectBOMList(prodID);
-            dgvBOMChild.DataSource = null;
-            dgvBOMChild.DataSource = bom;
-            ppgBOMAttribute.Enabled = false;
+            btnRefresh.PerformClick();
+            btnAdd.Enabled = false;
+            btnDelete.Enabled = false;
         }
 
         // ppgBOMAttribute에 제품 코드에 따라 제품명, 타입을 가져옴.
         private void ppgBOMAttribute_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
         {
+            BOM_MST_DTO bbom = null;
             if (e.ChangedItem.PropertyDescriptor.Description.Equals("CHILD_PRODUCT_CODE"))
-            {
+            {                
                 var list = temp.Find((c) => c.PRODUCT_CODE.Equals(e.ChangedItem.Value.ToString()));
-                if(list != null)
+                if (list != null)
                 {
-                    BOM_MST_DTO bbom = (BOM_MST_DTO)ppgBOMAttribute.SelectedObject;
+                    bbom = (BOM_MST_DTO)ppgBOMAttribute.SelectedObject;
                     bbom.PRODUCT_NAME = list.PRODUCT_NAME;
                     bbom.PRODUCT_TYPE = list.PRODUCT_TYPE;
                 }
@@ -260,6 +306,8 @@ namespace Cohesion_Project
         // 부모제품의 BOM 목록에서 자녀제품 삭제(제품 목록에서 삭제는 X)
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            if (dgvBOMChild.Rows.Count < 1) return;
+
             int cnt = 0;
             for (int i = dgvBOMChild.Rows.Count - 1; i >= 0; i--)
             {

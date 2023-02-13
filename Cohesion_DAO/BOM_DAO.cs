@@ -191,13 +191,13 @@ namespace Cohesion_DAO
                                 set @num = (select count(*) from BOM_MST where PRODUCT_CODE = @PRODUCT_CODE and CHILD_PRODUCT_CODE = @CHILD_PRODUCT_CODE)
                                 if (@num <> 0)
                                 begin
-                                update BOM_MST set REQUIRE_QTY = @REQUIRE_QTY, ALTER_PRODUCT_CODE = @ALTER_PRODUCT_CODE, UPDATE_TIME = @UPDATE_TIME, UPDATE_USER_ID = @UPDATE_USER_ID
+                                update BOM_MST set REQUIRE_QTY = @REQUIRE_QTY, ALTER_PRODUCT_CODE = @ALTER_PRODUCT_CODE, UPDATE_TIME = @UPDATE_TIME, UPDATE_USER_ID = @UPDATE_USER_ID, OPERATION_CODE = @OPERATION_CODE
                                 where PRODUCT_CODE = @PRODUCT_CODE and CHILD_PRODUCT_CODE = @CHILD_PRODUCT_CODE
                                 end
                                 else
                                 begin
-                                insert into BOM_MST (PRODUCT_CODE, CHILD_PRODUCT_CODE, REQUIRE_QTY, ALTER_PRODUCT_CODE, CREATE_TIME, CREATE_USER_ID)
-                                values(@PRODUCT_CODE, @CHILD_PRODUCT_CODE, @REQUIRE_QTY, @ALTER_PRODUCT_CODE, @CREATE_TIME, @CREATE_USER_ID)
+                                insert into BOM_MST (PRODUCT_CODE, CHILD_PRODUCT_CODE, OPERATION_CODE, REQUIRE_QTY, ALTER_PRODUCT_CODE, CREATE_TIME, CREATE_USER_ID)
+                                values(@PRODUCT_CODE, @CHILD_PRODUCT_CODE, @OPERATION_CODE, @REQUIRE_QTY, @ALTER_PRODUCT_CODE, @CREATE_TIME, @CREATE_USER_ID)
                                 end";
                 SqlCommand cmd2 = new SqlCommand(sql2, conn);
                 cmd2.Transaction = trans;
@@ -206,6 +206,7 @@ namespace Cohesion_DAO
                       
                     cmd2.Parameters.AddWithValue("@PRODUCT_CODE", item.PRODUCT_CODE);
                     cmd2.Parameters.AddWithValue("@CHILD_PRODUCT_CODE", item.CHILD_PRODUCT_CODE);
+                    cmd2.Parameters.AddWithValue("@OPERATION_CODE", item.OPERATION_CODE);
                     cmd2.Parameters.AddWithValue("@REQUIRE_QTY", item.REQUIRE_QTY);
                     cmd2.Parameters.AddWithValue("@CREATE_TIME", DateTime.Now);
                     cmd2.Parameters.AddWithValue("@ALTER_PRODUCT_CODE", string.IsNullOrWhiteSpace(item.ALTER_PRODUCT_CODE) ? (object)DBNull.Value : item.ALTER_PRODUCT_CODE);

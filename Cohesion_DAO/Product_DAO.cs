@@ -55,9 +55,11 @@ namespace Cohesion_DAO
       {
          try
          {
-            string sql = @"INSERT INTO PRODUCT_MST(PRODUCT_CODE, PRODUCT_NAME, PRODUCT_TYPE, CUSTOMER_CODE, VENDOR_CODE, CREATE_USER_ID)
-                           VALUES(@PRODUCT_CODE, @PRODUCT_NAME, @PRODUCT_TYPE, @CUSTOMER_CODE, @VENDOR_CODE, @CREATE_USER_ID)";
+            string sql = @"INSERT INTO PRODUCT_MST(PRODUCT_CODE, PRODUCT_NAME, PRODUCT_TYPE, CUSTOMER_CODE, VENDOR_CODE, CREATE_TIME, CREATE_USER_ID)
+                           VALUES(@PRODUCT_CODE, @PRODUCT_NAME, @PRODUCT_TYPE, @CUSTOMER_CODE, @VENDOR_CODE, GETDATE(), @CREATE_USER_ID)";
             SqlCommand cmd = Helper.UpsertCmdValue<PRODUCT_MST_DTO>(dto, sql, conn);
+            cmd.Parameters["@CUSTOMER_CODE"].Value = string.IsNullOrWhiteSpace(dto.CUSTOMER_CODE) ? (object)DBNull.Value : dto.CUSTOMER_CODE;
+            cmd.Parameters["@VENDOR_CODE"].Value = string.IsNullOrWhiteSpace(dto.VENDOR_CODE) ? (object)DBNull.Value : dto.VENDOR_CODE;
             conn.Open();
             int result = cmd.ExecuteNonQuery();
             conn.Close();

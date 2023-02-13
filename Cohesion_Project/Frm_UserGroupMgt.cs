@@ -12,7 +12,7 @@ using Cohesion_DTO;
 
 namespace Cohesion_Project
 {
-    public partial class Frm_UserGroup : Frm_Base_2
+    public partial class Frm_UserGroupMgt : Frm_Base_2
     {
         Srv_UserGroup srv_UG = new Srv_UserGroup();
         Srv_UserGroup Srv_UserGroup;
@@ -25,7 +25,7 @@ namespace Cohesion_Project
         bool isCondition = true;
         bool stateSearchCondition = true;
 
-        public Frm_UserGroup()
+        public Frm_UserGroupMgt()
         {
             InitializeComponent();
         }
@@ -241,17 +241,15 @@ namespace Cohesion_Project
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            if (!stateSearchCondition)
+            if (stateSearchCondition)
             {
-                Ppg_UserGourp.SelectedObject = new UserGroup_DTO();
-                Ppg_UserGourp.Enabled = true;
-                btnAdd.Enabled = true;
+                UserGroup_DTO blankData = new UserGroup_DTO();
+                Ppg_UserGourp.SelectedObject = blankData;
             }
-            else
+            else  
             {
-                Ppg_UserGourp.SelectedObject = new UserGoupCondition_DTO();
-                Ppg_UserGourp.Enabled = true;
-                btnAdd.Enabled = true;
+                UserGoupCondition_DTO blankData = new UserGoupCondition_DTO();
+                Ppg_UserGourp.SelectedObject = blankData;
             }
         }
 

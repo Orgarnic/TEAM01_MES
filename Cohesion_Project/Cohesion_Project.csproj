@@ -130,6 +130,12 @@
     <Compile Include="Frm_Inspection.Designer.cs">
       <DependentUpon>Frm_Inspection.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm_Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Login.Designer.cs">
+      <DependentUpon>Frm_Login.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm_Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -279,6 +285,9 @@
     <EmbeddedResource Include="Frm_Inspection.resx">
       <DependentUpon>Frm_Inspection.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Login.resx">
+      <DependentUpon>Frm_Login.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frm_Main.resx">
       <DependentUpon>Frm_Main.cs</DependentUpon>
     </EmbeddedResource>
@@ -387,7 +396,19 @@
     <Content Include="Image\check.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Image\close-grey.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Image\close-red.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Image\close.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Image\ImagePwd.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Image\Login_Image.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Image\rotate.png" />
@@ -400,6 +421,14 @@
     <Content Include="Image\tabs.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\Login_Image.png" />
+    <Content Include="Image\UserImage.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\close-grey.png" />
+    <None Include="Resources\close-red.png" />
+    <None Include="Resources\maintenance.png" />
+    <None Include="Resources\box.png" />
     <Content Include="Resources\Search2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -183,7 +183,7 @@ namespace Cohesion_Project
                 List<Equipment_REL_DTO> addList = new List<Equipment_REL_DTO>();
                 addList.Add(dto);
                 dgvAddedEquipment.DataSource = null;
-                dgvAddedEquipment.DataSource = addList.OrderBy((i) => i.EQUIPMENT_CODE).Select((i) => new Equipment_REL_DTO { EQUIPMENT_CODE = i.EQUIPMENT_CODE, EQUIPMENT_NAME = i.EQUIPMENT_NAME, DISPLAY_SEQ = seq++ }).ToList();
+                dgvAddedEquipment.DataSource = addList.Select((i) => new Equipment_REL_DTO { EQUIPMENT_CODE = i.EQUIPMENT_CODE, EQUIPMENT_NAME = i.EQUIPMENT_NAME, DISPLAY_SEQ = seq++ }).ToList();
                 var l1 = dgvAddedEquipment.DataSource;
 
                 List<Equipment_REL_DTO> list = dgvEquipmentList.DataSource as List<Equipment_REL_DTO>;
@@ -201,7 +201,7 @@ namespace Cohesion_Project
                 var addList = dgvAddedEquipment.DataSource as List<Equipment_REL_DTO>;
                 addList.Add(dto);
                 dgvAddedEquipment.DataSource = null;
-                dgvAddedEquipment.DataSource = addList.OrderBy((i) => i.EQUIPMENT_CODE).Select((i) => new Equipment_REL_DTO { EQUIPMENT_CODE = i.EQUIPMENT_CODE, EQUIPMENT_NAME = i.EQUIPMENT_NAME, DISPLAY_SEQ = seq++ }).ToList();
+                dgvAddedEquipment.DataSource = addList.Select((i) => new Equipment_REL_DTO { EQUIPMENT_CODE = i.EQUIPMENT_CODE, EQUIPMENT_NAME = i.EQUIPMENT_NAME, DISPLAY_SEQ = seq++ }).ToList();
 
                 List<Equipment_REL_DTO> list = dgvEquipmentList.DataSource as List<Equipment_REL_DTO>;
                 list.Remove(list.Find((i) => i.EQUIPMENT_CODE.Equals(dto.EQUIPMENT_CODE, StringComparison.OrdinalIgnoreCase)));
@@ -241,7 +241,7 @@ namespace Cohesion_Project
                 var addList = dgvAddedEquipment.DataSource as List<Equipment_REL_DTO>;
                 addList.Remove(dto);
                 dgvAddedEquipment.DataSource = null;
-                dgvAddedEquipment.DataSource = addList.OrderBy((i) => i.EQUIPMENT_CODE).Select((i) => new Equipment_REL_DTO { EQUIPMENT_CODE = i.EQUIPMENT_CODE, EQUIPMENT_NAME = i.EQUIPMENT_NAME, DISPLAY_SEQ = seq++ }).ToList();
+                dgvAddedEquipment.DataSource = addList.Select((i) => new Equipment_REL_DTO { EQUIPMENT_CODE = i.EQUIPMENT_CODE, EQUIPMENT_NAME = i.EQUIPMENT_NAME, DISPLAY_SEQ = seq++ }).ToList();
 
                 List<Equipment_REL_DTO> list = dgvEquipmentList.DataSource as List<Equipment_REL_DTO>;
                 if (list.Exists((i) => i.EQUIPMENT_CODE.Equals(dto.EQUIPMENT_CODE)))

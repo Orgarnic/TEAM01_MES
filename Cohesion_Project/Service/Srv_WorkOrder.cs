@@ -90,5 +90,14 @@ namespace Cohesion_Project.Service
 
             return list;
         }
+
+      public bool EndWorkOrder(Work_Order_MST_DTO order)
+      {
+         WorkOrder_DAO db = new WorkOrder_DAO();
+         bool result = db.EndWorkOrder(order);
+         db.Dispose();
+
+         return result;
+      }
     }
 }
