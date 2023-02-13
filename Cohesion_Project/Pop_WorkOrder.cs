@@ -130,7 +130,7 @@ namespace Cohesion_Project
                     }
                     if (oQty > lQty)
                     {
-                        if (MboxUtil.MboxInfo_($"총 {cnt}건의 자품목 생산지시 등록이 가능합니다.\n등록하시겠습니까?") == false) return;
+                        if (MboxUtil.MboxInfo_($"총 {cnt}건의 품목 생산지시 등록이 가능합니다.\n등록하시겠습니까?") == false) return;
                         else
                         {
                             StringBuilder sv = new StringBuilder();
