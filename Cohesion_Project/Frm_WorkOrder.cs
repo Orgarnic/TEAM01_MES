@@ -178,6 +178,14 @@ namespace Cohesion_Project
         private void btnInsert_Click(object sender, EventArgs e)
         {
             var list = this.ppgWorkOrderSearch.SelectedObject as Work_Order_MST_DTO;
+            if(list.WORK_START_TIME < list.ORDER_DATE)
+            {
+                list.WORK_START_TIME = DateTime.Now;
+            }
+            if(list.WORK_CLOSE_TIME < list.ORDER_DATE)
+            {
+                list.WORK_CLOSE_TIME = DateTime.Now;
+            }
             if (change) return;
             else
             {
@@ -191,10 +199,20 @@ namespace Cohesion_Project
                     if (!MboxUtil.MboxInfo_("작업지시 내역을 변경하시겠습니까?")) return;
                     else
                     {
-                        srv.UpdateWorkOrder(wOrder, user.USER_NAME);
+                        bool result = srv.UpdateWorkOrder(list, user.USER_NAME);
+                        if(!result)
+                        {
+                            MboxUtil.MboxWarn("변경중 오류가 발생하였습니다.");
+                            return;
+                        }
+                        else
+                        {
+                            MboxUtil.MboxInfo("변경이 완료되었습니다.");
+                        }
                     }
                 }
             }
+            btnRefresh.PerformClick();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -247,7 +265,21 @@ namespace Cohesion_Project
                     MboxUtil.MboxWarn("선택된 내역이 없습니다.\n다시 시도해주세요.");
                     return;
                 }
-                wOrder = (Work_Order_MST_DTO)ppgWorkOrderSearch.SelectedObject;
+                var list = (Work_Order_MST_DTO)ppgWorkOrderSearch.SelectedObject;
+                Work_Order_MST_DTO check = new Work_Order_MST_DTO
+                {
+                    CUSTOMER_CODE = list.CUSTOMER_CODE,
+                    PRODUCT_CODE = list.PRODUCT_CODE,
+                    ORDER_QTY = list.ORDER_QTY,
+                    WORK_ORDER_ID = list.WORK_ORDER_ID,
+                    WORK_CLOSE_TIME = list.WORK_CLOSE_TIME,
+                    CREATE_USER_ID = list.CREATE_USER_ID,
+                    UPDATE_USER_ID = user.USER_NAME,
+                    ORDER_STATUS = list.ORDER_STATUS,
+                    PRODUCT_QTY = list.PRODUCT_QTY == 0 ? 0 : list.PRODUCT_QTY,
+                    DEFECT_QTY = list.DEFECT_QTY == 0 ? 0 : list.DEFECT_QTY
+                };
+                wOrder = check;
 
                 dgvWorkOrderList.Enabled = false;
                 ppgWorkOrderSearch.Enabled = true;

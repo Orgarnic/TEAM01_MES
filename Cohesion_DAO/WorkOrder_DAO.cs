@@ -67,7 +67,7 @@ namespace Cohesion_DAO
             List<Work_Order_MST_DTO> list = null;
             try
             {
-                string sql = @"select WORK_ORDER_ID, ORDER_DATE, PRODUCT_NAME PRODUCT_CODE, c.DATA_1 CUSTOMER_CODE, ORDER_QTY, ORDER_STATUS, PRODUCT_QTY, DEFECT_QTY, WORK_START_TIME, WORK_CLOSE_TIME, WORK_CLOSE_USER_ID, wo.CREATE_TIME, wo.CREATE_USER_ID, wo.UPDATE_TIME, wo.UPDATE_USER_ID, convert(nvarchar(16),ORDER_DATE,120) WORK_CODE
+                string sql = @"select WORK_ORDER_ID, ORDER_DATE, wo.PRODUCT_CODE, c.DATA_1 CUSTOMER_CODE, ORDER_QTY, ORDER_STATUS, PRODUCT_QTY, DEFECT_QTY, WORK_START_TIME, WORK_CLOSE_TIME, WORK_CLOSE_USER_ID, wo.CREATE_TIME, wo.CREATE_USER_ID, wo.UPDATE_TIME, wo.UPDATE_USER_ID, convert(nvarchar(16),ORDER_DATE,120) WORK_CODE
                                from WORK_ORDER_MST wo inner join PRODUCT_MST p on wo.PRODUCT_CODE = p.PRODUCT_CODE
 													  inner join CODE_DATA_MST c on wo.CUSTOMER_CODE = c.KEY_1
                                order by ORDER_DATE";
@@ -255,23 +255,24 @@ namespace Cohesion_DAO
                                  , ORDER_STATUS = @ORDER_STATUS
                                  , PRODUCT_QTY = @PRODUCT_QTY
                                  , DEFECT_QTY = @DEFECT_QTY
-                                 , WORK_START_TIME = @WORK_START_TIME5
+                                 , WORK_START_TIME = @WORK_START_TIME
                                  , WORK_CLOSE_TIME = @WORK_CLOSE_TIME
                                  , WORK_CLOSE_USER_ID = @WORK_CLOSE_USER_ID
-                                 , UPDATE_TIME = @UPDATE_TIME
+                                 , UPDATE_TIME = getdate()
                                  , UPDATE_USER_ID = @UPDATE_USER_ID
                                where WORK_ORDER_ID = @WORK_ORDER_ID";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@WORK_ORDER_ID", work.WORK_ORDER_ID);
                 cmd.Parameters.AddWithValue("@PRODUCT_CODE", work.PRODUCT_CODE != null ? work.PRODUCT_CODE : (object)DBNull.Value.ToString());
-                cmd.Parameters.AddWithValue("@ORDER_QTY", oNum > 0 ? oNum : 0);
+                cmd.Parameters.AddWithValue("@ORDER_QTY", work.ORDER_QTY);
                 cmd.Parameters.AddWithValue("@ORDER_STATUS", work.ORDER_STATUS);
-                cmd.Parameters.AddWithValue("@PRODUCT_QTY", pNum > 0 ? pNum : 0);
-                cmd.Parameters.AddWithValue("@DEFECT_QTY", dNum > 0 ? dNum : 0);
-                cmd.Parameters.AddWithValue("@WORK_START_TIME", work.WORK_START_TIME);
-                cmd.Parameters.AddWithValue("@WORK_CLOSE_TIME", work.WORK_CLOSE_TIME);
+                cmd.Parameters.AddWithValue("@PRODUCT_QTY", pNum);
+                cmd.Parameters.AddWithValue("@DEFECT_QTY", dNum);
+                cmd.Parameters.AddWithValue("@WORK_START_TIME", work.WORK_START_TIME != null ? work.WORK_START_TIME : (object)DBNull.Value.ToString());
+                cmd.Parameters.AddWithValue("@WORK_CLOSE_TIME", work.WORK_CLOSE_TIME != null ? work.WORK_CLOSE_TIME : (object)DBNull.Value.ToString());
                 cmd.Parameters.AddWithValue("@WORK_CLOSE_USER_ID", work.WORK_CLOSE_USER_ID != null ? work.WORK_CLOSE_USER_ID : (object)DBNull.Value.ToString());
-                cmd.Parameters.AddWithValue("@UPDATE_TIME", DateTime.Now);
+                //cmd.Parameters.AddWithValue("@UPDATE_TIME", DateTime.Now);
                 cmd.Parameters.AddWithValue("@UPDATE_USER_ID", uid);
 
                 conn.Open();

@@ -161,13 +161,13 @@ namespace Cohesion_Project
                 return;
             }
 
-            var list = dgv_SalesOrder.DataSource as List<Sales_Order_DTO>;
+            /*var list = dgv_SalesOrder.DataSource as List<Sales_Order_DTO>;
             bool codeExist = list.Exists((i) => i.SALES_ORDER_ID.Equals(dto.SALES_ORDER_ID, StringComparison.OrdinalIgnoreCase));
             if (codeExist)
             {
                 MboxUtil.MboxInfo("동일한 주문번호가 존재합니다.");
                 return;
-            }
+            }*/
             dto.CREATE_USER_ID = "정민영";
             dto.CREATE_TIME = DateTime.Now;
 
