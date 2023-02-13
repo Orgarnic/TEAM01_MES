@@ -33,6 +33,7 @@ namespace Cohesion_Project
         private void DgvInit()
         {
             DgvUtil.DgvInit(DgvFunction);
+            DgvUtil.AddTextCol(DgvFunction, "   NO", "IDX", width: 70, readOnly: true, frozen: true, align: 1);
             DgvUtil.AddTextCol(DgvFunction, "    화면 기능 코드", "FUNCTION_CODE", 150, true, align: 0);
             DgvUtil.AddTextCol(DgvFunction, "    화면 기능명", "FUNCTION_NAME", 120, true, align: 0);
             DgvUtil.AddTextCol(DgvFunction, "    단축키", "SHORT_CUT_KEY", 120, true, align: 0);
@@ -57,14 +58,32 @@ namespace Cohesion_Project
             FList = Srv_F.SelectFunction();
             DgvFunction.DataSource = FList;
 
+            int seq = 1;
+            DgvFunction.DataSource = FList.Select((o) =>
+            new
+            {
+                IDX = seq++,
+                FUNCTION_CODE = o.FUNCTION_CODE,
+                FUNCTION_NAME = o.FUNCTION_NAME,
+                SHORT_CUT_KEY = o.SHORT_CUT_KEY,
+                ICON_INDEX = o.ICON_INDEX,
+                CREATE_USER_ID = o.CREATE_USER_ID,
+                CREATE_TIME = o.CREATE_TIME,
+                UPDATE_USER_ID = o.UPDATE_USER_ID,
+                UPDATE_TIME = o.UPDATE_TIME,
+
+            }).ToList();
+
+
+
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (DgvFunction.SelectedRows.Count < 1)
                 return;
-            if (!MboxUtil.MboxInfo_($"{DgvFunction[0, DgvFunction.CurrentRow.Index].Value.ToString()} 화면기능을 삭제하시겠습니까 ?")) return;
-            string functioCode = Convert.ToString(DgvFunction[0, DgvFunction.CurrentRow.Index].Value);
+            if (!MboxUtil.MboxInfo_($"{DgvFunction[1, DgvFunction.CurrentRow.Index].Value.ToString()} 화면기능을 삭제하시겠습니까 ?")) return;
+            string functioCode = Convert.ToString(DgvFunction[1, DgvFunction.CurrentRow.Index].Value);
 
             bool result = Srv_F.DeleteFunctio(functioCode);
             if (!result)
@@ -207,6 +226,22 @@ namespace Cohesion_Project
         {
             FList = Srv_F.SelectFunction2(condition);
             DgvFunction.DataSource = FList;
+
+            int seq = 1;
+            DgvFunction.DataSource = FList.Select((o) =>
+            new
+            {
+                IDX = seq++,
+                FUNCTION_CODE = o.FUNCTION_CODE,
+                FUNCTION_NAME = o.FUNCTION_NAME,
+                SHORT_CUT_KEY = o.SHORT_CUT_KEY,
+                ICON_INDEX = o.ICON_INDEX,
+                CREATE_USER_ID = o.CREATE_USER_ID,
+                CREATE_TIME = o.CREATE_TIME,
+                UPDATE_USER_ID = o.UPDATE_USER_ID,
+                UPDATE_TIME = o.UPDATE_TIME,
+
+            }).ToList();
         }
     }
 }
