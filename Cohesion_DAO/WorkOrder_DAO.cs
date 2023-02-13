@@ -361,7 +361,6 @@ namespace Cohesion_DAO
                 conn.Open();
 
                 list = Helper.DataReaderMapToList<PRODUCT_MST_DTO>(cmd.ExecuteReader());
-
                 return list;
 
             }
