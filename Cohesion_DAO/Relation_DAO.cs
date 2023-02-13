@@ -100,7 +100,7 @@ namespace Cohesion_DAO
                 StringBuilder sb = new StringBuilder();
                 list.ForEach((c) => sb.Append(c.INSPECT_ITEM_CODE + "','"));
                 string codes = "'" + sb.ToString().TrimEnd(',', '\'') + "'";
-                string sql1 = $@"DELETE INSPECT_ITEM_OPERATION_REL WHERE OPERATION_CODE = @OPERATION_CODE AND INSPECT_ITEM_CODE NOT IN (SELECT DISTINCT EQUIPMENT_CODE
+                string sql1 = $@"DELETE INSPECT_ITEM_OPERATION_REL WHERE OPERATION_CODE = @OPERATION_CODE AND INSPECT_ITEM_CODE NOT IN (SELECT DISTINCT INSPECT_ITEM_CODE
                                                                                                                                      FROM INSPECT_ITEM_OPERATION_REL
                                                                                                                                      WHERE INSPECT_ITEM_CODE IN ({codes}))";
                 SqlCommand cmd = new SqlCommand(sql1, conn);
@@ -115,7 +115,7 @@ namespace Cohesion_DAO
                 SqlCommand cmd2 = new SqlCommand();
                 cmd2.Connection = conn;
                 cmd2.CommandText = @"DECLARE @INS INT
-                                        SET @INS = (SELECT COUNT(*) FROM EQUIPMENT_OPERATION_REL WHERE OPERATION_CODE = @OPERATION_CODE AND INSPECT_ITEM_CODE = @INSPECT_ITEM_CODE)       
+                                        SET @INS = (SELECT COUNT(*) FROM INSPECT_ITEM_OPERATION_REL WHERE OPERATION_CODE = @OPERATION_CODE AND INSPECT_ITEM_CODE = @INSPECT_ITEM_CODE)       
                                         IF @INS > 0
                                         BEGIN 
                                             UPDATE INSPECT_ITEM_OPERATION_REL SET UPDATE_TIME = GETDATE(), UPDATE_USER_ID = @UPDATE_USER_ID
@@ -123,7 +123,7 @@ namespace Cohesion_DAO
                                         END
                                         ELSE
                                         BEGIN
-                                         	INSERT INTO  EQUIPMENT_OPERATION_REL (OPERATION_CODE, INSPECT_ITEM_CODE, CREATE_TIME, CREATE_USER_ID)
+                                         	INSERT INTO  INSPECT_ITEM_OPERATION_REL (OPERATION_CODE, INSPECT_ITEM_CODE, CREATE_TIME, CREATE_USER_ID)
                                                                     		VALUES (@OPERATION_CODE, @INSPECT_ITEM_CODE, GETDATE(), @CREATE_USER_ID)
                                         END;";
                 cmd2.Parameters.Add(new SqlParameter("@OPERATION_CODE", SqlDbType.VarChar));

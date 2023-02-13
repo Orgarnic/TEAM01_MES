@@ -43,13 +43,13 @@ namespace Cohesion_DTO
 
     public class Store_DTO_Search
     {
-        [Category("검색조건"), Description("창고코드 (= ST_xxxx) 입력"), DisplayName("창고코드")]
+        [Category("검색조건"), Description("CM_ST_CODE"), DisplayName("창고코드"), TypeConverter(typeof(ComboStringConverter))]
         public string STORE_CODE { get; set; }
         [Category("검색조건"), Description("창고명 입력"), DisplayName("창고명")]
         public string STORE_NAME { get; set; }
 
-        [Category("검색조건"), Description("CM_ST_CODE"), DisplayName("창고유형"), TypeConverter(typeof(ComboStringConverter))]
-        public string STORE_TYPE { get; set; }
+        //[Category("검색조건"), Description("CM_ST_CODE"), DisplayName("창고유형"), TypeConverter(typeof(ComboStringConverter))]
+        //public string STORE_TYPE { get; set; }
     }
     public class Store_DTO_Search_Data
     {
