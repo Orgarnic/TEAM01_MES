@@ -13,7 +13,6 @@ namespace Cohesion_Project
 {
     public partial class Frm_Sales_Order : Cohesion_Project.Frm_Base_2
     {
-        public User_DTO userInfo { get; set; }
         private Sales_Order_DTO iProperty = new Sales_Order_DTO();
         private Sales_Order_DTO_Search sProperty = new Sales_Order_DTO_Search();
         private List<Sales_Order_DTO> orders = new List<Sales_Order_DTO>();
@@ -161,14 +160,14 @@ namespace Cohesion_Project
                 return;
             }
 
-            var list = dgv_SalesOrder.DataSource as List<Sales_Order_DTO>;
-            bool codeExist = list.Exists((i) => i.SALES_ORDER_ID.Equals(dto.SALES_ORDER_ID, StringComparison.OrdinalIgnoreCase));
-            if (codeExist)
-            {
-                MboxUtil.MboxInfo("동일한 주문번호가 존재합니다.");
-                return;
-            }
-            dto.CREATE_USER_ID = "정민영";
+            //var list = dgv_SalesOrder.DataSource as List<Sales_Order_DTO>;
+            //bool codeExist = list.Exists((i) => i.SALES_ORDER_ID.Equals(dto.SALES_ORDER_ID, StringComparison.OrdinalIgnoreCase));
+            //if (codeExist)
+            //{
+            //    MboxUtil.MboxInfo("동일한 주문번호가 존재합니다.");
+            //    return;
+            //}
+            dto.CREATE_USER_ID = ((Frm_Main)this.MdiParent).userInfo.USER_ID.ToString();
             dto.CREATE_TIME = DateTime.Now;
 
             bool result = srvSalesOrder.InsertSalesOrder(dto);
