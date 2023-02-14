@@ -70,7 +70,7 @@ namespace Cohesion_DAO
                 string sql = @"select WORK_ORDER_ID, ORDER_DATE, wo.PRODUCT_CODE, c.DATA_1 CUSTOMER_CODE, ORDER_QTY, ORDER_STATUS, PRODUCT_QTY, DEFECT_QTY, WORK_START_TIME, WORK_CLOSE_TIME, WORK_CLOSE_USER_ID, wo.CREATE_TIME, wo.CREATE_USER_ID, wo.UPDATE_TIME, wo.UPDATE_USER_ID, convert(nvarchar(16),ORDER_DATE,120) WORK_CODE
                                from WORK_ORDER_MST wo inner join PRODUCT_MST p on wo.PRODUCT_CODE = p.PRODUCT_CODE
 													  inner join CODE_DATA_MST c on wo.CUSTOMER_CODE = c.KEY_1
-                               order by ORDER_DATE";
+                               order by ORDER_DATE DESC";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 conn.Open();
@@ -106,7 +106,8 @@ namespace Cohesion_DAO
                                from SALES_ORDER_MST so inner join PRODUCT_MST p on so.PRODUCT_CODE = p.PRODUCT_CODE
 													   left join LOT_STS l on so.PRODUCT_CODE = l.PRODUCT_CODE
 							   where so.CONFIRM_FLAG = 'Y' and so.SHIP_FLAG is null
-							   group by SALES_ORDER_ID, so.ORDER_DATE, so.CUSTOMER_CODE, so.PRODUCT_CODE, so.ORDER_QTY";
+							   group by SALES_ORDER_ID, so.ORDER_DATE, so.CUSTOMER_CODE, so.PRODUCT_CODE, so.ORDER_QTY
+                               order by so.ORDER_DATE desc";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 conn.Open();
