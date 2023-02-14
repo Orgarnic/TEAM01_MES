@@ -23,7 +23,7 @@ namespace Cohesion_Project
         User_DTO user = new User_DTO();
 
         string oCode, pCode;
-        int totQty = 0;
+        int totQty = 0, row = 0;
         decimal orderQty, lotQty;
         public Pop_WorkOrder()
         {
@@ -114,6 +114,7 @@ namespace Cohesion_Project
 
                         if (dgvBOMStock["VENDOR_CODE", i].Value == null)    // 매입처가 있는 제품들만 가져오기.
                         {
+
                             dto = new Work_Order_MST_DTO
                             {
                                 PRODUCT_CODE = dgvBOMStock["CHILD_PRODUCT_CODE", i].Value.ToString(),
@@ -122,7 +123,7 @@ namespace Cohesion_Project
                                 ORDER_DATE = initWork.ORDER_DATE,
                                 CREATE_USER_ID = user.USER_NAME,
                                 CREATE_TIME = DateTime.Now,
-                                CUSTOMER_CODE = dgvOrderList["CUSTOMER_CODE", i].Value.ToString()
+                                CUSTOMER_CODE = (string)dgvOrderList["CUSTOMER_CODE", row].Value
                             };
                             inData.Add(dto);
                             cnt++;
@@ -151,8 +152,8 @@ namespace Cohesion_Project
                     }
                     else
                     {
-                        bool result = work.InsertWorkOrder(initWork);
-                        if (!result)
+                        bool result = work.InsertWorkOrder(initWork), result2 = work.UpdateOrderShip(oCode);
+                        if (!result || !result2)
                         {
                             MboxUtil.MboxError("등록되지 못했습니다.\n다시 시도해주세요.");
                             return;
@@ -171,8 +172,8 @@ namespace Cohesion_Project
                 if (MboxUtil.MboxInfo_("해당 주문내역으로 작업지시를 등록하시겠습니까?") == false) return;
                 else
                 {
-                    bool result = work.InsertWorkOrder(initWork);
-                    if(!result)
+                    bool result = work.InsertWorkOrder(initWork), result2 = work.UpdateOrderShip(oCode);
+                    if(!result || !result2)
                     {
                         MboxUtil.MboxError("등록되지 못했습니다.\n다시 시도해주세요.");
                         return;
@@ -204,6 +205,7 @@ namespace Cohesion_Project
             if (e.RowIndex < 0) return;
             lotQty = Convert.ToDecimal(dgvOrderList["LOT_QTY", e.RowIndex].Value.ToString());
             orderQty = Convert.ToDecimal(dgvOrderList["ORDER_QTY", e.RowIndex].Value.ToString());
+            row = dgvOrderList.CurrentRow.Index;
             oCode = dgvOrderList["SALES_ORDER_ID", e.RowIndex].Value.ToString();
             pCode = dgvOrderList["PRODUCT_CODE", e.RowIndex].Value.ToString();
             bom = work.GetOrderProductBOM(oCode, pCode);

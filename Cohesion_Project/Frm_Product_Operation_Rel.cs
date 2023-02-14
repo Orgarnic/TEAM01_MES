@@ -14,6 +14,7 @@ namespace Cohesion_Project
 {
     public partial class Frm_Product_Operation_Rel : Cohesion_Project.Frm_Base_4
     {
+        User_DTO user = new User_DTO();
         PRODUCT_OPERATION_Rel_Search oSearch = new PRODUCT_OPERATION_Rel_Search();
         Srv_Relation svR = new Srv_Relation();
         List<OPERATION_REL_DTO> iList = new List<OPERATION_REL_DTO>();
@@ -27,6 +28,7 @@ namespace Cohesion_Project
 
         private void Frm_Product_Operation_Rel_Load(object sender, EventArgs e)
         {
+            user = (this.ParentForm as Frm_Main).userInfo;
             InitDgv();
             LoadData();
         }

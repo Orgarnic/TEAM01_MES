@@ -63,6 +63,16 @@ namespace Cohesion_Project.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap backimg {
+            get {
+                object obj = ResourceManager.GetObject("backimg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap box {
             get {
                 object obj = ResourceManager.GetObject("box", resourceCulture);
@@ -136,6 +146,16 @@ namespace Cohesion_Project.Properties {
         internal static System.Drawing.Bitmap close2 {
             get {
                 object obj = ResourceManager.GetObject("close2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap letter_c__4_ {
+            get {
+                object obj = ResourceManager.GetObject("letter_c__4_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

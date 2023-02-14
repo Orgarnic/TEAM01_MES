@@ -58,7 +58,7 @@ namespace Cohesion_DAO
                 conn.Open();
 
                 string sql = @"insert into USER_MST(USER_ID, USER_NAME, USER_GROUP_CODE, USER_PASSWORD, USER_DEPARTMENT, CREATE_TIME, CREATE_USER_ID)
-                                values(concat('User_', FORMAT(GETDATE(),'yyMMddHHmmss')),@USER_NAME,@USER_GROUP_CODE,@USER_PASSWORD,@USER_DEPARTMENT,@CREATE_TIME,@CREATE_USER_ID)";
+                                values(@USER_ID,@USER_NAME,@USER_GROUP_CODE,@USER_PASSWORD,@USER_DEPARTMENT,@CREATE_TIME,@CREATE_USER_ID)";
                 SqlCommand cmd = Helper.UpsertCmdValue<User_DTO>(dto, sql, conn);
                 int result = cmd.ExecuteNonQuery();
                 return result > 0;

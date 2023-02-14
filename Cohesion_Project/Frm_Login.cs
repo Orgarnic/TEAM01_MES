@@ -48,7 +48,6 @@ namespace Cohesion_Project
             }
             else
             {
-                MboxUtil.MboxInfo($"{user.USER_NAME}님 반갑습니다.");
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }

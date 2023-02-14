@@ -99,5 +99,14 @@ namespace Cohesion_Project.Service
 
          return result;
       }
+
+        public bool UpdateOrderShip(string order)
+        {
+            WorkOrder_DAO db = new WorkOrder_DAO();
+            bool result = db.UpdateOrderShip(order);
+            db.Dispose();
+
+            return result;
+        }
     }
 }

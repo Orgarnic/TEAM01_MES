@@ -8,13 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Cohesion_DTO;
-
+using Cohesion_Project.Util;
 
 namespace Cohesion_Project
 {
     public partial class Frm_UserMgt : Frm_Base_2
     {
-
+        User_DTO user = new User_DTO();
         Srv_User srv_U = new Srv_User();
         Srv_User Srv_User;
         List<User_DTO> UserList;
@@ -30,6 +30,7 @@ namespace Cohesion_Project
         }
         private void Frm_UserMgt_Load(object sender, EventArgs e)
         {
+            user = (this.ParentForm as Frm_Main).userInfo;
             Srv_User = new Srv_User();
             DgvInit();
             DataGridViewFill();
@@ -45,9 +46,9 @@ namespace Cohesion_Project
             DgvUtil.AddTextCol(DgvUser, "사용자 그룹", "USER_GROUP_CODE", 120, true, align: 0);
             DgvUtil.AddTextCol(DgvUser, "암호 ", "USER_PASSWORD", 120, true, align: 0);
             DgvUtil.AddTextCol(DgvUser, "부서 ", "USER_DEPARTMENT", 120, true, align: 0);
-            DgvUtil.AddTextCol(DgvUser, "생성 시간 ", "CREATE_TIME", 150, true, align: 2);
+            DgvUtil.AddTextCol(DgvUser, "생성 시간 ", "CREATE_TIME", 150, true, align: 1);
             DgvUtil.AddTextCol(DgvUser, "생성 사용자", "CREATE_USER_ID", 120, true, align: 1);
-            DgvUtil.AddTextCol(DgvUser, "수정 시간", "UPDATE_TIME", 150, true, align: 2);
+            DgvUtil.AddTextCol(DgvUser, "수정 시간", "UPDATE_TIME", 150, true, align: 1);
             DgvUtil.AddTextCol(DgvUser, "변경 사용자 ", "UPDATE_USER_ID", 120, true, align: 1);
 
             //프로퍼티 그리드 초기 설정
@@ -85,7 +86,7 @@ namespace Cohesion_Project
             [Category("속성"), Description("USER_NAME"), DisplayName("사용자 명")]
             public string USER_NAME { get; set; }
 
-            [Category("속성"), Description("USER_GROUP_CODE"), DisplayName("사용자 그룹 코드"), TypeConverter(typeof(ComboStringConverter))]
+            [Category("속성"), Description("USER_GROUP_CODE"), DisplayName("사용자 그룹 코드"), TypeConverter(typeof(ComboString2Converter))]
             public string USER_GROUP_CODE { get; set; }
 
             [Category("속성"), Description("USER_PASSWORD"), DisplayName("사용자 암호")]
@@ -177,20 +178,21 @@ namespace Cohesion_Project
                 MboxUtil.MboxInfo("등록하실 사원 정보를 입력해주세요.");
                 return;
             }
-            bool result = srv_U.InsertUser(dto);
+           
 
             dto.CREATE_USER_ID = "김민식";
             dto.CREATE_TIME = DateTime.Now;
-            User_DTO Udto = Ppg_User.SelectedObject as User_DTO;
- 
+            bool result = srv_U.InsertUser(dto);
+            //User_DTO Udto = Ppg_User.SelectedObject as User_DTO;
 
-            var list = DgvUser.DataSource as List<User_DTO>;
-            bool codeExist = list.Exists((i) => i.USER_ID.Equals(dto.USER_ID, StringComparison.OrdinalIgnoreCase));
-            if (codeExist)
-            {
-                MboxUtil.MboxInfo("동일한 사원번호가 존재합니다.");
-                return;
-            }
+
+            //var list = DgvUser.DataSource as List<User_DTO>;
+            //bool codeExist = list.Exists((i) => i.USER_ID.Equals(dto.USER_ID, StringComparison.OrdinalIgnoreCase));
+            //if (codeExist)
+            //{
+            //    MboxUtil.MboxInfo("동일한 사원번호가 존재합니다.");
+            //    return;
+            //}
 
             if (result)
             {
@@ -199,7 +201,7 @@ namespace Cohesion_Project
             }
             else
             {
-                MessageBox.Show("주문 등록 중 오류가 발생했습니다");
+                MessageBox.Show("사원 정보 등록 중 오류가 발생했습니다");
             }
 
         }
@@ -239,9 +241,10 @@ namespace Cohesion_Project
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
+            
             if (stateSearchCondition)
             {
-                Ppg_User.SelectedObject = new User_DTO();
+                Ppg_User.SelectedObject = new Udate();
                 Ppg_User.Enabled = true;
                 btnAdd.Enabled = true;
             }
@@ -263,8 +266,8 @@ namespace Cohesion_Project
         {
             if (DgvUser.SelectedRows.Count < 1)
                 return;
-            if (MessageBox.Show($"{DgvUser[0, DgvUser.CurrentRow.Index].Value.ToString()} 사용자구룹을 삭제하시겠습니까 ?", "알림", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel) return;
-            string userCode = Convert.ToString(DgvUser[0, DgvUser.CurrentRow.Index].Value);
+            if (MessageBox.Show($"{DgvUser[1, DgvUser.CurrentRow.Index].Value.ToString()} 사용자그룹을 삭제하시겠습니까 ?", "알림", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel) return;
+            string userCode = Convert.ToString(DgvUser[1, DgvUser.CurrentRow.Index].Value);
             bool result = Srv_User.DeleteUser(userCode);
             if (!result)
             {
@@ -283,12 +286,27 @@ namespace Cohesion_Project
 
                 UserList = Srv_User.SelectUser2(condition);
                 DgvUser.DataSource = UserList;
-
+                int seq = 1;
+                DgvUser.DataSource = UserList.Select((o) =>
+                new
+                {
+                    IDX = seq++,
+                    USER_ID = o.USER_ID,
+                    USER_NAME = o.USER_NAME,
+                    USER_GROUP_CODE = o.USER_GROUP_CODE,
+                    USER_PASSWORD = o.USER_PASSWORD,
+                    USER_DEPARTMENT = o.USER_DEPARTMENT,
+                    CREATE_TIME = o.CREATE_TIME,
+                    CREATE_USER_ID = o.CREATE_USER_ID,
+                    UPDATE_TIME = o.UPDATE_TIME,
+                    UPDATE_USER_ID = o.UPDATE_USER_ID
+                }).ToList();
             }
             else
             {
                 MboxUtil.MboxError("검색조건을 먼저 눌러주세요");
             }
+
         }
 
         private void btnSearchCondition_Click(object sender, EventArgs e)

@@ -21,7 +21,7 @@ namespace Cohesion_DTO
 
         public static List<string> WorkOrder = new List<string> { };
 
-      public static List<string> FunctionCode = new List<string> { "Frm_BOM", "Frm_Common", "Frm_Equipment", "Frm_Equipment_Operation_Rel", "Frm_Function", "Frm_Function_User_Group_Rel", "Frm_Inspection", "Frm_Operation", "Frm_Operation_Inspection_Rel", "Frm_Product", "Frm_Product_Operation_Rel", "Frm_Sales_Order", "Frm_Store" , "Frm_UserGroupMgt", "Frm_UserMgt", "Frm_WorkOrder" };
+      public static List<string> FunctionCode = new List<string> { "Frm_BOM", "Frm_Common", "Frm_Equipment", "Frm_Equipment_Operation_Rel", "Frm_Function", "Frm_Function_User_Group_Rel", "Frm_Inspection", "Frm_Operation", "Frm_Operation_Inspection_Rel", "Frm_Product", "Frm_Product_Operation_Rel", "Frm_Sales_Order", "Frm_Store" , "Frm_UserGroupMgt", "Frm_UserMgt", "Frm_WorkOrder","TEST"};
     }
 
     public class ComboStringConverter : StringConverter

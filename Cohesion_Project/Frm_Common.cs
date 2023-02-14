@@ -17,6 +17,7 @@ namespace Cohesion_Project
         Srv_CommonData srvC = new Srv_CommonData();
         private CommonData cd = new CommonData();
         private SearchData sd = new SearchData();
+        User_DTO user = new User_DTO();
 
         public CommonTable_DTO Table { get; set; }
 
@@ -31,6 +32,7 @@ namespace Cohesion_Project
 
         private void Frm_Common_Load(object sender, EventArgs e)
         {
+            user = (this.ParentForm as Frm_Main).userInfo;
             //데이터 그리드 뷰 초기 설정
             DgvUtil.DgvInit(Dgv_CommonTable);
             DgvUtil.AddTextCol(Dgv_CommonTable, "      테이블명", "CODE_TABLE_NAME", 180, readOnly: true, align:0, frozen: true);
