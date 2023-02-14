@@ -13,7 +13,6 @@ namespace Cohesion_Project
 {
     public partial class Frm_Sales_Order : Cohesion_Project.Frm_Base_2
     {
-        public User_DTO userInfo { get; set; }
         private Sales_Order_DTO iProperty = new Sales_Order_DTO();
         private Sales_Order_DTO_Search sProperty = new Sales_Order_DTO_Search();
         private List<Sales_Order_DTO> orders = new List<Sales_Order_DTO>();
