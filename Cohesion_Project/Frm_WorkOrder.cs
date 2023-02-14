@@ -170,9 +170,10 @@ namespace Cohesion_Project
             {
                 btnUpdate.PerformClick();
             }
+            dgvWorkOrderList.Enabled = true;
+            ppgWorkOrderSearch.Enabled = false;
             DataGridClean();
             txtSearch.Text = "";
-            dgvWorkOrderList.ClearSelection();
         }
 
         private void btnInsert_Click(object sender, EventArgs e)
@@ -224,6 +225,7 @@ namespace Cohesion_Project
         {
             if (lbl3.Text == "▶ 속성")
             {
+                dgvWorkOrderList.Enabled = false;
                 btnSearch.Enabled = true;
                 dgvWorkOrderList.ClearSelection();
                 ppgWorkOrderSearch.Enabled = true;
@@ -232,6 +234,7 @@ namespace Cohesion_Project
             }
             else
             {
+                dgvWorkOrderList.Enabled = true;
                 btnSearch.Enabled = false;
                 dgvWorkOrderList.ClearSelection();
                 ppgWorkOrderSearch.Enabled = false;

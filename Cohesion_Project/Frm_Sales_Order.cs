@@ -119,11 +119,16 @@ namespace Cohesion_Project
 
         private void dgv_SalesOrder_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            string upDate;
          if (e.RowIndex < 0) return; 
             var list = dgv_SalesOrder.Rows[e.RowIndex].DataBoundItem;
 
             Sales_Order_DTO data = default;
-            string upDate=(string)(list.GetType().GetProperty("UPDATE_TIME").GetValue(list));
+            // string upDate=(string)(list.GetType().GetProperty("UPDATE_TIME").GetValue(list));
+            // => update 날짜를 불러올 때, 널 오류 발생으로 코드 변경
+            if((list.GetType().GetProperty("UPDATE_TIME").GetValue(list)) == null)upDate = null;
+            else upDate = (list.GetType().GetProperty("UPDATE_TIME").GetValue(list)).ToString();
+
             data = new Sales_Order_DTO
             {
                 SALES_ORDER_ID = list.GetType().GetProperty("SALES_ORDER_ID").GetValue(list).ToString(),
