@@ -14,7 +14,6 @@ namespace Cohesion_Project
 {
    public partial class Frm_Main : Form
    {
-      User_DTO user = new User_DTO();
       public User_DTO userInfo { get; set; }
       private List<FUNCTION_MST_DTO> menus;
       private Srv_User srvUser = new Srv_User();
@@ -31,7 +30,6 @@ namespace Cohesion_Project
       }
       private void Frm_Main_Load(object sender, EventArgs e)
       {
-         user = (this.ParentForm as Frm_Main).userInfo;
          this.Visible = false;
          Frm_Login login = new Frm_Login();
          DialogResult result = login.ShowDialog(this);
