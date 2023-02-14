@@ -24,6 +24,7 @@ namespace Cohesion_Project
         private SearchData sd = new SearchData();
         bool isCondition = true;
         bool stateSearchCondition = true;
+        User_DTO user = new User_DTO();
 
         public Frm_UserGroupMgt()
         {
@@ -32,6 +33,7 @@ namespace Cohesion_Project
         bool state = false;
         private void Frm_UserGroup_Load(object sender, EventArgs e)
         {
+            user = (this.ParentForm as Frm_Main).userInfo;
             Srv_UserGroup = new Srv_UserGroup();
             DgvInit();
             DataGridViewFill();

@@ -21,6 +21,7 @@ namespace Cohesion_Project
         Srv_Equipment srvEquipment = new Srv_Equipment();
         bool stateSearchCondition = false;
         Util.ComboUtil comboUtil = new Util.ComboUtil();
+        User_DTO user = new User_DTO();
 
         List<Equipment_DTO> srcList;
 
@@ -31,6 +32,7 @@ namespace Cohesion_Project
 
         private void Frm_Equipment_Load(object sender, EventArgs e)
         {
+            user = (this.ParentForm as Frm_Main).userInfo;
             FormCondition();
             DataGridViewBinding();
         }

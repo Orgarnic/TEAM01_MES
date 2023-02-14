@@ -15,6 +15,7 @@ namespace Cohesion_Project
         private Inspection_DTO_Search sProperty = new Inspection_DTO_Search();
         Service.Srv_Inspection srvInspection = new Service.Srv_Inspection();
         bool stateSearchCondition = false;
+        User_DTO user = new User_DTO();
 
         List<Inspection_DTO> srcList;
 
@@ -26,6 +27,8 @@ namespace Cohesion_Project
 
         private void Frm_Inspection_Load(object sender, EventArgs e)
         {
+            user = (this.ParentForm as Frm_Main).userInfo;
+
             DgvUtil.DgvInit(dgvInspection);
             DgvUtil.AddTextCol(dgvInspection, "    검사 항목", "INSPECT_ITEM_CODE", 180, readOnly: true, align: 0, frozen: true);
             DgvUtil.AddTextCol(dgvInspection, "    검사 항목명", "INSPECT_ITEM_NAME", 200, readOnly: true, align: 0, frozen: true);

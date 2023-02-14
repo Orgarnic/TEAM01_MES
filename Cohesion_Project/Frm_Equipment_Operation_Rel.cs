@@ -17,6 +17,7 @@ namespace Cohesion_Project
         Srv_Relation svR = new Srv_Relation();
         List<Equipment_DTO> iList = new List<Equipment_DTO>();
         bool searchState = false;
+        User_DTO user = new User_DTO();
         public Frm_Equipment_Operation_Rel()
         {
             InitializeComponent();
@@ -24,6 +25,7 @@ namespace Cohesion_Project
 
         private void Frm_Equipment_Operation_Rel_Load(object sender, EventArgs e)
         {
+            user = (this.ParentForm as Frm_Main).userInfo;
             InitDgv();
             LoadData();
         }

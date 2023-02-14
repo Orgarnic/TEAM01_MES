@@ -19,6 +19,7 @@ namespace Cohesion_Project
         FUNCTION_MST_DTO FD = new FUNCTION_MST_DTO();
         bool isCondition = true;
         bool stateSearchCondition = false;
+        User_DTO user = new User_DTO();
         public Frm_Function()
         {
             InitializeComponent();
@@ -26,6 +27,7 @@ namespace Cohesion_Project
 
         private void Frm_Function_Load(object sender, EventArgs e)
         {
+            user = (this.ParentForm as Frm_Main).userInfo;
             DgvInit();
             DataGridViewFill();
             PpgInit();

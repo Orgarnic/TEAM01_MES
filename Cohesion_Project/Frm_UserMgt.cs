@@ -14,7 +14,7 @@ namespace Cohesion_Project
 {
     public partial class Frm_UserMgt : Frm_Base_2
     {
-
+        User_DTO user = new User_DTO();
         Srv_User srv_U = new Srv_User();
         Srv_User Srv_User;
         List<User_DTO> UserList;
@@ -30,6 +30,7 @@ namespace Cohesion_Project
         }
         private void Frm_UserMgt_Load(object sender, EventArgs e)
         {
+            user = (this.ParentForm as Frm_Main).userInfo;
             Srv_User = new Srv_User();
             DgvInit();
             DataGridViewFill();

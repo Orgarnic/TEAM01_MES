@@ -16,6 +16,7 @@ namespace Cohesion_Project
         Srv_Function_User_Group_Rel SrvFUG = new Srv_Function_User_Group_Rel();
         List<FUNCTION_USER_GROUP_REL_DTO> FList;
         bool searchState = false;
+        User_DTO user = new User_DTO();
         public Frm_Function_User_Group_Rel()
         {
             InitializeComponent();
@@ -23,7 +24,7 @@ namespace Cohesion_Project
 
         private void Frm_Function_User_Group_Rel_Load(object sender, EventArgs e)
         {
-
+            user = (this.ParentForm as Frm_Main).userInfo;
             DgvInit();
             LoadData();
             // DataGridViewFill();

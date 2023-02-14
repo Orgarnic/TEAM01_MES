@@ -20,7 +20,7 @@ namespace Cohesion_Project
         Srv_Sales_Order srvSalesOrder = new Srv_Sales_Order();
         Util.ComboUtil comboUtil = new Util.ComboUtil();
         List<Sales_Order_DTO> srcList;
-
+        User_DTO user = new User_DTO();
         private List<Sales_Order_DTO> productCode = new List<Sales_Order_DTO>();
 
 
@@ -32,6 +32,7 @@ namespace Cohesion_Project
 
         private void Frm_Sales_Order_Load(object sender, EventArgs e)
         {
+            user = (this.ParentForm as Frm_Main).userInfo;
             DataGridViewBinding();
             FormCondition();
         }
