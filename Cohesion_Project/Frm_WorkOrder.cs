@@ -276,8 +276,8 @@ namespace Cohesion_Project
                     CREATE_USER_ID = list.CREATE_USER_ID,
                     UPDATE_USER_ID = user.USER_NAME,
                     ORDER_STATUS = list.ORDER_STATUS,
-                    PRODUCT_QTY = list.PRODUCT_QTY == 0 ? 0 : list.PRODUCT_QTY,
-                    DEFECT_QTY = list.DEFECT_QTY == 0 ? 0 : list.DEFECT_QTY
+                    PRODUCT_QTY = list.PRODUCT_QTY,
+                    DEFECT_QTY = list.DEFECT_QTY
                 };
                 wOrder = check;
 
