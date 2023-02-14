@@ -15,7 +15,6 @@ namespace Cohesion_Project
 {
     public partial class Frm_Equipment : Cohesion_Project.Frm_Base_2
     {
-        public User_DTO userInfo { get; set; }
         private Equipment_DTO iProperty = new Equipment_DTO();
         private Equipment_DTO_Search sProperty = new Equipment_DTO_Search();
         Srv_Equipment srvEquipment = new Srv_Equipment();
@@ -119,18 +118,18 @@ namespace Cohesion_Project
             Equipment_DTO dto = ppg_Equipment.SelectedObject as Equipment_DTO;
             if (dto.EQUIPMENT_CODE == null || dto.EQUIPMENT_NAME == null || dto.EQUIPMENT_STATUS == null || dto.EQUIPMENT_TYPE == null)
             {
-                MboxUtil.MboxInfo("등록하실 창고 정보를 입력해주세요.");
+                MboxUtil.MboxInfo("등록하실 설비 정보를 입력해주세요.");
                 return;
             }
 
-            var list = dgv_Equipment.DataSource as List<Equipment_DTO>;
-            bool codeExist = list.Exists((i) => i.EQUIPMENT_CODE.Equals(dto.EQUIPMENT_CODE, StringComparison.OrdinalIgnoreCase));
-            if (codeExist)
-            {
-                MboxUtil.MboxInfo("동일한 코드의 창고가 존재합니다.");
-                return;
-            }
-            dto.CREATE_USER_ID = "정민영";
+            //var list = dgv_Equipment.DataSource as List<Equipment_DTO>;
+            //bool codeExist = list.Exists((i) => i.EQUIPMENT_CODE.Equals(dto.EQUIPMENT_CODE, StringComparison.OrdinalIgnoreCase));
+            //if (codeExist)
+            //{
+            //    MboxUtil.MboxInfo("동일한 코드의 창고가 존재합니다.");
+            //    return;
+            //}
+            dto.CREATE_USER_ID = ((Frm_Main)this.MdiParent).userInfo.USER_ID.ToString();
             dto.CREATE_TIME = DateTime.Now;
 
 
@@ -138,11 +137,11 @@ namespace Cohesion_Project
             bool result = srvEquipment.InsertEquipment(dto);
             if (result)
             {
-                MboxUtil.MboxInfo("창고 등록이 완료되었습니다.");
+                MboxUtil.MboxInfo("설비 등록이 완료되었습니다.");
                 LoadData();
             }
             else
-                MboxUtil.MboxError("창고 등록 중 오류가 발생했습니다.");
+                MboxUtil.MboxError("설비 등록 중 오류가 발생했습니다.");
         }
         private void btnUpdate_Click(object sender, EventArgs e)
         {
@@ -154,25 +153,25 @@ namespace Cohesion_Project
             var dto = ppg_Equipment.SelectedObject as Equipment_DTO;
             if (dto.EQUIPMENT_CODE == null || dto.EQUIPMENT_NAME == null || dto.EQUIPMENT_STATUS == null || dto.EQUIPMENT_TYPE == null)
             {
-                MboxUtil.MboxWarn("변경할 창고를 선택해주세요.");
+                MboxUtil.MboxWarn("변경할 설비를 선택해주세요.");
                 return;
             }
 
-            if (!MboxUtil.MboxInfo_("선택하신 창고 정보를 수정하시겠습니까 ? "))
+            if (!MboxUtil.MboxInfo_("선택하신 설비 정보를 수정하시겠습니까 ? "))
             {
                 return;
             }
-            dto.UPDATE_USER_ID = "정민영";
+            dto.UPDATE_USER_ID = ((Frm_Main)this.MdiParent).userInfo.USER_ID.ToString();
 
             bool result = srvEquipment.UpdateEquipment(dto);
             if (result)
             {
-                MboxUtil.MboxInfo("선택하신 창고 정보 수정이 완료되었습니다.");
+                MboxUtil.MboxInfo("선택하신 설비 정보 수정이 완료되었습니다.");
                 LoadData();
             }
             else
             {
-                MboxUtil.MboxInfo("선택하신 창고 정보 수정 중 오류가 발생했습니다.\n다시 시도하여 주십시오.");
+                MboxUtil.MboxInfo("선택하신 설비 정보 수정 중 오류가 발생했습니다.\n다시 시도하여 주십시오.");
             }
         }
 
@@ -193,7 +192,7 @@ namespace Cohesion_Project
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (!MboxUtil.MboxInfo_("선택하신 창고 정보를 삭제하시겠습니까?"))
+            if (!MboxUtil.MboxInfo_("선택하신 설비 정보를 삭제하시겠습니까?"))
             {
                 return;
             }
@@ -201,12 +200,12 @@ namespace Cohesion_Project
             bool result = srvEquipment.DeleteEquipment(dto);
             if (result)
             {
-                MboxUtil.MboxInfo("선택하신 창고 정보를 삭제가 되었습니다.");
+                MboxUtil.MboxInfo("선택하신 설비 정보를 삭제가 되었습니다.");
                 LoadData();
             }
             else
             {
-                MboxUtil.MboxError("선택하신 창고 정보를 삭제 중 오류가 발생하였습니다.\n다시 시도하여 주십시오.");
+                MboxUtil.MboxError("선택하신 설비 정보를 삭제 중 오류가 발생하였습니다.\n다시 시도하여 주십시오.");
             }
         }
 

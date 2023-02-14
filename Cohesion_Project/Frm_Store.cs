@@ -15,7 +15,6 @@ namespace Cohesion_Project
 {
     public partial class Frm_Store : Cohesion_Project.Frm_Base_2
     {
-        public User_DTO userInfo { get; set; }
         private Store_DTO iProperty = new Store_DTO();
         private Store_DTO_Search sProperty = new Store_DTO_Search();
         Srv_Store srvStore = new Srv_Store();

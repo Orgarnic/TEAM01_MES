@@ -17,7 +17,7 @@ namespace Cohesion_DTO
         public string STORE_NAME { get; set; }
 
 
-        [Category("속성"), Description("CM_ST_CODE"), DisplayName("창고유형"), TypeConverter(typeof(ComboStringConverter))]
+        [Category("속성"), Description("CM_STORE_TYPE"), DisplayName("창고유형"), TypeConverter(typeof(ComboStringConverter))]
         public string STORE_TYPE { get; set; }
 
 
@@ -43,13 +43,13 @@ namespace Cohesion_DTO
 
     public class Store_DTO_Search
     {
-        [Category("검색조건"), Description("CM_ST_CODE"), DisplayName("창고코드"), TypeConverter(typeof(ComboStringConverter))]
+        [Category("검색조건"), Description("CM_STROE_TYPE"), DisplayName("창고코드"), TypeConverter(typeof(ComboStringConverter))]
         public string STORE_CODE { get; set; }
         [Category("검색조건"), Description("창고명 입력"), DisplayName("창고명")]
         public string STORE_NAME { get; set; }
 
-        //[Category("검색조건"), Description("CM_ST_CODE"), DisplayName("창고유형"), TypeConverter(typeof(ComboStringConverter))]
-        //public string STORE_TYPE { get; set; }
+        [Category("검색조건"), Description("CM_STORE_TYPE"), DisplayName("창고유형"), TypeConverter(typeof(ComboStringConverter))]
+        public string STORE_TYPE { get; set; }
     }
     public class Store_DTO_Search_Data
     {
