@@ -41,15 +41,15 @@ namespace Cohesion_Project
             DgvUtil.DgvInit(DgvUser);
             DgvUtil.AddTextCol(DgvUser, "   NO", "IDX", width: 70, readOnly: true, frozen: true, align: 1);
            // DgvUtil.AddTextCol(DgvUser, "번호 ", "", 150, true, align: 1);
-            DgvUtil.AddTextCol(DgvUser, "로그인 사용자 ID", "USER_ID", 150, true, align: 1);
-            DgvUtil.AddTextCol(DgvUser, "사용자 이름", "USER_NAME", 120, true, align: 1);
-            DgvUtil.AddTextCol(DgvUser, "사용자 그룹", "USER_GROUP_CODE", 120, true, align: 0);
-            DgvUtil.AddTextCol(DgvUser, "암호 ", "USER_PASSWORD", 120, true, align: 0);
+            DgvUtil.AddTextCol(DgvUser, "로그인 사용자 ID", "USER_ID", 150, true, align: 0);
+            DgvUtil.AddTextCol(DgvUser, "사용자 이름", "USER_NAME", 120, true, align: 0);
+            DgvUtil.AddTextCol(DgvUser, "사용자 그룹", "USER_GROUP_CODE", 150, true, align: 0);
+            DgvUtil.AddTextCol(DgvUser, "암호 ", "USER_PASSWORD", 130, true, align: 0);
             DgvUtil.AddTextCol(DgvUser, "부서 ", "USER_DEPARTMENT", 120, true, align: 0);
-            DgvUtil.AddTextCol(DgvUser, "생성 시간 ", "CREATE_TIME", 150, true, align: 1);
-            DgvUtil.AddTextCol(DgvUser, "생성 사용자", "CREATE_USER_ID", 120, true, align: 1);
-            DgvUtil.AddTextCol(DgvUser, "수정 시간", "UPDATE_TIME", 150, true, align: 1);
-            DgvUtil.AddTextCol(DgvUser, "변경 사용자 ", "UPDATE_USER_ID", 120, true, align: 1);
+            DgvUtil.AddTextCol(DgvUser, "생성 시간 ", "CREATE_TIME", 200, true, align: 1);
+            DgvUtil.AddTextCol(DgvUser, "생성 사용자", "CREATE_USER_ID", 120, true, align: 0);
+            DgvUtil.AddTextCol(DgvUser, "수정 시간", "UPDATE_TIME", 200, true, align: 1);
+            DgvUtil.AddTextCol(DgvUser, "변경 사용자 ", "UPDATE_USER_ID", 120, true, align: 0);
 
             //프로퍼티 그리드 초기 설정
             Ppg_User.PropertySort = PropertySort.Categorized;
