@@ -197,7 +197,7 @@ namespace Cohesion_Project
                 Store_DTO_Search_Data dto = new Store_DTO_Search_Data { 
                     STORE_CODE = t.STORE_CODE, 
                     STORE_NAME = t.STORE_NAME, 
-                    //STORE_TYPE = t.STORE_TYPE
+                    STORE_TYPE = t.STORE_TYPE
                 };
                 var list = srvStore.SelectStore(dto);
                 dgv_Store.DataSource = list.Select((i) => new

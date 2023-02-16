@@ -43,7 +43,7 @@ namespace Cohesion_DTO
 
     public class Store_DTO_Search
     {
-        [Category("검색조건"), Description("CM_STROE_TYPE"), DisplayName("창고코드"), TypeConverter(typeof(ComboStringConverter))]
+        [Category("검색조건"), Description("STORE_CODE"), DisplayName("창고코드")]
         public string STORE_CODE { get; set; }
         [Category("검색조건"), Description("창고명 입력"), DisplayName("창고명")]
         public string STORE_NAME { get; set; }
