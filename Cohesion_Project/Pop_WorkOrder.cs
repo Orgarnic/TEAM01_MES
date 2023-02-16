@@ -152,8 +152,8 @@ namespace Cohesion_Project
                     }
                     else
                     {
-                        bool result = work.InsertWorkOrder(initWork), result2 = work.UpdateOrderShip(oCode);
-                        if (!result || !result2)
+                        bool result = work.InsertWorkOrder(initWork);//, result2 = work.UpdateOrderShip(oCode);
+                        if (!result)
                         {
                             MboxUtil.MboxError("등록되지 못했습니다.\n다시 시도해주세요.");
                             return;
@@ -172,8 +172,8 @@ namespace Cohesion_Project
                 if (MboxUtil.MboxInfo_("해당 주문내역으로 작업지시를 등록하시겠습니까?") == false) return;
                 else
                 {
-                    bool result = work.InsertWorkOrder(initWork), result2 = work.UpdateOrderShip(oCode);
-                    if(!result || !result2)
+                    bool result = work.InsertWorkOrder(initWork);//, result2 = work.UpdateOrderShip(oCode);
+                    if(!result)
                     {
                         MboxUtil.MboxError("등록되지 못했습니다.\n다시 시도해주세요.");
                         return;
