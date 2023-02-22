@@ -55,25 +55,25 @@ namespace Cohesion_Project
             //데이터 그리드 뷰 초기 설정
             DgvUtil.DgvInit(dgvProductList);
             DgvUtil.AddTextCol(dgvProductList, "    NO", "DISPLAY_SEQ", 80, readOnly: true, align: 1, frozen: true);
-            DgvUtil.AddTextCol(dgvProductList, "  품번", "PRODUCT_CODE", 150, readOnly: true, align: 1, frozen: true);
-            DgvUtil.AddTextCol(dgvProductList, "  품명", "PRODUCT_NAME", 150, readOnly: true);
+            DgvUtil.AddTextCol(dgvProductList, "  품번", "PRODUCT_CODE", 150, readOnly: true, align: 0, frozen: true);
+            DgvUtil.AddTextCol(dgvProductList, "  품명", "PRODUCT_NAME", 150, readOnly: true, align: 0);
             DgvUtil.AddTextCol(dgvProductList, "    품번 유형", "PRODUCT_TYPE", 100, readOnly: true);
             DgvUtil.AddTextCol(dgvProductList, "    고객 코드", "CUSTOMER_CODE", 100, readOnly: true);
             DgvUtil.AddTextCol(dgvProductList, "    업체 코드", "VENDOR_CODE", 120, readOnly: true);
             DgvUtil.AddTextCol(dgvProductList, "    생성 시간", "CREATE_TIME", 140, readOnly: true);
-            DgvUtil.AddTextCol(dgvProductList, "    생성자", "CREATE_USER_ID", 120, readOnly: true);
+            DgvUtil.AddTextCol(dgvProductList, "    생성자", "CREATE_USER_ID", 120, readOnly: true, align: 0);
             DgvUtil.AddTextCol(dgvProductList, "    변경 시간", "UPDATE_TIME", 140, readOnly: true);
-            DgvUtil.AddTextCol(dgvProductList, "    변경자", "UPDATE_USER_ID", 120, readOnly: true);
+            DgvUtil.AddTextCol(dgvProductList, "    변경자", "UPDATE_USER_ID", 120, readOnly: true, align: 0);
 
             DgvUtil.DgvInit(dgvOperationList);
             DgvUtil.AddTextCol(dgvOperationList, "    NO", "DISPLAY_SEQ", 80, readOnly: true, align: 1, frozen: true);
-            DgvUtil.AddTextCol(dgvOperationList, "    공정 코드", "OPERATION_CODE", 150, readOnly: true, align: 1, frozen: true);
-            DgvUtil.AddTextCol(dgvOperationList, "    공정명", "OPERATION_NAME", 180, readOnly: true);
+            DgvUtil.AddTextCol(dgvOperationList, "    공정 코드", "OPERATION_CODE", 150, readOnly: true, align:0, frozen: true);
+            DgvUtil.AddTextCol(dgvOperationList, "    공정명", "OPERATION_NAME", 180, readOnly: true, align: 0);
 
             DgvUtil.DgvInit(dgvAddOperationList);
             DgvUtil.AddTextCol(dgvAddOperationList, "    NO", "DISPLAY_SEQ", 80, readOnly: true, align: 1, frozen: true);
-            DgvUtil.AddTextCol(dgvAddOperationList, "    공정 코드", "OPERATION_CODE", 150, readOnly: true, align: 1, frozen: true);
-            DgvUtil.AddTextCol(dgvAddOperationList, "    공정명", "OPERATION_NAME", 180, readOnly: true);
+            DgvUtil.AddTextCol(dgvAddOperationList, "    공정 코드", "OPERATION_CODE", 150, readOnly: true, align: 0, frozen: true);
+            DgvUtil.AddTextCol(dgvAddOperationList, "    공정명", "OPERATION_NAME", 180, readOnly: true, align: 0);
 
 
             btnLeft.Enabled = false;
