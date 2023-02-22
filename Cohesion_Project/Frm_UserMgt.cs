@@ -223,7 +223,7 @@ namespace Cohesion_Project
             }
             var dto = PropertyToDto<Udate, User_DTO>(data);
             dto.UPDATE_TIME = DateTime.Now;
-            dto.UPDATE_USER_ID = "321";
+            dto.UPDATE_USER_ID = "김민식";
             bool result = srv_U.UpdateUser(dto);
             if (result)
             {

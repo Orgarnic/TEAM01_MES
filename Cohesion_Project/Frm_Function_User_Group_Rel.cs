@@ -62,11 +62,11 @@ namespace Cohesion_Project
             DgvUtil.AddTextCol(DgvFUG, "순번", "DISPLAY_SEQ", 80, readOnly: true, align: 1, frozen: true );
             DgvUtil.AddTextCol(DgvFUG, "사용자 그룹 코드", "USER_GROUP_CODE", 200, true, align: 0);
             DgvUtil.AddTextCol(DgvFUG, "사용자 그룹 명", "USER_GROUP_NAME", 120, true, align: 0);
-            DgvUtil.AddTextCol(DgvFUG, "사용자 그룹 유형", "USER_GROUP_TYPE", 120, true, align: 0);
-            DgvUtil.AddTextCol(DgvFUG, "생성 시간", "CREATE_TIME", 120, true, align: 1);
-            DgvUtil.AddTextCol(DgvFUG, "생성 사용자", "CREATE_USER_ID", 120, true, align: 1);
-            DgvUtil.AddTextCol(DgvFUG, "변경 시간", "UPDATE_TIME", 120, true, align: 1);
-            DgvUtil.AddTextCol(DgvFUG, "변경 사용자", "UPDATE_USER_ID", 120, true, align: 1);
+            DgvUtil.AddTextCol(DgvFUG, "사용자 그룹 유형", "USER_GROUP_TYPE", 140, true, align: 0);
+          //  DgvUtil.AddTextCol(DgvFUG, "생성 시간", "CREATE_TIME", 120, true, align: 1);
+          //  DgvUtil.AddTextCol(DgvFUG, "생성 사용자", "CREATE_USER_ID", 120, true, align: 0);
+         //  DgvUtil.AddTextCol(DgvFUG, "변경 시간", "UPDATE_TIME", 120, true, align: 1);
+         //  DgvUtil.AddTextCol(DgvFUG, "변경 사용자", "UPDATE_USER_ID", 120, true, align: 0);
 
             DgvUtil.DgvInit(DgvF1);
             DgvUtil.AddTextCol(DgvF1, "순번", "DISPLAY_SEQ", 80, readOnly: true, align: 1, frozen: true);
@@ -258,9 +258,10 @@ namespace Cohesion_Project
             int seq = 1;
             DgvF2.DataSource = FList.Select((i) => new FUNCTION_USER_GROUP_REL_DTO
             {
-                FUNCTION_CODE = i.FUNCTION_CODE,
-                FUNCTION_NAME = i.FUNCTION_NAME,
-                DISPLAY_SEQ = seq++
+
+              FUNCTION_CODE = i.FUNCTION_CODE,
+              FUNCTION_NAME = i.FUNCTION_NAME,
+              DISPLAY_SEQ = seq++
             }).ToList(); ;
             //LoadData();
         }
@@ -269,12 +270,12 @@ namespace Cohesion_Project
         {
             string operationCode = DgvFUG[1, DgvFUG.CurrentRow.Index].Value.ToString();
             List<FUNCTION_USER_GROUP_REL_DTO> list = DgvF1.DataSource as List<FUNCTION_USER_GROUP_REL_DTO>;
-
+   
 
             bool result = SrvFUG.InsertFUG(operationCode, list);
             if (result)
             {
-                MboxUtil.MboxInfo("화면 기능 정보를 입력했습니다.");
+                MboxUtil.MboxInfo("화면 기능 정보가 입력되었습니다.");
                 DgvF1.DataSource = null;
                 int seq = 1;
                 DgvF2.DataSource = FList.Select((i) => new FUNCTION_USER_GROUP_REL_DTO
