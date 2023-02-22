@@ -405,5 +405,60 @@ namespace Cohesion_DAO
                 conn.Close();
             }
         }
+
+        //주문 코드, 주문 일자, 고객 코드, 제품 코드 -> 검색 조건
+        public List<Work_Order_MST_DTO> GetLotInspectHisInfo(string orderid = null, string orderdate = null, string Customer = null, string prod = null)
+        {
+            string where;
+            
+            StringBuilder sb = new StringBuilder();
+            try
+            {
+                string sql = @"with WORK as 
+                               (
+                               select SALES_ORDER_ID, so.ORDER_DATE, so.CUSTOMER_CODE, so.PRODUCT_CODE, so.ORDER_QTY, sum(l.LOT_QTY) LOT_QTY
+                                                              from SALES_ORDER_MST so inner join PRODUCT_MST p on so.PRODUCT_CODE = p.PRODUCT_CODE
+												                                   left join LOT_STS l on so.PRODUCT_CODE = l.PRODUCT_CODE
+							                                  where so.CONFIRM_FLAG = 'Y' and so.SHIP_FLAG is null
+							                                  group by SALES_ORDER_ID, so.ORDER_DATE, so.CUSTOMER_CODE, so.PRODUCT_CODE, so.ORDER_QTY
+                                                              --order by so.ORDER_DATE desc
+                               )
+                               select SALES_ORDER_ID, ORDER_DATE, CUSTOMER_CODE, PRODUCT_CODE, ORDER_QTY, LOT_QTY
+                               from WORK
+                               where 1 = 1";
+
+                sb.Append(sql);
+                SqlCommand cmd = new SqlCommand();
+
+                if (!string.IsNullOrWhiteSpace(orderid))
+                    sb.Append($" and SALES_ORDER_ID = '" + orderid + "'");
+                if (!string.IsNullOrWhiteSpace(orderdate))
+                    sb.Append($" and ORDER_DATE = '" + orderdate + "'");
+                if (!string.IsNullOrWhiteSpace(Customer))
+                    sb.Append($" and CUSTOMER_CODE = '" + Customer + "'");
+                if (!string.IsNullOrWhiteSpace(prod))
+                    sb.Append($" and PRODUCT_CODE = '" + prod + "'");
+
+                sb.Append("order by ORDER_DATE desc");
+                cmd.CommandText = sb.ToString();
+                cmd.Connection = conn;
+
+
+                conn.Open();
+                List<Work_Order_MST_DTO> list = Helper.DataReaderMapToList<Work_Order_MST_DTO>(cmd.ExecuteReader());
+
+                return list;
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+                Debug.WriteLine(err.StackTrace);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     }
 }

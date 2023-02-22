@@ -14,11 +14,13 @@ namespace Cohesion_Project
     public partial class Frm_WorkOrder : Cohesion_Project.Frm_Base_2
     {
         Srv_WorkOrder srv = new Srv_WorkOrder();
+        Srv_Product srv2 = new Srv_Product();
         Work_Order_MST_DTO wOrder = null;
         List<Work_Order_MST_DTO> temp = null;
+        List<PRODUCT_MST_DTO> prod = null;
         string wCode, Status;
         User_DTO user = new User_DTO();
-        bool change = true;
+        bool change = true, search = true;
 
         public Frm_WorkOrder()
         {
@@ -29,8 +31,12 @@ namespace Cohesion_Project
         {
             user = (this.ParentForm as Frm_Main).userInfo;
             temp = srv.SelectWorkOrders(new Work_Order_SEARCH_DTO());
+            prod = srv2.SelectProduts(new PRODUCT_MST_DTO_Condition());
+
             ComboUtil.WorkOrder = (from t in temp
                                    select t.WORK_ORDER_ID).ToList();
+            ComboUtil.ProductCode = (from p in prod
+                                     select p.PRODUCT_CODE).ToList();
             GetWorkOrderList();
             DataGridClean();
         }
@@ -170,6 +176,10 @@ namespace Cohesion_Project
             {
                 btnUpdate.PerformClick();
             }
+            if(!search)
+            {
+                btnSearchCondition.PerformClick();
+            }
             dgvWorkOrderList.Enabled = true;
             ppgWorkOrderSearch.Enabled = false;
             DataGridClean();
@@ -225,21 +235,23 @@ namespace Cohesion_Project
         {
             if (lbl3.Text == "▶ 속성")
             {
-                dgvWorkOrderList.Enabled = false;
+                dgvWorkOrderList.ReadOnly = true;
                 btnSearch.Enabled = true;
                 dgvWorkOrderList.ClearSelection();
                 ppgWorkOrderSearch.Enabled = true;
                 ppgWorkOrderSearch.SelectedObject = new Work_Order_SEARCH_DTO();
                 lbl3.Text = "▶ 검색 상세 조건";
+                search = false;
             }
             else
             {
-                dgvWorkOrderList.Enabled = true;
+                dgvWorkOrderList.ReadOnly = false;
                 btnSearch.Enabled = false;
                 dgvWorkOrderList.ClearSelection();
                 ppgWorkOrderSearch.Enabled = false;
                 ppgWorkOrderSearch.SelectedObject = new Work_Order_MST_DTO();
                 lbl3.Text = "▶ 속성";
+                search = true;
             }
         }
 

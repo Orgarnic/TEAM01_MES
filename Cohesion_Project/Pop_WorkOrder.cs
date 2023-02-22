@@ -87,6 +87,14 @@ namespace Cohesion_Project
             this.Close();
         }
 
+        private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar == (char)Keys.Enter)
+            {
+                btnSearch.PerformClick();
+            }
+        }
+
         private void btnCreate_Click(object sender, EventArgs e)
         {
             int cnt = 0;
