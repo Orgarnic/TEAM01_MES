@@ -48,7 +48,7 @@ namespace Cohesion_DTO
     {
 		[Category("검색조건"), Description("WORK_ORDER_ID"), DisplayName("생산 작업지시 코드"), TypeConverter(typeof(ComboWorkOrderConverter))]
 		public string WORK_ORDER_ID { get; set; }       //생산 작업지시 코드
-		[Category("검색조건"), Description("PRODUCT_CODE"), DisplayName("생산 제품 코드")]
+		[Category("검색조건"), Description("PRODUCT_CODE"), DisplayName("생산 제품 코드"), TypeConverter(typeof(ComboProductConverter))]
 		public string PRODUCT_CODE { get; set; }        //생산 제품코드, 품번
 		[Category("검색조건"), Description("CUSTOMER_CODE"), DisplayName("고객사 코드")]
 		public string CUSTOMER_CODE { get; set; }       //고객사 코드

@@ -108,5 +108,14 @@ namespace Cohesion_Project.Service
 
             return result;
         }
+
+        public List<Work_Order_MST_DTO> GetLotInspectHisInfo(string orderid = null, string orderdate = null, string Customer = null, string prod = null)
+        {
+            WorkOrder_DAO db = new WorkOrder_DAO();
+            List<Work_Order_MST_DTO> list = db.GetLotInspectHisInfo(orderid, orderdate, Customer, prod);
+            db.Dispose();
+
+            return list;
+        }
     }
 }

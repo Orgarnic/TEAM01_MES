@@ -58,5 +58,13 @@ namespace Cohesion_Project
             this.DialogResult = DialogResult.Cancel;
             Application.Exit();
         }
+
+        private void txtUserPwd_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar == (char)Keys.Enter)
+            {
+                btnLogin.PerformClick();
+            }
+        }
     }
 }

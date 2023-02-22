@@ -51,7 +51,7 @@ namespace Cohesion_Project
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(111)))), ((int)(((byte)(140)))));
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(35)))), ((int)(((byte)(61)))));
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.pictureBox4);
             this.panel1.Controls.Add(this.label3);
@@ -64,7 +64,7 @@ namespace Cohesion_Project
             // panel2
             // 
             this.panel2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(35)))), ((int)(((byte)(61)))));
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
             this.panel2.Controls.Add(this.btnLogin);
             this.panel2.Controls.Add(this.btnClose);
             this.panel2.Controls.Add(this.txtUserID);
@@ -117,7 +117,6 @@ namespace Cohesion_Project
             this.txtUserID.Name = "txtUserID";
             this.txtUserID.Size = new System.Drawing.Size(198, 19);
             this.txtUserID.TabIndex = 26;
-            this.txtUserID.Text = "admin";
             this.txtUserID.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtUserPwd
@@ -130,8 +129,8 @@ namespace Cohesion_Project
             this.txtUserPwd.PasswordChar = '*';
             this.txtUserPwd.Size = new System.Drawing.Size(198, 19);
             this.txtUserPwd.TabIndex = 27;
-            this.txtUserPwd.Text = "1234";
             this.txtUserPwd.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtUserPwd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUserPwd_KeyPress);
             // 
             // label6
             // 
@@ -194,9 +193,9 @@ namespace Cohesion_Project
             this.pictureBox4.ErrorImage = ((System.Drawing.Image)(resources.GetObject("pictureBox4.ErrorImage")));
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
             this.pictureBox4.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox4.InitialImage")));
-            this.pictureBox4.Location = new System.Drawing.Point(60, 17);
+            this.pictureBox4.Location = new System.Drawing.Point(60, 12);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(70, 50);
+            this.pictureBox4.Size = new System.Drawing.Size(60, 60);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox4.TabIndex = 16;
             this.pictureBox4.TabStop = false;
