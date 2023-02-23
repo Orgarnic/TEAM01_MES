@@ -57,11 +57,8 @@ namespace Cohesion_Project
             // 
             // panel2
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
             this.panel2.Controls.Add(this.DgvUserGroup);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(3, 75);
-            this.panel2.Size = new System.Drawing.Size(1223, 716);
+            this.panel2.Size = new System.Drawing.Size(1223, 653);
             this.panel2.Controls.SetChildIndex(this.lbl4, 0);
             this.panel2.Controls.SetChildIndex(this.DgvUserGroup, 0);
             // 
@@ -73,7 +70,7 @@ namespace Cohesion_Project
             // btnSearch
             // 
             this.btnSearch.FlatAppearance.BorderSize = 0;
-            this.btnSearch.Location = new System.Drawing.Point(1074, 37);
+            this.btnSearch.Location = new System.Drawing.Point(1074, 38);
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // panel4
@@ -83,7 +80,7 @@ namespace Cohesion_Project
             // btnSearchCondition
             // 
             this.btnSearchCondition.FlatAppearance.BorderSize = 0;
-            this.btnSearchCondition.Location = new System.Drawing.Point(1134, 37);
+            this.btnSearchCondition.Location = new System.Drawing.Point(1134, 38);
             this.btnSearchCondition.Click += new System.EventHandler(this.btnSearchCondition_Click);
             // 
             // lbl2
@@ -92,17 +89,17 @@ namespace Cohesion_Project
             // 
             // panel5
             // 
-            this.panel5.Size = new System.Drawing.Size(1516, 794);
+            this.panel5.Size = new System.Drawing.Size(1516, 737);
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Size = new System.Drawing.Size(1516, 794);
+            this.splitContainer1.Size = new System.Drawing.Size(1516, 737);
             this.splitContainer1.SplitterDistance = 1226;
             // 
             // panel7
             // 
             this.panel7.Controls.Add(this.Ppg_UserGourp);
-            this.panel7.Size = new System.Drawing.Size(283, 788);
+            this.panel7.Size = new System.Drawing.Size(283, 731);
             this.panel7.Controls.SetChildIndex(this.lbl3, 0);
             this.panel7.Controls.SetChildIndex(this.Ppg_UserGourp, 0);
             // 
@@ -113,45 +110,45 @@ namespace Cohesion_Project
             // btnClose
             // 
             this.btnClose.FlatAppearance.BorderSize = 0;
-            this.btnClose.Location = new System.Drawing.Point(1417, 839);
+            this.btnClose.Location = new System.Drawing.Point(1417, 781);
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnDelete
             // 
             this.btnDelete.FlatAppearance.BorderSize = 0;
-            this.btnDelete.Location = new System.Drawing.Point(7, 838);
+            this.btnDelete.Location = new System.Drawing.Point(3, 781);
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnInsert
             // 
             this.btnInsert.FlatAppearance.BorderSize = 0;
-            this.btnInsert.Location = new System.Drawing.Point(1215, 839);
+            this.btnInsert.Location = new System.Drawing.Point(1215, 781);
             this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
             // btnAdd
             // 
             this.btnAdd.FlatAppearance.BorderSize = 0;
-            this.btnAdd.Location = new System.Drawing.Point(1013, 839);
+            this.btnAdd.Location = new System.Drawing.Point(1013, 781);
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnUpdate
             // 
             this.btnUpdate.FlatAppearance.BorderSize = 0;
-            this.btnUpdate.Location = new System.Drawing.Point(1114, 839);
+            this.btnUpdate.Location = new System.Drawing.Point(1114, 781);
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnRefresh
             // 
             this.btnRefresh.FlatAppearance.BorderSize = 0;
-            this.btnRefresh.Location = new System.Drawing.Point(1316, 839);
+            this.btnRefresh.Location = new System.Drawing.Point(1316, 781);
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // DgvUserGroup
             // 
             this.DgvUserGroup.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgvUserGroup.Location = new System.Drawing.Point(404, 178);
+            this.DgvUserGroup.Location = new System.Drawing.Point(404, 166);
             this.DgvUserGroup.Name = "DgvUserGroup";
-            this.DgvUserGroup.Size = new System.Drawing.Size(240, 150);
+            this.DgvUserGroup.Size = new System.Drawing.Size(240, 140);
             this.DgvUserGroup.TabIndex = 6;
             this.DgvUserGroup.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvUserGroup_CellClick);
             // 
@@ -160,16 +157,16 @@ namespace Cohesion_Project
             this.Ppg_UserGourp.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Ppg_UserGourp.Location = new System.Drawing.Point(0, 30);
             this.Ppg_UserGourp.Name = "Ppg_UserGourp";
-            this.Ppg_UserGourp.Size = new System.Drawing.Size(281, 756);
+            this.Ppg_UserGourp.Size = new System.Drawing.Size(281, 699);
             this.Ppg_UserGourp.TabIndex = 7;
             // 
             // Frm_UserGroupMgt
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1516, 877);
+            this.ClientSize = new System.Drawing.Size(1516, 819);
             this.Name = "Frm_UserGroupMgt";
-            this.Text = "Frm_UserGroupMgt";
+            this.Text = "사용자 그룹 관리";
             this.Load += new System.EventHandler(this.Frm_UserGroup_Load);
             this.pnlSearch.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

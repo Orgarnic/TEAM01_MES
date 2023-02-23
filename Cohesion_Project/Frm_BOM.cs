@@ -45,6 +45,7 @@ namespace Cohesion_Project
                                      select t.PRODUCT_CODE).ToList();
             Cohesion_DTO.ComboUtil.OperationCode = (from o in oper
                                        select o.OPERATION_CODE).ToList();
+            txtSearch.Focus();
         }
 
         private void GetComboData()

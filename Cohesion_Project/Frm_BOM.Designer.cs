@@ -58,10 +58,13 @@ namespace Cohesion_Project
             // btnClose
             // 
             this.btnClose.FlatAppearance.BorderSize = 0;
+            this.btnClose.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnClose.Location = new System.Drawing.Point(1422, 1003);
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // lbl7
             // 
+            this.lbl7.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lbl7.Size = new System.Drawing.Size(286, 30);
             this.lbl7.Text = "▶ BOM 속성";
             // 
@@ -74,6 +77,7 @@ namespace Cohesion_Project
             // 
             // lbl6
             // 
+            this.lbl6.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lbl6.Size = new System.Drawing.Size(1221, 30);
             this.lbl6.Text = "▶ 제품 BOM 구성";
             // 
@@ -90,6 +94,7 @@ namespace Cohesion_Project
             // 
             // lbl3
             // 
+            this.lbl3.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lbl3.Size = new System.Drawing.Size(286, 30);
             this.lbl3.Text = "▶ 검색 상세 조건";
             // 
@@ -118,7 +123,8 @@ namespace Cohesion_Project
             // 
             // lbl4
             // 
-            this.lbl4.Size = new System.Drawing.Size(1221, 32);
+            this.lbl4.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lbl4.Size = new System.Drawing.Size(1221, 30);
             this.lbl4.Text = "▶ 제품 목록";
             // 
             // panel4
@@ -143,6 +149,7 @@ namespace Cohesion_Project
             // 
             // lbl2
             // 
+            this.lbl2.Font = new System.Drawing.Font("나눔고딕 ExtraBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lbl2.Size = new System.Drawing.Size(1221, 30);
             this.lbl2.Text = "▶ 제품 목록 검색";
             // 
@@ -154,29 +161,34 @@ namespace Cohesion_Project
             // 
             this.btnDelete.Enabled = false;
             this.btnDelete.FlatAppearance.BorderSize = 0;
+            this.btnDelete.Location = new System.Drawing.Point(3, 1003);
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnInsert
             // 
             this.btnInsert.FlatAppearance.BorderSize = 0;
+            this.btnInsert.Location = new System.Drawing.Point(1220, 1003);
             this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
             // btnAdd
             // 
             this.btnAdd.Enabled = false;
             this.btnAdd.FlatAppearance.BorderSize = 0;
+            this.btnAdd.Location = new System.Drawing.Point(1018, 1003);
             this.btnAdd.Text = "      추  가";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnUpdate
             // 
             this.btnUpdate.FlatAppearance.BorderSize = 0;
+            this.btnUpdate.Location = new System.Drawing.Point(1119, 1003);
             this.btnUpdate.Text = "      등  록";
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnRefresh
             // 
             this.btnRefresh.FlatAppearance.BorderSize = 0;
+            this.btnRefresh.Location = new System.Drawing.Point(1321, 1003);
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // dataGridView1
@@ -195,10 +207,10 @@ namespace Cohesion_Project
             this.dgvBOMParent.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dgvBOMParent.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvBOMParent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvBOMParent.Location = new System.Drawing.Point(0, 32);
+            this.dgvBOMParent.Location = new System.Drawing.Point(0, 30);
             this.dgvBOMParent.Name = "dgvBOMParent";
             this.dgvBOMParent.RowTemplate.Height = 23;
-            this.dgvBOMParent.Size = new System.Drawing.Size(1221, 332);
+            this.dgvBOMParent.Size = new System.Drawing.Size(1221, 334);
             this.dgvBOMParent.TabIndex = 6;
             this.dgvBOMParent.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBOMParent_CellClick);
             // 

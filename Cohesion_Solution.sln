@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cohesion_DAO", "Cohesion_DA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cohesion_DTO", "Cohesion_DTO\Cohesion_DTO.csproj", "{B20FD49F-87CB-445F-B7FF-F3F6BA267CBD}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Cohesion_SetUp", "Cohesion_SetUp\Cohesion_SetUp.vdproj", "{61CB021F-0430-4A77-A5FD-D0DE1D1736F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,8 @@ Global
 		{B20FD49F-87CB-445F-B7FF-F3F6BA267CBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B20FD49F-87CB-445F-B7FF-F3F6BA267CBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B20FD49F-87CB-445F-B7FF-F3F6BA267CBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61CB021F-0430-4A77-A5FD-D0DE1D1736F7}.Debug|Any CPU.ActiveCfg = Debug
+		{61CB021F-0430-4A77-A5FD-D0DE1D1736F7}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>ICON.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="log4net, Version=2.0.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.15\lib\net45\log4net.dll</HintPath>
@@ -394,6 +397,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ICON.ico" />
     <Content Include="Image\check.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -433,6 +437,7 @@
     <None Include="Resources\backimg.png" />
     <None Include="Resources\backimg1.png" />
     <None Include="Resources\letter-c %284%29.png" />
+    <None Include="Resources\ICON.png" />
     <Content Include="Resources\Search2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

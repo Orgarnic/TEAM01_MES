@@ -14,6 +14,8 @@ namespace Cohesion_Project
 {
     public partial class Frm_Login : Form
     {
+        bool TagMove;
+        int MX, MY;
         public User_DTO user = null;
         Srv_User srv = null;
         public Frm_Login()
@@ -65,6 +67,26 @@ namespace Cohesion_Project
             {
                 btnLogin.PerformClick();
             }
+        }
+
+        private void panel1_MouseDown(object sender, MouseEventArgs e)
+        {
+            TagMove = true;
+            MX = e.X;
+            MY = e.Y;
+        }
+
+        private void panel1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if(TagMove == true)
+            {
+                this.SetDesktopLocation(MousePosition.X - MX, MousePosition.Y - MY);
+            }
+        }
+
+        private void panel1_MouseUp(object sender, MouseEventArgs e)
+        {
+            TagMove = false;
         }
     }
 }

@@ -187,10 +187,10 @@
   <data name="tabs" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tabs.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="backimg" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\backimg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="letter_c__4_" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\letter-c (4).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ICON" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ICON.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
